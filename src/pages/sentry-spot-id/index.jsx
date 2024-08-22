@@ -67,10 +67,12 @@ const SentryPage = () => {
           </div>
         </div>
       </section>
+
       <section className="job-categories py-10 border-none">
         {/* <section className="job-section  v"> */}
         <div className="auto-container border w-[70%]"></div>
       </section>
+
       <section className="job-categories py-16 border-none">
         {/* <section className="job-section  v"> */}
         <div className="auto-container">
