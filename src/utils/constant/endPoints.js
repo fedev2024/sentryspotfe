@@ -11,8 +11,8 @@ export const VERS = "v1";
 // Object containing endpoint slugs
 export const EndpointSlug = {
   // AUTHENTICATION
-  SIGNIN: "/api/jobseeker/auth/login",
-  SIGNUP: "/api/jobseeker/auth/signup",
+  SIGNIN: "/api/employeer/auth/login",
+  SIGNUP: "/api/employeer/auth/signup",
 
   //   Dummy
   DUMMY_JSON: "https://jsonplaceholder.typicode.com/posts",

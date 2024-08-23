@@ -19,6 +19,7 @@ import { Label } from "@/components/ui/label";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSignupDialog } from "@/store/slices/auth";
 import { signUpSchema } from "@/schema/SignupSchema";
+import { userSignUp } from "@/store/slices/auth/actions";
 
 const passwordCriteria = [
   "At least 8 characters long",
@@ -41,10 +42,28 @@ const SignUpDialog = () => {
     resolver: zodResolver(signUpSchema), // Connect Zod validation schema
   });
   // Handle form submission
-  const onSubmit = (e) => {
-    e.preventdefault();
-    console.log("Form Data:", data);
-    // Add your signup logic here, e.g., sending data to the server
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Form Data:", data);
+  //   // Add your signup logic here, e.g., sending data to the server
+  // };
+
+  const submitHandler = async (e) => {
+    // e.preventDefault();
+    if (e.password == e.confirm_password) {
+      const { first_name, last_name, email, phone, password, organization } = e;
+      console.log(first_name, last_name, email, phone, password, organization);
+      dispatch(
+        userSignUp({
+          first_name: first_name,
+          last_name: last_name,
+          email: email,
+          phone: phone,
+          password: password,
+          company_name: organization,
+        })
+      );
+    } else toast.error("Weak Password");
   };
 
   useEffect(() => {
@@ -80,7 +99,7 @@ const SignUpDialog = () => {
         </DialogHeader>
         <form
           className="flex justify-between space-x-2 flex-wrap gap-4"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(submitHandler)}
         >
           <div className="flex flex-col w-full sm:w-[45%] gap-2  ">
             <Button
@@ -100,7 +119,7 @@ const SignUpDialog = () => {
               </p>
             )} */}
           </div>
-          <div className="flex flex-col w-full sm:w-[45%] gap-2  ">
+          <div className="flex flex-col w-full sm:w-[45%] gap-2">
             <Button
               type="button"
               className={` border ${

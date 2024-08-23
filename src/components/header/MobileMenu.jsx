@@ -3,6 +3,8 @@ import MobileSidebar from "./mobile-sidebar";
 import logo from "../../Images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSignupDialog } from "@/store/slices/auth";
+import { Button } from "../ui/button";
+import { IoLogOutOutline } from "react-icons/io5";
 
 const MobileMenu = () => {
   const dispatch = useDispatch();
