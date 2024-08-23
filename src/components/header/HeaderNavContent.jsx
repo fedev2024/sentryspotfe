@@ -166,7 +166,7 @@ const HeaderNavContent = () => {
                   Candidate profile{" "}
                 </Link>
               </li>
-              <li
+              {/* <li
                 className={
                   pathname?.includes("/employers-d  ashboard") ? "current" : ""
                 }
@@ -190,7 +190,7 @@ const HeaderNavContent = () => {
                 <Link to="/employers-dashboard/dashboard">
                   Employers Dashboard
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </li>
           {/* End Employers menu items */}
