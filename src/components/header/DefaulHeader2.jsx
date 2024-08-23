@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import HeaderNavContent from "./HeaderNavContent";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "@/store/slices/auth";
+import { logout, toggleSignupDialog } from "@/store/slices/auth";
 
 const DefaulHeader2 = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const DefaulHeader2 = () => {
   return (
     // <!-- Main Header-->
     <header
-      className={`main-header font-bold border ${
+      className={`main-header font-bold border z-10 ${
         navbar ? "fixed-header animated slideInDown   " : ""
       }`}
     >
@@ -42,7 +42,11 @@ const DefaulHeader2 = () => {
           <div className="logo-box">
             <div className="me-10">
               <Link to="/">
-                <img alt="brand" src={logo} className="h-20 w-28 " />
+                <img
+                  alt="brand"
+                  src={logo}
+                  className="h-20 w-28 object-cover "
+                />
               </Link>
             </div>
           </div>
@@ -55,12 +59,12 @@ const DefaulHeader2 = () => {
 
         <div className="outer-box">
           {/* <!-- Add Listing --> */}
-          <Link
+          {/* <Link
             to="/candidates-dashboard/cv-manager"
             className="upload-cv text-blue-950"
           >
             Upload your CV
-          </Link>
+          </Link> */}
           {/* <!-- Login/Register --> */}
           <div className="btn-box">
             {userToken ? (
@@ -74,14 +78,14 @@ const DefaulHeader2 = () => {
                 <IoLogOutOutline size={24} className="" />
               </Button>
             ) : (
-              <a
-                href="#"
-                className="theme-btn btn-style-three call-modal p-2   text-blue-950"
-                data-bs-toggle="modal"
-                data-bs-target="#loginPopupModal"
+              <button
+                className="theme-btn btn-style-three call-modal p-2 text-blue-950 text-lg px-3 font-light"
+                onClick={() => {
+                  dispatch(toggleSignupDialog());
+                }}
               >
-                Login / Register
-              </a>
+                Sign Up
+              </button>
             )}
 
             <Link

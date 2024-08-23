@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
 import MobileSidebar from "./mobile-sidebar";
 import logo from "../../Images/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSignupDialog } from "@/store/slices/auth";
 
 const MobileMenu = () => {
+  const dispatch = useDispatch();
+
+  const { loading, userInfo, userToken, error, success, message } = useSelector(
+    (state) => state.auth
+  );
   return (
     // <!-- Main Header-->
-    <header className="main-header main-header-mobile">
+    <header className="main-header main-header-mobile z-10">
       <div className="auto-container">
         {/* <!-- Main box --> */}
         <div className="inner-box">
@@ -26,14 +33,26 @@ const MobileMenu = () => {
 
           <div className="outer-box">
             <div className="login-box">
-              <a
-                href="#"
-                className="call-modal"
-                data-bs-toggle="modal"
-                data-bs-target="#loginPopupModal"
-              >
-                <span className="icon icon-user"></span>
-              </a>
+              {userToken ? (
+                <Button
+                  className="bg-gray-500 p-3 ml-2 duration-500 hover:bg-[#E60278]"
+                  title="logout"
+                  onClick={() => {
+                    dispatch(logout());
+                  }}
+                >
+                  <IoLogOutOutline size={24} className="" />
+                </Button>
+              ) : (
+                <button
+                  className="theme-btn btn-style-three call-modal p-2 text-blue-950 text-lg px-3 font-light"
+                  onClick={() => {
+                    dispatch(toggleSignupDialog());
+                  }}
+                >
+                  Sign Up
+                </button>
+              )}
             </div>
             {/* login popup end */}
 

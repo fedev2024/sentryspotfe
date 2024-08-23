@@ -3,7 +3,7 @@ import "aos/dist/aos.css";
 import "./styles/index.scss";
 import { useEffect } from "react";
 import ScrollToTop from "./components/common/ScrollTop";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import { store } from "./store/store";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -108,6 +108,7 @@ import OrderCompletedPage from "./pages/shop/order-completed";
 // new routes
 import SentryPage from "@/pages/sentry-spot-id/index";
 import { Toaster } from "react-hot-toast";
+import SignUpDialog from "./components/auth/SignUp";
 
 function App() {
   useEffect(() => {
@@ -317,6 +318,7 @@ function App() {
             pauseOnHover
             theme="colored"
           /> */}
+          <SignUpDialog />
           <Toaster />
           {/* <!-- Scroll To Top --> */}
           <ScrollToTop />

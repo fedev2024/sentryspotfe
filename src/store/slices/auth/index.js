@@ -19,6 +19,7 @@ const initialState = {
   error: false,
   success: false,
   message: "",
+  openSignupDialog: false,
 };
 
 // Handling State function or logics of User Authentication Module
@@ -42,6 +43,9 @@ export const AuthSlice = createSlice({
     },
     setLoader: (state, { payload }) => {
       state.loading = payload;
+    },
+    toggleSignupDialog: (state) => {
+      state.openSignupDialog = !state.openSignupDialog;
     },
   },
   extraReducers: (builder) => {
@@ -90,5 +94,5 @@ export const AuthSlice = createSlice({
   },
 });
 
-export const { logout, setLoader } = AuthSlice.actions;
+export const { logout, setLoader, toggleSignupDialog } = AuthSlice.actions;
 export default AuthSlice.reducer;

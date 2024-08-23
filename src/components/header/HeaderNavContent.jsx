@@ -261,13 +261,13 @@ const HeaderNavContent = () => {
           </li> */}
           {/* End Candidates menu items */}
 
-          <li
+          {/* <li
             className={`${
               isActiveParentChaild(blogItems, pathname) ? "current" : ""
             } dropdown`}
-          >
-            <Link to={"https://blog.sentryspot.co.uk/"}> Resources</Link>
-            {/* <ul>
+          > */}
+          {/* <Link to={"https://blog.sentryspot.co.uk/"}> Resources</Link> */}
+          {/* <ul>
               {blogItems.map((item, i) => (
                 <li
                   className={
@@ -279,12 +279,12 @@ const HeaderNavContent = () => {
                 </li>
               ))}
             </ul> */}
-          </li>
+          {/* </li> */}
           {/* End Blog menu items */}
 
           {/* reposting btn */}
           <li className="border h-[80%] p-0 m-0 "></li>
-          <li className=" hover:bg-slate-200  p-2 rounded-md ml-2">
+          <li className=" hover:bg-slate-200 p-2 rounded-md ml-2">
             <Link to="/">
               {" "}
               <span className="font-light"> Recruiting</span>? Post a job{" "}
