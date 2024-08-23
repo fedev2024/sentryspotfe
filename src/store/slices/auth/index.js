@@ -80,10 +80,11 @@ export const AuthSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.message = payload?.message;
-        state.userToken = payload?.data?.token;
-        state.userInfo = payload?.data;
+        // state.userToken = payload?.data?.token;
+        // state.userInfo = payload?.data;
         state.error = false;
-        window.location.href = "/candidates-dashboard/my-profile";
+        // window.location.href = "/candidates-dashboard/my-profile";
+        window.location.href = "/";
       })
       .addCase(userSignUp.rejected, (state, { payload }) => {
         state.loading = false;

@@ -16,6 +16,8 @@ export const userLogin = createAsyncThunk(
         password,
       });
 
+      console.log("data login", data);
+
       // store user's data in local storage
       localStorage.setItem(Constant.USER_TOKEN, data?.data?.token);
       localStorage.setItem(Constant.USER_INFO, JSON.stringify(data?.data));
@@ -49,10 +51,13 @@ export const userSignUp = createAsyncThunk(
 
     try {
       const { data } = await instance.post(`${EndpointSlug.SIGNUP}`, body);
+
+      // console.log("data", data);
+
       if (data?.status === "success") {
         // store user's data in local storage
-        localStorage.setItem(Constant.USER_TOKEN, data?.data?.token);
-        localStorage.setItem(Constant.USER_INFO, JSON.stringify(data?.data));
+        // localStorage.setItem(Constant.USER_TOKEN, data?.data?.token);
+        // localStorage.setItem(Constant.USER_INFO, JSON.stringify(data?.data));
         toast.success(data?.message || "Success");
       }
       return { ...data };

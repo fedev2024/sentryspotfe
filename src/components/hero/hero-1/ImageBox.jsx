@@ -1,11 +1,8 @@
-
-
 const ImageBox = () => {
   return (
     <div className="image-box">
       <figure className="main-image" data-aos="fade-in" data-aos-delay="500">
         <img
-        
           layout="responsive"
           src="/images/resource/banner-img-1.png"
           alt="hero image"
@@ -24,11 +21,7 @@ const ImageBox = () => {
       <div className="info_block_two" data-aos="fade-in" data-aos-delay="2000">
         <p>10k+ Candidates</p>
         <div className="image">
-          <img
-           
-            src="/images/resource/multi-peoples.png"
-            alt="mulit people"
-          />
+          <img src="/images/resource/multi-peoples.png" alt="mulit people" />
         </div>
       </div>
       {/* <!-- Info BLock Three --> */}

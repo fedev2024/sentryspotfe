@@ -1,8 +1,12 @@
 import SearchForm from "../../common/job-search/SearchForm";
 import ImageBox from "./ImageBox";
 import PopularSearch from "../PopularSearch";
+import Login from "@/components/auth/Login";
+import ResetPassword from "@/components/auth/ResetPassword";
+import { useState } from "react";
 
 const index = () => {
+  const [isLogin, setIsLogin] = useState(true);
   return (
     <section className="banner-section">
       <div className="auto-container">
@@ -15,12 +19,12 @@ const index = () => {
             >
               <div className="title-box">
                 <h3>
-                  There Are <span className=" text-blue-800">93,178</span> Postings
-                  Here
+                  There Are <span className=" text-blue-800">93,178</span>{" "}
+                  Postings Here
                   <br /> For you!
                 </h3>
                 <div className="text">
-                  Find Jobs, Employment & Career Opportunities 
+                  Find Jobs, Employment & Career Opportunities
                 </div>
               </div>
 
@@ -37,8 +41,15 @@ const index = () => {
           </div>
           {/* End .col */}
 
-          <div className="image-column col-lg-5 col-md-12">
-            <ImageBox />
+          <div className="z-0 col-lg-5 col-md-12 flex items-center lg:items-start justify-center">
+            {/* <ImageBox /> */}
+            <div className="pb-5  lg:pt-[150px]">
+              {isLogin ? (
+                <Login setIsLogin={() => setIsLogin(false)} />
+              ) : (
+                <ResetPassword setIsLogin={() => setIsLogin(true)} />
+              )}
+            </div>
           </div>
         </div>
       </div>

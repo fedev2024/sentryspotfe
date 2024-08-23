@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSignupDialog } from "@/store/slices/auth";
 import { signUpSchema } from "@/schema/SignupSchema";
 import { userSignUp } from "@/store/slices/auth/actions";
+import toast from "react-hot-toast";
 
 const passwordCriteria = [
   "At least 8 characters long",
@@ -63,7 +64,7 @@ const SignUpDialog = () => {
           company_name: organization,
         })
       );
-    } else toast.error("Weak Password");
+    } else toast.error("Match Password");
   };
 
   useEffect(() => {
