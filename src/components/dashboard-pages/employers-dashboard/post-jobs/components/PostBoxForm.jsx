@@ -41,12 +41,33 @@ const PostBoxForm = () => {
       max_year_of_experience,
     } = e;
     createpost({
-      job_title,
-      job_description,
-      // job_type,
-      complete_address: location,
+      job_title: job_title,
+      job_description: job_description,
       email_address: email,
+      specialisms_id: 1,
+      job_type_id: 1,
+      offered_salary_id: 1,
+      career_level_id: 1,
+      experience_id: 1,
+      industry_id: 1,
+      qualification_id: 1,
+      application_deadline: "2024-12-31",
+      country_id: 2,
+      state_id: 2,
+      city_id: 2,
+      complete_address: location,
+      latitude: "23",
+      longitude: "12",
+      status: 1,
     });
+
+    // {
+    //       job_title,
+    //       job_description,
+    //       // job_type,
+    //       complete_address: location,
+    //       email_address: email,
+    //     }
   };
 
   useEffect(() => {
