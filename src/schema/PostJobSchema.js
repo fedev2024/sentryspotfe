@@ -5,7 +5,9 @@ import { passwordSchema, phoneSchema } from "./CommonSchema";
 const PostJobSchema = zod.object({
   job_title: zod.string().min(1, "Job title is required"),
   location: zod.string().min(1, "Location is required"),
-  year_of_experience: zod.string().min(1, "Experience is required"),
+  min_year_of_experience: zod.string().min(1, "Min Experience is required"),
+  max_year_of_experience: zod.string().min(1, "Max Experience is required"),
+
   job_description: zod.string().min(1, "Job description is required"),
   video_jd: zod.string(),
   category: zod.string().min(1, "Category is required"),

@@ -12,7 +12,7 @@ export const Service = createApi({
       const token = localStorage.getItem(Constant.USER_TOKEN) || "";
       headers.set("Content-type", "application/json; charset=UTF-8");
       if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
+        headers.set("Authorization", `${token}`);
       }
       return headers;
     },

@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PostJobSchema } from "@/schema/PostJobSchema";
 import { useCreatePostMutation } from "@/store/slices/service/index";
+import ActionLoader from "@/components/loader/ActionLoader";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 const PostBoxForm = () => {
   const {
     register,
@@ -12,6 +15,10 @@ const PostBoxForm = () => {
   } = useForm({
     resolver: zodResolver(PostJobSchema), // Connect Zod validation schema
   });
+
+  const [createpost, { data, isSuccess, isError, isLoading, error }] =
+    useCreatePostMutation();
+
   const tags = [
     { value: "Banking", label: "Banking" },
     { value: "Digital & Creative", label: "Digital & Creative" },
@@ -23,36 +30,29 @@ const PostBoxForm = () => {
     { value: "Creative Art", label: "Creative Art" },
   ];
 
-  // let [
-  //   createpost,
-  //   {
-  //     data: updateCartData,
-  //     isSuccess: updateCartSuccess,
-  //     isError: updateCartIsError,
-  //     isLoading: updateCartLoading,
-  //     error: updateCartError,
-  //   },
-  // ] = useUpdateCartMutation();
-
   const submitHandler = (e) => {
-    // e.preventDefault();
-    console.log(
-      "Submit",
-      e
-      // e.job_title,
-      // e.job_description,
-      // e.job_type,
-      // e.location,
-      // e.year_of_experience,
-      // e.category,
-      // e.function_area,
-      // e.annual_salary,
-      // e.graduting_year,
-      // e.diversity_hiring,
-      // e.tags,
-      // e.email
-    );
+    const {
+      job_title,
+      job_description,
+      job_type,
+      email,
+      location,
+      min_year_of_experience,
+      max_year_of_experience,
+    } = e;
+    createpost({
+      job_title,
+      job_description,
+      // job_type,
+      complete_address: location,
+      email_address: email,
+    });
   };
+
+  useEffect(() => {
+    if (isSuccess) toast.success("Job successfully Created");
+    if (isError) toast.error(error?.error || error?.data?.message);
+  }, [isSuccess, isError]);
 
   return (
     <form className="default-form" onSubmit={handleSubmit(submitHandler)}>
@@ -86,40 +86,44 @@ const PostBoxForm = () => {
 
         {/* experience */}
         <div className="form-group col-lg-6 col-md-12">
-          <label htmlFor="year_of_experience">Year of Experience*</label>
+          <label htmlFor="min_year_of_experience">Year of Experience*</label>
           <select
             className="chosen-single form-select"
-            id="year_of_experience"
-            name="year_of_experience"
-            {...register("year_of_experience")}
+            id="min_year_of_experience"
+            name="min_year_of_experience"
+            {...register("min_year_of_experience")}
           >
-            <option value="">select Min</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+            <option value="" disabled>
+              select Min
+            </option>
+            {Array.from({ length: 30 }, (_, i) => i).map((x, i) => (
+              <option value={x}>{x}</option>
+            ))}
           </select>
-          {errors.year_of_experience && (
+          {errors.min_year_of_experience && (
             <p className="!text-red-500 text-sm">
-              {errors.year_of_experience.message}
+              {errors.min_year_of_experience.message}
             </p>
           )}
         </div>
 
         <div className="form-group col-lg-6 col-md-12">
-          {/* <label>""</label> */}
+          <label className="text-white">l</label>
           <select
-            className="chosen-single form-select mt-4"
-            name="year_of_experience"
-            {...register("year_of_experience")}
+            className="chosen-single form-select "
+            name="max_year_of_experience"
+            {...register("max_year_of_experience")}
           >
-            <option value="">select Max</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
+            <option value="" disabled>
+              select Max
+            </option>
+            {Array.from({ length: 30 }, (_, i) => i).map((x, i) => (
+              <option value={x}>{x}</option>
+            ))}
           </select>
-          {errors.year_of_experience && (
+          {errors.max_year_of_experience && (
             <p className="!text-red-500 text-sm">
-              {errors.year_of_experience.message}
+              {errors.max_year_of_experience.message}
             </p>
           )}
         </div>
@@ -200,13 +204,12 @@ const PostBoxForm = () => {
             className="chosen-single form-select"
             {...register("annual_salary")}
           >
-            <option value="">min salary (in lakhs)</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="35">35</option>
-            <option value="45">45</option>
-            <option value="50">50</option>
+            <option value="" disabled>
+              min salary (in lakhs)
+            </option>
+            {Array.from({ length: 101 }, (_, i) => i).map((x, i) => (
+              <option value={x}>{x}</option>
+            ))}
           </select>
           {errors.annual_salary && (
             <p className="!text-red-500 text-sm">
@@ -215,20 +218,21 @@ const PostBoxForm = () => {
           )}
         </div>
 
-        <div className="form-group col-lg-6 col-md-12 mt-4">
+        <div className="form-group col-lg-6 col-md-12">
+          <label className="text-white">l</label>
+
           <select
             name="annual_salary_max"
             id="annual_salary_max"
             className="chosen-single form-select"
             {...register("annual_salary_max")}
           >
-            <option value="">max salary (in lakhs)</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="35">35</option>
-            <option value="45">45</option>
-            <option value="50">50</option>
+            <option value="" disabled>
+              max salary (in lakhs)
+            </option>
+            {Array.from({ length: 101 }, (_, i) => i).map((x, i) => (
+              <option value={x}>{x}</option>
+            ))}
           </select>
           {errors.annual_salary_max && (
             <p className="!text-red-500 text-sm">
@@ -533,7 +537,7 @@ placeholder="329 Queensberry Street, North Melbourne VIC 3051, Australia."
         {/* <!-- Input --> */}
         <div className="form-group col-lg-12 col-md-12 text-right">
           <button className="theme-btn btn-style-one" type="submit">
-            job post
+            {isLoading ? <ActionLoader /> : "job post"}
           </button>
         </div>
       </div>

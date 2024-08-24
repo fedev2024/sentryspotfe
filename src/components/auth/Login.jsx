@@ -18,9 +18,13 @@ import { Input } from "../ui/input";
 import { LoginSchema } from "@/schema/LoginSchema";
 import { toggleSignupDialog } from "@/store/slices/auth";
 import { userLogin } from "@/store/slices/auth/actions";
+import ActionLoader from "../loader/ActionLoader";
 
 const Login = ({ setIsLogin }) => {
   const dispatch = useDispatch();
+  const { loading, userInfo, userToken, error, success, message } = useSelector(
+    (state) => state.auth
+  );
 
   const {
     register,
@@ -92,9 +96,8 @@ const Login = ({ setIsLogin }) => {
               </span>
             </div>
           </div>
-
           <Button type="submit" size="sm" className="px-3 py-4 w-full">
-            Login
+            {loading ? <ActionLoader /> : "Login"}
           </Button>
         </form>
         <div className="mt-4">
