@@ -2,7 +2,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 
 import logo from "../../Images/logo.png";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import HeaderNavContent from "./HeaderNavContent";
 import { Button } from "../ui/button";
@@ -11,6 +11,8 @@ import { logout, toggleSignupDialog } from "@/store/slices/auth";
 
 const DefaulHeader2 = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { loading, userInfo, userToken, error, success, message } = useSelector(
     (state) => state.auth
   );
@@ -21,6 +23,18 @@ const DefaulHeader2 = () => {
       setNavbar(true);
     } else {
       setNavbar(false);
+    }
+  };
+
+  const handleCheck = (type) => {
+    switch (type) {
+      case "job-post":
+        if (!userToken) dispatch(toggleSignupDialog());
+        else navigate("/employers-dashboard/post-jobs");
+        break;
+
+      default:
+        break;
     }
   };
 
@@ -87,13 +101,20 @@ const DefaulHeader2 = () => {
                 Sign Up
               </button>
             )}
-
-            <Link
+            <button
+              className="theme-btn btn-style-one bg-blue-950 text-white ml-4"
+              onClick={() => {
+                handleCheck("job-post");
+              }}
+            >
+              Job Post
+            </button>
+            {/* <Link
               to="/employers-dashboard/post-jobs"
               className="theme-btn btn-style-one bg-blue-950 text-white"
             >
               Job Post
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

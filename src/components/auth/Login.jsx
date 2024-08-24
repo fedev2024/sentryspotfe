@@ -31,15 +31,12 @@ const Login = ({ setIsLogin }) => {
   });
 
   const submitHandler = async (e) => {
-    // e.preventDefault();
-    console.log("jjioe", e?.email, e);
-    if (e?.password && e?.email) {
-      const { email, password } = e;
-      console.log(email, password);
+    const { email, password } = e;
+    if (password && email) {
       dispatch(
         userLogin({
-          email: email,
-          password: password,
+          email,
+          password,
         })
       );
     } else toast.error("please fill all the fields");
@@ -55,7 +52,7 @@ const Login = ({ setIsLogin }) => {
           className="flex justify-between space-x-2 flex-wrap gap-4"
           onSubmit={handleSubmit(submitHandler)}
         >
-          <div className="flex flex-col w-full  gap-2  ">
+          <div className="flex flex-col w-full  gap-2">
             <Label htmlFor="email" className="">
               Email
             </Label>

@@ -63,7 +63,7 @@ export const AuthSlice = createSlice({
         state.userInfo = payload?.data;
         state.success = true;
         state.error = false;
-        window.location.href = "/";
+        // window.location.href = "/";
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
@@ -83,8 +83,9 @@ export const AuthSlice = createSlice({
         // state.userToken = payload?.data?.token;
         // state.userInfo = payload?.data;
         state.error = false;
+        state.openSignupDialog = false;
         // window.location.href = "/candidates-dashboard/my-profile";
-        window.location.href = "/";
+        // window.location.href = "/";
       })
       .addCase(userSignUp.rejected, (state, { payload }) => {
         state.loading = false;

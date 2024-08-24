@@ -58,7 +58,8 @@ export const userSignUp = createAsyncThunk(
         // store user's data in local storage
         // localStorage.setItem(Constant.USER_TOKEN, data?.data?.token);
         // localStorage.setItem(Constant.USER_INFO, JSON.stringify(data?.data));
-        toast.success(data?.message || "Success");
+        // toast.success(data?.message || "Success");
+        toast.success("You are Successfully Registered please login");
       }
       return { ...data };
     } catch (error) {

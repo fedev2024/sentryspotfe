@@ -38,7 +38,14 @@ export const Service = createApi({
         method: "GET",
       }),
     }),
+    createPost: builder.mutation({
+      query: (body) => ({
+        url: `${EndpointSlug.CREATE_POST}`,
+        method: "POST",
+        body: body,
+      }),
+    }),
   }),
 });
 
-export const { useGetDummyDataQuery } = Service;
+export const { useGetDummyDataQuery, useCreatePostMutation } = Service;

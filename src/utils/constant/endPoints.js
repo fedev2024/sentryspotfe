@@ -13,6 +13,7 @@ export const EndpointSlug = {
   // AUTHENTICATION
   SIGNIN: "/api/employeer/auth/login",
   SIGNUP: "/api/employeer/auth/signup",
+  CREATE_POST: "/api/employeer/create-job",
 
   //   Dummy
   DUMMY_JSON: "https://jsonplaceholder.typicode.com/posts",
