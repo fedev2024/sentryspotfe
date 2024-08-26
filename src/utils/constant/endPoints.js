@@ -15,7 +15,34 @@ export const EndpointSlug = {
   SIGNUP: "/api/employeer/auth/signup",
   // EMPLOYEER
   CREATE_POST: "/api/employeer/create-job",
+  GET_POST: "/api/employeer/job-lists",
+  UPDATE_POST: "/api/employeer/job-post/{jobid}",
+
+  // commons
+  GET_JOB_TYPES: "/api/employeer/job-types",
+  GET_JOB_CATEGORIES: "/api/employeer/job-categories",
 
   //   Dummy
   DUMMY_JSON: "https://jsonplaceholder.typicode.com/posts",
 };
+
+// {
+//     "job_title": "job_title",
+//     "job_description": "job_description",
+//     "email_address": "email_address",
+//     "specialisms_id": 1,
+//     "job_type_id": 1,
+//     "offered_salary_id": 1,
+//     "career_level_id": 1,
+//     "experience_id": 1,
+//     "industry_id": 1,
+//     "qualification_id": 1,
+//     "application_deadline": "2024-12-31",
+//     "country_id": 2,
+//     "state_id": 2,
+//     "city_id": 2,
+//     "complete_address": "complete_address",
+//     "latitude": "23.45",
+//     "longitude": "12.34",
+//     "status": 1
+// }

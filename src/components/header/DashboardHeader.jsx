@@ -35,7 +35,11 @@ const DashboardHeader = () => {
             <div className="logo-box">
               <div className="me-10">
                 <Link to="/">
-                  <img alt="brand" src={logo} className="h-28 w-28" />
+                  <img
+                    alt="brand"
+                    src={logo}
+                    className="h-18 w-28 object-cover"
+                  />
                 </Link>
               </div>
             </div>

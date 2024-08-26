@@ -1,8 +1,7 @@
-
 import jobs from "@/data/job-featured";
 import LoginPopup from "@/components/common/form/login/LoginPopup";
 import FooterDefault from "@/components/footer/common-footer";
-import DefaulHeader from "@/components/header/DefaulHeader";
+import DefaulHeader from "@/components/header/DefaulHeader2";
 import MobileMenu from "@/components/header/MobileMenu";
 import CompnayInfo from "@/components/job-single-pages/shared-components/CompanyInfo";
 import SocialTwo from "@/components/job-single-pages/social/SocialTwo";
@@ -11,7 +10,7 @@ import JobDetailsDescriptions from "@/components/job-single-pages/shared-compone
 import RelatedJobs2 from "@/components/job-single-pages/related-jobs/RelatedJobs2";
 import JobOverView2 from "@/components/job-single-pages/job-overview/JobOverView2";
 import ApplyJobModalContent from "@/components/job-single-pages/shared-components/ApplyJobModalContent";
-import {useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import MetaComponent from "@/components/common/MetaComponent";
 
@@ -27,7 +26,7 @@ const JobSingleDynamicV3 = () => {
 
   return (
     <>
-    <MetaComponent meta={metadata} />
+      <MetaComponent meta={metadata} />
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
@@ -160,11 +159,7 @@ const JobSingleDynamicV3 = () => {
                     <div className="widget-content">
                       <div className="company-title">
                         <div className="company-logo">
-                          <img
-                           
-                            src={company.logo}
-                            alt="resource"
-                          />
+                          <img src={company.logo} alt="resource" />
                         </div>
                         <h5 className="company-name">{company.company}</h5>
                         <a href="#" className="profile-link">
@@ -233,4 +228,4 @@ const JobSingleDynamicV3 = () => {
   );
 };
 
-export default JobSingleDynamicV3
+export default JobSingleDynamicV3;

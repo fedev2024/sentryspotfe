@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import SearchForm from "../../common/job-search/SearchForm";
 import ImageBox from "./ImageBox";
 import PopularSearch from "../PopularSearch";
@@ -5,8 +6,13 @@ import Login from "@/components/auth/Login";
 import ResetPassword from "@/components/auth/ResetPassword";
 import { useState } from "react";
 
+import { Constant } from "@/utils/constant/constant";
+
 const index = () => {
+  const { userToken } = useSelector((state) => state.auth);
   const [isLogin, setIsLogin] = useState(true);
+  console.log("token", userToken);
+
   return (
     <section className="banner-section">
       <div className="auto-container">
@@ -41,15 +47,24 @@ const index = () => {
           </div>
           {/* End .col */}
 
-          <div className="z-0 col-lg-5 col-md-12 flex items-center lg:items-start justify-center">
-            {/* <ImageBox /> */}
-            <div className="pb-5  lg:pt-[150px]">
-              {isLogin ? (
-                <Login setIsLogin={() => setIsLogin(false)} />
-              ) : (
-                <ResetPassword setIsLogin={() => setIsLogin(true)} />
-              )}
-            </div>
+          <div
+            className={
+              userToken != null
+                ? "image-column col-lg-5 col-md-12"
+                : "z-0 col-lg-5 col-md-12 flex items-center lg:items-start justify-center"
+            }
+          >
+            {userToken == null ? (
+              <div className="pb-5 lg:pt-[150px]">
+                {isLogin ? (
+                  <Login setIsLogin={() => setIsLogin(false)} />
+                ) : (
+                  <ResetPassword setIsLogin={() => setIsLogin(true)} />
+                )}
+              </div>
+            ) : (
+              <ImageBox />
+            )}
           </div>
         </div>
       </div>

@@ -1,8 +1,19 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import jobs from "../../../../../data/job-featured.js";
-
-
+import { useGetPostQuery } from "@/store/slices/service/index.js";
+import toast from "react-hot-toast";
+import moment from "moment";
 const JobListingsTable = () => {
+  const { isLoading, data, isError, error } = useGetPostQuery();
+  console.log("oopp", data);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(error?.data?.message || "something went wrong");
+    }
+  }, [isError]);
+
   return (
     <div className="tabs-box">
       <div className="widget-title">
@@ -36,70 +47,78 @@ const JobListingsTable = () => {
             </thead>
 
             <tbody>
-              {jobs.slice(0, 4).map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    {/* <!-- Job Block --> */}
-                    <div className="job-block">
-                      <div className="inner-box">
-                        <div className="content">
-                          <span className="company-logo">
-                            <img
-                             
-                              src={item.logo}
-                              alt="logo"
-                            />
-                          </span>
-                          <h4>
-                            <Link to={`/job-single-v3/${item.id}`}>
-                              {item.jobTitle}
-                            </Link>
-                          </h4>
-                          <ul className="job-info">
-                            <li>
-                              <span className="icon flaticon-briefcase"></span>
-                              Segment
-                            </li>
-                            <li>
-                              <span className="icon flaticon-map-locator"></span>
-                              London, UK
-                            </li>
-                          </ul>
+              {isLoading ? (
+                <p>loading</p>
+              ) : (
+                data?.data?.map((item) => (
+                  <tr key={item?.s_no}>
+                    <td>
+                      {/* <!-- Job Block --> */}
+                      <div className="job-block">
+                        <div className="inner-box">
+                          <div className="content">
+                            <span className="company-logo">
+                              <img
+                                src={
+                                  item?.logo ||
+                                  "/images/resource/company-logo/1-1.png"
+                                }
+                                alt="logo"
+                              />
+                            </span>
+                            <h4>
+                              <Link to={`/job-single-v3/${item.id}`}>
+                                {item?.job_detail?.jobTitle ||
+                                  "software developer"}
+                              </Link>
+                            </h4>
+                            <ul className="job-info">
+                              <li>
+                                <span className="icon flaticon-briefcase"></span>
+                                Segment
+                              </li>
+                              <li>
+                                <span className="icon flaticon-map-locator"></span>
+                                {item?.job_detail?.complete_address || "jaipur"}
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className="applied">
-                    <a href="#">3+ Applied</a>
-                  </td>
-                  <td>
-                    October 27, 2017 <br />
-                    April 25, 2011
-                  </td>
-                  <td className="status">Active</td>
-                  <td>
-                    <div className="option-box">
-                      <ul className="option-list">
-                        <li>
-                          <button data-text="View Aplication">
-                            <span className="la la-eye"></span>
-                          </button>
-                        </li>
-                        <li>
-                          <button data-text="Reject Aplication">
-                            <span className="la la-pencil"></span>
-                          </button>
-                        </li>
-                        <li>
-                          <button data-text="Delete Aplication">
-                            <span className="la la-trash"></span>
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                    <td className="applied">
+                      <a href="#">3+ Applied</a>
+                    </td>
+                    <td>
+                      {moment(item?.job_detail?.created_at).format("MMM Do YY")}{" "}
+                      <br />
+                      April 25, 2011
+                    </td>
+                    <td className="status">Active</td>
+                    <td>
+                      <div className="option-box">
+                        <ul className="option-list">
+                          <li>
+                            <button data-text="View Aplication">
+                              <span className="la la-eye"></span>
+                            </button>
+                          </li>
+                          <li>
+                            <button data-text="Reject Aplication">
+                              <span className="la la-pencil"></span>
+                            </button>
+                          </li>
+                          <li>
+                            <button data-text="Delete Aplication">
+                              <span className="la la-trash"></span>
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

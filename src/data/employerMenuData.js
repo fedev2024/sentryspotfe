@@ -1,7 +1,7 @@
 const employerMenu = [
   {
     id: 1,
-    name: "Dashboard",
+    name: "Dashboardd",
     icon: "la-home",
     routePath: "/employers-dashboard/dashboard",
     active: "active",
@@ -84,4 +84,4 @@ const employerMenu = [
     active: "",
   },
 ];
-export default  employerMenu
+export default employerMenu;

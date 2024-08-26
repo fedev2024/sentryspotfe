@@ -38,6 +38,25 @@ export const Service = createApi({
         method: "GET",
       }),
     }),
+
+    GetPost: builder.query({
+      query: () => ({
+        url: `${EndpointSlug.GET_POST}`,
+        method: "GET",
+      }),
+    }),
+    GetJobType: builder.query({
+      query: () => ({
+        url: `${EndpointSlug.GET_JOB_TYPES}`,
+        method: "GET",
+      }),
+    }),
+    GetJobCategory: builder.query({
+      query: () => ({
+        url: `${EndpointSlug.GET_JOB_CATEGORIES}`,
+        method: "GET",
+      }),
+    }),
     createPost: builder.mutation({
       query: (body) => ({
         url: `${EndpointSlug.CREATE_POST}`,
@@ -48,4 +67,10 @@ export const Service = createApi({
   }),
 });
 
-export const { useGetDummyDataQuery, useCreatePostMutation } = Service;
+export const {
+  useGetDummyDataQuery,
+  useCreatePostMutation,
+  useGetPostQuery,
+  useGetJobTypeQuery,
+  useGetJobCategoryQuery,
+} = Service;

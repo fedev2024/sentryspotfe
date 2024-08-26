@@ -1,5 +1,6 @@
 import Map from "../../../Map";
 import Select from "react-select";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PostJobSchema } from "@/schema/PostJobSchema";
@@ -8,9 +9,11 @@ import ActionLoader from "@/components/loader/ActionLoader";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 const PostBoxForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(PostJobSchema), // Connect Zod validation schema
@@ -18,6 +21,8 @@ const PostBoxForm = () => {
 
   const [createpost, { data, isSuccess, isError, isLoading, error }] =
     useCreatePostMutation();
+  // const { data1 } = useGetJobTypeQuery();
+  // const { data2 } = useGetJobCategoryQuery();
 
   const tags = [
     { value: "Banking", label: "Banking" },
@@ -39,6 +44,8 @@ const PostBoxForm = () => {
       location,
       min_year_of_experience,
       max_year_of_experience,
+      graduation_year_min,
+      graduation_year_max,
     } = e;
     createpost({
       job_title: job_title,
@@ -56,22 +63,22 @@ const PostBoxForm = () => {
       state_id: 2,
       city_id: 2,
       complete_address: location,
-      latitude: "23",
-      longitude: "12",
+      latitude: 23.95,
+      longitude: 12.45,
       status: 1,
+      graduation_year_min: graduation_year_min,
+      graduation_year_max: graduation_year_max,
+      workplace_type_id: 2,
+      id: Date.now(),
     });
-
-    // {
-    //       job_title,
-    //       job_description,
-    //       // job_type,
-    //       complete_address: location,
-    //       email_address: email,
-    //     }
   };
 
   useEffect(() => {
-    if (isSuccess) toast.success("Job successfully Created");
+    if (isSuccess) {
+      toast.success("Job successfully Created");
+      reset();
+      //  navigate("job-single-v3/1");
+    }
     if (isError) toast.error(error?.error || error?.data?.message);
   }, [isSuccess, isError]);
 
@@ -187,9 +194,10 @@ const PostBoxForm = () => {
             {...register("category")}
           >
             <option value="">select</option>
-            <option value="software engineer">software engineer</option>
+            <option value="software engineer">software Engineer</option>
             <option value="frontend developer">Frontend Developer</option>
             <option value="Backend Developer">Backend Developer</option>
+            <option value="DevOops Engineer">DevOops Engineer</option>
           </select>
           {errors.category && (
             <p className="!text-red-500 text-sm">{errors.category.message}</p>
@@ -205,9 +213,10 @@ const PostBoxForm = () => {
             {...register("function_area")}
           >
             <option value="">select</option>
-            <option value="software engineer">software engineer</option>
-            <option value="software engineer1">software engineer</option>
-            <option value="software engineer2">software engineer </option>
+            <option value="Development">Development</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Automation/Testing">Automation/Testing</option>
+            <option value="Management">Management</option>
           </select>
           {errors.function_area && (
             <p className="!text-red-500 text-sm">
@@ -218,7 +227,7 @@ const PostBoxForm = () => {
         {/* annual sallary */}
 
         <div className="form-group col-lg-6 col-md-12">
-          <label htmlFor="annual salary">Annual Salary*</label>
+          <label htmlFor="annual salary">Annual Salary *</label>
           <select
             name="annual_salary"
             id="annual_salary"
@@ -269,11 +278,11 @@ const PostBoxForm = () => {
 
         {/* gradutiuon */}
         <div className="form-group col-lg-6 col-md-12">
-          <label htmlFor="graduting_year">Graduating Year *</label>
+          <label htmlFor="graduation_year_min">Graduating Year *</label>
           <select
             className="chosen-single form-select"
-            name="graduting_year"
-            {...register("graduting_year")}
+            name="graduation_year_min"
+            {...register("graduation_year_min")}
           >
             <option value="">min Batch</option>
             <option value="2024">2024</option>
@@ -284,19 +293,19 @@ const PostBoxForm = () => {
             <option value="2019"> 2019</option>
             <option value="2018"> 2018</option>
           </select>
-          {errors.graduting_year && (
+          {errors.graduation_year_min && (
             <p className="!text-red-500 text-sm">
-              {errors.graduting_year.message}
+              {errors.graduation_year_min.message}
             </p>
           )}
         </div>
 
         <div className="form-group col-lg-6 col-md-12">
-          <label htmlFor="graduting_year_max">Graduating Year *</label>
+          <label htmlFor="graduation_year_max">Graduating Year *</label>
           <select
             className="chosen-single form-select"
-            name="graduting_year_max"
-            {...register("graduting_year_max")}
+            name="graduation_year_max"
+            {...register("graduation_year_max")}
           >
             <option value="">max Batch</option>
             <option value="2024">2024</option>
@@ -309,9 +318,9 @@ const PostBoxForm = () => {
             <option value="2017"> 2017</option>
             <option value="2016"> 2016</option>
           </select>
-          {errors.graduting_year_max && (
+          {errors.graduation_year_max && (
             <p className="!text-red-500 text-sm">
-              {errors.graduting_year_max.message}
+              {errors.graduation_year_max.message}
             </p>
           )}
         </div>
@@ -343,6 +352,11 @@ classNamePrefix="select"
             <option value="">Select type</option>
             <option value="fulltime"> full time</option>
             <option value="parttime">part time</option>
+            <option value="contract">Contract</option>
+            <option value="temporary">Temporary</option>
+            <option value="other">Other</option>
+            <option value="Volunteer">Volunteer</option>
+            <option value="intership">Internship</option>
             <option value="hybrid">hybrid</option>
           </select>
           {errors.job_type && (
