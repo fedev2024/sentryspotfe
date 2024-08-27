@@ -73,15 +73,15 @@ const employerMenu = [
     id: 11,
     name: "Logout",
     icon: "la-sign-out",
-    routePath: "/login",
+    routePath: "",
     active: "",
   },
-  {
-    id: 12,
-    name: "Delete Profile",
-    icon: "la-trash",
-    routePath: "/",
-    active: "",
-  },
+  // {
+  //   id: 12,
+  //   name: "Delete Profile",
+  //   icon: "la-trash",
+  //   routePath: "/",
+  //   active: "",
+  // },
 ];
 export default employerMenu;

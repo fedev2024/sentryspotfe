@@ -21,6 +21,10 @@ export const EndpointSlug = {
   // commons
   GET_JOB_TYPES: "/api/employeer/job-types",
   GET_JOB_CATEGORIES: "/api/employeer/job-categories",
+  GET_EXPERIENCE: "/api/jobseeker/experience-level",
+  GET_SALARY: "/api/jobseeker/salary-range",
+  GET_FUNCTION_AREA: "/api/jobseeker/functional-area",
+  GET_YEARS: "/api/jobseeker/years",
 
   //   Dummy
   DUMMY_JSON: "https://jsonplaceholder.typicode.com/posts",

@@ -11,6 +11,7 @@ export const Service = createApi({
     prepareHeaders: (headers) => {
       const token = localStorage.getItem(Constant.USER_TOKEN) || "";
       headers.set("Content-type", "application/json; charset=UTF-8");
+      // headers.set("Content-Type", "multipart/form-data");
       if (token) {
         headers.set("Authorization", `${token}`);
       }
@@ -51,9 +52,33 @@ export const Service = createApi({
         method: "GET",
       }),
     }),
+    GetExperienceLevel: builder.query({
+      query: () => ({
+        url: `${EndpointSlug.GET_EXPERIENCE}`,
+        method: "GET",
+      }),
+    }),
     GetJobCategory: builder.query({
       query: () => ({
         url: `${EndpointSlug.GET_JOB_CATEGORIES}`,
+        method: "GET",
+      }),
+    }),
+    GetSalary: builder.query({
+      query: () => ({
+        url: `${EndpointSlug.GET_SALARY}`,
+        method: "GET",
+      }),
+    }),
+    GetFunctionalArea: builder.query({
+      query: () => ({
+        url: `${EndpointSlug.GET_FUNCTION_AREA}`,
+        method: "GET",
+      }),
+    }),
+    GetYear: builder.query({
+      query: () => ({
+        url: `${EndpointSlug.GET_YEARS}`,
         method: "GET",
       }),
     }),
@@ -73,4 +98,8 @@ export const {
   useGetPostQuery,
   useGetJobTypeQuery,
   useGetJobCategoryQuery,
+  useGetExperienceLevelQuery,
+  useGetSalaryQuery,
+  useGetFunctionalAreaQuery,
+  useGetYearQuery,
 } = Service;
