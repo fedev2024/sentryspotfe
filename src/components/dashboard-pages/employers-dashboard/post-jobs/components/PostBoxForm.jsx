@@ -77,7 +77,7 @@ const PostBoxForm = () => {
     if (isSuccess) {
       toast.success("Job successfully Created");
       reset();
-      //  navigate("job-single-v3/1");
+      navigate("/job-single-v3/1");
     }
     if (isError) toast.error(error?.error || error?.data?.message);
   }, [isSuccess, isError]);
@@ -354,7 +354,7 @@ classNamePrefix="select"
             <option value="parttime">part time</option>
             <option value="contract">Contract</option>
             <option value="temporary">Temporary</option>
-            <option value="other">Other</option>
+            <option value="oth er">Other</option>
             <option value="Volunteer">Volunteer</option>
             <option value="intership">Internship</option>
             <option value="hybrid">hybrid</option>

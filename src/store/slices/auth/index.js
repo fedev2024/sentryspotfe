@@ -38,7 +38,7 @@ export const AuthSlice = createSlice({
       state.success = false;
       state.message = null;
       setTimeout(() => {
-        window.location.reload();
+        window.location.href = "/";
       }, 300);
     },
     setLoader: (state, { payload }) => {
