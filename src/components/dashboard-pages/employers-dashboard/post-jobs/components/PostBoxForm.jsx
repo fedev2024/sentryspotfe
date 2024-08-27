@@ -1,13 +1,17 @@
 import Map from "../../../Map";
 import Select from "react-select";
+import { CiEdit } from "react-icons/ci";
+import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PostJobSchema } from "@/schema/PostJobSchema";
 import { useCreatePostMutation } from "@/store/slices/service/index";
 import ActionLoader from "@/components/loader/ActionLoader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import AddScreeningQuestion from "./AddScreeningQuestion";
+import { Button } from "@/components/ui/button";
 const PostBoxForm = () => {
   const navigate = useNavigate();
   const {
@@ -24,6 +28,10 @@ const PostBoxForm = () => {
   // const { data1 } = useGetJobTypeQuery();
   // const { data2 } = useGetJobCategoryQuery();
 
+  const [openScreeningQuestionDialog, setOpenScreeningQuestionDialog] =
+    useState(false);
+  const [screeningQuestion, setScreeningQuestion] = useState([]);
+  const [selectedQuestion, setSelectedQuestion] = useState({});
   const tags = [
     { value: "Banking", label: "Banking" },
     { value: "Digital & Creative", label: "Digital & Creative" },
@@ -71,6 +79,25 @@ const PostBoxForm = () => {
       workplace_type_id: 2,
       id: Date.now(),
     });
+  };
+
+  const handleSaveQuestion = (question) => {
+    setScreeningQuestion([...screeningQuestion, question]);
+  };
+  const removeQuestion = (item) => {
+    let temp = JSON.parse(JSON.stringify(screeningQuestion));
+    temp = temp.filter((question) => question.id != item.id);
+    setScreeningQuestion(temp);
+  };
+  const handleEditQuestion = (data) => {
+    let { old, newData } = data;
+    let temp = JSON.parse(JSON.stringify(screeningQuestion));
+    temp = temp.map((question) => {
+      if (question.id == old.id) return newData;
+      return question;
+    });
+    setScreeningQuestion(temp);
+    setSelectedQuestion({});
   };
 
   useEffect(() => {
@@ -354,10 +381,10 @@ classNamePrefix="select"
             <option value="parttime">part time</option>
             <option value="contract">Contract</option>
             <option value="temporary">Temporary</option>
-            <option value="oth er">Other</option>
             <option value="Volunteer">Volunteer</option>
             <option value="intership">Internship</option>
             <option value="hybrid">hybrid</option>
+            <option value="other">Other</option>
           </select>
           {errors.job_type && (
             <p className="!text-red-500 text-sm">{errors.job_type.message}</p>
@@ -402,7 +429,58 @@ classNamePrefix="select"
             </p>
           )}
         </div>
+        <div className="mb-4">
+          <div className="mb-3">
+            <p className="m-0 !text-lg text-black">Add Screening Questions</p>
+            <p className="m-0">
+              Candidates will be asked to answer these question before they
+              submit their application. You can add up to 10 questions.
+            </p>
+          </div>
 
+          <div className="mb-3">
+            {screeningQuestion?.map((item) => (
+              <div
+                key={item?.id}
+                className="flex justify-between w-full sm:w-[50%]"
+              >
+                <p>{item?.question}</p>
+                <div className="flex gap-3">
+                  <CiEdit
+                    size={22}
+                    className="cursor-pointer"
+                    onClick={() => {
+                      setSelectedQuestion(item);
+                      setOpenScreeningQuestionDialog(true);
+                    }}
+                  />
+                  <MdOutlineDeleteOutline
+                    size={22}
+                    className="cursor-pointer"
+                    onClick={() => removeQuestion(item)}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          <Button
+            type="button"
+            onClick={() => setOpenScreeningQuestionDialog(true)}
+          >
+            Add Question
+          </Button>
+          {openScreeningQuestionDialog && (
+            <AddScreeningQuestion
+              selectedQuestion={selectedQuestion}
+              handleSaveQuestion={handleSaveQuestion}
+              handleEditQuestion={handleEditQuestion}
+              handleClose={() => {
+                setOpenScreeningQuestionDialog(false);
+                setSelectedQuestion({});
+              }}
+            />
+          )}
+        </div>
         {/* <!-- Input --> */}
         {/* <div className="form-group col-lg-6 col-md-12">
 <label>Username</label>
