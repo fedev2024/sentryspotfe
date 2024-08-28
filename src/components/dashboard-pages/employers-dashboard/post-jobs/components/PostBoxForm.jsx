@@ -98,140 +98,77 @@ const PostBoxForm = () => {
   ];
 
   // const submitHandler = (e) => {
-  //   const {
-  //     job_title,
-  //     job_description,
-  //     job_type,
-  //     email,
-  //     location,
-  //     min_year_of_experience,
-  //     max_year_of_experience,
-  //     graduation_year_min,
-  //     graduation_year_max,
-  //   } = e;
+  // const {
+  // job_title,
+  // job_description,
+  // job_type,
+  // email,
+  // location,
+  // min_year_of_experience,
+  // max_year_of_experience,
+  // graduation_year_min,
+  // graduation_year_max,
+  // } = e;
 
-  //   const jobData = {
-  //     job_title: job_title,
-  //     job_description: job_description,
-  //     email_address: email,
-  //     specialisms_id: 1,
-  //     job_type_id: 1,
-  //     offered_salary_id: 1,
-  //     career_level_id: 1,
-  //     experience_id: 1,
-  //     industry_id: 1,
-  //     qualification_id: 1,
-  //     application_deadline: "2024-12-31",
-  //     country_id: 2,
-  //     state_id: 2,
-  //     city_id: 2,
-  //     complete_address: location,
-  //     latitude: 23.95,
-  //     longitude: 12.45,
-  //     status: 1,
-  //     graduation_year_min: graduation_year_min,
-  //     graduation_year_max: graduation_year_max,
-  //     workplace_type_id: 2,
-  //     id: Date.now(),
-  //   };
-  //   for (const key in jobData) {
-  //     formData.append(key, jobData[key]);
-  //   }
+  // const jobData = {
+  // job_title: job_title,
+  // job_description: job_description,
+  // email_address: email,
+  // specialisms_id: 1,
+  // job_type_id: 1,
+  // offered_salary_id: 1,
+  // career_level_id: 1,
+  // experience_id: 1,
+  // industry_id: 1,
+  // qualification_id: 1,
+  // application_deadline: "2024-12-31",
+  // country_id: 2,
+  // state_id: 2,
+  // city_id: 2,
+  // complete_address: location,
+  // latitude: 23.95,
+  // longitude: 12.45,
+  // status: 1,
+  // graduation_year_min: graduation_year_min,
+  // graduation_year_max: graduation_year_max,
+  // workplace_type_id: 2,
+  // id: Date.now(),
+  // };
+  // for (const key in jobData) {
+  // formData.append(key, jobData[key]);
+  // }
 
-  //   createpost(
-  //     formData
+  // createpost(
+  // formData
 
-  //     //   {
-  //     //   job_title: job_title,
-  //     //   job_description: job_description,
-  //     //   email_address: email,
-  //     //   specialisms_id: 1,
-  //     //   job_type_id: 1,
-  //     //   offered_salary_id: 1,
-  //     //   career_level_id: 1,
-  //     //   experience_id: 1,
-  //     //   industry_id: 1,
-  //     //   qualification_id: 1,
-  //     //   application_deadline: "2024-12-31",
-  //     //   country_id: 2,
-  //     //   state_id: 2,
-  //     //   city_id: 2,
-  //     //   complete_address: location,
-  //     //   latitude: 23.95,
-  //     //   longitude: 12.45,
-  //     //   status: 1,
-  //     //   graduation_year_min: graduation_year_min,
-  //     //   graduation_year_max: graduation_year_max,
-  //     //   workplace_type_id: 2,
-  //     //   id: Date.now(),
-  //     // }
-  //   );
+  // // {
+  // // job_title: job_title,
+  // // job_description: job_description,
+  // // email_address: email,
+  // // specialisms_id: 1,
+  // // job_type_id: 1,
+  // // offered_salary_id: 1,
+  // // career_level_id: 1,
+  // // experience_id: 1,
+  // // industry_id: 1,
+  // // qualification_id: 1,
+  // // application_deadline: "2024-12-31",
+  // // country_id: 2,
+  // // state_id: 2,
+  // // city_id: 2,
+  // // complete_address: location,
+  // // latitude: 23.95,
+  // // longitude: 12.45,
+  // // status: 1,
+  // // graduation_year_min: graduation_year_min,
+  // // graduation_year_max: graduation_year_max,
+  // // workplace_type_id: 2,
+  // // id: Date.now(),
+  // // }
+  // );
   // };
 
-  // const submitHandler = (e) => {
-  //   // Extract values from the event (assuming e is an object containing these fields)
-  //   const {
-  //     job_title,
-  //     job_description,
-  //     job_type,
-  //     email,
-  //     location,
-  //     min_year_of_experience,
-  //     max_year_of_experience,
-  //     graduation_year_min,
-  //     graduation_year_max,
-  //   } = e;
-
-  //   // Create a jobData object with all necessary fields
-  //   const jobData = {
-  //     job_title: job_title,
-  //     job_description: job_description,
-  //     email_address: email,
-  //     specialisms_id: 1,
-  //     job_type_id: 1,
-  //     offered_salary_id: 1,
-  //     career_level_id: 1,
-  //     experience_id: 1,
-  //     industry_id: 1,
-  //     qualification_id: 1,
-  //     // application_deadline: "02/08/2024",
-  //     country_id: 2,
-  //     state_id: 2,
-  //     city_id: 2,
-  //     complete_address: location,
-  //     latitude: 23.95,
-  //     longitude: 12.45,
-  //     status: 1,
-  //     graduation_year_min: graduation_year_min,
-  //     graduation_year_max: graduation_year_max,
-  //     workplace_type_id: 2,
-  //     // id: Date.now(),
-  //   };
-
-  //   // Initialize a new FormData object
-  //   const formData = new FormData();
-
-  //   // Append each key-value pair from jobData to the FormData object
-  //   for (const key in jobData) {
-  //     if (jobData.hasOwnProperty(key)) {
-  //       formData.append(key, jobData[key]);
-  //     }
-  //   }
-
-  //   for (let pair of formData.entries()) {
-  //     console.log(`${pair[0]}: ${pair[1]}`);
-  //   }
-  //   // console.log(formData, "jobData");
-
-  //   // Call the createpost function with the FormData object
-  //   createpost(formData);
-  // };
-  const token = localStorage.getItem(Constant.USER_TOKEN) || "";
-
-  const submitHandler = async (e) => {
-    // Prevent default form submission behavior
-    // e.preventDefault();
-
+  const submitHandler = (e) => {
     // Extract values from the event (assuming e is an object containing these fields)
     const {
       job_title,
@@ -257,6 +194,7 @@ const PostBoxForm = () => {
       experience_id: 1,
       industry_id: 1,
       qualification_id: 1,
+      // application_deadline: "02/08/2024",
       country_id: 2,
       state_id: 2,
       city_id: 2,
@@ -267,6 +205,7 @@ const PostBoxForm = () => {
       graduation_year_min: graduation_year_min,
       graduation_year_max: graduation_year_max,
       workplace_type_id: 2,
+      // id: Date.now(),
     };
 
     // Initialize a new FormData object
@@ -279,31 +218,13 @@ const PostBoxForm = () => {
       }
     }
 
-    // Log the FormData entries for debugging
     for (let pair of formData.entries()) {
       console.log(`${pair[0]}: ${pair[1]}`);
     }
-
-    try {
-      // Make an Axios POST request with the FormData object
-      const response = await axios.post(
-        "https://api.sentryspot.co.uk/api/employeer/create-job",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `${token}`,
-          },
-        }
-      );
-
-      // Handle the response (optional)
-      console.log("Response:", response.data);
-    } catch (error) {
-      // Handle the error (optional)
-      console.error("Error submitting the form:", error);
-    }
+    // Call the createpost function with the FormData object
+    createpost(formData);
   };
+  const token = localStorage.getItem(Constant.USER_TOKEN) || "";
 
   const handleSaveQuestion = (question) => {
     setScreeningQuestion([...screeningQuestion, question]);
@@ -326,21 +247,15 @@ const PostBoxForm = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      console.log("data is saved", data);
+
       toast.success("Job successfully Created");
       reset();
-      navigate("/job-single-v3/1");
+      // navigate(`/job-single-v3/${data?.id}`);
+      navigate(`/employers-dashboard/manage-jobs`);
     }
     if (isError) toast.error(error?.error || error?.data?.message);
   }, [isSuccess, isError]);
-
-  // console.log(
-  //   "jobtype",
-  //   experienceLevelData,
-  //   categoryTypeData,
-  //   salaryData,
-  //   functionalAreaData,
-  //   yearData
-  // );
 
   return (
     <form className="default-form" onSubmit={handleSubmit(submitHandler)}>
@@ -385,8 +300,8 @@ const PostBoxForm = () => {
               select Min
             </option>
             {/* {Array.from({ length: 30 }, (_, i) => i).map((x, i) => (
-              <option value={x}>{x}</option>
-            ))} */}
+<option value={x}>{x}</option>
+))} */}
             {experienceLevelData?.data?.map((experieneItem) => (
               <option key={experieneItem?.id} value={experieneItem?.id}>
                 {experieneItem?.name}
@@ -466,9 +381,9 @@ const PostBoxForm = () => {
             ))}
 
             {/* <option value="software engineer">software Engineer</option>
-            <option value="frontend developer">Frontend Developer</option>
-            <option value="Backend Developer">Backend Developer</option>
-            <option value="DevOops Engineer">DevOops Engineer</option> */}
+<option value="frontend developer">Frontend Developer</option>
+<option value="Backend Developer">Backend Developer</option>
+<option value="DevOops Engineer">DevOops Engineer</option> */}
           </select>
           {errors.category && (
             <p className="!text-red-500 text-sm">{errors.category.message}</p>
@@ -490,9 +405,9 @@ const PostBoxForm = () => {
               </option>
             ))}
             {/* <option value="Development">Development</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Automation/Testing">Automation/Testing</option>
-            <option value="Management">Management</option> */}
+<option value="Marketing">Marketing</option>
+<option value="Automation/Testing">Automation/Testing</option>
+<option value="Management">Management</option> */}
           </select>
           {errors.function_area && (
             <p className="!text-red-500 text-sm">
@@ -514,8 +429,8 @@ const PostBoxForm = () => {
               min salary (in lakhs)
             </option>
             {/* {Array.from({ length: 101 }, (_, i) => i).map((x, i) => (
-              <option value={x}>{x}</option>
-            ))} */}
+<option value={x}>{x}</option>
+))} */}
             {salaryData?.data?.map((salary) => (
               <option key={salary?.id} value={salary?.id}>
                 {salary?.name}

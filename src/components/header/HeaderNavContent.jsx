@@ -22,12 +22,12 @@ const HeaderNavContent = () => {
       <nav className="nav main-menu ">
         <ul className="navigation" id="navbar">
           {/* current dropdown */}
-          <li
+          {/* <li
             className={`${
               isActiveParent(homeItems, pathname) ? "" : ""
             } dropdown`}
           >
-            {/* <Link to={"/"}>Home</Link> */}
+             <Link to={"/"}>Home</Link> 
             {/* <div className="mega-menu">
               <div className="mega-menu-bar row pt-0">
                 {homeItems.map((item) => (
@@ -52,9 +52,9 @@ const HeaderNavContent = () => {
                   </div>
                 ))}
               </div>
-            </div> */}
-          </li>
-          <li
+            </div> 
+          </li> */}
+          {/* <li
             className={`${
               isActiveParent(homeItems, pathname) ? "text-blue-950" : ""
             } dropdown`}
@@ -90,7 +90,7 @@ const HeaderNavContent = () => {
                 <Link to="/">Match & Apply</Link>
               </li>
             </ul>
-          </li>
+          </li> */}
           {/* End homepage menu items */}
           <li
             className={`${
@@ -107,16 +107,16 @@ const HeaderNavContent = () => {
                   pathname?.includes("/employers-dashboard") ? "current" : ""
                 }
               >
-                <Link to="/job-list-v7">Search by location</Link>
+                <Link to="/employers-dashboard/post-jobs">Job Post</Link>
               </li>
-              <li
+              {/* <li
                 className={
                   pathname?.includes("/job-dashboard") ? "current" : ""
                 }
               >
-                {/* <Link to="/job-single-v1/1">Recent Jobs</Link> */}
                 <Link to="/job-list-v7">Recent Jobs</Link>
-              </li>
+              </li> */}
+              {/* <Link to="/job-single-v1/1">Recent Jobs</Link> */}
             </ul>
           </li>
           {/* End findjobs menu items */}

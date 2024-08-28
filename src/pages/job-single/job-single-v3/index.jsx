@@ -10,9 +10,12 @@ import JobDetailsDescriptions from "@/components/job-single-pages/shared-compone
 import RelatedJobs2 from "@/components/job-single-pages/related-jobs/RelatedJobs2";
 import JobOverView2 from "@/components/job-single-pages/job-overview/JobOverView2";
 import ApplyJobModalContent from "@/components/job-single-pages/shared-components/ApplyJobModalContent";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 import MetaComponent from "@/components/common/MetaComponent";
+import { useGetPostByIdQuery } from "@/store/slices/service/index";
 
 const metadata = {
   title: "Job Single Dyanmic V3 || sentryspot - Job Borad ReactJs Template",
@@ -21,8 +24,21 @@ const metadata = {
 
 const JobSingleDynamicV3 = () => {
   let params = useParams();
-  const id = params.id;
+  const location = useLocation();
+  const { item } = location.state || 2;
+  // console.log(item, "job single dynamic");
+
+  const id = params?.id;
   const company = jobs.find((item) => item.id == id) || jobs[0];
+
+  const { isLoading, data, isError, error } = useGetPostByIdQuery(id);
+  console.log("jobpostdata", data);
+  const JobDetail = data?.data;
+  useEffect(() => {
+    if (isError) {
+      toast.error(error?.data?.message || "something went wrong");
+    }
+  }, [isError]);
 
   return (
     <>
@@ -48,28 +64,28 @@ const JobSingleDynamicV3 = () => {
                 <div className="job-block-outer">
                   <div className="job-block-seven style-two">
                     <div className="inner-box">
-                      <div className="content">
-                        <h4>{company?.jobTitle}</h4>
+                      <div className="content ">
+                        <h4 className="capitalize ">{JobDetail?.job_title}</h4>
 
                         <ul className="job-info">
                           <li>
-                            <span className="icon flaticon-briefcase"></span>
+                            <span className="icon flaticon-briefcase "></span>
                             {company?.company}
                           </li>
                           {/* compnay info */}
                           <li>
                             <span className="icon flaticon-map-locator"></span>
-                            {company?.location}
+                            {JobDetail?.complete_address}
                           </li>
                           {/* location info */}
                           <li>
                             <span className="icon flaticon-clock-3"></span>{" "}
-                            {company?.time}
+                            {JobDetail?.time || "8"}
                           </li>
                           {/* time info */}
                           <li>
                             <span className="icon flaticon-money"></span>{" "}
-                            {company?.salary}
+                            {JobDetail?.salary || "$20 -50$"}
                           </li>
                           {/* salary info */}
                         </ul>
@@ -90,16 +106,17 @@ const JobSingleDynamicV3 = () => {
                   {/* <!-- Job Block --> */}
                 </div>
                 {/* <!-- job block outer --> */}
-
                 <div className="job-overview-two">
                   <h4>Job Description</h4>
                   <JobOverView2 />
                 </div>
                 {/* <!-- job-overview-two --> */}
-
-                <JobDetailsDescriptions />
+                {JobDetail?.job_description ? (
+                  JobDetail?.job_description
+                ) : (
+                  <JobDetailsDescriptions />
+                )}
                 {/* End job-details */}
-
                 <div className="other-options">
                   <div className="social-share">
                     <h5>Share this job</h5>
@@ -112,19 +129,19 @@ const JobSingleDynamicV3 = () => {
 
               <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
                 <aside className="sidebar">
-                  <div className="btn-box">
-                    <a
-                      href="#"
-                      className="theme-btn btn-style-one"
-                      data-bs-toggle="modal"
-                      data-bs-target="#applyJobModal"
-                    >
-                      Apply For Job
-                    </a>
-                    <button className="bookmark-btn">
-                      <i className="flaticon-bookmark"></i>
-                    </button>
-                  </div>
+                  {/* <div className="btn-box">
+<a
+href="#"
+className="theme-btn btn-style-one"
+data-bs-toggle="modal"
+data-bs-target="#applyJobModal"
+>
+Apply For Job
+</a>
+<button className="bookmark-btn">
+<i className="flaticon-bookmark"></i>
+</button>
+</div> */}
                   {/* End apply for job btn */}
 
                   {/* <!-- Modal --> */}
@@ -138,12 +155,12 @@ const JobSingleDynamicV3 = () => {
                       <div className="apply-modal-content modal-content">
                         <div className="text-center">
                           <h3 className="title">Apply for this job</h3>
-                          <button
-                            type="button"
-                            className="closed-modal"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
+                          {/* <button
+type="button"
+className="closed-modal"
+data-bs-dismiss="modal"
+aria-label="Close"
+></button> */}
                         </div>
                         {/* End modal-header */}
 
@@ -200,7 +217,7 @@ const JobSingleDynamicV3 = () => {
               </div>
               {/* End .sidebar-column */}
             </div>
-            {/* End .row  */}
+            {/* End .row */}
 
             <div className="related-jobs">
               <div className="title-box">

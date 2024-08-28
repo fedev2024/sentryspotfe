@@ -10,8 +10,6 @@ export const Service = createApi({
     baseUrl: BASE_URL,
     prepareHeaders: (headers) => {
       const token = localStorage.getItem(Constant.USER_TOKEN) || "";
-      headers.set("Content-type", "application/json; charset=UTF-8");
-      // headers.set("Content-Type", "multipart/form-data");
       if (token) {
         headers.set("Authorization", `${token}`);
       }
@@ -37,56 +35,72 @@ export const Service = createApi({
       query: () => ({
         url: `${EndpointSlug.DUMMY_JSON}`,
         method: "GET",
-      }),
-    }),
-
-    GetPost: builder.query({
-      query: () => ({
-        url: `${EndpointSlug.GET_POST}`,
-        method: "GET",
+        headers: { "Content-Type": "application/json" },
       }),
     }),
     GetJobType: builder.query({
       query: () => ({
         url: `${EndpointSlug.GET_JOB_TYPES}`,
         method: "GET",
+        headers: { "Content-Type": "application/json" },
       }),
     }),
     GetExperienceLevel: builder.query({
       query: () => ({
         url: `${EndpointSlug.GET_EXPERIENCE}`,
         method: "GET",
+        headers: { "Content-Type": "application/json" },
       }),
     }),
     GetJobCategory: builder.query({
       query: () => ({
         url: `${EndpointSlug.GET_JOB_CATEGORIES}`,
         method: "GET",
+        headers: { "Content-Type": "application/json" },
       }),
     }),
     GetSalary: builder.query({
       query: () => ({
         url: `${EndpointSlug.GET_SALARY}`,
         method: "GET",
+        headers: { "Content-Type": "application/json" },
       }),
     }),
     GetFunctionalArea: builder.query({
       query: () => ({
         url: `${EndpointSlug.GET_FUNCTION_AREA}`,
         method: "GET",
+        headers: { "Content-Type": "application/json" },
       }),
     }),
     GetYear: builder.query({
       query: () => ({
         url: `${EndpointSlug.GET_YEARS}`,
         method: "GET",
+        headers: { "Content-Type": "application/json" },
       }),
     }),
+    GetPost: builder.query({
+      query: () => ({
+        url: `${EndpointSlug.GET_POST}`,
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }),
+    }),
+    GetPostById: builder.query({
+      query: (id) => ({
+        url: `${EndpointSlug.GET_POST_BYID}/${id}`,
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }),
+    }),
+
     createPost: builder.mutation({
       query: (body) => ({
-        url: `${EndpointSlug.CREATE_POST}`,
+        url: `${EndpointSlug?.CREATE_POST}`,
         method: "POST",
         body: body,
+        headers: undefined,
       }),
     }),
   }),
@@ -102,4 +116,5 @@ export const {
   useGetSalaryQuery,
   useGetFunctionalAreaQuery,
   useGetYearQuery,
+  useGetPostByIdQuery,
 } = Service;

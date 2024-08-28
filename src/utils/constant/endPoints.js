@@ -16,8 +16,8 @@ export const EndpointSlug = {
   // EMPLOYEER
   CREATE_POST: "/api/employeer/create-job",
   GET_POST: "/api/employeer/job-lists",
-  UPDATE_POST: "/api/employeer/job-post/{jobid}",
-
+  UPDATE_POST: "/api/employeer/job-post",
+  GET_POST_BYID: "/api/employeer/job-lists",
   // commons
   GET_JOB_TYPES: "/api/employeer/job-types",
   GET_JOB_CATEGORIES: "/api/employeer/job-categories",

@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import jobs from "../../../../../data/job-featured.js";
 import { useGetPostQuery } from "@/store/slices/service/index.js";
 import toast from "react-hot-toast";
 import moment from "moment";
 const JobListingsTable = () => {
+  const navigate = useNavigate();
   const { isLoading, data, isError, error } = useGetPostQuery();
   console.log("oopp", data);
 
@@ -67,7 +68,10 @@ const JobListingsTable = () => {
                               />
                             </span>
                             <h4>
-                              <Link to={`/job-single-v3/${item.id}`}>
+                              <Link
+                                to={`/job-single-v3/${item.id}`}
+                                state={item?.id}
+                              >
                                 {item?.job_detail?.jobTitle ||
                                   "software developer"}
                               </Link>
@@ -79,7 +83,7 @@ const JobListingsTable = () => {
                               </li>
                               <li>
                                 <span className="icon flaticon-map-locator"></span>
-                                {item?.job_detail?.complete_address || "jaipur"}
+                                {item?.complete_address || "jaipur"}
                               </li>
                             </ul>
                           </div>
@@ -87,7 +91,9 @@ const JobListingsTable = () => {
                       </div>
                     </td>
                     <td className="applied">
-                      <a href="#">3+ Applied</a>
+                      <a href="/employers-dashboard/all-applicants">
+                        3+ Applied
+                      </a>
                     </td>
                     <td>
                       {moment(item?.job_detail?.created_at).format("MMM Do YY")}{" "}
@@ -99,7 +105,15 @@ const JobListingsTable = () => {
                       <div className="option-box">
                         <ul className="option-list">
                           <li>
-                            <button data-text="View Aplication">
+                            <button
+                              data-text="View Aplication"
+                              onClick={() => {
+                                navigate(
+                                  "/job-single-v3/2",
+                                  (state = { item })
+                                );
+                              }}
+                            >
                               <span className="la la-eye"></span>
                             </button>
                           </li>
