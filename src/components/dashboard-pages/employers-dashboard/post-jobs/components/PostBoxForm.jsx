@@ -23,6 +23,14 @@ import toast from "react-hot-toast";
 import AddScreeningQuestion from "./AddScreeningQuestion";
 import { Button } from "@/components/ui/button";
 import { Constant } from "@/utils/constant/constant";
+import {
+  MultiSelector,
+  MultiSelectorContent,
+  MultiSelectorInput,
+  MultiSelectorItem,
+  MultiSelectorList,
+  MultiSelectorTrigger,
+} from "@/components/ui/multiSelector";
 
 const PostBoxForm = () => {
   const navigate = useNavigate();
@@ -515,6 +523,39 @@ const PostBoxForm = () => {
           )}
         </div>
 
+        <div className="form-group col-lg-12 col-md-12">
+          <label htmlFor="tags">Tags</label>
+          <MultiSelector
+            values={[]}
+            // onValuesChange={(e) =>
+            //   setTags(
+            //     JSON.parse(
+            //       JSON.stringify(e)
+            //     )
+            //   )
+            // }
+            className="w-full relative"
+            name="tags"
+            {...register("tags")}
+          >
+            <MultiSelectorTrigger>
+              <MultiSelectorInput placeholder="Select tags" />
+            </MultiSelectorTrigger>
+            <MultiSelectorContent>
+              <MultiSelectorList className="bg-white absolute z-10">
+                {["tag-1", "tag-2", "tag-3"]?.map((item) => (
+                  <MultiSelectorItem value={item} key={item}>
+                    {item}
+                  </MultiSelectorItem>
+                ))}
+              </MultiSelectorList>
+            </MultiSelectorContent>
+          </MultiSelector>
+          {/* {errors.job_type && (
+            <p className="!text-red-500 text-sm">{errors.job_type.message}</p>
+          )} */}
+        </div>
+
         {/* tags */}
         {/* <div className="form-group col-lg-12 col-md-12">
 <label htmlFor="tags">Tags </label>
@@ -531,6 +572,39 @@ classNamePrefix="select"
 <p className="!text-red-500 text-sm">{errors.tags.message}</p>
 )}
 </div> */}
+
+        <div className="form-group col-lg-12 col-md-12">
+          <label htmlFor="tags">Tags</label>
+          <MultiSelector
+            values={[]}
+            // onValuesChange={(e) =>
+            //   setTags(
+            //     JSON.parse(
+            //       JSON.stringify(e)
+            //     )
+            //   )
+            // }
+            className="w-full relative"
+            name="tags"
+            {...register("tags")}
+          >
+            <MultiSelectorTrigger>
+              <MultiSelectorInput placeholder="Select tags" />
+            </MultiSelectorTrigger>
+            <MultiSelectorContent>
+              <MultiSelectorList className="bg-white absolute z-10">
+                {["tag-1", "tag-2", "tag-3"]?.map((item) => (
+                  <MultiSelectorItem value={item} key={item}>
+                    {item}
+                  </MultiSelectorItem>
+                ))}
+              </MultiSelectorList>
+            </MultiSelectorContent>
+          </MultiSelector>
+          {/* {errors.job_type && (
+            <p className="!text-red-500 text-sm">{errors.job_type.message}</p>
+          )} */}
+        </div>
 
         <div className="form-group col-lg-12 col-md-12">
           <label htmlFor="job_type">Job Type</label>

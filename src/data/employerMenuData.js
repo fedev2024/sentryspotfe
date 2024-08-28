@@ -8,7 +8,7 @@ const employerMenu = [
   },
   {
     id: 2,
-    name: "Company Profile",
+    name: "My Profile",
     icon: "la-user-tie",
     routePath: "/employers-dashboard/company-profile",
     active: "",
