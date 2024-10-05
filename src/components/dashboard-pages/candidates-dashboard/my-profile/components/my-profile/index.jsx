@@ -54,6 +54,9 @@ const Index = ({ onNext }) => {
       toast.error("Please upload a valid image file.");
     }
   };
+
+
+
   const personal_details ="personal_details"
 
   const [phoneNumber,setPhoneNumber]=useState("")
@@ -404,6 +407,7 @@ const Index = ({ onNext }) => {
     preferredfetchCities(stateId);
   };
 
+  
   
 
   return (
