@@ -1,26 +1,7 @@
 import { Link } from "react-router-dom";
-import Pagination from "../components/Pagination";
-import jobs from "../../../data/job-featured";
+
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addCategory,
-  addDatePosted,
-  addDestination,
-  addKeyword,
-  addLocation,
-  addPerPage,
-  addSalary,
-  addSort,
-  addTag,
-  clearExperience,
-  clearJobType,
-} from "../../../features/filter/filterSlice";
-import {
-  clearDatePostToggle,
-  clearExperienceToggle,
-  clearJobTypeToggle,
-} from "../../../features/job/jobSlice";
+import ApplyJobPopup from "./ApplyJobPopup";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Constant } from "@/utils/constant/constant";
@@ -34,6 +15,7 @@ const FilterJobsBox = () => {
   const [jobCount, setJobCount] = useState(0);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
   const token = localStorage.getItem(Constant.USER_TOKEN);
 
 
@@ -191,11 +173,11 @@ const FilterJobsBox = () => {
     }));
   };
 
-  const applyjob = async(jobId)=>{
+  const savejob = async(jobId)=>{
     try {
-      const response = await axios.post(
-        `https://api.sentryspot.co.uk/api/jobseeker/apply-for-job/${jobId}`,
-        {},
+      const response = await axios.get(
+        `https://api.sentryspot.co.uk/api/jobseeker/mark-job-favorite/${jobId}`,
+       
         {
           headers: {
             Authorization: token,
@@ -204,16 +186,27 @@ const FilterJobsBox = () => {
       );
 
       if (response.status === 200) {
-        alert('You have successfully applied for the job!');
+        toast.success('Your job successfully Saved!');
       } else {
-        alert('Failed to apply for the job. Please try again.');
+        toast.error('Failed to job  the job. Please try again.');
       }
     } catch (error) {
-      console.error('Error applying for job:', error);
-      toast.error('An error occurred while applying for the job. Please try again.');
+      toast.error('Error Saving  job:', error);
+      toast.error('An error occurred while saving for the job. Please try again.');
     }
   };
   
+
+
+
+  const handleApplyNowClick = () => {
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div className="p-6  min-h-screen flex">
       {/* Sidebar */}
@@ -454,17 +447,19 @@ const FilterJobsBox = () => {
                 <h4 className="pt-8 ps-2 flex justify-between w-full">
                   {console.log(job.job_title, "data")}
                   <Link to={`/job-single-v3/${job.id}`}>{job.job_title}</Link>
-                  <div className="absolute right-0">
-                    <button className=" p-1 px-2 border-blue-800 rounded-full me-2"   onClick={() => applyjob(job.id)}>
-                      <i className="fas fa-bookmark text-blue-900"></i>
+                  <div className="absolute right-0 text-sm">
+                    <button className=" p-1 px-2 border-blue-800 rounded-full me-2 " onClick={handleApplyNowClick} >
+                      <i className="fas fa-bookmark text-blue-900 "></i> Apply
                     </button>
-                    <button className=" p-1 px-2 border-blue-800 rounded-full me-2">
-                      <i className="fas fa-heart text-blue-900"></i>
+                    <button className=" p-1 px-2 border-blue-800 rounded-full me-2" onClick={() => savejob(job.id)}>
+                      <i className="fas fa-heart text-blue-900"></i> Save
                     </button>
                   </div>
                 </h4>
               </span>
-    
+              {showPopup && (
+        <ApplyJobPopup jobId={job.id} token={token} onClose={handleClosePopup} />
+      )}
               <div className="location">
                 <span className="icon flaticon-map-locator"></span>
                 {job.complete_address}

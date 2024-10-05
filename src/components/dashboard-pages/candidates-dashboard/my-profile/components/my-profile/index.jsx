@@ -54,6 +54,9 @@ const Index = ({ onNext }) => {
       toast.error("Please upload a valid image file.");
     }
   };
+
+
+
   const personal_details ="personal_details"
 
   const [phoneNumber,setPhoneNumber]=useState("")
@@ -110,56 +113,56 @@ const Index = ({ onNext }) => {
   
   
 
-  const [workplaceTypes, setWorkplaceTypes] = useState([]);
-  const [selectedWorkplace, setSelectedWorkplace] = useState('');
+    const [workplaceTypes, setWorkplaceTypes] = useState([]);
+    const [selectedWorkplace, setSelectedWorkplace] = useState('');
 
-  useEffect(() => {
-    // Fetch workplace types from API
-    axios
-      .get(`${baseurl}workplace-types`, {
-        headers: {
-          'Authorization': token, // Assuming you're storing the token in localStorage
-        },
-      })
-      .then((response) => {
-        setWorkplaceTypes(response.data.data); // Adjust the path according to the response structure
-      })
-      .catch((error) => {
-        console.error('Error fetching workplace types:', error);
-      });
-  }, []);
+    useEffect(() => {
+      // Fetch workplace types from API
+      axios
+        .get(`${baseurl}workplace-types`, {
+          headers: {
+            'Authorization': token, // Assuming you're storing the token in localStorage
+          },
+        })
+        .then((response) => {
+          setWorkplaceTypes(response.data.data); // Adjust the path according to the response structure
+        })
+        .catch((error) => {
+          console.error('Error fetching workplace types:', error);
+        });
+    }, []);
 
-  const [jobtype, setjobstype] = useState([]);
-  const [selectjobtype, setselectjobtype] = useState("");
+    const [jobtype, setjobstype] = useState([]);
+    const [selectjobtype, setselectjobtype] = useState("");
 
-  useEffect(() => {
-    axios
-      .get(`${baseurl}job-types`, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((response) => {
-        setjobstype(response.data.data);
-      })
-      .catch((error) => {
-        toast.error(error);
-      });
-  }, []);
+    useEffect(() => {
+      axios
+        .get(`${baseurl}job-types`, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          setjobstype(response.data.data);
+        })
+        .catch((error) => {
+          toast.error(error);
+        });
+    }, []);
 
-  const [Experiencetype, setExperiencetype] = useState([]);
-  const [selectExperiencetype, setselectExperiencetype] = useState("");
+    const [Experiencetype, setExperiencetype] = useState([]);
+    const [selectExperiencetype, setselectExperiencetype] = useState("");
 
-  useEffect(() => {
-    axios
-      .get(`${baseurl}experience-level`, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((response) => {
-        setExperiencetype(response.data.data);
-      })
+    useEffect(() => {
+      axios
+        .get(`${baseurl}experience-level`, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          setExperiencetype(response.data.data);
+        })
       .catch((error) => {
         toast.error(error);
       });
@@ -405,6 +408,7 @@ const Index = ({ onNext }) => {
   };
 
   
+  
 
   return (
     <form onSubmit={handleSubmit} className="default-form">
@@ -570,6 +574,8 @@ const Index = ({ onNext }) => {
             ))}
           </select>
         </div>
+
+        
         <div></div>
         <label className='my-2 mt-4 text-lg'>(Current - Location)</label>
        <div className="form-group col-lg-4 col-md-12 ">
