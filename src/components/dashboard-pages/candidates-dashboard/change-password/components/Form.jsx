@@ -20,12 +20,13 @@ const Form = () => {
     }
 
     try {
-      const token = localStorage.getItem(Constant.USER_INFO); // Replace this with your actual token
-      const response = await axios.put(
-        "https://api.sentryspot.co.uk/api/user/change-password",
+      const token = localStorage.getItem(Constant.USER_TOKEN); // Replace this with your actual token
+      const response = await axios.post(
+        "https://api.sentryspot.co.uk/api/jobseeker/change-password",
         {
           old_password: oldPassword,
           new_password: newPassword,
+          confirm_password: confirmPassword,
         },
         {
           headers: {
@@ -46,7 +47,7 @@ const Form = () => {
     <form className="default-form" onSubmit={handleSubmit}>
       <div className="row">
         <div className="form-group col-lg-12 col-md-12">
-          <label>Old Password </label>
+          <label>Old Password</label>
           <input
             type={showOldPassword ? "text" : "password"}
             name="oldPassword"
@@ -74,8 +75,8 @@ const Form = () => {
           />
           <button
             type="button"
-             className="border rounded-lg mt-2 float-end bg-blue-800 text-white"
             onClick={() => setShowNewPassword((prev) => !prev)}
+             className="border rounded-lg mt-2 float-end bg-blue-800 text-white"
           >
             {showNewPassword ? "Hide" : "Show"}
           </button>
@@ -92,7 +93,7 @@ const Form = () => {
           />
           <button
             type="button"
-            className="border rounded-lg mt-2 float-end bg-blue-800 text-white"
+             className="border rounded-lg mt-2 float-end bg-blue-800 text-white"
             onClick={() => setShowConfirmPassword((prev) => !prev)}
           >
             {showConfirmPassword ? "Hide" : "Show"}

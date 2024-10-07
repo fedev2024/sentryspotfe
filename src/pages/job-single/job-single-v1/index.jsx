@@ -12,7 +12,7 @@ import MapJobFinder from "@/components/job-listing-pages/components/MapJobFinder
 import SocialTwo from "@/components/job-single-pages/social/SocialTwo";
 import JobDetailsDescriptions from "@/components/job-single-pages/shared-components/JobDetailsDescriptions";
 import ApplyJobModalContent from "@/components/job-single-pages/shared-components/ApplyJobModalContent";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import MetaComponent from "@/components/common/MetaComponent";
 
 const metadata = {
@@ -31,6 +31,8 @@ const JobSingleDynamicV1 = () => {
   const [isApplying, setIsApplying] = useState(false);
   const [applySuccess, setApplySuccess] = useState(null);
 
+  const [relatedJobs, setRelatedJobs] = useState([]);
+
   useEffect(() => {
     // Fetch job data from API
     const fetchJobData = async () => {
@@ -39,6 +41,9 @@ const JobSingleDynamicV1 = () => {
         if (response.ok) {
           const data = await response.json();
           setJobData(data);
+          if (data?.data?.job_title) {
+            fetchRelatedJobs(data.data.job_title);
+          }
         } else {
           console.error("Failed to fetch job data");
         }
@@ -46,6 +51,22 @@ const JobSingleDynamicV1 = () => {
         console.error("Error fetching job data:", error);
       }
     };
+
+    const fetchRelatedJobs = async (jobTitle) => {
+      try {
+        const response = await fetch(`https://api.sentryspot.co.uk/api/jobseeker/job-title?job_title_keyword=${jobTitle}`);
+        if (response.ok) {
+          const relatedJobsData = await response.json();
+          setRelatedJobs(relatedJobsData.data);
+        } else {
+          console.error("Failed to fetch related jobs");
+        }
+      } catch (error) {
+        console.error("Error fetching related jobs:", error);
+      }
+    };
+
+   
 
     fetchJobData();
   }, [id]);
@@ -88,6 +109,8 @@ const JobSingleDynamicV1 = () => {
       setIsApplying(false);
     }
   };
+
+  
   return (
     <>
       <MetaComponent meta={metadata} />
@@ -187,7 +210,7 @@ const JobSingleDynamicV1 = () => {
           <div className="auto-container">
             <div className="row">
               <div className="content-column col-lg-8 col-md-12 col-sm-12">
-                <JobDetailsDescriptions />
+                <JobDetailsDescriptions company={company} />
                 <div className="other-options">
                   <div className="social-share">
                     <h5>Share this job</h5>
@@ -198,9 +221,49 @@ const JobSingleDynamicV1 = () => {
                 <div className="related-jobs">
                   <div className="title-box">
                     <h3>Related Jobs</h3>
-                    <div className="text">2020 jobs live - 293 added today.</div>
+                   
                   </div>
-                  <RelatedJobs />
+
+                  
+          {relatedJobs.length > 0 ? (
+            relatedJobs.map((item) => (
+              <div className="job-block" key={item.id}>
+                <div className="inner-box">
+                  <div className="content">
+                    <span className="company-logo">
+                      <img src={item.logo || "https://via.placeholder.com/150"} alt="item brand" />
+                    </span>
+                    <h4>
+                      <Link to={`/job-single-v1/${item.id}`}>{item.name}</Link>
+                    </h4>
+
+                    <ul className="job-info">
+                      <li>
+                        <span className="icon flaticon-briefcase"></span>
+                        {item.company}
+                      </li>
+                      <li>
+                        <span className="icon flaticon-map-locator"></span>
+                        {item.city}
+                      </li>
+                      <li>
+                        <span className="icon flaticon-clock-3"></span> {item.time}
+                      </li>
+                      <li>
+                        <span className="icon flaticon-money"></span> {item.offered_salary}
+                      </li>
+                    </ul>
+
+                    <button className="bookmark-btn">
+                      <span className="flaticon-bookmark"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div>No related jobs found.</div>
+          )}      
                 </div>
               </div>
 

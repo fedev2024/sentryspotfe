@@ -109,6 +109,7 @@ import OrderCompletedPage from "./pages/shop/order-completed";
 import SentryPage from "@/pages/sentry-spot-id/index";
 import { Toaster } from "react-hot-toast";
 import Communitypage from "./pages/community";
+import Skilllistpage from "./pages/candidates-dashboard/skilllist";
 
 function App() {
   useEffect(() => {
@@ -125,7 +126,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/">
-                <Route index element={<Home />} />
+                <Route index element={<JobListPage1 />} />
                 {/* <Route path="home-1" element={<HomePage1 />} />
                   <Route path="home-2" element={<HomePage2 />} />
                   <Route path="home-3" element={<HomePage3 />} />
@@ -144,9 +145,9 @@ function App() {
                   <Route path="home-16" element={<HomePage16 />} />
                   <Route path="home-17" element={<HomePage17 />} /> */}
 
-                <Route path="job-list-v1" element={<JobListPage1 />} />
+                {/*<Route path="job-list-v1" element={<JobListPage1 />} />
                 <Route path="job-list-v2" element={<JobListPage2 />} />
-                {/*<Route path="job-list-v3" element={<JobListPage3 />} />
+                <Route path="job-list-v3" element={<JobListPage3 />} />
                   <Route path="job-list-v4" element={<JobListPage4 />} />
                   <Route path="job-list-v5" element={<JobListPage5 />} />
                   <Route path="job-list-v6" element={<JobListPage6 />} />*/}
@@ -272,6 +273,7 @@ function App() {
                 <Route path="candidates-dashboard">
                   <Route path="dashboard" element={<DashboardPage />} />
                   <Route path="applied-jobs" element={<AppliedJobsPage />} />
+                  <Route path="skilllistpage" element={<Skilllistpage />} />
                   <Route
                     path="change-password"
                     element={<ChangePasswordPage />}

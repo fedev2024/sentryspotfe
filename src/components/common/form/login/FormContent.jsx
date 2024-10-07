@@ -92,6 +92,7 @@ const FormContent = () => {
         </div>
         {/* forgot password */}
         <ReCAPTCHA
+        className="w-40"
           sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
           onChange={onChange}
         />
@@ -124,13 +125,13 @@ const FormContent = () => {
           </Link>
         </div>
 
-        <div className="divider">
+        {/* <div className="divider">
           <span>or</span>
         </div>
-
-        <LoginWithSocial />
+  //  <LoginWithSocial /> */}
+     
       </div>
-      {/* End bottom-box LoginWithSocial */}
+     
     </div>
   );
 };

@@ -82,7 +82,7 @@ const EmployersSingleV1 = () => {
                       alt="logo"
                     />
                   </span>
-                  <h4>{employer?.name}</h4>
+                  <h4>{employer?.company_name}</h4>
 
                   <ul className="job-info">
                     <li>

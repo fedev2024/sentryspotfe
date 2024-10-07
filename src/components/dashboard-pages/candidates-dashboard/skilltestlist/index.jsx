@@ -1,11 +1,12 @@
 import MobileMenu from "../../../header/MobileMenu";
+import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
 import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardCandidatesSidebar from "../../../header/DashboardCandidatesSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
-import PackageDataTable from "./components/PackageDataTable";
-import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
+
 import MenuToggler from "../../MenuToggler";
+import Skilltest from "./component/Skilllist";
 
 const index = () => {
   return (
@@ -28,7 +29,7 @@ const index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="AI!" />
+          <BreadCrumb title="Skill History" />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -36,22 +37,10 @@ const index = () => {
 
           <div className="row">
             <div className="col-lg-12">
-              <div className="ls-widget">
-                <div className="tabs-box">
-                  <div className="widget-title">
-                    <h4>AI Skills</h4>
-                  </div>
-                  {/* End widget-title */}
-
-                  <div className="widget-content">
-                    <div className="table-outer">
-                      <PackageDataTable />
-                    </div>
-                  </div>
-                  {/* End widget-content */}
-                </div>
-              </div>
               {/* <!-- Ls widget --> */}
+              <div className="ls-widget">
+                <Skilltest/>
+              </div>
             </div>
           </div>
           {/* End .row */}
@@ -60,7 +49,7 @@ const index = () => {
       </section>
       {/* <!-- End Dashboard --> */}
 
-    
+      <CopyrightFooter />
       {/* <!-- End Copyright --> */}
     </div>
     // End page-wrapper

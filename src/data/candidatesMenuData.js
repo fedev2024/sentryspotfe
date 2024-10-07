@@ -22,9 +22,9 @@ const candidateMenus = [
   },
   {
     id: 4,
-    name: "Skill Test",
+    name: "Skill History",
     icon: "la la-file-invoice",
-    routePath: "",
+    routePath: "/candidates-dashboard/skilllistpage",
     active: "",
   },
   {
@@ -57,7 +57,7 @@ const candidateMenus = [
   },
   {
     id: 9,
-    name: "Packages",
+    name: "AI Skill",
     icon: "la-box",
     routePath: "/candidates-dashboard/packages",
     active: "",

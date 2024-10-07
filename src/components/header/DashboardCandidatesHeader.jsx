@@ -70,7 +70,7 @@ const DashboardCandidatesHeader = () => {
                   className="thumb"
                   src="/images/resource/candidate-1.png"
                 />
-                <span className="name">My Account</span>
+                <span className="name"></span>
               </a>
 
               <ul className="dropdown-menu">
