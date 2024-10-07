@@ -1,16 +1,197 @@
 
-import ChatHamburger from "../../../employers-dashboard/messages/components/ChatHamburger";
+import { FaTelegram } from "react-icons/fa";
+
+import React, { useEffect, useState } from 'react';
 
 const ChatBoxContentField = () => {
+  const [socket, setSocket] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const [activeChat, setActiveChat] = useState(15); // Default active chat ID
+
+  useEffect(() => {
+    const ws = new WebSocket('wss://api.sentryspot.co.uk/ws');
+
+    ws.onopen = () => {
+      console.log('WebSocket connection opened');
+    };
+
+    ws.onmessage = (event) => {
+      const incomingMessage = JSON.parse(event.data);
+      console.log('Message received:', incomingMessage);
+
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          content: incomingMessage.message,
+          time: incomingMessage.timestamp || new Date().toLocaleTimeString(),
+          sender: incomingMessage.sender || 'John', // Assuming sender info is present
+        }
+      ]);
+    };
+
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
+
+    ws.onclose = () => {
+      console.log('WebSocket connection closed');
+    };
+
+    setSocket(ws);
+
+    return () => {
+      ws.close();
+    };
+  }, []);
+
+  const sendMessage = () => {
+    if (inputValue.trim() === '') return;
+
+    const data = {
+      message: inputValue,
+      receiver_id: activeChat,
+       sender_id: 29 
+    };
+
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send(JSON.stringify(data));
+      console.log('Message sent:', data);
+      setInputValue('');
+    } else {
+      console.error('WebSocket is not open');
+    }
+  };
+
   return (
-    <div className="card message-card">
+    <div className="flex h-screen bg- rounded-lg ">
+      {/* Sidebar: List of Conversations */}
+      <div className="w-1/4 bg-blue-800 text-white border-r border-blue-700 overflow-y-auto rounded-lg">
+        <div className="p-4 border-b border-blue-700">
+          <h2 className="text-lg font-semibold">Messages</h2>
+        </div>
+        <div>
+          <div
+            className="flex items-center cursor-pointer p-4 hover:bg-blue-700 border-b border-blue-500 bg-blue-500"
+            onClick={() => setActiveChat(15)}
+          >
+            <img
+              src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg" // Replace with the path to your avatar
+              alt="User avatar"
+              className="w-10 h-10 rounded-full mr-4"
+            />
+            <div>
+              <p className="font-medium">John Snow</p>
+              <p className="text-sm text-blue-400">Last message preview...</p>
+            </div>
+            <span className="ml-auto text-sm text-blue-400">4:30 PM</span>
+            <span className="bg-blue-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center ml-2">3</span>
+          </div>
+          {/* Add more chat items here */}
+        </div>
+      </div>
+
+      {/* Main: Active Chat */}
+      <div className="flex-1 flex flex-col bg-blue-900 rounded-lg">
+        {/* Chat Header */}
+        <div className="p-4 border-b border-blue-700 flex items-center">
+          <img
+            src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg"
+            alt="User avatar"
+            className="w-12 h-12 rounded-full mr-4"
+          />
+          <div>
+            <h2 className="text-lg font-semibold text-white">John Snow</h2>
+            <p className="text-sm text-blue-400">Online</p>
+          </div>
+        </div>
+
+        {/* Messages Display */}
+        <div className="flex-1 overflow-y-auto p-4 bg-white">
+          <div className="flex flex-col space-y-4">
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`flex ${msg.sender === 'John' ? 'justify-start' : 'justify-end'} space-x-2`}
+              >
+                {msg.sender === 'John' && (
+                  <img
+                    src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg"
+                    alt="User avatar"
+                    className="w-8 h-8 rounded-full"
+                  />
+                )}
+                <div
+                  className={`bg-${msg.sender === 'John' ? 'blue-700' : 'blue-600'} text-white p-3 rounded-xl bg-blue-400  max-w-xs`}
+                >
+                  <p className="text-white break-words">{msg.content}</p>
+                </div>
+                <span className="text-xs text-blue-400 self-end">{msg.time}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Input Area */}
+        <div className="border-t border-blue-700 bg-blue-900 p-4 flex items-center">
+          <input
+            type="text"
+            placeholder="Type a message"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            className="flex-1 bg-blue-800 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg ml-2 hover:bg-blue-700 transition"
+            onClick={sendMessage}
+          ><FaTelegram/>
+          
+          </button>
+        </div>
+      </div>
+
+      {/* Right Panel: Profile Info
+      <div className="w-1/4 bg-blue-800 text-white p-4 border-l border-blue-700">
+        <div className="flex items-center space-x-4">
+          <img
+            src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg"
+            alt="Profile avatar"
+            className="w-16 h-16 rounded-full"
+          />
+          <div>
+            <h3 className="text-lg font-semibold">Annabel White</h3>
+            <p className="text-sm text-blue-400">7,876 trips | Joined Sep 2022</p>
+          </div>
+        </div>
+        <p className="mt-4 text-sm text-blue-400">
+          Hi, I'm Annabel! I have a rich fleet of spaceships for unforgettable journeys into space!
+        </p>
+      
+        <div className="mt-4">
+          <h4 className="text-sm font-semibold">Media</h4>
+         
+        </div> 
+      </div>*/}
+    </div>
+  );
+};
+
+export default ChatBoxContentField;
+
+
+
+
+
+
+    
+{/*
       <div className="card-header msg_head">
         <div className="d-flex bd-highlight">
           <div className="img_cont">
             <img
              
               src="/images/resource/candidate-8.png"
-              alt="48"
+              alt="candidates"
               className="rounded-circle user_img"
             />
           </div>
@@ -25,7 +206,7 @@ const ChatBoxContentField = () => {
           <ChatHamburger />
         </div>
       </div>
-      {/* End .cart-header */}
+      
 
       <div className="card-body msg_card_body">
         <div className="d-flex justify-content-start mb-2">
@@ -33,7 +214,7 @@ const ChatBoxContentField = () => {
             <img
              
               src="/images/resource/candidate-3.png"
-              alt="image"
+              alt="candidates"
               className="rounded-circle user_img_msg"
             />
             <div className="name">
@@ -51,7 +232,7 @@ const ChatBoxContentField = () => {
             <img
              
               src="/images/resource/candidate-6.png"
-              alt=""
+              alt="candidate"
               className="rounded-circle user_img_msg"
             />
             <div className="name">
@@ -60,7 +241,7 @@ const ChatBoxContentField = () => {
           </div>
           <div className="msg_cotainer">
             Hey there, we’re just writing to let you know that you’ve been
-            subscribed to a repository on GitHub.
+            subscribed to a repository on GitH
           </div>
         </div>
 
@@ -69,7 +250,7 @@ const ChatBoxContentField = () => {
             <img
              
               src="/images/resource/candidate-3.png"
-              alt=""
+              alt="candidate"
               className="rounded-circle user_img_msg"
             />
             <div className="name">
@@ -79,7 +260,7 @@ const ChatBoxContentField = () => {
           <div className="msg_cotainer">Ok, Understood!</div>
         </div>
       </div>
-      {/* End .card-body */}
+     
 
       <div className="card-footer">
         <div className="form-group mb-0">
@@ -98,9 +279,4 @@ const ChatBoxContentField = () => {
           </form>
         </div>
       </div>
-      {/* End .card-footer */}
-    </div>
-  );
-};
-
-export default ChatBoxContentField;
+       End .card-footer */}

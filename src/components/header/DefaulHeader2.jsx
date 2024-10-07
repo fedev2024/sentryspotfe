@@ -54,13 +54,13 @@ const DefaulHeader2 = () => {
         {/* End .nav-outer */}
 
         <div className="outer-box">
-          {/* <!-- Add Listing --> */}
-          <Link
+          {/*   <Link
             to="/candidates-dashboard/cv-manager"
             className="upload-cv text-blue-950"
           >
             Upload your CV
-          </Link>
+          </Link> */}
+        
           {/* <!-- Login/Register --> */}
           <div className="btn-box">
             {userToken ? (
@@ -85,7 +85,7 @@ const DefaulHeader2 = () => {
             )}
 
             <Link
-              to="/employers-dashboard/post-jobs"
+              to="https://employer.sentryspot.co.uk/"
               className="theme-btn btn-style-one bg-blue-950 text-white"
             >
               Job Post

@@ -27,32 +27,7 @@ const HeaderNavContent = () => {
               isActiveParent(homeItems, pathname) ? "" : ""
             } dropdown`}
           >
-            {/* <Link to={"/"}>Home</Link> */}
-            {/* <div className="mega-menu">
-              <div className="mega-menu-bar row pt-0">
-                {homeItems.map((item) => (
-                  <div
-                    className="column col-lg-3 col-md-3 col-sm-12"
-                    key={item.id}
-                  >
-                    <ul>
-                      {item.items.map((menu, i) => (
-                        <li
-                          className={
-                            isActiveLink(menu.routePath, pathname)
-                              ? ""
-                              : ""
-                          }
-                          key={i}
-                        >
-                          <Link to={menu.routePath}>{menu.name}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div> */}
+          
           </li>
           <li
             className={`${
@@ -287,7 +262,7 @@ const HeaderNavContent = () => {
 
           {/* reposting btn */}
           <li className="border h-[80%] p-0 m-0 "></li>
-          <li className=" hover:bg-slate-200  p-2 rounded-md ml-2">
+          <li className=" hover:bg-slate-200  p- rounded-md ml-2">
             <Link to="/">
               {" "}
               <span className="font-light"> Recruiting</span>? Post a job{" "}
