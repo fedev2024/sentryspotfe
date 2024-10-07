@@ -10,7 +10,7 @@ import MapJobFinder from "@/components/job-listing-pages/components/MapJobFinder
 import Social from "@/components/employer-single-pages/social/Social";
 import PrivateMessageBox from "@/components/employer-single-pages/shared-components/PrivateMessageBox";
 import {useParams } from "react-router-dom";
-
+import { useState ,useEffect} from "react";
 import MetaComponent from "@/components/common/MetaComponent";
 
 const metadata = {
@@ -20,11 +20,37 @@ const metadata = {
 };
 
 const EmployersSingleV1 = () => {
+  const [jobData, setJobData] = useState(null);
   let params = useParams();
   const id = params.id;
 
-  const employer =
-    employersInfo.find((item) => item.id == id) || employersInfo[0];
+  useEffect(() => {
+    // Fetch job data from API
+    const fetchJobData = async () => {
+      try {
+        const response = await fetch(`https://api.sentryspot.co.uk/api/jobseeker/companies/${id}`);
+        if (response.ok) {
+          const data = await response.json();
+          setJobData(data);
+        } else {
+          console.error("Failed to fetch job data");
+        }
+      } catch (error) {
+        console.error("Error fetching job data:", error);
+      }
+    };
+
+    fetchJobData();
+  }, [id]);
+
+  // If data is not loaded yet, you can show a loading spinner or message
+  if (!jobData) {
+    return <div>Loading...</div>;
+  }
+
+  const employer = jobData.data || jobs[0];
+
+  
 
   return (
     <>
@@ -52,7 +78,7 @@ const EmployersSingleV1 = () => {
                   <span className="company-logo">
                     <img
                      
-                      src={employer?.img}
+                      src={employer?.logo || "https://img.freepik.com/premium-photo/intelligent-logo-simple_553012-47516.jpg?size=338&ext=jpg&ga=GA1.1.1141335507.1717372800&semt=ais_user"}
                       alt="logo"
                     />
                   </span>
@@ -61,12 +87,12 @@ const EmployersSingleV1 = () => {
                   <ul className="job-info">
                     <li>
                       <span className="icon flaticon-map-locator"></span>
-                      {employer?.location}
+                      {employer?.country.name}, {employer?.state.name}, {employer?.city.name}
                     </li>
                     {/* compnay info */}
                     <li>
                       <span className="icon flaticon-briefcase"></span>
-                      {employer?.jobType}
+                      {employer?.company_industry.name}
                     </li>
                     {/* location info */}
                     <li>
@@ -145,7 +171,7 @@ const EmployersSingleV1 = () => {
             <div className="row">
               <div className="content-column col-lg-8 col-md-12 col-sm-12">
                 {/*  job-detail */}
-                <JobDetailsDescriptions />
+                <JobDetailsDescriptions employer={employer} />
                 {/* End job-detail */}
 
                 {/* <!-- Related Jobs --> */}
@@ -158,7 +184,7 @@ const EmployersSingleV1 = () => {
                   </div>
                   {/* End .title-box */}
 
-                  <RelatedJobs />
+                  <RelatedJobs employer={employer} />
                   {/* End RelatedJobs */}
                 </div>
                 {/* <!-- Related Jobs --> */}
@@ -172,10 +198,10 @@ const EmployersSingleV1 = () => {
                       {/*  compnay-info */}
                       <ul className="company-info mt-0">
                         <li>
-                          Primary industry: <span>Software</span>
+                          Primary industry: <span>{employer?.company_industry.name}</span>
                         </li>
                         <li>
-                          Company size: <span>501-1,000</span>
+                          Company size: <span>{employer?.company_size.range}</span>
                         </li>
                         <li>
                           Founded in: <span>2011</span>
@@ -187,7 +213,7 @@ const EmployersSingleV1 = () => {
                           Email: <span>{employer?.email}</span>
                         </li>
                         <li>
-                          Location: <span>{employer?.location}</span>
+                          Location: <span>{employer?.state.name}, {employer?.city.name}</span>
                         </li>
                         <li>
                           Social media:

@@ -442,11 +442,11 @@ const FilterJobsBox = () => {
                 <img
                   src={job.logo || "https://img.freepik.com/premium-photo/intelligent-logo-simple_553012-47516.jpg?size=338&ext=jpg&ga=GA1.1.1141335507.1717372800&semt=ais_user"}
                   alt="featured job"
-                  className="absolute -left-10 top-7 rounded-xl border-2 p-1 h-20 bg-black"
+                  className="absolute -left-10 top-7 rounded-xl border-2 p-1 h-20 w-20 bg-black"
                 />
                 <h4 className="pt-8 ps-2 flex justify-between w-full">
                   {console.log(job.job_title, "data")}
-                  <Link to={`/job-single-v3/${job.id}`}>{job.job_title}</Link>
+                  <Link to={`/job-single-v1/${job.id}`}>{job.job_title}</Link>
                   <div className="absolute right-0 text-sm">
                     <button className=" p-1 px-2 border-blue-800 rounded-full me-2 " onClick={handleApplyNowClick} >
                       <i className="fas fa-bookmark text-blue-900 "></i> Apply
