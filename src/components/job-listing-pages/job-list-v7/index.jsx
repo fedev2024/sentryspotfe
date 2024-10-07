@@ -6,6 +6,7 @@ import MobileMenu from "../../header/MobileMenu";
 import FilterJobsBox from "./FilterJobsBox";
 import FilterSidebar from "./FilterSidebar";
 import { useState } from "react";
+import Companieslist from "./Companieslist";
 const index = () => {
 
   const [activeTab, setActiveTab] = useState("tab1");
@@ -95,7 +96,7 @@ const index = () => {
                   )}
                   {activeTab === "tab2" && (
                     <div className="p-4 bg-white border border-gray-300 rounded-lg">
-                      Companies
+                      <Companieslist/>
                     </div>
                   )}
                   {activeTab === "tab3" && (
