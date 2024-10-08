@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Register = () => {
   return (
     <div className="form-inner">
-      <h3>Create a Free SentrySpot Account</h3>
+      <h4 className="text-lg mb-4 text-center">Create a Free SentrySpot Account</h4>
 
       {/* <Tabs>
         <div className="form-group register-dual">
@@ -47,10 +47,8 @@ const Register = () => {
             LogIn
           </Link>
         </div>
-        <div className="divider">
-          <span>or</span>
-        </div>
-        <LoginWithSocial />
+       
+       
       </div>
       {/* End bottom-box LoginWithSocial */}
     </div>

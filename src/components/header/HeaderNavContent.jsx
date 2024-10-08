@@ -34,7 +34,7 @@ const HeaderNavContent = () => {
               isActiveParent(homeItems, pathname) ? "text-blue-950" : ""
             } dropdown`}
           >
-            <span>AI Resume</span>
+            <span>AI Resum</span>
             <ul>
               <li
                 className={

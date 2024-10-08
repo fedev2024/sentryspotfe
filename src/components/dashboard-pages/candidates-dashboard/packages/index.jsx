@@ -38,9 +38,7 @@ const index = () => {
             <div className="col-lg-12">
               <div className="ls-widget">
                 <div className="tabs-box">
-                  <div className="widget-title">
-                    <h4>AI Skills</h4>
-                  </div>
+                 
                   {/* End widget-title */}
 
                   <div className="widget-content">

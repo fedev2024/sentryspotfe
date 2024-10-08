@@ -110,6 +110,7 @@ import SentryPage from "@/pages/sentry-spot-id/index";
 import { Toaster } from "react-hot-toast";
 import Communitypage from "./pages/community";
 import Skilllistpage from "./pages/candidates-dashboard/skilllist";
+import Testpaper from "./components/dashboard-pages/candidates-dashboard/packages/components/Testpaper";
 
 function App() {
   useEffect(() => {
@@ -284,6 +285,7 @@ function App() {
                   <Route path="my-profile" element={<MyProfilePage />} />
                   <Route path="my-resume" element={<MyResumePage />} />
                   <Route path="packages" element={<PackagePage />} />
+                  <Route path="testpaper/:skillId/:skillName" element={<Testpaper />} />
                   <Route
                     path="short-listed-jobs"
                     element={<ShortListedJobsPage />}

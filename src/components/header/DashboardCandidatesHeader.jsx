@@ -1,16 +1,36 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+
+
+
+
 import candidatesMenuData from "../../data/candidatesMenuData";
 import HeaderNavContent from "./HeaderNavContent";
 import { isActiveLink } from "../../utils/linkActiveChecker";
 import logo from "../../Images/logo.png";
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "../ui/button";
+import { IoLogOutOutline } from "react-icons/io5";
+
+
 const DashboardCandidatesHeader = () => {
-  const { pathname } = useLocation();
+
+
+  useEffect(() => {
+    window.addEventListener("scroll", changeBackground);
+  }, []);
+
+
+  const dispatch = useDispatch();
+  const { loading, userInfo, userToken, error, success, message } = useSelector(
+    (state) => state.auth
+  );
   const [navbar, setNavbar] = useState(false);
 
   const changeBackground = () => {
-    if (window.scrollY >= 0) {
+    if (window.scrollY >= 10) {
       setNavbar(true);
     } else {
       setNavbar(false);
@@ -21,80 +41,60 @@ const DashboardCandidatesHeader = () => {
     window.addEventListener("scroll", changeBackground);
   }, []);
 
+
   return (
     // <!-- Main Header-->
     <header
       className={`main-header header-shaddow  ${navbar ? "fixed-header " : ""}`}
     >
-      <div className="container-fluid">
-        {/* <!-- Main box --> */}
-        <div className="main-box">
-          {/* <!--Nav Outer --> */}
-          <div className="nav-outer">
-            <div className="logo-box">
-              <div className="me-10">
-                <Link to="/">
-                  <img alt="brand" src={logo} className="h-16 w-28" />
-                </Link>
-              </div>
-            </div>
-            {/* End .logo-box */}
-
-            <HeaderNavContent />
-            {/* <!-- Main Menu End--> */}
-          </div>
-          {/* End .nav-outer */}
-
-          <div className="outer-box">
-            <button className="menu-btn">
-              <span className="count">1</span>
-              <span className="icon la la-heart-o"></span>
-            </button>
-            {/* wishlisted menu */}
-
-            <button className="menu-btn">
-              <span className="icon la la-bell"></span>
-            </button>
-            {/* End notification-icon */}
-
-            {/* <!-- Dashboard Option --> */}
-            <div className="dropdown dashboard-option">
-              <a
-                className="dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+     
+	<div className="header">
+		<div className="container">
+			<div className="header-menu">
+				<div className="header-logo">
+				<a  href="/">	<img src="https://htmlsentryspot.vercel.app/img/company_logo.png"/></a>
+					<div className="main-menu ms-4">
+						<ul>
+							<li><a href="">AI Services</a></li>
+							<li><a href="">Hiring Advice</a></li>
+							<li><a href="">Companies</a></li>
+							
+						</ul>
+					</div>
+				</div>
+				<div className="side-menu">
+        <div className="btn-box">
+            {userToken ? (
+              <Button
+                className="bg-gray-500 p-3 ml-2 duration-500 hover:bg-[#E60278]"
+                title="logout"
+                onClick={() => {
+                  dispatch(logout());
+                }}
               >
-                <img
-                  alt="avatar"
-                  className="thumb"
-                  src="/images/resource/candidate-1.png"
-                />
-                <span className="name"></span>
-              </a>
-
-              <ul className="dropdown-menu">
-                {candidatesMenuData.map((item) => (
-                  <li
-                    className={`${
-                      isActiveLink(item.routePath, pathname) ? "active" : ""
-                    } mb-1`}
-                    key={item.id}
-                  >
-                    <Link to={item.routePath}>
-                      <i className={`la ${item.icon}`}></i> {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {/* End dropdown */}
+                <IoLogOutOutline size={24} className="" />
+              </Button>
+            ) : (
+             <>	<a  href="#"
+             data-bs-toggle="modal"
+                  data-bs-target="#loginPopupModal"
+                  >Sign in</a>
+  
+          </>
+            )}
+<i class="fa-solid fa-bell text-3xl mx-3 "></i>
           </div>
-          {/* End outer-box */}
-        </div>
-      </div>
+
+
+				
+				</div>
+			</div>
+		</div>
+	</div>
     </header>
   );
 };
 
 export default DashboardCandidatesHeader;
+
+

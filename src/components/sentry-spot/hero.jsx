@@ -25,7 +25,9 @@ const HeroSection = () => {
             </p>
             <div className="mt-6">
               <a
-                href="#"
+                 href="#"
+                 data-bs-toggle="modal"
+                      data-bs-target="#registerModal"
                 className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-white hover:text-blue-900"
               >
                 Create Profile
