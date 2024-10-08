@@ -29,12 +29,7 @@ const FormContent = () => {
     console.log("Captcha value:", value);
   }
 
-  // useEffect(() => {
-  //   if (userToken) {
-  //     // navigate("/candidates-dashboard/my-profile");
-  //     window.location.href = "/candidates-dashboard/my-profile";
-  //   }
-  // }, [userToken]);
+  
   return (
     <div className="form-inner">
       <h3>Login to Sentry Spot</h3>
@@ -78,7 +73,8 @@ const FormContent = () => {
             </a>
           </div>
         </div>
-        <div className="form-group">
+        
+        {/* <div className="form-group">
           <div className="field-outer">
             <div className="input-group checkboxes square">
               <input type="checkbox" name="service-me" id="service" required />
@@ -90,18 +86,17 @@ const FormContent = () => {
             </div>
           </div>
         </div>
-        {/* forgot password */}
         <ReCAPTCHA
-        className="w-40"
+        className="w-full flex justify-center"
           sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
           onChange={onChange}
-        />
+        /> */}
 
         <div className="form-group mt-2">
           <button
             type="submit"
             name="log-in"
-            className="theme-btn btn-style-one"
+            className="theme-btn btn-style-one bg-blue-900"
             onClick={submitHandler}
             disabled={loading}
           >

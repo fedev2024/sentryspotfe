@@ -3,16 +3,82 @@
 import "./style.css"
 import blog1 from "./img/blog1.webp"
 import faqimge from "./img/faqimge.webp"
+import { useState,useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const FilterJobsBox = () => {
  
+  const [jobs, setJobs] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const jobsPerSlide = 4; // Number of jobs to display per slide
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await axios.get('https://api.sentryspot.co.uk/api/jobseeker/job-list');
+        setJobs(response.data.data); // Adjusted to point to the 'data' array in the response
+      } catch (error) {
+        console.error('Error fetching job data:', error);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
+  // Calculate total slides
+  const totalSlides = Math.ceil(jobs.length / jobsPerSlide);
+
+  // Function to navigate to the next slide
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 0) % totalSlides);
+  };
+
+  // Function to navigate to the previous slide
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 0 + totalSlides) % totalSlides);
+  };
+
+  // Get the jobs for the current slide
+  const currentJobs = jobs.slice(currentIndex * jobsPerSlide, (currentIndex + 1) * jobsPerSlide);
+
+  let slideIndex = 1;
+
+  const showSlides = (n) => {
+    const slides = document.getElementsByClassName("HeroSliderone");
+    if (n > slides.length) { slideIndex = 1; }
+    if (n < 1) { slideIndex = slides.length; }
+    
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+  };
+
+  const plusSlides = (n) => {
+    showSlides(slideIndex += n);
+  };
+
+  useEffect(() => {
+    showSlides(slideIndex);
+  }, []);
+
+
+  const slides = Array.from({ length: Math.ceil(jobs.length / 4) }, (_, slideIndex) => ({
+    jobs: jobs.slice(slideIndex * 4, slideIndex * 4 + 4),
+  }));
+
   return (
     <>
       <div>
-       
+     
        
         <div className="">
-          <div className="container">
+        <div className="container">
             <div className="HomeBannerContent">
               <div className="BannerContent">
                 <h2>One Stop AI Enabled Career Portal</h2>
@@ -24,8 +90,8 @@ const FilterJobsBox = () => {
               </div>
               <div className="HomeHeroMedia">
                 <div className="HomeSlider">
-                  <div className="">
-                    <img src="https://htmlsentryspot.vercel.app/img/home-1.webp" />
+                  <div className="HeroSliderone">
+                    <img src="https://htmlsentryspot.vercel.app/img/home-1.webp" alt="Slide 1" />
                     <div className="BannerText">
                       <div className="BannerTextUpper">
                         <i className="fa-solid fa-medal" />
@@ -41,12 +107,11 @@ const FilterJobsBox = () => {
                       </div>
                       <div className="BannerTextDowe">
                         <h2>Job seeker</h2>
-                        {/* <p>From Behavioral Health to IT</p> */}
                       </div>
                     </div>
                   </div>
                   <div className="HeroSliderone">
-                    <img src="img/home-2.webp" />
+                    <img src="https://htmlsentryspot.vercel.app/img/home-2.webp" alt="Slide 2" />
                     <div className="BannerText">
                       <div className="BannerTextUpper">
                         <i className="fa-solid fa-medal" />
@@ -62,12 +127,11 @@ const FilterJobsBox = () => {
                       </div>
                       <div className="BannerTextDowe">
                         <h2>Job seeker</h2>
-                        {/* <p>From Behavioral Health to IT</p> */}
                       </div>
                     </div>
                   </div>
                   <div className="HeroSliderone">
-                    <img src="img/home-3.webp" />
+                    <img src="https://htmlsentryspot.vercel.app/img/home-3.webp" alt="Slide 3" />
                     <div className="BannerText">
                       <div className="BannerTextUpper">
                         <i className="fa-solid fa-medal" />
@@ -83,16 +147,15 @@ const FilterJobsBox = () => {
                       </div>
                       <div className="BannerTextDowe">
                         <h2>Verified Job seeker</h2>
-                        {/* <p>From Behavioral Health to IT</p> */}
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="NavigationBtn">
-                  <div className="NavPre" onclick="plusSlides(-1)">
+                  <div className="NavPre" onClick={() => plusSlides(-1)}>
                     <i className="fa-solid fa-chevron-left" />
                   </div>
-                  <div className="NavNext" onclick="plusSlides(1)">
+                  <div className="NavNext" onClick={() => plusSlides(1)}>
                     <i className="fa-solid fa-chevron-right" />
                   </div>
                 </div>
@@ -162,12 +225,12 @@ const FilterJobsBox = () => {
                 </div>
               </a>
             </div>
-            {/* <div class="NavigationBtn" style="justify-content: center;">
-				<div class="NavPre" id="leftButton">
-					<i class="fa-solid fa-chevron-left"></i>
+            {/* <div className="NavigationBtn" style="justify-content: center;">
+				<div className="NavPre" id="leftButton">
+					<i className="fa-solid fa-chevron-left"></i>
 				</div>
-				<div class="NavNext" id="rightButton">
-					<i class="fa-solid fa-chevron-right"></i>
+				<div className="NavNext" id="rightButton">
+					<i className="fa-solid fa-chevron-right"></i>
 				</div>
 			</div> */}
           </div>
@@ -181,26 +244,26 @@ const FilterJobsBox = () => {
               <div className="FaqText">
                 <p>SentrySpot Community</p>
                 <h2>Join community to gain the support and resources you need for a smooth transition to a better career.</h2>
-                <details>
+                <details className="rounded-3xl">
                   <summary>What is SentrySpot Community?</summary>
-                  <div className="content">
+                  <div className="content text-white">
                     <p>The SentrySpot Community is an online platform where job seekers can connect, learn new skills, and receive guidance to advance their careers in the security services industry.</p>
                   </div>
                 </details>
-                <details>
+                <details className="rounded-3xl">
                   <summary>Is it free to use?</summary>
                   <div className="content">
                     <p>Yes, the SentrySpot Community is free to join and use for job seekers looking to enhance their skills and career opportunities.</p>
                   </div>
                 </details>
-                <details>
+                <details className="rounded-3xl">
                   <summary>How is this platform different?</summary>
                   <div className="content">
                     <p>SentrySpot stands out with its AI-driven platform tailored specifically for the security services industry, offering personalized job recommendations, resume-building tools, and a supportive online community to help users advance their careers efficiently.</p>
                   </div>
                 </details>
                 <div className="FaqBtn">
-                  <button type="button">Signup to view our community</button>
+                 <Link to={"/sentry-spot"}> <button type="button">Signup to view our community</button></Link>
                 </div>
               </div>
             </div>
@@ -214,156 +277,53 @@ const FilterJobsBox = () => {
                   <p>Verified Job Listings</p>
                   <h2>Creating Impact Every Step of the Way</h2>
                   <div className="StatsBtn">
-                    <button type="button">View All Jobs</button>
+                  <Link to={"/job-list-v7"}>
+                    <button type="button">View All Jobs</button></Link>
                   </div>
                 </div>
-                {/* <div class="HelpNavigationBtn">
-						<div class="HelpNavPre" id="leftButton">
-							<i class="fa-solid fa-chevron-left"></i>
+                {/* <div className="HelpNavigationBtn">
+						<div className="HelpNavPre" id="leftButton">
+							<i className="fa-solid fa-chevron-left"></i>
 						</div>
-						<div class="HelpNavNext" id="rightButton">
-							<i class="fa-solid fa-chevron-right"></i>
+						<div className="HelpNavNext" id="rightButton">
+							<i className="fa-solid fa-chevron-right"></i>
 						</div>
 					</div> */}
               </div>
-              <div className="HelpSlider slider3">
-                <div className="StatsCard item">
-                  <div className="StatsSlider ">
-                    <div className="JobCards">
-                      <i className="fa-brands fa-dropbox" />
-                      <p>Dropbox</p>
-                      <h2>Software Engineer (Android), Libraries</h2>
-                      <div className="Location">
-                        <i className="fa-solid fa-location-dot"> London, UK</i> 
-                      </div>
-                      <div className="Job-Tab">
-                        <a href>App</a>
-                        <a href>Design</a>
-                        <a href>Digital</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="StatsCard item">
-                  <div className="StatsSlider">
-                    <div className="JobCards">
-                      <i className="fa-brands fa-dropbox" />
-                      <p>Dropbox</p>
-                      <h2>Software Engineer (Android), Libraries</h2>
-                      <div className="Location">
-                        <i className="fa-solid fa-location-dot"> London, UK</i> 
-                      </div>
-                      <div className="Job-Tab">
-                        <a href>App</a>
-                        <a href>Design</a>
-                        <a href>Digital</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="StatsCard item">
-                  <div className="StatsSlider">
-                    <div className="JobCards">
-                      <i className="fa-brands fa-dropbox" />
-                      <p>Dropbox</p>
-                      <h2>Software Engineer (Android), Libraries</h2>
-                      <div className="Location">
-                        <i className="fa-solid fa-location-dot"> London, UK</i> 
-                      </div>
-                      <div className="Job-Tab">
-                        <a href>App</a>
-                        <a href>Design</a>
-                        <a href>Digital</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="StatsCard item">
-                  <div className="StatsSlider">
-                    <div className="JobCards">
-                      <i className="fa-brands fa-dropbox" />
-                      <p>Dropbox</p>
-                      <h2>Software Engineer (Android), Libraries</h2>
-                      <div className="Location">
-                        <i className="fa-solid fa-location-dot"> London, UK</i> 
-                      </div>
-                      <div className="Job-Tab">
-                        <a href>App</a>
-                        <a href>Design</a>
-                        <a href>Digital</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="StatsCard item">
-                  <div className="StatsSlider">
-                    <div className="JobCards">
-                      <i className="fa-brands fa-dropbox" />
-                      <p>Dropbox</p>
-                      <h2>Software Engineer (Android), Libraries</h2>
-                      <div className="Location">
-                        <i className="fa-solid fa-location-dot"> London, UK</i> 
-                      </div>
-                      <div className="Job-Tab">
-                        <a href>App</a>
-                        <a href>Design</a>
-                        <a href>Digital</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="StatsCard item">
-                  <div className="StatsSlider">
-                    <div className="JobCards">
-                      <i className="fa-brands fa-dropbox" />
-                      <p>Dropbox</p>
-                      <h2>Software Engineer (Android), Libraries</h2>
-                      <div className="Location">
-                        <i className="fa-solid fa-location-dot"> London, UK</i> 
-                      </div>
-                      <div className="Job-Tab">
-                        <a href>App</a>
-                        <a href>Design</a>
-                        <a href>Digital</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="StatsCard item">
-                  <div className="StatsSlider">
-                    <div className="JobCards">
-                      <i className="fa-brands fa-dropbox" />
-                      <p>Dropbox</p>
-                      <h2>Software Engineer (Android), Libraries</h2>
-                      <div className="Location">
-                        <i className="fa-solid fa-location-dot"> London, UK</i> 
-                      </div>
-                      <div className="Job-Tab">
-                        <a href>App</a>
-                        <a href>Design</a>
-                        <a href>Digital</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="StatsCard item">
-                  <div className="StatsSlider">
-                    <div className="JobCards">
-                      <i className="fa-brands fa-dropbox" />
-                      <p>Dropbox</p>
-                      <h2>Software Engineer (Android), Libraries</h2>
-                      <div className="Location">
-                        <i className="fa-solid fa-location-dot"> London, UK</i> 
-                      </div>
-                      <div className="Job-Tab">
-                        <a href>App</a>
-                        <a href>Design</a>
-                        <a href>Digital</a>
-                      </div>
-                    </div>
-                  </div>
+              <div className=" ">
+    
+      <div className="relative overflow-hidden">
+        <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+          {currentJobs.map((job) => (
+            <div key={job.id} className="flex-shrink-0 w-full md:w-1/4 p-2">
+              <div className="bg-blue-900 shadow-md rounded-lg p-4 flex flex-col">
+                <i className="fa-brands fa-dropbox text-white text-3xl mb-2"></i>
+                <Link to={`/job-single-v1/${job.id}`}>
+                <h2 className="text-xl font-semibold text-white">{job.job_title || "Job Title"}</h2>
+                <div className="Location text-white mb-2">
+                  <i className="fa-solid fa-location-dot text-white"></i>
+                  {job.city ? `${job.city}, ${job.country}` : "Location Not Available"}
+                </div></Link>
+                <div className="Job-Tab flex gap-2 mt-auto">
+                  <a href="#" className="bg-gray-200 text-sm px-2 py-1 rounded">App</a>
+                  <a href="#" className="bg-gray-200 text-sm px-2 py-1 rounded">Design</a>
+                  <a href="#" className="bg-gray-200 text-sm px-2 py-1 rounded">Digital</a>
+                 
                 </div>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex justify-between mt-4">
+        <button onClick={prevSlide} className="bg-gray-500 text-white px-4 py-2 rounded">
+          Prev
+        </button>
+        <button onClick={nextSlide} className="bg-gray-500 text-white px-4 py-2 rounded">
+          Next
+        </button>
+      </div>
+    </div>
             </div>
           </div>
         </div>
@@ -941,66 +901,60 @@ const FilterJobsBox = () => {
               Career Guidance by SentrySpot Editorial
             </div>
             <div className="BlogsCards">
-              <a href>
+              <a href="https://blog.sentryspot.co.uk/2024/08/31/key-features-to-look-for-in-an-ai-resume-builder/">
                 <div className="BlogBoxs">
                   <div className="Blogs-Text">
-                    <img src="https://htmlsentryspot.vercel.app/img/blog1.webp" />
+                    <img src="https://blog.sentryspot.co.uk/wp-content/uploads/2024/08/Untitled-design-5.jpg" />
                     <div className="BlogInfoContainer">
                       <div className="Category">
                         Career Discovery
                       </div>
                       <div className="CardInfo">
-                        <div className="Date">September 3, 2024</div>
-                        <div className="Heading">How to Find a Career You Love</div>
-                        <div className="Para">
-                          <p>It's important to find a career you enjoy, but the process can be challenging. Check out some tips and resources for…</p>
-                        </div>
+                     
+                        <div className="Heading">Key Features to Look for in an AI Resume Builder</div>
+                        
                       </div>
                     </div>
                   </div>
                 </div>
               </a>
-              <a href>
+              <a href="https://blog.sentryspot.co.uk/2024/08/29/ai-and-bias-in-hiring-exploring-how-ai-can-perpetuate-or-reduce-bias-in-the-hiring-process/">
                 <div className="BlogBoxs">
                   <div className="Blogs-Text">
-                     <img src="https://htmlsentryspot.vercel.app/img/blog1.webp" />
+                     <img src="https://blog.sentryspot.co.uk/wp-content/uploads/2024/08/Untitled-design-4.jpg" />
                     <div className="BlogInfoContainer">
                       <div className="Category">
                         Career Discovery
                       </div>
                       <div className="CardInfo">
-                        <div className="Date">September 3, 2024</div>
-                        <div className="Heading">How to Find a Career You Love</div>
-                        <div className="Para">
-                          <p>It's important to find a career you enjoy, but the process can be challenging. Check out some tips and resources for…</p>
-                        </div>
+                      
+                        <div className="Heading">Exploring How AI Can Perpetuate or Reduce Bias in the Hiring Process</div>
+                       
                       </div>
                     </div>
                   </div>
                 </div>
               </a>
-              <a href>
+              <a href="https://blog.sentryspot.co.uk/2024/08/29/most-common-resume-mistakes-and-how-to-avoid-them-insights-from-sentry-spot/">
                 <div className="BlogBoxs">
                   <div className="Blogs-Text">
-                     <img src="https://htmlsentryspot.vercel.app/img/blog1.webp" />
+                     <img src="https://blog.sentryspot.co.uk/wp-content/uploads/2024/08/Untitled-design.jpg" />
                     <div className="BlogInfoContainer">
                       <div className="Category">
                         Career Discovery
                       </div>
                       <div className="CardInfo">
-                        <div className="Date">September 3, 2024</div>
-                        <div className="Heading">How to Find a Career You Love</div>
-                        <div className="Para">
-                          <p>It's important to find a career you enjoy, but the process can be challenging. Check out some tips and resources for…</p>
-                        </div>
+                      
+                        <div className="Heading">Most Common Resume Mistakes and How to Avoid Them</div>
+                        
                       </div>
                     </div>
                   </div>
                 </div>
               </a>
             </div>
-            <div className="BlogBtn">
-              <button type="button">Visit our Blog Section</button>
+            <div className="BlogBtn"><Link to={"https://blog.sentryspot.co.uk/"}>
+              <button type="button">Visit our Blog Section</button></Link>
             </div>
           </div>
         </div>
@@ -1009,8 +963,8 @@ const FilterJobsBox = () => {
             <div className="Talkbox">
               <div className="TalkInfo">
                 <h2>Interested in Becoming a SentrySpot Partner?</h2>
-                <div className="TalkBox">
-                  <a href>Lets Talk</a>
+                <div className="TalkBox mt-5">
+                  <a href="mailto:Partners@sentryspot.co.uk" className="mt-5">Lets Talk</a>
                 </div>	
               </div>
               <img src="	https://htmlsentryspot.vercel.app/img/Partner-CTA-block.webp" />
@@ -1020,13 +974,13 @@ const FilterJobsBox = () => {
         <div className="FooterSection">
           <div className="container">
             <div className="FooterCTA">
-              <div className="CtaInfo">
+              <div className="CtaInfo ">
                 <span><i className="fa-solid fa-angles-right" /> <h3>Explore Top Careers, Training, and Jobs</h3></span>
-                <div className="Footerbtn">
-                  <button type="button">Start Your Journey</button>
+                <div className="Footerbtn mt-3">
+                <Link to={"/sentry-spot"}> <button type="button">Start Your Journey</button></Link>
                 </div>
               </div>
-              <div className="NewsletterConatiner">
+              <div className="NewsletterConatiner ms-5">
                 <h3>Get Monthly Newsletters and Career Resources</h3>
                 <div className="LetterForm">
                   <form method style={{width: '100%'}}>
