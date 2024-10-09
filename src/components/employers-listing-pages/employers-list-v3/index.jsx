@@ -17,7 +17,7 @@ const index = () => {
             <DefaulHeader2 />
             {/* End Header with upload cv btn */}
 
-            <MobileMenu />
+            {/* End Header */}
             {/* End MobileMenu */}
 
             <section className="page-title">

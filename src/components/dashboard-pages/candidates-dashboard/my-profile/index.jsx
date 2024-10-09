@@ -23,28 +23,26 @@ const Index = () => {
     { id: 2, title: "Education", component: <SocialNetworkBox onNext={() => setCurrentStep(3)} /> },
     { id: 3, title: "Professional Details", component: <ProfileVisalbilty onNext={() => setCurrentStep(4)} /> },
     { id: 4, title: "Resume", component: <ContactInfoBox onNext={() => setCurrentStep(5)} /> },
-   
-    { id: 5, title: "Skills & Recommendation", component: <Skills  onNext={() => setCurrentStep(6)}/> },
+    { id: 5, title: "Skills & Recommendation", component: <Skills onNext={() => setCurrentStep(6)} /> },
     { id: 6, title: "Additional Information", component: <Additionalinformation /> },
   ];
 
   return (
-    <div className="page-wrapper dashboard ">
+    <div className="page-wrapper dashboard">
       <span className="header-span"></span>
 
       <LoginPopup />
       <DashboardCandidatesHeader />
-      <MobileMenu />
       <DashboardCandidatesSidebar />
 
-      <section className="user-dashboard ">
+      <section className="user-dashboard">
         <div className="dashboard-outer">
           <BreadCrumb title="My Profile!" />
           <MenuToggler />
 
           {/* Top Progress Bar */}
           <div className="w-full rounded-t-lg">
-            <div className="flex justify-around">
+            <div className="flex flex-col md:flex-row gap-2 justify-around">
               {steps.map((step, index) => (
                 <div
                   key={step.id}
@@ -69,11 +67,11 @@ const Index = () => {
           </div>
 
           {/* Main Content */}
-          <div className="p-6 mt-2 ">
+          <div className="p-6 mt-2 bg-gray-100 rounded-md">
             <h4 className="text-lg ps-3 bg-blue-900 rounded-t-md w-full p-2 text-white">
               {steps[currentStep - 1].title}
             </h4>
-            <div className="bg-white p-6 shadow-lg border-2 border-blue-900">
+            <div className="bg-white p-6 shadow-lg border-2 border-blue-900 rounded-md">
               <div className="flex justify-between items-center mb-4">
                 {currentStep === 1 && (
                   <div className="flex items-center space-x-2">

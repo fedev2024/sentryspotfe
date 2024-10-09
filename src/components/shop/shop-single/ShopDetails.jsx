@@ -51,7 +51,7 @@ const ShopSingleDyanmic = ({ id }) => {
       <ShopHeader />
       {/* <!--End Main Header --> */}
 
-      <MobileMenu />
+      {/* End Header */}
       {/* End MobileMenu */}
 
       <Breadcrumb title="Shop Single" meta={product?.title} />

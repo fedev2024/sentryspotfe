@@ -32,7 +32,7 @@ const BlogDetailsDynamic = () => {
       <DefaulHeader />
       {/* <!--End Main Header --> */}
 
-      <MobileMenu />
+      {/* End Header */}
       {/* End MobileMenu */}
 
       {/* <!-- Blog Single --> */}

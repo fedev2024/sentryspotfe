@@ -37,7 +37,7 @@ const CandidateSingleDynamicV1 = () => {
       <DefaulHeader />
       {/* <!--End Main Header --> */}
 
-      <MobileMenu />
+      {/* End Header */}
       {/* End MobileMenu */}
 
       {/* <!-- Job Detail Section --> */}

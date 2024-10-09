@@ -111,6 +111,10 @@ import { Toaster } from "react-hot-toast";
 import Communitypage from "./pages/community";
 import Skilllistpage from "./pages/candidates-dashboard/skilllist";
 import Testpaper from "./components/dashboard-pages/candidates-dashboard/packages/components/Testpaper";
+import Skilltestpage from "./components/job-listing-pages/job-list-v1/Skilltestpage";
+import Buildresume from "./components/job-listing-pages/job-list-v1/Buildresume";
+import Talkto from "./components/job-listing-pages/job-list-v1/Talkto";
+import Earnjob from "./components/job-listing-pages/job-list-v1/Earnjob";
 
 function App() {
   useEffect(() => {
@@ -216,6 +220,10 @@ function App() {
                   <Route path="candidates-single-v3/:id" element={<CandidateSingleDynamicV3 />} /> */}
 
                 <Route path="blog-list-v1" element={<BlogListpage1 />} />
+                <Route path="skilltest" element={<Skilltestpage />} />
+                <Route path="buildresume" element={<Buildresume />} />
+                <Route path="talkto" element={<Talkto />} />
+                <Route path="earnjob" element={<Earnjob />} />
                 {/* <Route path="blog-list-v2" element={<BlogListpage2 />} />
                   <Route path="blog-list-v3" element={<BlogListpage3 />} /> */}
                 <Route

@@ -277,7 +277,7 @@ button.register-btn:hover {
     margin: 50px 0;
 }
 .CardTop p {
-    font-size: 18px;
+    font-size: 28px;
     color: #e60278;
     margin: 0;
     margin-bottom: 20px;
@@ -293,7 +293,7 @@ button.register-btn:hover {
     justify-content: center;
     gap: 16px;
     margin: 50px 0;
-    overflow: hidden;
+   
 }
 .ProgramCards a{
     text-decoration: none;
@@ -1108,7 +1108,7 @@ button.slick-prev {
 		font-size: 10px;
 	}
 	.BannerText{
-		bottom: 41%;
+		bottom: 18%;
     	left: 4%;
 	}
 	.BannerTextUpper{

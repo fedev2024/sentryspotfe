@@ -26,7 +26,7 @@ const index = () => {
       <Header />
       {/* <!--End Main Header --> */}
 
-      <MobileMenu />
+      {/* End Header */}
       {/* End MobileMenu */}
 
       <Hero14 />

@@ -18,7 +18,7 @@ const index = () => {
       <DefaulHeader />
       {/* <!--End Main Header --> */}
 
-      <MobileMenu />
+      {/* End Header */}
       {/* End MobileMenu */}
 
       <Breadcrumb title="Blog" meta="Blog" />

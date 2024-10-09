@@ -8,7 +8,7 @@ const index = () => {
       <Header />
       {/* <!--End Main Header -->  */}
 
-      <MobileMenu />
+      {/* End Header */}
       {/* End MobileMenu */}
 
       <div className="login-section">

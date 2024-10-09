@@ -9,6 +9,7 @@ import axios from "axios";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import CoursesTabs from "./CoursesTabs";
 
 const FilterJobsBox = () => {
  
@@ -85,7 +86,8 @@ const FilterJobsBox = () => {
                 <h1>Your Career Journey Starts at SentrySpot</h1>
                 <p>Your AI-powered gateway to a successful career in security services. Start your journey with smart tools for job searching, resume building, and more.</p>
                 <div className="BannerBtn">
-                  <button type="button">Get Started Now</button>
+                  <Link to={"/sentry-spot"}>
+                  <button type="button">Get Started Now</button></Link>
                 </div>
               </div>
               <div className="HomeHeroMedia">
@@ -166,11 +168,11 @@ const FilterJobsBox = () => {
         <div className="ServiceCard">
           <div className="container">
             <div className="CardTop">
-              <p>How We Spot Career Growth For You</p>
+              <p className="font-extrabold">How We Spot Career Growth For You</p>
               <h2>AI-Powered Tools to Enhance Your Job Search</h2>
             </div>
             <div className="ProgramCards owl-carousel owl-theme">
-              <a href>
+              <a href="/skilltest"f>
                 <div className="program-card tomato ">
                   <i className="fa-solid fa-forward" />
                   <div className="program-card-info">
@@ -179,7 +181,7 @@ const FilterJobsBox = () => {
                   </div>
                 </div>
               </a>
-              <a href>
+              <a href="/buildresume">
                 <div className="program-card berry">
                   <i className="fa-solid fa-compass" />
                   <div className="program-card-info">
@@ -188,7 +190,7 @@ const FilterJobsBox = () => {
                   </div>
                 </div>
               </a>
-              <a href>
+              <a href="/earnjob"ef>
                 <div className="program-card teal">
                   <i className="fa-solid fa-medal" />
                   <div className="program-card-info">
@@ -197,7 +199,7 @@ const FilterJobsBox = () => {
                   </div>
                 </div>
               </a>
-              <a href>
+              <a href="/talkto">
                 <div className="program-card pear">
                   <i className="fa-solid fa-clipboard-list" />
                   <div className="program-card-info">
@@ -206,7 +208,7 @@ const FilterJobsBox = () => {
                   </div>
                 </div>
               </a>
-              <a href>
+              <a href="/sentry-spot"f>
                 <div className="program-card marigold">
                   <i className="fa-solid fa-handshake" />
                   <div className="program-card-info">
@@ -215,7 +217,7 @@ const FilterJobsBox = () => {
                   </div>
                 </div>
               </a>
-              <a href>
+              <a href="/job-list-v7"f>
                 <div className="program-card marigold">
                   <i className="fa-solid fa-handshake" />
                   <div className="program-card-info">
@@ -242,7 +244,7 @@ const FilterJobsBox = () => {
                 <img src="https://htmlsentryspot.vercel.app/img/faqimge.webp" />
               </div>
               <div className="FaqText">
-                <p>SentrySpot Community</p>
+                <p className="font-extrabold">SentrySpot Community</p>
                 <h2>Join community to gain the support and resources you need for a smooth transition to a better career.</h2>
                 <details className="rounded-3xl">
                   <summary>What is SentrySpot Community?</summary>
@@ -333,566 +335,9 @@ const FilterJobsBox = () => {
               <h2>SentrySpot Careers - Training Programs &amp; Certifications</h2>
               <p>With over 100,000 customers, from individuals to some of the most respected global brands</p>
             </div>
-            <div className="tab">
-              <button className="tablinks active" onclick="openCity(event, '1')">Health and Safety</button>
-              <button className="tablinks" onclick="openCity(event, '2')">First Aid</button>
-              <button className="tablinks" onclick="openCity(event, '3')">Security</button>
-              <button className="tablinks" onclick="openCity(event, '4')">Hospitality</button>
-              <button className="tablinks" onclick="openCity(event, '5')">Teaching &amp; Academics</button>
-              <button className="tablinks" onclick="openCity(event, '6')">Construction</button>
-            </div>
-            <div id={1} className="tabcontent" style={{display: 'block'}}>
-              <div className="TabContentHeadr">
-                <img src="https://htmlsentryspot.vercel.app/img/Tab1.webp" />
-                <div className="TabIMgContent">
-                  <h4>Health and Safety</h4>
-                  <p>#1 Most popular topic on Hurak</p>
-                  <a href>Explore Health and Safety Courses</a>
-                </div>
-              </div>
-              <div className="slick-slider">
-                <div className="element element-1">
-                  <div className="InnerSlider">
-                    <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-2">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-3">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-4">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-5">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-6">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-7">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-8">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-9">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-10">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id={2} className="tabcontent">
-              <div className="TabContentHeadr">
-                <img src="img/Tab1.webp" />
-                <div className="TabIMgContent">
-                  <h4>Health and Safety</h4>
-                  <p>#1 Most popular topic on Hurak</p>
-                  <a href>Explore Health and Safety Courses</a>
-                </div>
-              </div>
-              <div className="slider1">
-                <div className="elements elements-1">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="elements elements-2">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="elements elements-3">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="elements elements-4">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="elements elements-5">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="elements elements-6">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="elements elements-7">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="elements elements-8">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="elements elements-9">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="elements elements-10">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id={3} className="tabcontent">
-              <div className="TabContentHeadr">
-                <img src="img/Tab1.webp" />
-                <div className="TabIMgContent">
-                  <h4>Health and Safety</h4>
-                  <p>#1 Most popular topic on Hurak</p>
-                  <a href>Explore Health and Safety Courses</a>
-                </div>
-              </div>
-              <div className="slider2">
-                <div className="element element-1">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-2">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-3">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-4">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-5">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-6">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-7">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-8">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-9">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-10">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id={4} className="tabcontent">
-              <div className="TabContentHeadr">
-                <img src="img/Tab1.webp" />
-                <div className="TabIMgContent">
-                  <h4>Health and Safety</h4>
-                  <p>#1 Most popular topic on Hurak</p>
-                  <a href>Explore Health and Safety Courses</a>
-                </div>
-              </div>
-              <div className="slider4">
-                <div className="element element-1">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-2">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-3">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-4">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-5">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-6">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-7">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-8">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-9">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-10">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id={5} className="tabcontent">
-              <div className="TabContentHeadr">
-                <img src="img/Tab1.webp" />
-                <div className="TabIMgContent">
-                  <h4>Health and Safety</h4>
-                  <p>#1 Most popular topic on Hurak</p>
-                  <a href>Explore Health and Safety Courses</a>
-                </div>
-              </div>
-              <div className="slider5">
-                <div className="element element-1">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-2">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-3">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-4">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-5">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-6">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-7">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-8">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-9">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-10">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id={6} className="tabcontent">
-              <div className="TabContentHeadr">
-                <img src="img/Tab1.webp" />
-                <div className="TabIMgContent">
-                  <h4>Health and Safety</h4>
-                  <p>#1 Most popular topic on Hurak</p>
-                  <a href>Explore Health and Safety Courses</a>
-                </div>
-              </div>
-              <div className="slider6">
-                <div className="element element-1">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-2">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-3">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-4">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-5">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-6">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-7">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-8">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-9">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-                <div className="element element-10">
-                  <div className="InnerSlider">
-                      <img src="https://htmlsentryspot.vercel.app/img/InnerSlider.webp" style={{width:"150px"}} />
-                    <h6>IOSH Working Safely Course</h6>
-                    <p>1 Course Providers</p>
-                    <h5>£107</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <CoursesTabs/>
+          
+             
           </div>
         </div>
         <div className="Blog">

@@ -208,9 +208,9 @@ const FilterJobsBox = () => {
   };
 
   return (
-    <div className="p-6  min-h-screen flex">
+    <div className=" flex">
       {/* Sidebar */}
-      <aside className="w-72  p-4 rounded-lg shadow-md" style={{backgroundColor:"#F4F7FC"}}>
+      <aside className="w-72  p-4 rounded-lg shadow-md hidden lg:flex flex-col" style={{backgroundColor:"#F4F7FC"}}>
         <ToastContainer/>
        <div className="flex">
        <h2 className="text-2xl font-semibold text-gray-800 mb-6">Filters</h2>
@@ -405,81 +405,93 @@ const FilterJobsBox = () => {
       </aside>
 
       {/* Job List */}
-      <main className="flex-1 pl-6">
-      <div className="flex justify-between px-5 my-3">
+      <main className="flex-1 pl-4 lg:pl-6 break-all">
+  <div className="flex flex-col md:flex-row justify-between px-4 md:px-5 my-3">
+    <p className="text-base md:text-lg text-gray-800 mb-4">
+      Show {jobCount} {jobCount === 1 ? 'Job' : 'Jobs'} 
+    </p>
 
-      <p className="text-lg  text-gray-800 mb-4">
-        Show {jobCount} {jobCount === 1 ? 'Job' : 'Jobs'} 
-      </p>
+    <button
+      type="button"
+      onClick={() =>
+        setFilters({
+          job_type_id: null,
+          offered_salary_id: null,
+          career_level_id: null,
+          experience_id: null,
+          gender_id: null,
+          industry_id: null,
+          qualification_id: null,
+          country_id: null,
+          city_id: null,
+        })
+      }
+      className="bg-red-200 text-red-600 rounded-md px-4 py-2 shadow-md hover:bg-red-600 hover:text-white transition duration-200 ease-in-out"
+    >
+      Reset Filters
+    </button>
+  </div>
 
-      <button
-  type="button"
-  onClick={() => setFilters({
-    job_type_id: null,
-    offered_salary_id: null,
-    career_level_id: null,
-    experience_id: null,
-    gender_id: null,
-    industry_id: null,
-    qualification_id: null,
-    country_id: null,
-    city_id: null,
-  })}
-  className="bg-red-200 text-red-600 rounded-md  px-4 py-2 shadow-md hover:bg-red-600 hover:text-white "
->
-  Reset Filters
-</button>
-      </div>
-
-        <ul className="px-16">
-          {jobs.map((job) => (
-            <div
-            className="job-block-four col-lg-12 col-md-6 col-sm-12"
-            key={job.id}
-          >
-            <div className="inner-box text-start ps-5 p-0">
-              <span className="flex align-middle">
-                <img
-                  src={job.logo || "https://img.freepik.com/premium-photo/intelligent-logo-simple_553012-47516.jpg?size=338&ext=jpg&ga=GA1.1.1141335507.1717372800&semt=ais_user"}
-                  alt="featured job"
-                  className="absolute -left-10 top-7 rounded-xl border-2 p-1 h-20 w-20 bg-black"
-                />
-                <h4 className="pt-8 ps-2 flex justify-between w-full">
-                  {console.log(job.job_title, "data")}
-                  <Link to={`/job-single-v1/${job.id}`}>{job.job_title}</Link>
-                  <div className="absolute right-0 text-sm">
-                    <button className=" p-1 px-2 border-blue-800 rounded-full me-2 " onClick={handleApplyNowClick} >
-                      <i className="fas fa-bookmark text-blue-900 "></i> Apply
-                    </button>
-                    <button className=" p-1 px-2 border-blue-800 rounded-full me-2" onClick={() => savejob(job.id)}>
-                      <i className="fas fa-heart text-blue-900"></i> Save
-                    </button>
-                  </div>
-                </h4>
-              </span>
-              {showPopup && (
-        <ApplyJobPopup jobId={job.id} token={token} onClose={handleClosePopup} />
-      )}
-              <div className="location">
-                <span className="icon flaticon-map-locator"></span>
-                {job.complete_address}
+  <ul className="px-4 lg:px-16">
+    {jobs.map((job) => (
+      <div
+        className="job-block-four w-full md:w-1/2 lg:w-full mb-6"
+        key={job.id}
+      >
+        <div className="inner-box flex flex-col md:flex-row text-start p-4 bg-white shadow-md rounded-lg">
+          <div className="relative flex-shrink-0 mb-4 md:mb-0">
+            <img
+              src={
+                job.logo ||
+                "https://img.freepik.com/premium-photo/intelligent-logo-simple_553012-47516.jpg?size=338&ext=jpg&ga=GA1.1.1141335507.1717372800&semt=ais_user"
+              }
+              alt="featured job"
+              className="rounded-xl border-2 p-1 h-20 w-20 bg-black"
+            />
+          </div>
+          <div className="flex-1 md:ml-4">
+            <h4 className="text-lg font-medium flex justify-between w-full">
+              <Link to={`/job-single-v1/${job.id}`}>{job.job_title}</Link>
+              <div className="text-sm lg:flex lg:space-x-2">
+                <button
+                  className="p-1 px-2  border-blue-800 rounded-full"
+                  onClick={handleApplyNowClick}
+                >
+                  <i className="fas fa-bookmark text-blue-900"></i><p className="hidden lg:flex"> Apply</p>
+                </button>
+                <button
+                  className="p-1 px-2  border-blue-800 rounded-full"
+                  onClick={() => savejob(job.id)}
+                >
+                  <i className="fas fa-heart text-blue-900"></i> <p className="hidden lg:flex">Save</p>
+                </button>
               </div>
-    
-              <div className="flex">
-                <ul className="post-tags text-start">
-                  <li className="border">
-                    <a href="#">Specialisms: {job.specialisms}</a>
-                  </li>
-                  <li className="border">
-                    <a href="#">Qualification: {job.qualification}</a>
-                  </li>
-                </ul>
-              </div>
+            </h4>
+            <div className="location mt-2">
+              <span className="icon flaticon-map-locator"></span> {job.complete_address}
+            </div>
+
+            <div className="flex mt-2">
+              <ul className="post-tags text-start flex flex-wrap gap-2">
+                <li className="border p-1 rounded">
+                  <a href="#">Specialisms: {job.specialisms}</a>
+                </li>
+                <li className="border p-1 rounded">
+                  <a href="#">Qualification: {job.qualification}</a>
+                </li>
+              </ul>
             </div>
           </div>
-          ))}
-        </ul>
-      </main>
+        </div>
+
+        {showPopup && (
+          <ApplyJobPopup jobId={job.id} token={token} onClose={handleClosePopup} />
+        )}
+      </div>
+    ))}
+  </ul>
+</main>
+
     </div>
   );
 };

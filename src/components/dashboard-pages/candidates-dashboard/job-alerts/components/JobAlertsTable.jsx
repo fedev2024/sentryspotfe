@@ -94,14 +94,14 @@ Authorization: token
                 <a href={`mailto:${item.email_address}`} className="mr-4 text-blue-500">
                   {item.email_address}
                 </a>
-                <div className="option-box flex space-x-2">
+                {/*<div className="option-box flex space-x-2">
                   <button className="py-1 px-2 text-white bg-blue-500 rounded-full" data-text="View Application">
                     <span className="la la-eye"></span>
                   </button>
                   <button className="py-1 px-2 text-white bg-red-500 rounded-full" data-text="Delete Application">
                     <span className="la la-trash"></span>
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           ))

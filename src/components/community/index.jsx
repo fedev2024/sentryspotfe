@@ -154,7 +154,7 @@ const handleLogin = () => {
 
       <LoginPopup />
       <DefaulHeader2 />
-      <MobileMenu />
+      {/* End Header */}
       
       <section className="ls-section bg-stone-200">
         <div className="auto-container">
