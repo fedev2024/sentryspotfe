@@ -30,13 +30,13 @@ const DefaulHeader2 = () => {
         <div className="TopHeader">
           <div className="container">
             <div className="TopMenu">
-              <div className="TopSocial">
+              <div className="TopSocial flex gap-2">
                 <i className="fa-brands fa-facebook"></i>
                 <i className="fa-brands fa-linkedin-in"></i>
                 <i className="fa-brands fa-instagram"></i>
               </div>
               <div className="TopMenu">
-                <ul>
+                <ul className="flex flex-wrap justify-center md:justify-start">
                   <li>
                     <a href="/job-list-v7">
                       <i className="fa-solid fa-compass"></i> Jobs
@@ -59,20 +59,20 @@ const DefaulHeader2 = () => {
           </div>
         </div>
       )}
-      <div className="header">
+      <div className={`header ${navbar ? 'bg-white shadow-md' : 'bg-transparent'} transition-all duration-300`}>
         <div className="container">
-          <div className="header-menu">
-            <div className="header-logo">
+          <div className="header-menu flex items-center justify-between flex-wrap">
+            <div className="header-logo flex items-center">
               <a href="/">
-                <img src="https://htmlsentryspot.vercel.app/img/company_logo.png" />
+                <img src="https://htmlsentryspot.vercel.app/img/company_logo.png" alt="Logo" className="h-10" />
               </a>
-              <div className="main-menu ms-4">
-                <ul>
+              <div className="main-menu ms-4 hidden md:flex">
+                <ul className="flex space-x-4">
                   <li>
-                    <a href="">AI Services</a>
+                    <a href="/sentry-spot">AI Services</a>
                   </li>
                   <li>
-                    <a href="">Hiring Advice</a>
+                    <a href="https://blog.sentryspot.co.uk/category/job-search-strategies/">Hiring Advice</a>
                   </li>
                   <li>
                     <a href="">Companies</a>
@@ -80,8 +80,8 @@ const DefaulHeader2 = () => {
                 </ul>
               </div>
             </div>
-            <div className="side-menu">
-              <div className="btn-box">
+            <div className="side-menu flex items-center">
+              <div className="btn-box flex-row flex-wrap">
                 {userToken ? (
                   <Button
                     className="bg-gray-500 p-3 ml-2 duration-500 hover:bg-[#E60278]"
@@ -90,7 +90,7 @@ const DefaulHeader2 = () => {
                       dispatch(logout());
                     }}
                   >
-                    <IoLogOutOutline size={24} className="" />
+                    <IoLogOutOutline size={24} />
                   </Button>
                 ) : (
                   <>  
@@ -98,6 +98,7 @@ const DefaulHeader2 = () => {
                       href="#"
                       data-bs-toggle="modal"
                       data-bs-target="#loginPopupModal"
+                      className=""
                     >
                       Sign in
                     </a>

@@ -18,8 +18,8 @@ const index = () => {
             <DefaulHeader2 />
             {/* End Header with upload cv btn */}
 
-            <MobileMenu />
-            {/* End MobileMenu */}
+           {/* <MobileMenu />
+             End MobileMenu */}
 
             <FilterJobsBox />
             <FooterDefault footerStyle="alternate5" />

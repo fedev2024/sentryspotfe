@@ -4,7 +4,7 @@ import JobList from "@/components/job-listing-pages/job-list-v1";
 import MetaComponent from "@/components/common/MetaComponent";
 
 const metadata = {
-  title: "Job List V1 || sentryspot - Job Borad ReactJs Template",
+  title: "SenrtySpot - One Stop Career Solution",
   description: "sentryspot - Job Borad ReactJs Template",
 };
 
