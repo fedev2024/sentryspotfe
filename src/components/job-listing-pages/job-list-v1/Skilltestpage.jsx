@@ -4,7 +4,7 @@ import DefaulHeader2 from "@/components/header/DefaulHeader2";
 function Skilltestpage() {
     return ( <>
     <DefaulHeader2/>
-    <div className="m-10 mx-40 p-5  shadow-2xl">
+    <div className="m-10  p-5  shadow-2xl">
   <h1 className="text-5xl font-semibold my-4 underline ">Skill Test  </h1>  
   <h1>AI Skill Test by SentrySpot.co.uk: A Game Changer for Job Seekers  </h1><br/>
 

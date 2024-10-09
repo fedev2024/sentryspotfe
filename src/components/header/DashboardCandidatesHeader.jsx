@@ -44,54 +44,71 @@ const DashboardCandidatesHeader = () => {
 
   return (
     // <!-- Main Header-->
-    <header
-      className={`main-header header-shaddow  ${navbar ? "fixed-header " : ""}`}
-    >
-     
-	<div className="header">
-		<div className="container">
-			<div className="header-menu">
-				<div className="header-logo">
-				<a  href="/">	<img src="https://htmlsentryspot.vercel.app/img/company_logo.png"/></a>
-					<div className="main-menu ms-4">
-						<ul>
-							<li><a href="">AI Services</a></li>
-							<li><a href="">Hiring Advice</a></li>
-							<li><a href="">Companies</a></li>
-							
-						</ul>
-					</div>
-				</div>
-				<div className="side-menu">
-        <div className="btn-box">
+<header className={`main-header header-shadow ${navbar ? "fixed-header" : ""}`}>
+  <div className="header">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-between items-center py-3">
+        <div className="header-logo flex items-center">
+          <a href="/">
+            <img
+              src="https://htmlsentryspot.vercel.app/img/company_logo.png"
+              alt="Company Logo"
+              className="h-10 w-auto"
+            />
+          </a>
+          <div className="main-menu ms-4 hidden md:flex">
+            <ul className="flex space-x-4">
+              <li>
+                <a href="" className="text-gray-700 hover:text-blue-600">
+                  AI Services
+                </a>
+              </li>
+              <li>
+                <a href="" className="text-gray-700 hover:text-blue-600">
+                  Hiring Advice
+                </a>
+              </li>
+              <li>
+                <a href="" className="text-gray-700 hover:text-blue-600">
+                  Companies
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="side-menu flex items-center">
+          <div className="btn-box">
             {userToken ? (
               <Button
-                className="bg-gray-500 p-3 ml-2 duration-500 hover:bg-[#E60278]"
+                className="bg-gray-500 p-2 duration-500 hover:bg-[#E60278] flex items-center"
                 title="logout"
                 onClick={() => {
                   dispatch(logout());
                 }}
               >
-                <IoLogOutOutline size={24} className="" />
+                <IoLogOutOutline size={24} />
               </Button>
             ) : (
-             <>	<a  href="#"
-             data-bs-toggle="modal"
-                  data-bs-target="#loginPopupModal"
-                  >Sign in</a>
-  
-          </>
+              <a
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#loginPopupModal"
+                className="text-gray-700 hover:text-blue-600"
+              >
+                Sign in
+              </a>
             )}
-<i class="fa-solid fa-bell text-3xl mx-3 "></i>
+           
           </div>
+          <i className="fa-solid fa-bell text-2xl mx-3"></i>
+        </div>
+      </div>
+      {/* Responsive Menu for Mobile Devices */}
+      
+    </div>
+  </div>
+</header>
 
-
-				
-				</div>
-			</div>
-		</div>
-	</div>
-    </header>
   );
 };
 

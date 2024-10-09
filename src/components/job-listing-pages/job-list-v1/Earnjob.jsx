@@ -4,7 +4,7 @@ import DefaulHeader2 from "@/components/header/DefaulHeader2";
 function Earnjob() {
     return ( <>
     <DefaulHeader2/>
-    <div className="m-10 mx-40 p-5  shadow-2xl">
+    <div className="m-10  p-5  shadow-2xl">
   <h1 className="text-5xl font-semibold my-4 underline ">AI Resume Builder
   </h1>  
   <h1>Exclusive Courses by SentrySpot.co.uk: Empower Your Career with Industry-Approved Certifications

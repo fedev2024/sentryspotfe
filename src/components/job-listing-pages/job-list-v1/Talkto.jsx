@@ -4,7 +4,7 @@ import DefaulHeader2 from "@/components/header/DefaulHeader2";
 function Talkto() {
     return ( <>
     <DefaulHeader2/>
-    <div className="m-10 mx-40 p-5  shadow-2xl">
+    <div className="m-10  p-5  shadow-2xl">
   <h1 className="text-5xl font-semibold my-4 underline ">Talk to Industry Experts
   </h1>  
   <h1>Talk to Industry Experts with SentrySpot.co.uk: Get Career Guidance from the Best </h1><br/>

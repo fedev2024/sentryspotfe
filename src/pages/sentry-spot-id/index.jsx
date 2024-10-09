@@ -13,7 +13,7 @@ const SentryPage = () => {
     <>
       <LoginPopup />
       <DefaulHeader2 />
-      <MobileMenu />
+      {/* End Header */}
       <LoginPopup />
 
       {/* End MobileMenu */}

@@ -1,8 +1,6 @@
 import FooterDefault from "../../footer/common-footer";
-import Breadcrumb from "../../common/Breadcrumb";
 import LoginPopup from "../../common/form/login/LoginPopup";
 import DefaulHeader2 from "../../header/DefaulHeader2";
-import MobileMenu from "../../header/MobileMenu";
 import FilterJobsBox from "./FilterJobsBox";
 import FilterSidebar from "./FilterSidebar";
 import { useState, useEffect } from "react";
@@ -16,7 +14,6 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState("tab1");
 
   useEffect(() => {
-    // Get the hash from the URL and set the active tab accordingly
     const hash = location.hash.replace("#", "");
     if (hash) {
       setActiveTab(hash);
@@ -30,38 +27,31 @@ const Index = () => {
 
   return (
     <>
-      {/* Header Span */}
-
+      {/* Login Popup */}
       <LoginPopup />
-      {/* End Login Popup Modal */}
-
+      {/* Header */}
       <DefaulHeader2 />
-      {/* End Header with upload cv btn */}
 
-      <MobileMenu />
-      {/* End MobileMenu */}
-
-      <Breadcrumb title="Find Jobs" meta="Jobs" />
-      {/* End Breadcrumb */}
-
-      <section className="ls-section">
-        <div className="auto-container">
-          <div className="row">
+      {/* Main Section */}
+      <section className="ls-section py-8">
+        <div className="auto-container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row">
+            {/* Sidebar */}
             <div
-              className="offcanvas offcanvas-start"
+              className="offcanvas offcanvas-start lg:w-1/4 w-full mb-6 lg:mb-0 lg:block"
               tabIndex="-1"
               id="filter-sidebar"
               aria-labelledby="offcanvasLabel"
             >
-              <div className="filters-column hide-left">
+              <div className="filters-column lg:sticky lg:top-0 lg:h-full bg-white p-4 rounded-lg shadow-md lg:shadow-none">
                 <FilterSidebar />
               </div>
             </div>
 
             {/* Content Column */}
-            <div className="content-column">
-              <div className="">
-                <div className="tabs-navigation flex space-x-4 border-b border-gray-300 mb-4 ms-80">
+            <div className="content-column flex-1">
+              <div className="bg-white rounded-lg shadow-md p-4">
+                <div className="tabs-navigation flex flex-wrap justify-between lg:justify-start mb-4 border-b border-gray-300">
                   <button
                     className={`tab-button py-2 px-4 ${
                       activeTab === "tab1"
@@ -108,7 +98,7 @@ const Index = () => {
                   )}
                   {activeTab === "tab3" && (
                     <div className="p-4 bg-white border border-gray-300 rounded-lg">
-                      <Courselist/>
+                      <Courselist />
                     </div>
                   )}
                 </div>
@@ -120,10 +110,9 @@ const Index = () => {
         </div>
         {/* End container */}
       </section>
-      {/* End Listing Page Section */}
+      {/* End Main Section */}
 
       <FooterDefault footerStyle="alternate5" />
-      {/* End Main Footer */}
     </>
   );
 };

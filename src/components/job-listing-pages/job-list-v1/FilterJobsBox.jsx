@@ -244,7 +244,7 @@ const FilterJobsBox = () => {
                 <img src="https://htmlsentryspot.vercel.app/img/faqimge.webp" />
               </div>
               <div className="FaqText">
-                <p>SentrySpot Community</p>
+                <p className="font-extrabold">SentrySpot Community</p>
                 <h2>Join community to gain the support and resources you need for a smooth transition to a better career.</h2>
                 <details className="rounded-3xl">
                   <summary>What is SentrySpot Community?</summary>

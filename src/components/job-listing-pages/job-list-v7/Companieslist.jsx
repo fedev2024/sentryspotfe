@@ -93,77 +93,68 @@ const Companieslist = () => {
   };
 
   return (
-    <div className="p-6  min-h-screen flex">
-      {/* Sidebar */}
-     
-
-      {/* Job List */}
-      <main className="flex-1 pl-6">
-      <div className="flex justify-between px-5 my-3">
-
-      <p className="text-lg  text-gray-800 mb-4">
-        Show {jobCount} {jobCount === 1 ? 'Job' : 'Jobs'} 
-      </p>
-
+    <div className="">
+    {/* Sidebar */}
     
+    {/* Job List */}
+    <main className="flex-1 pl-4 lg:pl-6">
+      <div className="flex flex-col md:flex-row justify-between px-4 md:px-5 my-3">
+        <p className="text-base md:text-lg text-gray-800 mb-4">
+          Show {jobCount} {jobCount === 1 ? 'Job' : 'Jobs'}
+        </p>
       </div>
-
-        <ul className="px-16">
-          {jobs.map((job) => (
-            <div
-            className="job-block-four "
-            key={job.id}
-          >
-            <div className="inner-box text-start ps-5 p-0">
-              <span className="flex align-middle">
+  
+      <ul className="px-4 lg:px-16">
+        {jobs.map((job) => (
+          <div className="job-block-four mb-6" key={job.id}>
+            <div className="inner-box flex flex-col md:flex-row text-start p-4 bg-white shadow-md rounded-lg">
+              <div className="relative flex-shrink-0 mb-4 md:mb-0">
                 <img
-                  src={job.logo || "https://img.freepik.com/premium-photo/intelligent-logo-simple_553012-47516.jpg?size=338&ext=jpg&ga=GA1.1.1141335507.1717372800&semt=ais_user"}
+                  src={
+                    job.logo ||
+                    "https://img.freepik.com/premium-photo/intelligent-logo-simple_553012-47516.jpg?size=338&ext=jpg&ga=GA1.1.1141335507.1717372800&semt=ais_user"
+                  }
                   alt="featured job"
-                  className="absolute -left-10 top-7 rounded-xl border-2 p-1 h-20 w-20 bg-black"
+                  className="rounded-xl border-2 p-1 h-20 w-20 bg-black"
                 />
-                <h4 className="pt-8 ps-2 flex justify-between w-full">
-                  {console.log(job.job_title, "data")}
-                  <Link to={`/employers-single-v1/${job.id}`}>{job.company_name}</Link>
-                {/*  <div className="absolute right-0 text-sm">
-                    <button className=" p-1 px-2 border-blue-800 rounded-full me-2 " onClick={handleApplyNowClick} >
-                      <i className="fas fa-bookmark text-blue-900 "></i> Apply
-                    </button>
-                    <button className=" p-1 px-2 border-blue-800 rounded-full me-2" onClick={() => savejob(job.id)}>
-                      <i className="fas fa-heart text-blue-900"></i> Save
-                    </button>
-                  </div> */}
-                </h4>
-              </span>
-              {showPopup && (
-        <ApplyJobPopup jobId={job.id} token={token} onClose={handleClosePopup} />
-      )}
-
-<div className="location">
-                <span className="icon flaticon-briefcase"></span>
-                {job.company_industry.name}
-              </div> {" "}
-              <div className="location">
-                <span className="icon flaticon-map-locator"></span>
-                {job.country.name}, {job.state.name},  {job.city.name}
               </div>
-             
-    
-              <div className="flex">
-                <ul className="post-tags text-start">
-                  <li className="border">
-                    <a href="#">Company Type: {job.company_type.name || "software"}</a>
-                  </li>
-                  <li className="border">
-                    <a href="#">Company Size: {job.company_size.range}</a>
-                  </li>
-                </ul>
+              <div className="flex-1 md:ml-4">
+                <h4 className="text-lg font-medium flex justify-between w-full">
+                  <Link to={`/employers-single-v1/${job.id}`}>{job.company_name}</Link>
+                </h4>
+  
+                {showPopup && (
+                  <ApplyJobPopup jobId={job.id} token={token} onClose={handleClosePopup} />
+                )}
+  
+                <div className="location mt-2">
+                  <span className="icon flaticon-briefcase"></span>
+                  {job.company_industry.name}
+                </div>
+  
+                <div className="location mt-2">
+                  <span className="icon flaticon-map-locator"></span>
+                  {job.country.name}, {job.state.name}, {job.city.name}
+                </div>
+  
+                <div className="flex mt-2">
+                  <ul className="post-tags text-start flex flex-wrap gap-2">
+                    <li className="border p-1 rounded">
+                      <a href="#">Company Type: {job.company_type.name || "software"}</a>
+                    </li>
+                    <li className="border p-1 rounded">
+                      <a href="#">Company Size: {job.company_size.range}</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-          ))}
-        </ul>
-      </main>
-    </div>
+        ))}
+      </ul>
+    </main>
+  </div>
+  
   );
 };
 

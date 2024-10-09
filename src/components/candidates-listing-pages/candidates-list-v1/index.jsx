@@ -18,7 +18,7 @@ const Index = () => {
             <DefaulHeader2 />
             {/* End Header with upload cv btn */}
 
-            <MobileMenu />
+            {/* End Header */}
             {/* End MobileMenu */}
 
             <Breadcrumb title="Candidates" meta="Candidates" />

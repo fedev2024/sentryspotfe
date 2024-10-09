@@ -19,7 +19,7 @@ const index = () => {
       <DashboardCandidatesHeader />
       {/* End Header */}
 
-      <MobileMenu />
+      {/* End Header */}
       {/* End MobileMenu */}
 
       <DashboardCandidatesSidebar />

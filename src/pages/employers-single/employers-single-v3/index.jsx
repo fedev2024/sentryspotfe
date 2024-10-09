@@ -38,7 +38,7 @@ const EmployersSingleV3 = () => {
       <DefaulHeader />
       {/* <!--End Main Header --> */}
 
-      <MobileMenu />
+      {/* End Header */}
       {/* End MobileMenu */}
 
       {/* <!-- Job Detail Section --> */}

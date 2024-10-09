@@ -4,7 +4,7 @@ import DefaulHeader2 from "@/components/header/DefaulHeader2";
 function Buildresume() {
     return ( <>
     <DefaulHeader2/>
-    <div className="m-10 mx-40 p-5  shadow-2xl">
+    <div className="m-10  p-5  shadow-2xl">
   <h1 className="text-5xl font-semibold my-4 underline ">AI Resume Builder
   </h1>  
   <h1>AI Resume Building by SentrySpot.co.uk: Your Gateway to a Perfect Resume  </h1><br/>
@@ -89,7 +89,7 @@ Once you're satisfied with your resume, download it in multiple formats (PDF, DO
 <h1 className="text-2xl font-semibold my-2 mt-5">Build Your AI-Powered Resume Now!
 
 </h1>  Join thousands of job seekers who have boosted their career prospects with SentrySpot.co.uk!
-      
+
    </div> 
     
     </> );

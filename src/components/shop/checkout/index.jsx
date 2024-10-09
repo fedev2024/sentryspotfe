@@ -17,7 +17,7 @@ const index = () => {
       <ShopHeader />
       {/* <!--End Main Header --> */}
 
-      <MobileMenu />
+      {/* End Header */}
       {/* End MobileMenu */}
 
       <Breadcrumb title="Checkout" meta="Checkout" />

@@ -118,7 +118,7 @@ const JobSingleDynamicV1 = () => {
 
       <LoginPopup />
       <DefaulHeader />
-      <MobileMenu />
+      {/* End Header */}
 
       <section className="job-detail-section">
         <div className="upper-box">

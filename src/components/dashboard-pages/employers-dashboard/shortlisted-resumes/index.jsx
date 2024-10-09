@@ -20,7 +20,7 @@ const index = () => {
       <DashboardHeader />
       {/* End Header */}
 
-      <MobileMenu />
+      {/* End Header */}
       {/* End MobileMenu */}
 
       <DashboardEmployerSidebar />
