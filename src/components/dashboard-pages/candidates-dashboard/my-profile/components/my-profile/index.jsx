@@ -452,26 +452,26 @@ const Index = ({ onNext }) => {
 
         {/* Form Fields */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>First Name</label>
+          <label style={{fontWeight:"800"}}>First Name*</label>
           <input
             type="text"
             name="first_name"
             placeholder="eg. Jerome"
             required
-            className="border rounded-none mb-4"
+            className="border font-light rounded-none mb-4"
           />
-          <label>Last Name</label>
+          <label>Last Name*</label>
           <input
             type="text"
             name="lastname"
             placeholder="eg. doe"
             required
-            className="border rounded-none"
+            className="border rounded-none font-light"
           />
         </div>
 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Workspace</label>
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Workspace*</label>
           <select
         id="workplaceType"
         value={selectedWorkplace}
@@ -486,8 +486,8 @@ const Index = ({ onNext }) => {
       </select>
         </div>
 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Job-Type</label>
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Job-Type*</label>
           <select
           id="jobtype"
           value={selectjobtype}
@@ -503,10 +503,10 @@ const Index = ({ onNext }) => {
 
           
 
-          <div className="form-group col-lg-6 col-md-12">
-  <label>Phone Number</label>
+          <div className="form-group col-lg-6 col-md-12 font-light">
+  <label>Phone Number*</label>
   <PhoneInput
-  country={'us'} // Set default country here
+  country={'gb'} // Set default country here
   value={phoneNumber}
   onChange={(value) => setPhoneNumber(value)}
   inputStyle={{
@@ -530,8 +530,8 @@ const Index = ({ onNext }) => {
 </div>
 
 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Gender</label>
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Gender*</label>
           <select
           id="Gender"
           name='gender'
@@ -546,21 +546,21 @@ const Index = ({ onNext }) => {
           </select>
           </div> 
 
-        <div className="form-group col-lg-6 col-md-12">
-  <label>Date of Birth</label>
+        <div className="form-group col-lg-6 col-md-12 font-light">
+  <label>DD/MM/YYYY (Optional)</label>
   <input
     type="date"
     name="birthdate"
     max={current}
-    required
+
     style={{backgroundColor:"#F0F5F7"}}
     className=" rounded-lg p-2 py-3 text-lg border-0 w-full font-thin"
     placeholder="Enter BirthDate"
   />
 </div>
 
-<div className="form-group col-lg-6 col-md-12">
-          <label>Functional Area</label>
+<div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Functional Area*</label>
           <select
           id="Functional"
           name='Functional'
@@ -578,8 +578,8 @@ const Index = ({ onNext }) => {
         
         <div></div>
         <label className='my-2 mt-4 text-lg'>(Current - Location)</label>
-       <div className="form-group col-lg-4 col-md-12 ">
-          <label>Country</label>
+       <div className="form-group col-lg-4 col-md-12 font-light">
+          <label>Country*</label>
           <select
             name="country"
             value={selectedCountry}
@@ -596,8 +596,8 @@ const Index = ({ onNext }) => {
         </div>
 
         {/* State Dropdown */}
-        <div className="form-group col-lg-4 col-md-12">
-          <label>State</label>
+        <div className="form-group col-lg-4 col-md-12 font-light">
+          <label>State*</label>
           <select
             name="state"
             value={selectedState}
@@ -614,8 +614,8 @@ const Index = ({ onNext }) => {
         </div>
 
         {/* City Dropdown */}
-        <div className="form-group col-lg-4 col-md-12">
-          <label>City</label>
+        <div className="form-group col-lg-4 col-md-12 font-light">
+          <label>City*</label>
           <select
             name="city"
             value={selectedCity}
@@ -633,8 +633,8 @@ const Index = ({ onNext }) => {
 
 
         <label className='my-2 mt-4 text-lg'>(Preferred - Location)</label>
-       <div className="form-group col-lg-4 col-md-12 ">
-          <label>Country</label>
+       <div className="form-group col-lg-4 col-md-12 font-light">
+          <label>Country*</label>
           <select
             name="preferredcountry"
             value={preferredselectedCountry}
@@ -651,8 +651,8 @@ const Index = ({ onNext }) => {
         </div>
 
         {/* State Dropdown */}
-        <div className="form-group col-lg-4 col-md-12">
-          <label>State</label>
+        <div className="form-group col-lg-4 col-md-12 font-light">
+          <label>State*</label>
           <select
             name="preferredstate"
             value={preferredselectedState}
@@ -669,8 +669,8 @@ const Index = ({ onNext }) => {
         </div>
 
         {/* City Dropdown */}
-        <div className="form-group col-lg-4 col-md-12">
-          <label>City</label>
+        <div className="form-group col-lg-4 col-md-12 font-light">
+          <label>City*</label>
           <select
             name="preferredcity"
             value={preferredselectedCity}
@@ -687,8 +687,8 @@ const Index = ({ onNext }) => {
         </div>
 
 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Salary-Range (INR)</label>
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Salary-Range (INR)*</label>
           <select
           id="Salarytype"
           name='Salarytype'
@@ -704,8 +704,8 @@ const Index = ({ onNext }) => {
         </div>
         
 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Expected Salary-Range (INR)</label>
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Expected Salary-Range (INR)*</label>
           <select
           id="expectedSalarytype"
           name='expectedSalarytype'
@@ -721,8 +721,8 @@ const Index = ({ onNext }) => {
         </div>
 
 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Notice Period</label>
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Notice Period*</label>
           <input
             type="text"
             name="notice_period"
@@ -736,8 +736,8 @@ const Index = ({ onNext }) => {
 
         
 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Experience</label>
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Experience*</label>
           <select
           id="Experiencetype"
           name='Experiencetype'
@@ -752,8 +752,8 @@ const Index = ({ onNext }) => {
           </select>
         </div>
 
-        <div className="form-group col-lg-12 col-md-12">
-          <label>Industries</label>
+        <div className="form-group col-lg-12 col-md-12 font-light">
+          <label>Industries*</label>
           <select
           id="industries"
           name='industries'

@@ -22,7 +22,7 @@ const candidateMenus = [
   },
   {
     id: 9,
-    name: "AI Skill",
+    name: "AI skill Assessment",
     icon: "la-box",
     routePath: "/candidates-dashboard/packages",
     active: "",
@@ -55,13 +55,13 @@ const candidateMenus = [
     routePath: "/community",
     active: "",
   },
-  {
-    id: 8,
-    name: "CV manager",
-    icon: "la la-file-invoice",
-    routePath: "/candidates-dashboard/cv-manager",
-    active: "",
-  },
+  // {
+  //   id: 8,
+  //   name: "CV manager",
+  //   icon: "la la-file-invoice",
+  //   routePath: "/candidates-dashboard/cv-manager",
+  //   active: "",
+  // },
   
   {
     id: 10,

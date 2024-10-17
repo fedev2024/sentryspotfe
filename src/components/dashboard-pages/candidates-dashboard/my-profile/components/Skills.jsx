@@ -56,7 +56,7 @@ const token = localStorage.getItem(Constant.USER_TOKEN)
       <div>
         <h5 className="text-xl">Skills</h5>
         <div className="form-group col-lg-12 col-md-12 my-4">
-          <p>Add Skills (Maximum 15):</p>
+          <p>Add Skills with AI & manual (Maximum 15):</p>
           <div className="border rounded flex items-center flex-wrap gap-2 p-3">
             {skills.map((skill, index) => (
               <div
@@ -84,25 +84,8 @@ const token = localStorage.getItem(Constant.USER_TOKEN)
           </div>
         </div>
 
-        <div className="mt-10">
-          <h5 className="text-xl">Recommendations</h5>
-          <div className="form-group col-lg-12 col-md-12 my-4">
-            <p>Request a recommendation:</p>
-            <div className="rounded flex items-center gap-3 mt-2">
-              <input
-                type="email"
-                className="border-1 py-2 col-lg-8 col-md-12"
-                placeholder="example@gmail.com"
-              />
-              <button className="bg-blue-900 text-white px-5 py-2 rounded-md">
-                Send
-              </button>
-            </div>
-          </div>
-        </div>
-        <p className="my-10">
-          You have <strong className="text-blue-700">0 recommendations</strong>. Candidates with recommendations have a higher likelihood of being shortlisted.
-        </p>
+        
+        
         <div className="form-group col-lg-12 col-md-12">
           <button
             type="submit"
