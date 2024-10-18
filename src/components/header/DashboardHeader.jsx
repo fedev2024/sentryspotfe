@@ -53,9 +53,14 @@ const DashboardHeader = () => {
             </button>
             {/* wishlisted menu */}
 
-            <button className="menu-btn">
-              <span className="icon la la-bell"></span>
-            </button>
+            
+            <span className="icon la la-bell text-3xl ms-3 text-blue-900"></span>
+            
+             
+            <i class="las la-comment text-3xl mx-2 text-blue-900"></i>
+         
+        
+            <i class="las la-user text-3xl text-blue-900"></i>
             {/* End notification-icon */}
 
             {/* <!-- Dashboard Option --> */}

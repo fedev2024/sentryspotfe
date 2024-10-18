@@ -21,7 +21,7 @@ const PackageDataTable = () => {
     const token = localStorage.getItem(Constant.USER_TOKEN);
 
     if(!token){
-      window.location.href="/login";
+      window.location.href="/";
       return;
   }
 

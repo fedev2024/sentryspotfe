@@ -14,6 +14,7 @@ import JobDetailsDescriptions from "@/components/job-single-pages/shared-compone
 import ApplyJobModalContent from "@/components/job-single-pages/shared-components/ApplyJobModalContent";
 import { Link, useParams } from "react-router-dom";
 import MetaComponent from "@/components/common/MetaComponent";
+import DefaulHeader2 from "@/components/header/DefaulHeader2";
 
 const metadata = {
   title: "Job Single Dynamic V1 || sentryspot - Job Board ReactJs Template",
@@ -114,10 +115,10 @@ const JobSingleDynamicV1 = () => {
   return (
     <>
       <MetaComponent meta={metadata} />
-      <span className="header-span"></span>
+      
 
       <LoginPopup />
-      <DefaulHeader />
+      <DefaulHeader2 />
       {/* End Header */}
 
       <section className="job-detail-section">
