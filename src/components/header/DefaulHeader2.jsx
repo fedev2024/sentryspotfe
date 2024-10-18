@@ -65,7 +65,7 @@ const DefaulHeader2 = () => {
           {/* Sidebar for Mobile View */}
           <div className="md:hidden flex items-center">
             <Link to="/">
-              <img src="https://htmlsentryspot.vercel.app/img/company_logo.png" alt="Logo" className="h-10" />
+              <img src="https://htmlsentryspot.vercel.app/img/company_logo.png" alt="Logo" className="h-14 " />
             </Link>
           </div>
 
@@ -74,7 +74,7 @@ const DefaulHeader2 = () => {
             <div className="header-menu flex items-center">
               <div className="header-logo flex items-center">
                 <Link to="/">
-                  <img src="https://htmlsentryspot.vercel.app/img/company_logo.png" alt="Logo" className="h-10" />
+                  <img src="https://htmlsentryspot.vercel.app/img/company_logo.png" alt="Logo" className="h-14" />
                 </Link>
                 <div className="main-menu ms-4">
                   <ul className="flex space-x-4">
@@ -85,7 +85,7 @@ const DefaulHeader2 = () => {
                       <a href="https://blog.sentryspot.co.uk/category/job-search-strategies/">Hiring Advice</a>
                     </li>
                     <li>
-                      <a href="">Companies</a>
+                      <a href="/job-list-v7#tab2">Companies</a>
                     </li>
                   </ul>
                 </div>
@@ -97,8 +97,19 @@ const DefaulHeader2 = () => {
           <div className="side-menu flex items-center">
             <div className="btn-box flex items-center">
               {userToken ? (
+             <>
+              
+              
+                <span className="icon la la-bell text-3xl  text-blue-900"></span>
+            
+             
+                <i class="las la-comment text-3xl mx-4 text-blue-900"></i>
+             
+            
+                <i class="las la-user text-3xl text-blue-900"></i>
+            
                 <Button
-                  className="bg-gray-500 p-3 duration-500 hover:bg-[#E60278] ml-2"
+                  className="bg-gray-500 p-3 duration-500 hover:bg-[#E60278] ml-4 "
                   title="logout"
                   onClick={() => {
                     dispatch(logout());
@@ -106,6 +117,7 @@ const DefaulHeader2 = () => {
                 >
                   <IoLogOutOutline size={24} />
                 </Button>
+             </>
               ) : (
                 <a href="#" data-bs-toggle="modal" data-bs-target="#loginPopupModal" className="mr-2 my-4">
                   Sign in

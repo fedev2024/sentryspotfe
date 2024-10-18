@@ -10,13 +10,14 @@ import ProfileVisalbilty from "./components/my-profile/ProfileVisalbilty";
 import CopyrightFooter from "../../CopyrightFooter";
 import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
 import MenuToggler from "../../MenuToggler";
-import { Switch } from "@/components/ui/switch";
 import Certificate from "./components/Certificate";
 import Skills from "./components/Skills";
 import Additionalinformation from "./components/Additionalinformation";
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const [isToggled, setIsToggled] = useState(false); // State for the toggle switch
 
   const steps = [
     { id: 1, title: "Personal Details", component: <MyProfile onNext={() => setCurrentStep(2)} /> },
@@ -76,12 +77,41 @@ const Index = () => {
                 {currentStep === 1 && (
                   <div className="flex items-center space-x-2">
                     <label htmlFor="visibility" className="font-bold">
-                      Profile and CV Visibility
+                      Profile and CV Visibility 
                     </label>
-                    <Switch
-                      id="visibility"
-                      className="rounded-xl data-[state=checked]:bg-[#1502e6]"
-                    />
+                    {/* Toggle Switch */}
+                    <div className="relative">
+                      <input
+                        type="checkbox"
+                        id="visibility"
+                        checked={isToggled}
+                        onChange={() => setIsToggled(!isToggled)}
+                        className="hidden peer"
+                      />
+                      <div className="w-12 h-6 bg-gray-300 rounded-xl shadow-inner peer-checked:bg-blue-500 cursor-pointer">
+                        <div
+                          className={`w-6 h-6 bg-white rounded-full shadow transform transition-transform duration-300 ${
+                            isToggled ? "translate-x-6" : "translate-x-0"
+                          }`}
+                        />
+                      </div>
+                    </div>
+                    {/* Tooltip Trigger */}
+                    <div className="relative inline-block">
+                      <p
+                        className="text border-2 px-2 border-gray-500 rounded-full cursor-pointer"
+                        onMouseEnter={() => setIsTooltipVisible(true)}
+                        onMouseLeave={() => setIsTooltipVisible(false)}
+                      >
+                        ℹ
+                      </p>
+                      {/* Tooltip Content */}
+                      {isTooltipVisible && (
+                        <div className="absolute left-0 bottom-full mb-1 w-48 p-2 bg-white border border-gray-300 rounded shadow-lg text-black">
+                          Activating this shows basic details to employers, including contact details.
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
