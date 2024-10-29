@@ -27,6 +27,7 @@ const Index = () => {
     { id: 5, title: "Skills", component: <Skills onNext={() => setCurrentStep(6)} /> },
     { id: 6, title: "Additional Information", component: <Additionalinformation /> },
   ];
+const token = localStorage.getItem("token")
 
   return (
     <div className="page-wrapper dashboard">
