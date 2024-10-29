@@ -36,6 +36,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 const Index = ({ onNext }) => {
   const token = localStorage.getItem(Constant.USER_TOKEN);
+  console.log(token)
   const baseurl ="https://api.sentryspot.co.uk/api/jobseeker/";
 
 

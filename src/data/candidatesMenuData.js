@@ -1,3 +1,9 @@
+import { Constant } from "@/utils/constant/constant";
+
+// Retrieve the token from local storage
+const token = localStorage.getItem(Constant.USER_TOKEN);
+
+// Define the candidateMenus array with the token added to the "AI Resume Builder" routePath
 const candidateMenus = [
   {
     id: 1,
@@ -17,7 +23,7 @@ const candidateMenus = [
     id: 3,
     name: "AI Resume Builder",
     icon: "la la-robot",
-    routePath: "/candidates-dashboard/my-resume",
+    routePath: `https://sentryspot-new-rb-fe.vercel.app?${token}`,
     active: "",
   },
   {
@@ -55,14 +61,6 @@ const candidateMenus = [
     routePath: "/community",
     active: "",
   },
-  // {
-  //   id: 8,
-  //   name: "CV manager",
-  //   icon: "la la-file-invoice",
-  //   routePath: "/candidates-dashboard/cv-manager",
-  //   active: "",
-  // },
-  
   {
     id: 10,
     name: "Messages",
@@ -120,4 +118,5 @@ const candidateMenus = [
     active: "",
   },
 ];
-export default  candidateMenus
+
+export default candidateMenus;
