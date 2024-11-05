@@ -451,7 +451,7 @@ const FilterJobsBox = () => {
           </div>
           <div className="flex-1 md:ml-4">
             <h4 className="text-lg font-medium flex justify-between w-full">
-              <Link to={`/job-single-v1/${job.id}`}>{job.job_title}</Link>
+              <Link to={`/job-single-v1/${job.id}`} className="self-center">{job.job_title}</Link>
               <div className="text-sm lg:flex lg:space-x-2">
                 <button
                   className="p-1 px-2  border-blue-800 rounded-full"
@@ -468,7 +468,7 @@ const FilterJobsBox = () => {
               </div>
             </h4>
             <div className="location mt-2">
-              <span className="icon flaticon-map-locator"></span> {job.complete_address}
+              <span className="icon flaticon-map-locator"></span> {job.city},{" "}{job.country}
             </div>
 
             <div className="flex mt-2">

@@ -105,10 +105,10 @@ Authorization: token
                     <td className="break-all">{item.complete_address}</td>
                     <td>
                       <div className="option-box">
-                        <ul className="option-list">
+                        <ul className="flex gap-0">
                         <li>
                             <button data-text="View retuen">
-                              <span className="fa fa-exchange text-red-600"></span>
+                              <span className="fa fa-exchange text-red-600 border"></span>
                             </button>
                           </li>
                           <li>

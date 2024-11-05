@@ -28,9 +28,9 @@ const candidateMenus = [
   },
   {
     id: 9,
-    name: "AI skill Assessment",
+    name: "AI skill Test",
     icon: "la-box",
-    routePath: "/candidates-dashboard/packages",
+    routePath: "/candidates-dashboard/skilltest",
     active: "",
   },
   {
