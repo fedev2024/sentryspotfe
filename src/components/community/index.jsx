@@ -150,7 +150,7 @@ const handleLogin = () => {
 
   return (
     <>
-      <span className="header-span"></span>
+    
 
       <LoginPopup />
       <DefaulHeader2 />

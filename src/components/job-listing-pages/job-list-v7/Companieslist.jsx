@@ -129,12 +129,12 @@ const Companieslist = () => {
   
                 <div className="location mt-2">
                   <span className="icon flaticon-briefcase"></span>
-                  {job.company_industry.name}
+                  {job.company_industry.name}{" "}|
                 </div>
-  
+                {" "}{" "}
                 <div className="location mt-2">
                   <span className="icon flaticon-map-locator"></span>
-                  {job.country.name}, {job.state.name}, {job.city.name}
+                  {job.city.name} , {job.state.name},  {job.country.name}
                 </div>
   
                 <div className="flex mt-2">

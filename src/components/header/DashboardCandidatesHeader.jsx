@@ -69,14 +69,26 @@ const DashboardCandidatesHeader = () => {
                 </a>
               </li>
               <li>
-                <a href="" className="text-gray-700 hover:text-blue-600">
+                <a href="/job-list-v7#tab2" className="text-gray-700 hover:text-blue-600">
                   Companies
+                </a>
+              </li>
+              <li>
+                <a href="/job-list-v7#tab1" className="text-gray-700 hover:text-blue-600">
+                  Jobs
                 </a>
               </li>
             </ul>
           </div>
         </div>
         <div className="side-menu flex items-center">
+        <span className="icon la la-bell text-3xl  text-blue-900"></span>
+            
+             
+            <i class="las la-comment text-3xl mx-4 text-blue-900"></i>
+         
+        
+            <i class="las la-user text-3xl text-blue-900 me-3"></i>
           <div className="btn-box">
             {userToken ? (
               <Button
@@ -100,7 +112,7 @@ const DashboardCandidatesHeader = () => {
             )}
            
           </div>
-          <i className="fa-solid fa-bell text-2xl mx-3"></i>
+         
         </div>
       </div>
       {/* Responsive Menu for Mobile Devices */}
