@@ -33,7 +33,23 @@ const DashboardCandidatesSidebar = () => {
       {/* End sidebar close icon */}
 
       <div className="sidebar-inner">
+         <div className="flex gap-4 justify-center items-center p-4 border border-gray-200 mb-2 rounded-lg bg-blue-700 text-white">
+           <div className="h-12 w-12 ">
+           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s" alt=""
+             className="rounded-full w-full h-full"
+            />
+           </div>
+            <div className="text-white">
+            <p className="text-white">
+              user name
+            </p>
+            <p className="text-white">
+              profile
+            </p>
+            </div>
+          </div>
         <ul className="navigation">
+         
           {candidatesuData.map((item) => (
             <li
               className={`${

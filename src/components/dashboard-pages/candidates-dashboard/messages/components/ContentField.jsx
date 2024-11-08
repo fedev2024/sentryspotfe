@@ -70,22 +70,28 @@ const ChatBoxContentField = () => {
         <div className="p-4 border-b border-blue-700">
           <h2 className="text-lg font-semibold">Messages</h2>
         </div>
-        <div>
+        <div className=" p-2">
+          <div>
           <div
-            className="flex items-center cursor-pointer p-4 hover:bg-blue-700 border-b border-blue-500 bg-blue-500"
+            className="flex flex-col gap-2 items-start justify-between border cursor-pointer p-4 hover:bg-gray-300 border-b border-blue-500 bg-gray-100"
             onClick={() => setActiveChat(15)}
           >
+            <div className="flex gap-2 justify-between items-center">
             <img
-              src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg" // Replace with the path to your avatar
+              src="https://avatar.iran.liara.run/public/boy?username=Ash" 
               alt="User avatar"
-              className="w-10 h-10 rounded-full mr-4"
+              className="w-10 h-10 rounded-full "
             />
             <div>
-              <p className="font-medium">John Snow</p>
-              <p className="text-sm text-blue-400">Last message preview...</p>
+              <p className="font-medium text-black">John Snow</p>
+              <p className="text-sm text-black">Last message preview...</p>
             </div>
-            <span className="ml-auto text-sm text-blue-400">4:30 PM</span>
-            <span className="bg-blue-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center ml-2">3</span>
+            </div>
+            <div className=" flex justify-between items-center w-full px-4">
+            <span className=" text-sm text-blue-400">4:30 PM</span>
+            <span className="bg-blue-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center">3</span>
+            </div>
+          </div>
           </div>
           {/* Add more chat items here */}
         </div>

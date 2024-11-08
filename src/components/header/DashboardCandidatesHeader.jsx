@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import logo from "../../../public/company_logo.png"
 
 
 
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import candidatesMenuData from "../../data/candidatesMenuData";
 import HeaderNavContent from "./HeaderNavContent";
 import { isActiveLink } from "../../utils/linkActiveChecker";
-import logo from "../../Images/logo.png";
+// import logo from "../../Images/logo.png";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../ui/button";
@@ -51,7 +51,7 @@ const DashboardCandidatesHeader = () => {
         <div className="header-logo flex items-center">
           <a href="/">
             <img
-              src="https://htmlsentryspot.vercel.app/img/company_logo.png"
+              src={logo}
               alt="Company Logo"
               className="h-10 w-auto"
             />
