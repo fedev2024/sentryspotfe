@@ -36,16 +36,15 @@ import { toast, ToastContainer } from "react-toastify";
 
 const Index = ({ onNext }) => {
   const token = localStorage.getItem(Constant.USER_TOKEN);
-  console.log(token)
-  const baseurl ="https://api.sentryspot.co.uk/api/jobseeker/";
-
+  console.log(token);
+  const baseurl = "https://api.sentryspot.co.uk/api/jobseeker/";
 
   const current = new Date().toISOString().split("T")[0];
   const [logImg, setLogImg] = useState(null);
 
-  const logImgHander  = (event) => {
+  const logImgHander = (event) => {
     const file = event.target.files[0];
-    if (file && file.type.match('image.*')) {
+    if (file && file.type.match("image.*")) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = () => {
@@ -56,26 +55,40 @@ const Index = ({ onNext }) => {
     }
   };
 
+  // Resetting the image
+  const resetImage = () => {
+    setLogImg(null); // Reset the image to null (default)
+  };
 
+  const personal_details = "personal_details";
 
-  const personal_details ="personal_details"
-
-  const [phoneNumber,setPhoneNumber]=useState("")
-
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isPhoneVerified, setIsPhoneVerified] = useState(false);
+  const handlePhoneVerification = () => {
+    // Phone verification logic
+    // For example, trigger SMS verification and set verification status
+    if (phoneNumber) {
+      // Simulating a verification process
+      toast.success("Phone number verified!");
+      setIsPhoneVerified(true); // Mark as verified
+    } else {
+      toast.error("Please enter a valid phone number.");
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const form = e.target;
     const formData = {
-      keyword:personal_details,
+      keyword: personal_details,
       photo: logImg,
       first_name: form.first_name.value,
       last_name: form.lastname.value,
       gender_id: form.gender.value,
       dob: form.birthdate.value,
-      
+
       phone_number: phoneNumber, // Use the state value here
-     
+
       current_country_id: form.country.value,
       current_state_id: form.state.value,
       current_city_id: form.city.value,
@@ -90,9 +103,8 @@ const Index = ({ onNext }) => {
       experience_in_month: form.Experiencetype.value,
       annual_salary_id: form.Salarytype.value,
       expected_salary_id: form.expectedSalarytype.value,
-    
     };
-  
+
     try {
       const response = await axios.put(
         "https://api.sentryspot.co.uk/api/jobseeker/user-profile",
@@ -111,64 +123,61 @@ const Index = ({ onNext }) => {
       console.error("Error updating profile:", error);
     }
   };
-  
-  
 
-    const [workplaceTypes, setWorkplaceTypes] = useState([]);
-    const [selectedWorkplace, setSelectedWorkplace] = useState('');
+  const [workplaceTypes, setWorkplaceTypes] = useState([]);
+  const [selectedWorkplace, setSelectedWorkplace] = useState("");
 
-    useEffect(() => {
-      // Fetch workplace types from API
-      axios
-        .get(`${baseurl}workplace-types`, {
-          headers: {
-            'Authorization': token, // Assuming you're storing the token in localStorage
-          },
-        })
-        .then((response) => {
-          setWorkplaceTypes(response.data.data); // Adjust the path according to the response structure
-        })
-        .catch((error) => {
-          console.error('Error fetching workplace types:', error);
-        });
-    }, []);
+  useEffect(() => {
+    // Fetch workplace types from API
+    axios
+      .get(`${baseurl}workplace-types`, {
+        headers: {
+          Authorization: token, // Assuming you're storing the token in localStorage
+        },
+      })
+      .then((response) => {
+        setWorkplaceTypes(response.data.data); // Adjust the path according to the response structure
+      })
+      .catch((error) => {
+        console.error("Error fetching workplace types:", error);
+      });
+  }, []);
 
-    const [jobtype, setjobstype] = useState([]);
-    const [selectjobtype, setselectjobtype] = useState("");
+  const [jobtype, setjobstype] = useState([]);
+  const [selectjobtype, setselectjobtype] = useState("");
 
-    useEffect(() => {
-      axios
-        .get(`${baseurl}job-types`, {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-          setjobstype(response.data.data);
-        })
-        .catch((error) => {
-          toast.error(error);
-        });
-    }, []);
-
-    const [Experiencetype, setExperiencetype] = useState([]);
-    const [selectExperiencetype, setselectExperiencetype] = useState("");
-
-    useEffect(() => {
-      axios
-        .get(`${baseurl}experience-level`, {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-          setExperiencetype(response.data.data);
-        })
+  useEffect(() => {
+    axios
+      .get(`${baseurl}job-types`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((response) => {
+        setjobstype(response.data.data);
+      })
       .catch((error) => {
         toast.error(error);
       });
   }, []);
 
+  const [Experiencetype, setExperiencetype] = useState([]);
+  const [selectExperiencetype, setselectExperiencetype] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`${baseurl}experience-level`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((response) => {
+        setExperiencetype(response.data.data);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  }, []);
 
   const [Salarytype, setSalarytype] = useState([]);
   const [selectSalarytype, setselectSalarytype] = useState("");
@@ -242,7 +251,6 @@ const Index = ({ onNext }) => {
       });
   }, []);
 
-
   const [industriestype, setindustriestype] = useState([]);
   const [selectindustriestype, setselectindustriestype] = useState("");
 
@@ -275,14 +283,11 @@ const Index = ({ onNext }) => {
 
   const fetchCountries = async () => {
     try {
-      const response = await axios.get(
-        `${baseurl}countries`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const response = await axios.get(`${baseurl}countries`, {
+        headers: {
+          Authorization: token,
+        },
+      });
       setCountries(response.data.data);
     } catch (error) {
       console.error("Error fetching countries:", error);
@@ -291,14 +296,11 @@ const Index = ({ onNext }) => {
 
   const fetchStates = async (countryId) => {
     try {
-      const response = await axios.get(
-        `${baseurl}stats/${countryId}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const response = await axios.get(`${baseurl}stats/${countryId}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
       setStates(response.data.data);
       setCities([]); // Reset cities when country changes
     } catch (error) {
@@ -308,14 +310,11 @@ const Index = ({ onNext }) => {
 
   const fetchCities = async (stateId) => {
     try {
-      const response = await axios.get(
-        `${baseurl}cities/${stateId}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const response = await axios.get(`${baseurl}cities/${stateId}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
       setCities(response.data.data);
     } catch (error) {
       console.error("Error fetching cities:", error);
@@ -334,7 +333,6 @@ const Index = ({ onNext }) => {
     fetchCities(stateId);
   };
 
-
   const [preferredcountries, preferredsetCountries] = useState([]);
   const [preferredstates, preferredsetStates] = useState([]);
   const [preferredcities, preferredsetCities] = useState([]);
@@ -349,14 +347,11 @@ const Index = ({ onNext }) => {
 
   const preferredfetchCountries = async () => {
     try {
-      const response = await axios.get(
-        `${baseurl}countries`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const response = await axios.get(`${baseurl}countries`, {
+        headers: {
+          Authorization: token,
+        },
+      });
       preferredsetCountries(response.data.data);
     } catch (error) {
       console.error("Error fetching countries:", error);
@@ -365,14 +360,11 @@ const Index = ({ onNext }) => {
 
   const preferredfetchStates = async (countryId) => {
     try {
-      const response = await axios.get(
-        `${baseurl}stats/${countryId}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const response = await axios.get(`${baseurl}stats/${countryId}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
       preferredsetStates(response.data.data);
       preferredsetCities([]); // Reset cities when country changes
     } catch (error) {
@@ -382,14 +374,11 @@ const Index = ({ onNext }) => {
 
   const preferredfetchCities = async (stateId) => {
     try {
-      const response = await axios.get(
-        `${baseurl}cities/${stateId}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const response = await axios.get(`${baseurl}cities/${stateId}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
       preferredsetCities(response.data.data);
     } catch (error) {
       console.error("Error fetching cities:", error);
@@ -408,14 +397,24 @@ const Index = ({ onNext }) => {
     preferredfetchCities(stateId);
   };
 
-  
-  
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    // Assuming the user information is stored in localStorage with the key 'XuserInfo'
+    const userInfo = JSON.parse(localStorage.getItem("__XuserInfo"));
+
+    // Set the email from localStorage to the component state
+    if (userInfo && userInfo.email) {
+      setEmail(userInfo.email);
+    }
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="default-form">
-      <ToastContainer/>
+      <ToastContainer />
       <div className="row">
         {/* Profile Picture Upload */}
+
         <div className="form-group col-lg-6 col-md-12 flex justify-center">
           <div>
             <div className="rounded-full border w-32 h-32 flex items-center justify-center">
@@ -445,15 +444,24 @@ const Index = ({ onNext }) => {
                 )}
               </label>
             </div>
-            <div className="bg-blue-800 w-28 mt-2 py-1 ms-2 text-white text-sm text-center rounded-lg">
+            <div className="cursor-pointer bg-blue-800 w-28 mt-2 py-1 ms-2 text-white text-sm text-center rounded-lg">
               Add Picture
             </div>
+
+            {logImg && (
+              <button
+                type="button"
+                onClick={resetImage}
+                className="bg-red-500 text-white mt-2 py-1 px-4 rounded-lg text-sm"
+              >
+                Remove Picture
+              </button>
+            )}
           </div>
         </div>
-
         {/* Form Fields */}
         <div className="form-group col-lg-6 col-md-12">
-          <label style={{fontWeight:"800"}}>First Name*</label>
+          <label style={{ fontWeight: "800" }}>First Name*</label>
           <input
             type="text"
             name="first_name"
@@ -471,67 +479,99 @@ const Index = ({ onNext }) => {
           />
         </div>
 
-        <div className="form-group col-lg-6 col-md-12 font-light">
+        {/* <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Workspace*</label>
           <select
-        id="workplaceType"
-        value={selectedWorkplace}
-        onChange={(e) => setSelectedWorkplace(e.target.value)}
-      >
-        <option value="">Select a workplace type</option>
-        {workplaceTypes.map((type) => (
-          <option key={type.id} value={type.id}>
-            {type.name} {/* Adjust based on actual data structure */}
-          </option>
-        ))}
-      </select>
-        </div>
-
-        <div className="form-group col-lg-6 col-md-12 font-light">
-          <label>Job-Type*</label>
-          <select
-          id="jobtype"
-          value={selectjobtype}
-          onChange={(e)=> setselectjobtype(e.target.value)}>
-            <option value="">select a job-type</option>
-            {jobtype.map((type)=>(
+            id="workplaceType"
+            value={selectedWorkplace}
+            onChange={(e) => setSelectedWorkplace(e.target.value)}
+          >
+            <option value="">Select a workplace type</option>
+            {workplaceTypes.map((type) => (
               <option key={type.id} value={type.id}>
                 {type.name}
               </option>
             ))}
           </select>
-          </div>      
+        </div> */}
 
-          
-
-          <div className="form-group col-lg-6 col-md-12 font-light">
-  <label>Phone Number*</label>
-  <PhoneInput
-  country={'gb'} // Set default country here
-  value={phoneNumber}
-  onChange={(value) => setPhoneNumber(value)}
-  inputStyle={{
-    width: "100%",
-    borderRadius: "10px",
-    border: "none",
-    height: "calc(2.5em + 1rem + 3px)",
-    fontSize: "1rem",
-    lineHeight: "1.5",
-    backgroundColor: "#F0F5F7",
-    backgroundClip: "padding-box",
-  }}
-  containerStyle={{ width: "100%" }}
-  buttonStyle={{
-    borderRadius: "none",
-    border: "none",
-    backgroundColor: "#f8f9fa",
-  }}
-/>
-
-</div>
-
+        {/* <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Job-Type*</label>
+          <select
+            id="jobtype"
+            value={selectjobtype}
+            onChange={(e) => setselectjobtype(e.target.value)}
+          >
+            <option value="">select a job-type</option>
+            {jobtype.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
+          </select>
+        </div> */}
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Job-Type*</label>
+          <div className="job-type-container row">
+            {jobtype.map((type) => (
+              <div
+                key={type.id}
+                className="checkbox-wrapper col-lg-4 flex mt-1"
+              >
+                <input
+                  type="checkbox"
+                  id={`jobtype-${type.id}`}
+                  value={type.id}
+                  checked={selectjobtype.includes(type.id)}
+                  onChange={(e) => {
+                    const newSelectedTypes = e.target.checked
+                      ? [...selectjobtype, type.id]
+                      : selectjobtype.filter((id) => id !== type.id);
+                    setselectjobtype(newSelectedTypes);
+                  }}
+                />
+                <label htmlFor={`jobtype-${type.id}`}>{type.name}</label>
+              </div>
+            ))}
+          </div>
+        </div>
 
         <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Phone Number*</label>
+          <PhoneInput
+            country={"gb"} // Set default country here
+            value={phoneNumber}
+            onChange={(value) => setPhoneNumber(value)}
+            inputStyle={{
+              width: "100%",
+              borderRadius: "10px",
+              border: "none",
+              height: "calc(2.5em + 1rem + 3px)",
+              fontSize: "1rem",
+              lineHeight: "1.5",
+              backgroundColor: "#F0F5F7",
+              backgroundClip: "padding-box",
+            }}
+            containerStyle={{ width: "100%" }}
+            buttonStyle={{
+              borderRadius: "none",
+              border: "none",
+              backgroundColor: "#f8f9fa",
+            }}
+          />
+          <button
+            type="button"
+            onClick={handlePhoneVerification}
+            className="bg-blue-600 text-white py-1 px-4 mt-2 rounded-lg"
+          >
+            Verify
+          </button>
+          {isPhoneVerified && (
+            <p className="text-green-500 mt-2">Phone Verified</p>
+          )}
+        </div>
+
+        {/* <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Gender*</label>
           <select
           id="Gender"
@@ -558,28 +598,39 @@ const Index = ({ onNext }) => {
     className=" rounded-lg p-2 py-3 text-lg border-0 w-full font-thin"
     placeholder="Enter BirthDate"
   />
-</div>
+</div> */}
 
-<div className="form-group col-lg-6 col-md-12 font-light">
-          <label>Functional Area*</label>
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Job Title*</label>
           <select
-          id="Functional"
-          name='Functional'
-          value={selectFunctionaltype}
-          onChange={(e)=> setselectFunctionaltype(e.target.value)}>
+            id="Functional"
+            name="Functional"
+            value={selectFunctionaltype}
+            onChange={(e) => setselectFunctionaltype(e.target.value)}
+          >
             <option value="">select a Functional Area</option>
-            {Functionaltype.map((type)=>(
+            {Functionaltype.map((type) => (
               <option key={type.id} value={type.id}>
                 {type.name}
               </option>
             ))}
           </select>
         </div>
-
-        
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            className="email"
+            placeholder="Your Email*"
+            required
+            readOnly
+          />
+        </div>
         <div></div>
-        <label className='my-2 mt-4 text-lg'>(Current - Location)</label>
-       <div className="form-group col-lg-4 col-md-12 font-light">
+        <label className="my-2 mt-4 text-lg">(Current - Location)</label>
+        <div className="form-group col-lg-4 col-md-12 font-light">
           <label>Country*</label>
           <select
             name="country"
@@ -632,9 +683,8 @@ const Index = ({ onNext }) => {
           </select>
         </div>
 
-
-        <label className='my-2 mt-4 text-lg'>(Preferred - Location)</label>
-       <div className="form-group col-lg-4 col-md-12 font-light">
+        <label className="my-2 mt-4 text-lg">(Preferred - Location)</label>
+        <div className="form-group col-lg-4 col-md-12 font-light">
           <label>Country*</label>
           <select
             name="preferredcountry"
@@ -687,33 +737,33 @@ const Index = ({ onNext }) => {
           </select>
         </div>
 
-
         <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Salary-Range (INR)*</label>
           <select
-          id="Salarytype"
-          name='Salarytype'
-          value={selectSalarytype}
-          onChange={(e)=> setselectSalarytype(e.target.value)}>
+            id="Salarytype"
+            name="Salarytype"
+            value={selectSalarytype}
+            onChange={(e) => setselectSalarytype(e.target.value)}
+          >
             <option value="">select a Salary</option>
-            {Salarytype.map((type)=>(
+            {Salarytype.map((type) => (
               <option key={type.id} value={type.id}>
                 {type.name}
               </option>
             ))}
           </select>
         </div>
-        
 
         <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Expected Salary-Range (INR)*</label>
           <select
-          id="expectedSalarytype"
-          name='expectedSalarytype'
-          value={expectedselectSalarytype}
-          onChange={(e)=> expectedsetselectSalarytype(e.target.value)}>
+            id="expectedSalarytype"
+            name="expectedSalarytype"
+            value={expectedselectSalarytype}
+            onChange={(e) => expectedsetselectSalarytype(e.target.value)}
+          >
             <option value="">select a Salary</option>
-            {expectedSalarytype.map((type)=>(
+            {expectedSalarytype.map((type) => (
               <option key={type.id} value={type.id}>
                 {type.name}
               </option>
@@ -721,8 +771,7 @@ const Index = ({ onNext }) => {
           </select>
         </div>
 
-
-        <div className="form-group col-lg-6 col-md-12 font-light">
+        {/* <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Notice Period*</label>
           <input
             type="text"
@@ -730,22 +779,18 @@ const Index = ({ onNext }) => {
             placeholder="Notice Period"
             required
           />
-        </div>
-
-       
-
-
-        
+        </div> */}
 
         <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Experience*</label>
           <select
-          id="Experiencetype"
-          name='Experiencetype'
-          value={selectExperiencetype}
-          onChange={(e)=> setselectExperiencetype(e.target.value)}>
+            id="Experiencetype"
+            name="Experiencetype"
+            value={selectExperiencetype}
+            onChange={(e) => setselectExperiencetype(e.target.value)}
+          >
             <option value="">select a Experience</option>
-            {Experiencetype.map((type)=>(
+            {Experiencetype.map((type) => (
               <option key={type.id} value={type.id}>
                 {type.name}
               </option>
@@ -753,26 +798,31 @@ const Index = ({ onNext }) => {
           </select>
         </div>
 
-        <div className="form-group col-lg-12 col-md-12 font-light">
+        {/* <div className="form-group col-lg-12 col-md-12 font-light">
           <label>Industries*</label>
           <select
-          id="industries"
-          name='industries'
-          value={selectindustriestype}
-          onChange={(e)=> setselectindustriestype(e.target.value)}>
+            id="industries"
+            name="industries"
+            value={selectindustriestype}
+            onChange={(e) => setselectindustriestype(e.target.value)}
+          >
             <option value="">select a Industries</option>
-            {industriestype.map((type)=>(
+            {industriestype.map((type) => (
               <option key={type.id} value={type.id}>
                 {type.name}
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
 
         {/* Submit Button */}
         <div className="form-group col-lg-6 col-md-12">
-          <button type="submit" className="theme-btn btn-style-one bg-blue-900">
-          Save & Next ➤
+          <button
+            type="submit"
+            className="theme-btn btn-style-one bg-blue-900"
+            onClick={handleSubmit}
+          >
+            Save & Next ➤
           </button>
         </div>
       </div>
