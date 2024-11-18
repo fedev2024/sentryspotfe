@@ -19,6 +19,11 @@ const initialState = {
   error: false,
   success: false,
   message: "",
+  user: {
+    name: "John Doe",
+    photo: "https://example.com/photo.jpg",
+    profile: "Frontend Developer",
+  },
 };
 
 // Handling State function or logics of User Authentication Module
