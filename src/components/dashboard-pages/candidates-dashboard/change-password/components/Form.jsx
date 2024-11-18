@@ -13,7 +13,7 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (newPassword !== confirmPassword) {
       setMessage("New password and confirm password do not match.");
       return;
@@ -57,7 +57,7 @@ const Form = () => {
           />
           <button
             type="button"
-             className="border rounded-lg mt-2 float-end bg-blue-800 text-white"
+            className="border rounded-lg mt-2 float-end bg-blue-800 text-white"
             onClick={() => setShowOldPassword((prev) => !prev)}
           >
             {showOldPassword ? "Hide" : "Show"}
@@ -76,7 +76,7 @@ const Form = () => {
           <button
             type="button"
             onClick={() => setShowNewPassword((prev) => !prev)}
-             className="border rounded-lg mt-2 float-end bg-blue-800 text-white"
+            className="border rounded-lg mt-2 float-end bg-blue-800 text-white"
           >
             {showNewPassword ? "Hide" : "Show"}
           </button>
@@ -93,7 +93,7 @@ const Form = () => {
           />
           <button
             type="button"
-             className="border rounded-lg mt-2 float-end bg-blue-800 text-white"
+            className="border rounded-lg mt-2 float-end bg-blue-800 text-white"
             onClick={() => setShowConfirmPassword((prev) => !prev)}
           >
             {showConfirmPassword ? "Hide" : "Show"}
