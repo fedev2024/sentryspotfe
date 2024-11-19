@@ -1,4 +1,5 @@
-{/*
+{
+  /*
   import FormInfoBox from "./FormInfoBox";
 import LogoUpload from "./LogoUpload";
 import ResumeUpload from "./ResumeUpload";
@@ -20,10 +21,11 @@ const index = ({ onNext }) => {
 
 export default index;
 
-  */}
+  */
+}
 
-  import PhoneInput from 'react-phone-input-2';
-  import 'react-phone-input-2/lib/style.css';
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 import { useEffect } from "react";
 import React, { useState } from "react";
@@ -36,7 +38,6 @@ import { toast, ToastContainer } from "react-toastify";
 
 const Index = ({ onNext }) => {
   const token = localStorage.getItem(Constant.USER_TOKEN);
-  console.log(token);
   const baseurl = "https://api.sentryspot.co.uk/api/jobseeker/";
 
   const current = new Date().toISOString().split("T")[0];
@@ -77,15 +78,16 @@ const Index = ({ onNext }) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const form = e.target;
+    console.log("AC>>>>>>", form);
     const formData = {
       keyword: personal_details,
       photo: logImg,
       first_name: form.first_name.value,
       last_name: form.lastname.value,
-      gender_id: form.gender.value,
-      dob: form.birthdate.value,
+      // gender_id: form.gender.value,
+      // dob: form.birthdate.value,
+      email: form.email.value,
 
       phone_number: phoneNumber, // Use the state value here
 
@@ -97,9 +99,9 @@ const Index = ({ onNext }) => {
       preferred_state_id: form.preferredstate.value,
       preferred_city_id: form.preferredcity.value,
 
-      industry_id: form.industries.value,
+      // industry_id: form.industries.value,
       functional_area_id: form.Functional.value,
-      notice_period_id: form.notice_period.value,
+      // notice_period_id: form.notice_period.value,
       experience_in_month: form.Experiencetype.value,
       annual_salary_id: form.Salarytype.value,
       expected_salary_id: form.expectedSalarytype.value,
@@ -123,6 +125,24 @@ const Index = ({ onNext }) => {
       console.error("Error updating profile:", error);
     }
   };
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await axios.get(`${baseurl}user-profile/first_name`, {
+          headers: {
+            Authorization: token,
+          },
+        });
+        const profileData = response.data.data;
+        console.log("Profile Data>>>>:", profileData);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
 
   const [workplaceTypes, setWorkplaceTypes] = useState([]);
   const [selectedWorkplace, setSelectedWorkplace] = useState("");
@@ -424,7 +444,7 @@ const Index = ({ onNext }) => {
                 name="attachments[]"
                 accept="image/*"
                 id="upload"
-                required
+                // required
                 onChange={logImgHander}
               />
               <label
@@ -626,6 +646,7 @@ const Index = ({ onNext }) => {
             placeholder="Your Email*"
             required
             readOnly
+            disabled
           />
         </div>
         <div></div>
@@ -817,11 +838,7 @@ const Index = ({ onNext }) => {
 
         {/* Submit Button */}
         <div className="form-group col-lg-6 col-md-12">
-          <button
-            type="submit"
-            className="theme-btn btn-style-one bg-blue-900"
-            onClick={handleSubmit}
-          >
+          <button type="submit" className="theme-btn btn-style-one bg-blue-900">
             Save & Next ➤
           </button>
         </div>

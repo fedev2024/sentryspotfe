@@ -87,9 +87,8 @@ const SocialNetworkBox = ({ onNext }) => {
 };
 
   return (
-
     <form className="default-form" onSubmit={handleSubmit}>
-      <ToastContainer/>
+      <ToastContainer />
       <div className="row">
         <div className="form-group col-lg-6 col-md-12">
           <label>Institute</label>
@@ -104,7 +103,7 @@ const SocialNetworkBox = ({ onNext }) => {
         </div>
 
         <div className="form-group col-lg-6 col-md-12">
-          <label>Course Type</label>
+          <label>Field of Study(Course)</label>
           <select
             id="course"
             value={selectcoursetype}
@@ -118,8 +117,8 @@ const SocialNetworkBox = ({ onNext }) => {
             ))}
           </select>
         </div>
-        
-        <div className="form-group col-lg-6 col-md-12">
+
+        {/* <div className="form-group col-lg-6 col-md-12">
           <label>Batch Start</label>
           <select
             id="BatchStart"
@@ -149,12 +148,40 @@ const SocialNetworkBox = ({ onNext }) => {
               </option>
             ))}
           </select>
+        </div> */}
+        <div className="form-group col-lg-6 col-md-12">
+          <label>Graduation Start Year</label>
+          <select
+            id="BatchStart"
+            value={selectBatchStarttype}
+            onChange={(e) => setselectBatchStarttype(e.target.value)}
+          >
+            <option value="">Select start year</option>
+            {Batchtype.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
+          </select>
         </div>
 
-       
-
+        <div className="form-group col-lg-6 col-md-12">
+          <label>Graduation End Year</label>
+          <select
+            id="BatchEnd"
+            value={selectBatchEndtype}
+            onChange={(e) => setselectBatchEndtype(e.target.value)}
+          >
+            <option value="">Select end year</option>
+            {Batchtype.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="form-group col-lg-12 col-md-12">
-          <label>Degree</label>
+          <label>Level Of Education</label>
           <select
             id="Degree"
             value={selectDegreetype}

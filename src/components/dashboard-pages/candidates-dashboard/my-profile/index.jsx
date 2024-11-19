@@ -150,11 +150,31 @@ const Index = () => {
   const [isToggled, setIsToggled] = useState(false); // State for the toggle switch
 
   const steps = [
-    { id: 1, title: "Personal Details", component: <MyProfile onNext={() => setCurrentStep(2)} /> },
-    { id: 2, title: "Education ", component: <SocialNetworkBox onNext={() => setCurrentStep(3)} /> },
-    { id: 3, title: "Professional Details", component: <ProfileVisalbilty onNext={() => setCurrentStep(4)} /> },
-    { id: 4, title: "Resume", component: <ContactInfoBox onNext={() => setCurrentStep(5)} /> },
-    { id: 5, title: "Skills", component: <Skills onNext={() => setCurrentStep(6)} /> },
+    {
+      id: 1,
+      title: "Personal Details",
+      component: <MyProfile onNext={() => setCurrentStep(2)} />,
+    },
+    {
+      id: 2,
+      title: "Education ",
+      component: <SocialNetworkBox onNext={() => setCurrentStep(3)} />,
+    },
+    {
+      id: 3,
+      title: "Work Experience",
+      component: <ProfileVisalbilty onNext={() => setCurrentStep(4)} />,
+    },
+    {
+      id: 4,
+      title: "Resume",
+      component: <ContactInfoBox onNext={() => setCurrentStep(5)} />,
+    },
+    {
+      id: 5,
+      title: "Skills",
+      component: <Skills onNext={() => setCurrentStep(6)} />,
+    },
     { id: 6, title: "Additional", component: <Additionalinformation /> },
   ];
   const token = localStorage.getItem("token");
