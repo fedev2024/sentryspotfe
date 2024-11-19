@@ -78,8 +78,24 @@ const Index = ({ onNext }) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!selectedSector) {
+      toast.error("Please select a sector.");
+      return;
+    }
+    if (selectedRoles.length === 0) {
+      toast.error("Please select at least one role.");
+      return;
+    }
+
+    const payload = {
+      selectedSector,
+      selectedRoles,
+    };
+
+    console.log("Payload:", payload);
+    toast.success("Details saved successfully!");
     const form = e.target;
-    console.log("AC>>>>>>", form);
+    console.log(">>>>>>", form);
     const formData = {
       keyword: personal_details,
       photo: logImg,
@@ -429,6 +445,107 @@ const Index = ({ onNext }) => {
     }
   }, []);
 
+  const defaultSectors = {
+    "Cyber Security": [
+      "Cybersecurity Analyst",
+      "Network Security Engineer",
+      "Security Consultant",
+      "Penetration Tester (Ethical Hacker)",
+      "Cybersecurity Architect",
+      "Incident Response Manager",
+      "Chief Information Security Officer (CISO)",
+      "Malware Analyst",
+      "Security Software Developer",
+      "Forensic Analyst",
+      "Compliance Analyst (Cybersecurity)",
+      "Cloud Security Engineer",
+      "Security Operations Center (SOC) Analyst",
+      "Identity and Access Management (IAM) Specialist",
+      "Vulnerability Assessment Analyst",
+      "Application Security Engineer",
+      "Security Researcher",
+      "Data Protection Officer (DPO)",
+      "Security Awareness Trainer",
+      "Risk Manager (Cybersecurity)",
+      "Cryptographer",
+      "DevSecOps Engineer",
+      "Security Tester (Ethical Hacker)",
+      "Red Team Operator",
+      "Blue Team Operator",
+      "Threat Intelligence Analyst",
+      "Security Infrastructure Engineer",
+      "Penetration Testing Manager",
+      "Chief Security Officer (CSO)",
+    ],
+    "Security & Safety": [
+      "CCTV Operator",
+      "Counter Terrorist Cleared",
+      "Environmental Safety Specialist",
+      "Event Safety Steward",
+      "Fire Safety Officer",
+      "Health and Safety Officer",
+      "Health and Safety Specialist",
+      "Law Enforcement Officer",
+      "Security & Safety Professional",
+      "Parking Attendant",
+      "Probation/Prison Service Officer",
+      "Security Consultant",
+      "Security Contracts Manager",
+      "Security Guard",
+      "Traffic Warden",
+      "Security Supervisor",
+      "Security Operations Manager",
+      "Security Manager",
+      "Access Control Officer",
+      "Alarm Technician",
+      "Asset Protection Specialist",
+      "Loss Prevention Manager",
+      "Safety Manager",
+      "Fire Marshal",
+      "Emergency Response Specialist",
+      "Surveillance Technician",
+      "Risk Assessment Consultant",
+      "Occupational Health and Safety Specialist",
+      "Building Security Coordinator",
+      "Safety Trainer",
+      "Forensic Safety Investigator",
+      "Disaster Recovery Specialist",
+      "Workplace Safety Coordinator",
+      "Security Investigator",
+      "Anti-Terrorism Analyst",
+    ],
+  };
+
+  const [sectors, setSectors] = useState(defaultSectors);
+  const [selectedSector, setSelectedSector] = useState("");
+  const [newSector, setNewSector] = useState("");
+  const [selectedRoles, setSelectedRoles] = useState([]);
+  const [customRoles, setCustomRoles] = useState([]);
+  const [newRole, setNewRole] = useState("");
+  const [showRoleDropdown, setShowRoleDropdown] = useState(false);
+
+  // Handle sector selection
+  const handleSectorChange = (e) => {
+    const value = e.target.value;
+    if (value === "add-new-sector") {
+      setNewSector("");
+    }
+    setSelectedSector(value);
+    setSelectedRoles([]);
+    setCustomRoles([]);
+  };
+
+  // Handle role selection
+  const handleRoleChange = (role) => {
+    if (selectedRoles.includes(role)) {
+      setSelectedRoles((prev) => prev.filter((r) => r !== role));
+    } else if (selectedRoles.length < 5) {
+      setSelectedRoles((prev) => [...prev, role]);
+    } else {
+      toast.error("You can only select up to 5 roles.");
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} className="default-form">
       <ToastContainer />
@@ -530,31 +647,6 @@ const Index = ({ onNext }) => {
             ))}
           </select>
         </div> */}
-        <div className="form-group col-lg-6 col-md-12 font-light">
-          <label>Job-Type*</label>
-          <div className="job-type-container row">
-            {jobtype.map((type) => (
-              <div
-                key={type.id}
-                className="checkbox-wrapper col-lg-4 flex mt-1"
-              >
-                <input
-                  type="checkbox"
-                  id={`jobtype-${type.id}`}
-                  value={type.id}
-                  checked={selectjobtype.includes(type.id)}
-                  onChange={(e) => {
-                    const newSelectedTypes = e.target.checked
-                      ? [...selectjobtype, type.id]
-                      : selectjobtype.filter((id) => id !== type.id);
-                    setselectjobtype(newSelectedTypes);
-                  }}
-                />
-                <label htmlFor={`jobtype-${type.id}`}>{type.name}</label>
-              </div>
-            ))}
-          </div>
-        </div>
 
         <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Phone Number*</label>
@@ -590,6 +682,20 @@ const Index = ({ onNext }) => {
             <p className="text-green-500 mt-2">Phone Verified</p>
           )}
         </div>
+        <div className="form-group col-lg-6 col-md-12 font-light relative">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            className="email pr-10" // Adding padding to the right so the icon doesn't overlap with text
+            placeholder="Your Email*"
+            required
+            readOnly
+            disabled
+          />
+          <i className="fas fa-check absolute right-2 top-1/2 transform -translate-y-1/2 p-2 mr-2 bg-green-500 text-white rounded-full"></i>
+        </div>
 
         {/* <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Gender*</label>
@@ -620,39 +726,9 @@ const Index = ({ onNext }) => {
   />
 </div> */}
 
-        <div className="form-group col-lg-6 col-md-12 font-light">
-          <label>Job Title*</label>
-          <select
-            id="Functional"
-            name="Functional"
-            value={selectFunctionaltype}
-            onChange={(e) => setselectFunctionaltype(e.target.value)}
-          >
-            <option value="">select a Functional Area</option>
-            {Functionaltype.map((type) => (
-              <option key={type.id} value={type.id}>
-                {type.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="form-group col-lg-6 col-md-12 font-light">
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            className="email"
-            placeholder="Your Email*"
-            required
-            readOnly
-            disabled
-          />
-        </div>
-        <div></div>
-        <label className="my-2 mt-4 text-lg">(Current - Location)</label>
         <div className="form-group col-lg-4 col-md-12 font-light">
-          <label>Country*</label>
+          <label className="my-2 mt-4 text-lg">(Current - Location)</label>
+          {/* <label>Country*</label> */}
           <select
             name="country"
             value={selectedCountry}
@@ -668,45 +744,9 @@ const Index = ({ onNext }) => {
           </select>
         </div>
 
-        {/* State Dropdown */}
-        <div className="form-group col-lg-4 col-md-12 font-light">
-          <label>State*</label>
-          <select
-            name="state"
-            value={selectedState}
-            onChange={handleStateChange}
-            required
-          >
-            <option value="">Select State</option>
-            {states.map((state) => (
-              <option key={state.id} value={state.id}>
-                {state.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* City Dropdown */}
-        <div className="form-group col-lg-4 col-md-12 font-light">
-          <label>City*</label>
-          <select
-            name="city"
-            value={selectedCity}
-            onChange={(e) => setSelectedCity(e.target.value)}
-            required
-          >
-            <option value="">Select City</option>
-            {cities.map((city) => (
-              <option key={city.id} value={city.id}>
-                {city.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <label className="my-2 mt-4 text-lg">(Preferred - Location)</label>
-        <div className="form-group col-lg-4 col-md-12 font-light">
-          <label>Country*</label>
+        <div className="form-group col-lg-8 col-md-12 font-light">
+          <label className="my-2 mt-4 text-lg">(Preferred - Location)</label>
+          {/* <label>Country*</label> */}
           <select
             name="preferredcountry"
             value={preferredselectedCountry}
@@ -721,9 +761,154 @@ const Index = ({ onNext }) => {
             ))}
           </select>
         </div>
+        <div className="form-group col-lg-12 col-md-12 font-light">
+          <label>Job-Type*</label>
+          <div className="job-type-container row">
+            {jobtype.map((type) => (
+              <div
+                key={type.id}
+                className="checkbox-wrapper col-lg-3 flex mt-1 gap-2"
+              >
+                <input
+                  type="checkbox"
+                  id={`jobtype-${type.id}`}
+                  value={type.id}
+                  checked={selectjobtype.includes(type.id)}
+                  onChange={(e) => {
+                    const newSelectedTypes = e.target.checked
+                      ? [...selectjobtype, type.id]
+                      : selectjobtype.filter((id) => id !== type.id);
+                    setselectjobtype(newSelectedTypes);
+                  }}
+                />
+                <label htmlFor={`jobtype-${type.id}`}>{type.name}</label>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label>Job Title*</label>
+          <input
+            type="text"
+            name="job_title"
+            placeholder="eg. Frontend Developer"
+            required
+            className="border font-light rounded-none mb-4"
+          />
+          {/* <select
+            id="Functional"
+            name="Functional"
+            value={selectFunctionaltype}
+            onChange={(e) => setselectFunctionaltype(e.target.value)}
+          >
+            <option value="">select a Functional Area</option>
+            {Functionaltype.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
+          </select> */}
+        </div>
+
+        <div className="form-group  col-lg-6 col-md-12 font-light">
+          <label>Select Sector*</label>
+          <select
+            value={selectedSector}
+            onChange={handleSectorChange}
+            className="form-control"
+            required
+          >
+            <option value="">Select a sector</option>
+            {Object.keys(sectors).map((sector) => (
+              <option key={sector} value={sector}>
+                {sector}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Roles Section */}
+        {selectedSector && selectedSector !== "add-new-sector" && (
+          <div className=" form-group col-lg-6 col-md-12 font-light">
+            <label>Roles in {selectedSector} (select up to 5)</label>
+            <div
+              className="dropdown"
+              onClick={() => setShowRoleDropdown(!showRoleDropdown)}
+            >
+              <button
+                type="button"
+                className="btn btn-secondary dropdown-toggle"
+              >
+                {selectedRoles.length > 0
+                  ? `${selectedRoles.length} roles selected`
+                  : "Select Roles"}
+              </button>
+              {showRoleDropdown && (
+                <div
+                  className="dropdown-menu show role-dropdown"
+                  style={{ maxHeight: "200px", overflowY: "auto" }}
+                >
+                  {[...sectors[selectedSector], ...customRoles].map((role) => (
+                    <label key={role} className="dropdown-item">
+                      <input
+                        type="checkbox"
+                        value={role}
+                        checked={selectedRoles.includes(role)}
+                        onChange={() => handleRoleChange(role)}
+                        className="gap-2"
+                        disabled={
+                          selectedRoles.length === 5 &&
+                          !selectedRoles.includes(role)
+                        }
+                      />
+                      {role}
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
+            <small>{5 - selectedRoles.length} roles remaining</small>
+          </div>
+        )}
 
         {/* State Dropdown */}
-        <div className="form-group col-lg-4 col-md-12 font-light">
+        {/* <div className="form-group col-lg-4 col-md-12 font-light">
+          <label>State*</label>
+          <select
+            name="state"
+            value={selectedState}
+            onChange={handleStateChange}
+            required
+          >
+            <option value="">Select State</option>
+            {states.map((state) => (
+              <option key={state.id} value={state.id}>
+                {state.name}
+              </option>
+            ))}
+          </select>
+        </div> */}
+
+        {/* City Dropdown */}
+        {/* <div className="form-group col-lg-4 col-md-12 font-light">
+          <label>City*</label>
+          <select
+            name="city"
+            value={selectedCity}
+            onChange={(e) => setSelectedCity(e.target.value)}
+            required
+          >
+            <option value="">Select City</option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
+        </div> */}
+
+        {/* State Dropdown */}
+        {/* <div className="form-group col-lg-4 col-md-12 font-light">
           <label>State*</label>
           <select
             name="preferredstate"
@@ -738,10 +923,10 @@ const Index = ({ onNext }) => {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
 
         {/* City Dropdown */}
-        <div className="form-group col-lg-4 col-md-12 font-light">
+        {/* <div className="form-group col-lg-4 col-md-12 font-light">
           <label>City*</label>
           <select
             name="preferredcity"
@@ -756,9 +941,9 @@ const Index = ({ onNext }) => {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
 
-        <div className="form-group col-lg-6 col-md-12 font-light">
+        {/* <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Salary-Range (INR)*</label>
           <select
             id="Salarytype"
@@ -790,6 +975,53 @@ const Index = ({ onNext }) => {
               </option>
             ))}
           </select>
+        </div> */}
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          {/* Label */}
+          <label className="font-medium">
+            Salary*{" "}
+            <span className="text-sm text-gray-500">
+              Minimum salary (please enter at least one type of salary)
+            </span>
+          </label>
+
+          {/* Input and Dropdown Container */}
+          <div className=" font-light  row">
+            {/* Input Container */}
+            <div className=" col-lg-6 col-md-12 ">
+              {/* Input Field with Currency Symbol */}
+              <div className="relative">
+                {/* Currency Symbol */}
+                <span className="absolute  text-center z-10 top-[20%] p-2 left-0 flex items-center text-gray-500">
+                  £
+                </span>
+                {/* Input Field */}
+                <input
+                  type="number"
+                  name="salary"
+                  className="w-full pl-10 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="5000"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Dropdown */}
+            <div className=" col-lg-6 col-md-12 ">
+              <select
+                name="salaryType"
+                className="  border border-gray-300 rounded-r-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 px-4 py-2"
+              >
+                <option value="per hour">per hour</option>
+                <option value="per annum">per annum</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Helper Text */}
+          <p className="mt-2 text-sm text-gray-500">
+            Read our Salary Blog to find out more
+          </p>
         </div>
 
         {/* <div className="form-group col-lg-6 col-md-12 font-light">
@@ -802,8 +1034,13 @@ const Index = ({ onNext }) => {
           />
         </div> */}
 
-        <div className="form-group col-lg-6 col-md-12 font-light">
-          <label>Experience*</label>
+        <div className="form-group col-lg-12 col-md-12 font-light">
+          <label className="font-medium">
+            Work Experience *{" "}
+            <span className="text-sm text-gray-500">
+              How many years of work experience do you have ?
+            </span>
+          </label>
           <select
             id="Experiencetype"
             name="Experiencetype"
@@ -811,11 +1048,17 @@ const Index = ({ onNext }) => {
             onChange={(e) => setselectExperiencetype(e.target.value)}
           >
             <option value="">select a Experience</option>
-            {Experiencetype.map((type) => (
+            {/* {Experiencetype.map((type) => (
               <option key={type.id} value={type.id}>
                 {type.name}
               </option>
-            ))}
+            ))} */}
+            <option value="1">0-1 year</option>
+            <option value="2">1-2 years</option>
+            <option value="3">2-3 years</option>
+            <option value="4">3-5 years</option>
+            <option value="5">5-10 years</option>
+            <option value="6">10+ years</option>
           </select>
         </div>
 

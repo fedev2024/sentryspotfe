@@ -398,7 +398,7 @@ const Additionalinformation = () => {
             <button
               type="button"
               onClick={handleAddLanguage}
-              className="text-blue-800 ml-2"
+              className="theme-btn btn-style-one bg-blue-950 ml-2"
             >
               + Add
             </button>

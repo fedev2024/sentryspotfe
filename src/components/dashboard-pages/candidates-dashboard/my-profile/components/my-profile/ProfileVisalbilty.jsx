@@ -389,11 +389,19 @@ const ProfileVisibility = ({ onNext }) => {
 
 export default ProfileVisibility;
 
+
+
+
+
+
+
+
+
 // import React, { useState } from "react";
 // import { toast } from "react-toastify";
 
 // const ProfileVisibility = () => {
-//   const sectors = {
+//   const defaultSectors = {
 //     "Cyber Security": [
 //       "Cybersecurity Analyst",
 //       "Network Security Engineer",
@@ -402,28 +410,6 @@ export default ProfileVisibility;
 //       "Cybersecurity Architect",
 //       "Incident Response Manager",
 //       "Chief Information Security Officer (CISO)",
-//       "Malware Analyst",
-//       "Security Software Developer",
-//       "Forensic Analyst",
-//       "Compliance Analyst (Cybersecurity)",
-//       "Cloud Security Engineer",
-//       "Security Operations Center (SOC) Analyst",
-//       "Identity and Access Management (IAM) Specialist",
-//       "Vulnerability Assessment Analyst",
-//       "Application Security Engineer",
-//       "Security Researcher",
-//       "Data Protection Officer (DPO)",
-//       "Security Awareness Trainer",
-//       "Risk Manager (Cybersecurity)",
-//       "Cryptographer",
-//       "DevSecOps Engineer",
-//       "Security Tester (Ethical Hacker)",
-//       "Red Team Operator",
-//       "Blue Team Operator",
-//       "Threat Intelligence Analyst",
-//       "Security Infrastructure Engineer",
-//       "Penetration Testing Manager",
-//       "Chief Security Officer (CSO)",
 //     ],
 //     "Security & Safety": [
 //       "CCTV Operator",
@@ -431,66 +417,65 @@ export default ProfileVisibility;
 //       "Environmental Safety Specialist",
 //       "Event Safety Steward",
 //       "Fire Safety Officer",
-//       "Health and Safety Officer",
-//       "Health and Safety Specialist",
-//       "Law Enforcement Officer",
-//       "Security & Safety Professional",
-//       "Parking Attendant",
-//       "Probation/Prison Service Officer",
-//       "Security Consultant",
-//       "Security Contracts Manager",
-//       "Security Guard",
-//       "Traffic Warden",
-//       "Security Supervisor",
-//       "Security Operations Manager",
-//       "Security Manager",
-//       "Access Control Officer",
-//       "Alarm Technician",
-//       "Asset Protection Specialist",
-//       "Loss Prevention Manager",
-//       "Safety Manager",
-//       "Fire Marshal",
-//       "Emergency Response Specialist",
-//       "Surveillance Technician",
-//       "Risk Assessment Consultant",
-//       "Occupational Health and Safety Specialist",
-//       "Building Security Coordinator",
-//       "Safety Trainer",
-//       "Forensic Safety Investigator",
-//       "Disaster Recovery Specialist",
-//       "Workplace Safety Coordinator",
-//       "Security Investigator",
-//       "Anti-Terrorism Analyst",
 //     ],
 //   };
 
-//   const [selectedSector, setSelectedSector] = useState(""); // Selected sector
-//   const [selectedRoles, setSelectedRoles] = useState([]); // Selected roles
-//   const [customJobTitle, setCustomJobTitle] = useState(""); // Custom job title
+//   const [sectors, setSectors] = useState(defaultSectors);
+//   const [selectedSector, setSelectedSector] = useState("");
+//   const [newSector, setNewSector] = useState("");
+//   const [selectedRoles, setSelectedRoles] = useState([]);
+//   const [customRoles, setCustomRoles] = useState([]);
+//   const [newRole, setNewRole] = useState("");
+//   const [showRoleDropdown, setShowRoleDropdown] = useState(false);
 
 //   // Handle sector selection
 //   const handleSectorChange = (e) => {
-//     setSelectedSector(e.target.value);
-//     setSelectedRoles([]); // Reset roles when sector changes
+//     const value = e.target.value;
+//     if (value === "add-new-sector") {
+//       setNewSector("");
+//     }
+//     setSelectedSector(value);
+//     setSelectedRoles([]);
+//     setCustomRoles([]);
+//   };
+
+//   // Add a custom sector
+//   const handleAddNewSector = () => {
+//     if (newSector.trim() && !sectors[newSector]) {
+//       setSectors((prev) => ({ ...prev, [newSector]: [] }));
+//       setSelectedSector(newSector);
+//       setNewSector("");
+//       toast.success("Custom sector added successfully!");
+//     } else {
+//       toast.error("Invalid or duplicate sector.");
+//     }
+//   };
+
+//   // Add a custom role
+//   const handleAddCustomRole = () => {
+//     if (newRole.trim() && !customRoles.includes(newRole)) {
+//       setCustomRoles((prev) => [...prev, newRole]);
+//       setNewRole("");
+//       toast.success("Custom role added successfully!");
+//     } else {
+//       toast.error("Invalid or duplicate role.");
+//     }
 //   };
 
 //   // Handle role selection
 //   const handleRoleChange = (role) => {
 //     if (selectedRoles.includes(role)) {
-//       // Remove role if already selected
 //       setSelectedRoles((prev) => prev.filter((r) => r !== role));
 //     } else if (selectedRoles.length < 5) {
-//       // Add role if less than 5 are selected
 //       setSelectedRoles((prev) => [...prev, role]);
 //     } else {
 //       toast.error("You can only select up to 5 roles.");
 //     }
 //   };
 
-//   // Handle form submission
+//   // Submit the form
 //   const handleSubmit = (e) => {
 //     e.preventDefault();
-
 //     if (!selectedSector) {
 //       toast.error("Please select a sector.");
 //       return;
@@ -499,30 +484,16 @@ export default ProfileVisibility;
 //       toast.error("Please select at least one role.");
 //       return;
 //     }
-
 //     const payload = {
-//       customJobTitle: customJobTitle || null,
 //       selectedSector,
 //       selectedRoles,
 //     };
-
 //     console.log("Payload:", payload);
 //     toast.success("Details saved successfully!");
 //   };
 
 //   return (
 //     <form onSubmit={handleSubmit} className="default-form">
-//       <div className="form-group">
-//         <label>Custom Job Title (optional)</label>
-//         <input
-//           type="text"
-//           value={customJobTitle}
-//           onChange={(e) => setCustomJobTitle(e.target.value)}
-//           placeholder="Enter your job title"
-//           className="form-control"
-//         />
-//       </div>
-
 //       <div className="form-group">
 //         <label>Sector*</label>
 //         <select
@@ -537,27 +508,83 @@ export default ProfileVisibility;
 //               {sector}
 //             </option>
 //           ))}
+//           <option value="add-new-sector">Add New Sector</option>
 //         </select>
 //       </div>
 
-//       {selectedSector && (
+//       {/* Add a custom sector */}
+//       {selectedSector === "add-new-sector" && (
+//         <div className="form-group">
+//           <label>Custom Sector</label>
+//           <div className="d-flex align-items-center">
+//             <input
+//               type="text"
+//               value={newSector}
+//               onChange={(e) => setNewSector(e.target.value)}
+//               placeholder="Enter new sector"
+//               className="form-control"
+//             />
+//             <button
+//               type="button"
+//               onClick={handleAddNewSector}
+//               className="btn btn-secondary ml-2"
+//             >
+//               Add
+//             </button>
+//           </div>
+//         </div>
+//       )}
+
+//       {/* Roles Section */}
+//       {selectedSector && selectedSector !== "add-new-sector" && (
 //         <div className="form-group">
 //           <label>Roles in {selectedSector} (select up to 5)</label>
-//           <div className="role-list">
-//             {sectors[selectedSector].map((role) => (
-//               <label key={role} className="role-item">
-//                 <input
-//                   type="checkbox"
-//                   value={role}
-//                   checked={selectedRoles.includes(role)}
-//                   onChange={() => handleRoleChange(role)}
-//                   disabled={
-//                     selectedRoles.length === 5 && !selectedRoles.includes(role)
-//                   } // Disable unselected checkboxes if 5 roles are selected
-//                 />
-//                 {role}
-//               </label>
-//             ))}
+//           <div
+//             className="dropdown"
+//             onClick={() => setShowRoleDropdown(!showRoleDropdown)}
+//           >
+//             <button type="button" className="btn btn-secondary dropdown-toggle">
+//               {selectedRoles.length > 0
+//                 ? `${selectedRoles.length} roles selected`
+//                 : "Select Roles"}
+//             </button>
+//             {showRoleDropdown && (
+//               <div className="dropdown-menu show role-dropdown">
+//                 {[...sectors[selectedSector], ...customRoles].map((role) => (
+//                   <label key={role} className="dropdown-item">
+//                     <input
+//                       type="checkbox"
+//                       value={role}
+//                       checked={selectedRoles.includes(role)}
+//                       onChange={() => handleRoleChange(role)}
+//                       disabled={
+//                         selectedRoles.length === 5 && !selectedRoles.includes(role)
+//                       }
+//                     />
+//                     {role}
+//                   </label>
+//                 ))}
+//               </div>
+//             )}
+//           </div>
+//           <div className="mt-3">
+//             <label>Add a Custom Role</label>
+//             <div className="d-flex align-items-center">
+//               <input
+//                 type="text"
+//                 value={newRole}
+//                 onChange={(e) => setNewRole(e.target.value)}
+//                 placeholder="Enter custom role"
+//                 className="form-control"
+//               />
+//               <button
+//                 type="button"
+//                 onClick={handleAddCustomRole}
+//                 className="btn btn-secondary ml-2"
+//               >
+//                 Add
+//               </button>
+//             </div>
 //           </div>
 //           <small>{5 - selectedRoles.length} roles remaining</small>
 //         </div>

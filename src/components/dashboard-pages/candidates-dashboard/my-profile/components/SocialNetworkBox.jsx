@@ -91,7 +91,7 @@ const SocialNetworkBox = ({ onNext }) => {
       <ToastContainer />
       <div className="row">
         <div className="form-group col-lg-6 col-md-12">
-          <label>Institute</label>
+          <label>Institution Name</label>
           <input
             type="text"
             name="institute"
@@ -100,6 +100,21 @@ const SocialNetworkBox = ({ onNext }) => {
             placeholder="Enter institute name"
             required
           />
+        </div>
+        <div className="form-group col-lg-6 col-md-12">
+          <label>Level Of Education</label>
+          <select
+            id="Degree"
+            value={selectDegreetype}
+            onChange={(e) => setselectDegreetype(e.target.value)}
+          >
+            <option value="">Select a Degree</option>
+            {Degreetype.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="form-group col-lg-6 col-md-12">
@@ -149,7 +164,7 @@ const SocialNetworkBox = ({ onNext }) => {
             ))}
           </select>
         </div> */}
-        <div className="form-group col-lg-6 col-md-12">
+        {/* <div className="form-group col-lg-6 col-md-12">
           <label>Graduation Start Year</label>
           <select
             id="BatchStart"
@@ -163,9 +178,9 @@ const SocialNetworkBox = ({ onNext }) => {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
 
-        <div className="form-group col-lg-6 col-md-12">
+        {/* <div className="form-group col-lg-6 col-md-12">
           <label>Graduation End Year</label>
           <select
             id="BatchEnd"
@@ -179,20 +194,31 @@ const SocialNetworkBox = ({ onNext }) => {
               </option>
             ))}
           </select>
-        </div>
-        <div className="form-group col-lg-12 col-md-12">
-          <label>Level Of Education</label>
+        </div> */}
+        <div className="form-group col-lg-6 col-md-12">
+          {/* Label */}
+          <label>Graduation Year</label>
+
+          {/* Static Dropdown */}
           <select
-            id="Degree"
-            value={selectDegreetype}
-            onChange={(e) => setselectDegreetype(e.target.value)}
+            id="BatchEnd"
+            className="form-select border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
           >
-            <option value="">Select a Degree</option>
-            {Degreetype.map((type) => (
-              <option key={type.id} value={type.id}>
-                {type.name}
-              </option>
-            ))}
+            <option value="">Select Graduation Year</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            {/* Add more years if needed */}
           </select>
         </div>
 
