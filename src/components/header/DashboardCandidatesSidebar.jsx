@@ -117,7 +117,8 @@ const DashboardCandidatesSidebar = () => {
   const menuToggleHandler = () => {
     dispatch(menuToggle());
   };
-
+const userinfo = localStorage.getItem("Constant.USER_INFO")
+console.log(userinfo,"mai hu user");
   return (
     <div className={`user-sidebar ${menu ? "sidebar_open" : ""}`}>
       {/* Sidebar close icon */}
