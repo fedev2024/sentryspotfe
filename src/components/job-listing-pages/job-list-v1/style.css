@@ -80,7 +80,13 @@
   .main-menu a:hover{
       color: #e60278;
   }
-  .side-menu a {
+  .profile-dropdown a {
+    margin-right: 0px !important;
+  }
+  .profile-dropdown a:hover {
+   color: #1967d2 !important;
+  }
+    .side-menu a {
       margin-right: 20px;
       color: #003479;
       text-decoration: none;

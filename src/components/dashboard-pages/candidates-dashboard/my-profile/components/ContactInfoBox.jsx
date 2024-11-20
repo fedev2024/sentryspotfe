@@ -145,8 +145,8 @@ const ContactInfoBox = ({ onNext }) => {
         </div>
 
         <div className="form-group col-lg-12 col-md-12">
-          <button type="submit" className="theme-btn btn-style-one">
-            Save & Next
+          <button type="submit" class="theme-btn btn-style-one bg-blue-800">
+            Save &amp; Next ➤
           </button>
         </div>
       </div>
