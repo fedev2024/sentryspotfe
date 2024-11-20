@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import tab1 from "./img/Tab1.webp"
+import tab2 from "./img/InnerSlider.webp";
 
 const CoursesTabs = () => {
   const [activeTab, setActiveTab] = useState('1');
