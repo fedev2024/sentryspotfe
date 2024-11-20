@@ -381,7 +381,7 @@ const Additionalinformation = () => {
                 </select>
                 <button
                   type="button"
-                  className="text-red-500"
+                  className="theme-btn btn-style-one bg-blue-950 "
                   onClick={() => handleRemoveLanguage(index)}
                 >
                   ×
@@ -407,7 +407,7 @@ const Additionalinformation = () => {
         <div className="form-group col-lg-12 col-md-12">
           <button
             type="submit"
-            className="theme-btn btn-style-one"
+            className="theme-btn btn-style-one bg-blue-800"
             disabled={loading}
           >
             {loading ? "Saving..." : "Save"}
