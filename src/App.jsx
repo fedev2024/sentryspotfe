@@ -150,12 +150,12 @@ function App() {
                   <Route path="home-16" element={<HomePage16 />} />
                   <Route path="home-17" element={<HomePage17 />} /> */}
 
-                {/*<Route path="job-list-v1" element={<JobListPage1 />} />
-                <Route path="job-list-v2" element={<JobListPage2 />} />
+                {/* <Route path="job-list-v1" element={<JobListPage1 />} />
+                <Route path="job-list-v2" element={<JobListPage2 />} /> */}
                 <Route path="job-list-v3" element={<JobListPage3 />} />
-                  <Route path="job-list-v4" element={<JobListPage4 />} />
+                  {/* <Route path="job-list-v4" element={<JobListPage4 />} />
                   <Route path="job-list-v5" element={<JobListPage5 />} />
-                  <Route path="job-list-v6" element={<JobListPage6 />} />*/}
+                  <Route path="job-list-v6" element={<JobListPage6 />} /> */}
                 <Route path="job-list-v7" element={<JobListPage7 />} />
                 {/* <Route path="job-list-v8" element={<JobListPage8 />} />
                 <Route path="job-list-v9" element={<JobListPage9 />} />
@@ -168,9 +168,9 @@ function App() {
                   path="job-single-v1/:id"
                   element={<JobSingleDynamicV1 />}
                 />
-                {/* <Route path="job-single-v2/:id" element={<JobSingleDynamicV2 />} />
+                {/* <Route path="job-single-v2/:id" element={<JobSingleDynamicV2 />} /> */}
                   <Route path="job-single-v3/:id" element={<JobSingleDynamicV3 />} />
-                  <Route path="job-single-v4/:id" element={<JobSingleDynamicV4 />} />
+                  {/* <Route path="job-single-v4/:id" element={<JobSingleDynamicV4 />} />
                   <Route path="job-single-v5/:id" element={<JobSingleDynamicV5 />} /> */}
 
                 {/* <Route
