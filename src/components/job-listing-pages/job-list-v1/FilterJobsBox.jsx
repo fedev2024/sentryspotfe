@@ -3,6 +3,11 @@
 import "./style.css"
 import blog1 from "./img/blog1.webp"
 import faqimge from "./img/faqimge.webp"
+import home1 from "./img/home-1.webp"
+import home2 from "./img/home-2.webp"
+import home3 from "./img/home-3.webp"
+import tab1 from "./img/Tab1.webp"
+import tab2 from "./img/InnerSlider.webp";
 import { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -93,7 +98,7 @@ const FilterJobsBox = () => {
               <div className="HomeHeroMedia">
                 <div className="HomeSlider">
                   <div className="HeroSliderone">
-                    <img src="https://htmlsentryspot.vercel.app/img/home-1.webp" alt="Slide 1" />
+                    <img src={home1} alt="Slide 1" />
                     <div className="BannerText">
                       <div className="BannerTextUpper">
                         <i className="fa-solid fa-medal" />
@@ -113,7 +118,7 @@ const FilterJobsBox = () => {
                     </div>
                   </div>
                   <div className="HeroSliderone">
-                    <img src="https://htmlsentryspot.vercel.app/img/home-2.webp" alt="Slide 2" />
+                    <img src={home2} alt="Slide 2" />
                     <div className="BannerText">
                       <div className="BannerTextUpper">
                         <i className="fa-solid fa-medal" />
@@ -133,7 +138,7 @@ const FilterJobsBox = () => {
                     </div>
                   </div>
                   <div className="HeroSliderone">
-                    <img src="https://htmlsentryspot.vercel.app/img/home-3.webp" alt="Slide 3" />
+                    <img src={home3} alt="Slide 3" />
                     <div className="BannerText">
                       <div className="BannerTextUpper">
                         <i className="fa-solid fa-medal" />
@@ -241,7 +246,7 @@ const FilterJobsBox = () => {
           <div className="container">
             <div className="FaqBox">
               <div className="FaqImage">
-                <img src="https://htmlsentryspot.vercel.app/img/faqimge.webp" />
+                <img src={faqimge} />
               </div>
               <div className="FaqText">
                 <p className="font-extrabold">SentrySpot Community</p>

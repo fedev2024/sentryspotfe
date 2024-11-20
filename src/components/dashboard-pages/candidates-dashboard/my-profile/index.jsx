@@ -199,7 +199,7 @@ const Index = () => {
                 <div
                   key={step.id}
                   onClick={() => setCurrentStep(step.id)}
-                  className={`relative cursor-pointer py-4 w-full mx-2 text-center font-medium transition-colors duration-300 ${
+                  className={`relative cursor-pointer py-2 w-full mx-2 text-center font-medium transition-colors duration-300 ${
                     currentStep === step.id
                       ? "text-blue-900 text-md border rounded-md bg-white"
                       : "hover:bg-blue-300 hover:text-blue-800 bg-blue-800 text-md text-white rounded-md"
@@ -220,7 +220,7 @@ const Index = () => {
 
           {/* Main Content */}
           <div className="mt-4 bg-gray-100 rounded-md">
-            <h4 className="text-lg text-center ps-3 bg-blue-800 rounded-t-md w-full p-4 text-white">
+            <h4 className="text-lg text-center ps-3 bg-blue-800 rounded-t-md w-full p-2 text-white">
               {steps[currentStep - 1].title}
             </h4>
             <div className="bg-white p-6 rounded-md">

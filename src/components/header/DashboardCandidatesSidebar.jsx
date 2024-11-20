@@ -131,14 +131,14 @@ const DashboardCandidatesSidebar = () => {
         {/* Dynamic User Profile */}
         <Link to="/candidates-dashboard/my-profile">
           <div className="flex gap-4 justify-center items-center p-4 border border-gray-200 mb-2 rounded-lg bg-blue-700 text-white">
-            <div className="h-12 w-12">
+            <div className="flex-1 h-12 w-12">
               <img
                 src={user?.photo || "https://via.placeholder.com/150"}
                 alt="User Avatar"
                 className="rounded-full w-full h-full"
               />
             </div>
-            <div className="text-white">
+            <div className="text-white flex-1 flex-col ">
               <p className="text-white ">{user?.name || "Anonymous"}</p>
               <p className="text-white ">{user?.profile || "Profile"}</p>
             </div>
@@ -146,10 +146,10 @@ const DashboardCandidatesSidebar = () => {
         </Link>
 
         {/* Navigation Menu */}
-        <ul className="navigation">
+        <ul className="navigation ">
           {candidatesuData.map((item) => (
             <li
-              className={`${
+              className={` font-bold ${
                 isActiveLink(item.routePath, pathname) ? "active" : ""
               } mb-1`}
               key={item.id}
