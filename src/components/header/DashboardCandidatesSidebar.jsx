@@ -104,6 +104,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { menuToggle } from "../../features/toggle/toggleSlice";
 import candidatesuData from "../../data/candidatesMenuData";
 import { isActiveLink } from "../../utils/linkActiveChecker";
+import { Constant } from "@/utils/constant/constant";
 
 const DashboardCandidatesSidebar = () => {
   const { pathname } = useLocation();
@@ -117,8 +118,7 @@ const DashboardCandidatesSidebar = () => {
   const menuToggleHandler = () => {
     dispatch(menuToggle());
   };
-const userinfo = localStorage.getItem("Constant.USER_INFO")
-console.log(userinfo,"mai hu user");
+
   return (
     <div className={`user-sidebar ${menu ? "sidebar_open" : ""}`}>
       {/* Sidebar close icon */}
@@ -140,7 +140,7 @@ console.log(userinfo,"mai hu user");
               />
             </div>
             <div className="text-white flex-1 flex-col ">
-              <p className="text-white ">{user?.name || "Anonymous"}</p>
+              <p className="text-white ">{user?.first_name || "Anonymous"}</p>
               <p className="text-white ">{user?.profile || "Profile"}</p>
             </div>
           </div>

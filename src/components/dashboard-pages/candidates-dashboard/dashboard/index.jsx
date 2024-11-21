@@ -9,6 +9,7 @@ import CopyrightFooter from "../../CopyrightFooter";
 import JobApplied from "./components/JobApplied";
 import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
 import MenuToggler from "../../MenuToggler";
+import TopSection from "./components/Topsection.jsx";
 
 const Index = () => {
   return (
@@ -41,7 +42,7 @@ const Index = () => {
             <TopCardBlock />
           </div>
           {/* End .row top card block */}
-
+           <TopSection />
           <div className="row ">
             {/* <div className="col-xl-7 col-lg-12">
               {/* <!-- Graph widget --> 
