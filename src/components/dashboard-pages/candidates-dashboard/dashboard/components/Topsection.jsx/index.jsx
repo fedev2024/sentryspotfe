@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './Home.css'
-import SlidingText from './Slidingtext';
 import Home_Image from './Home_Image';
 import image from './homeimage1.jpg'
 // import image1 from './homeimage1.png'
@@ -11,7 +10,7 @@ const TopSection = () => {
     <div className=" min-w-screen bg-white rounded-lg mb-10 text-black" id='bghome'>   
       <main className="p-2 md:px-10">
         <section>
-        <SlidingText/>  
+        {/* <SlidingText/>   */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 rounded-xl bg-white/50">
             <div className=" p-5 rounded">
                 <div className=' text-center text-xl font-semibold'>Resumes</div>

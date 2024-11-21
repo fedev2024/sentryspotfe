@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import './SlidingText.css';
 
 const images = [
