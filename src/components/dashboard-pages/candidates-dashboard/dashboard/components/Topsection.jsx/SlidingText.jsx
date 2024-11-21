@@ -4,7 +4,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import './SlidingText.css';
 
 const images = [
-  {title:"Abroadium’s Futuristic & AI Enabled Dashboard"},
+  {title:"Futuristic & AI Enabled Dashboard"},
   {title:"We are live with our AI Resume Building Tool"},
   {title:"Resumes crafted by Industry Experts"},
   {title:"Verified International Jobs, Companies, Feed & more"},
