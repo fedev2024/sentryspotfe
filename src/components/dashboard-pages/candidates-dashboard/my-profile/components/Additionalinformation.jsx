@@ -16,31 +16,31 @@ const Additionalinformation = () => {
     open_to_startups: null,
     willingness_to_travel: null,
     work_permit_usa: "",
-    s: "",
-    s: [],
+    // languages: "",
+    languages: [],
   });
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [s, sets] = useState([]);
-  const [Input, setInput] = useState("");
-  const handleAdd = () => {
-    if (Input.trim()) {
-      sets([
-        ...s,
-        { name: Input.trim(), proficiency: "Intermediate" },
+  const [languages, setLanguages] = useState([]);
+  const [languageInput, setLanguageInput] = useState("");
+  const handleAddLanguage = () => {
+    if (languageInput.trim()) {
+      setLanguages([
+        ...languages,
+        { name: languageInput.trim(), proficiency: "Intermediate" },
       ]);
-      setInput("");
+      setLanguageInput("");
     }
   };
 
-  const handleProficiencyChange = (index, proficiency) => {
-    const updateds = [...s];
-    updateds[index].proficiency = proficiency;
-    sets(updateds);
+  const handleLanguageProficiencyChange = (index, proficiency) => {
+    const updatedLanguages = [...languages];
+    updatedLanguages[index].proficiency = proficiency;
+    setLanguages(updatedLanguages);
   };
 
-  const handleRemove = (index) => {
-    sets(s.filter((_, i) => i !== index));
+  const handleRemoveLanguage = (index) => {
+    setLanguages(languages.filter((_, i) => i !== index));
   };
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -74,22 +74,22 @@ const Additionalinformation = () => {
       setLoading(false);
     }
   };
-  const handleChange = (index, field, value) => {
-    const updateds = [...formData.s];
-    updateds[index] = { ...updateds[index], [field]: value };
-    setFormData({ ...formData, s: updateds });
+  const handleLanguageChange = (index, field, value) => {
+    const updatedLanguages = [...formData.languages];
+    updatedLanguages[index] = { ...updatedLanguages[index], [field]: value };
+    setFormData({ ...formData, languages: updatedLanguages });
   };
 
-  const add = () => {
+  const addLanguage = () => {
     setFormData({
       ...formData,
-      s: [...formData.s, { name: "", proficiency: "" }],
+      languages: [...formData.languages, { name: "", proficiency: "" }],
     });
   };
 
-  const delete = (index) => {
-    const updateds = formData.s.filter((_, i) => i !== index);
-    setFormData({ ...formData, s: updateds });
+  const deleteLanguage = (index) => {
+    const updatedLanguages = formData.languages.filter((_, i) => i !== index);
+    setFormData({ ...formData, languages: updatedLanguages });
   };
   return (
     <form onSubmit={handleSubmit} className="default-form">
@@ -352,26 +352,26 @@ const Additionalinformation = () => {
 
         {/* Continue with other form fields in a similar manner */}
         {/* <div className="form-group flex gap-10 col-lg-12 col-md-12 ">
-          <label className="w-1/4">s</label>
+          <label className="w-1/4">Languages</label>
           <input
             type="text"
-            name="s"
-            value={formData.s}
+            name="languages"
+            value={formData.languages}
             onChange={handleInputChange}
           />
         </div> */}
-        {/* Add s */}
+        {/* Add Languages */}
 
-        <h5 className="text-xl mt-6">s</h5>
+        <h5 className="text-xl mt-6">Languages</h5>
         <div className="form-group col-lg-12flex gap-10 col-md-12 my-4">
           <div className="border rounded flex items-center flex-wrap gap-2 p-3">
-            {s.map((, index) => (
+            {languages.map((language, index) => (
               <div key={index} className="flex flex-wrap gap-2 items-center">
-                <span>{.name}</span>
+                <span>{language.name}</span>
                 <select
-                  value={.proficiency}
+                  value={language.proficiency}
                   onChange={(e) =>
-                    handleProficiencyChange(index, e.target.value)
+                    handleLanguageProficiencyChange(index, e.target.value)
                   }
                   className="border rounded p-1"
                 >
@@ -382,7 +382,7 @@ const Additionalinformation = () => {
                 <button
                   type="button"
                   className="theme-btn btn-style-one bg-blue-950 "
-                  onClick={() => handleRemove(index)}
+                  onClick={() => handleRemoveLanguage(index)}
                 >
                   ×
                 </button>
@@ -390,14 +390,14 @@ const Additionalinformation = () => {
             ))}
             <input
               type="text"
-              value={Input}
-              onChange={(e) => setInput(e.target.value)}
+              value={languageInput}
+              onChange={(e) => setLanguageInput(e.target.value)}
               className="border-none focus:outline-none flex-grow"
-              placeholder="Enter a "
+              placeholder="Enter a language"
             />
             <button
               type="button"
-              onClick={handleAdd}
+              onClick={handleAddLanguage}
               className="theme-btn btn-style-one bg-blue-950 ml-2"
             >
               + Add
