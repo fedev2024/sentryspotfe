@@ -6,6 +6,7 @@ import FilterJobsBox from "./FilterJobsBox";
 import FilterSidebar from "./FilterSidebar";
 
 const index = () => {
+    
     return (
         <>
             {/* <!-- Header Span --> */}

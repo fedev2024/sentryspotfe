@@ -1,0 +1,18 @@
+#bgnavbar{
+    background-color: rgba(27, 26, 57, 0.95) ;
+}
+#bghome{
+    background-color: rgba(50, 49, 89, 0.961);
+}
+#live{
+    display: none;
+}
+#group:hover ~ #live{
+    display:block;
+    /* width:100px;
+    height:150px; */
+    /* border-radius: 10px; */
+    /* padding: 10px; */
+    /* border:2px solid rgba(128, 128, 128, 0.701); */
+
+}
