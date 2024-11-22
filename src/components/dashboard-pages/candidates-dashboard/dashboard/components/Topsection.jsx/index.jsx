@@ -7,7 +7,7 @@ import image from './homeimage1.jpg'
 
 const TopSection = () => {   
   return (
-    <div className=" min-w-screen bg-white rounded-lg mb-10 text-black" id='bghome'>   
+    <div className=" min-w-screen  rounded-lg mb-10 text-black" id='bghome'>   
       <main className="p-2 md:px-10">
         <section>
         {/* <SlidingText/>   */}
@@ -26,7 +26,7 @@ const TopSection = () => {
             </div>
             <div className=" p-5 rounded">
             <div className=' text-center text-xl font-semibold'>Certification</div>
-              <img src={image} alt="Resume 3" className=' h-[370px]' />
+              <img src={image} alt="Resume 3" className=' h-[380px]' />
             </div>
           </div>
         </section>
