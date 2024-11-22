@@ -162,12 +162,12 @@ const FilterSidebar = () => {
           />
         </div>
 
-        <div className="checkbox-outer">
+        {/* <div className="checkbox-outer">
           <h4>Date Posted</h4>
           <DatePosted 
             onDateSelect={(dateRange) => updateSearchParams('datePosted', dateRange)}
           />
-        </div>
+        </div> */}
 
         <div className="checkbox-outer">
           <h4>Experience Level</h4>
@@ -183,12 +183,12 @@ const FilterSidebar = () => {
           />
         </div>
 
-        <div className="filter-block">
+        {/* <div className="filter-block">
           <h4>Tags</h4>
           <Tag 
             onTagSelect={(tags) => updateSearchParams('tags', tags.join(','))}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
