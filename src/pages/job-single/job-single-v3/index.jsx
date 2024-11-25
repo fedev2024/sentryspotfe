@@ -1,9 +1,12 @@
 
-// import jobs from "@/data/job-featured";
+// import React, { useEffect, useState } from "react";
+// import { useNavigate, useParams } from "react-router-dom";
+// import axios from "axios";
+
+// // Import components
 // import LoginPopup from "@/components/common/form/login/LoginPopup";
 // import FooterDefault from "@/components/footer/common-footer";
-// import DefaulHeader from "@/components/header/DefaulHeader";
-// import MobileMenu from "@/components/header/MobileMenu";
+// import DefaulHeader2 from "@/components/header/DefaulHeader2";
 // import CompnayInfo from "@/components/job-single-pages/shared-components/CompanyInfo";
 // import SocialTwo from "@/components/job-single-pages/social/SocialTwo";
 // import Contact from "@/components/job-single-pages/shared-components/Contact";
@@ -11,88 +14,97 @@
 // import RelatedJobs2 from "@/components/job-single-pages/related-jobs/RelatedJobs2";
 // import JobOverView2 from "@/components/job-single-pages/job-overview/JobOverView2";
 // import ApplyJobModalContent from "@/components/job-single-pages/shared-components/ApplyJobModalContent";
-// import {useParams } from "react-router-dom";
-
 // import MetaComponent from "@/components/common/MetaComponent";
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-// import { Constant } from "@/utils/constant/constant";
 
-// const metadata = {
-//   title: "Job Single Dyanmic V3 || sentryspot - Job Borad ReactJs Template",
-//   description: "sentryspot - Job Borad ReactJs Template",
-// };
+// // Utility imports
+// import { Constant } from "@/utils/constant/constant";
 
 // const JobSingleDynamicV3 = () => {
 //   const [jobData, setJobData] = useState(null);
-//   const [companyId,setCompanyId] =useState(null);
-//   const [company,setCompany] = useState(null)
-//   let params = useParams();
-//   const id = params.id;
-//   const token = localStorage.getItem(Constant.USER_TOKEN)
+//   const [company, setCompany] = useState(null);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+  
+//   const { id } = useParams();
+//   const navigate = useNavigate();
+//   const token = localStorage.getItem(Constant.USER_TOKEN);
 
-//   useEffect(()=>{
-//     fetchJobData()
-//    {companyId?fetchCompanyData():""}
-//   },[id])
-
-//   const fetchJobData = async () => {
-//     try {
-//       if (!token) {
-//         throw new Error("No authentication token found");
-//       }
-
-//       const headers = { Authorization: token };
-
-//       // Fetch Job Details
-//       const jobResponse = await axios.get(
-//         `https://api.sentryspot.co.uk/api/jobseeker/job-list/${id}`,
-//         { headers }
-//       );
-//       const jobData = jobResponse.data.data;
-//       setJobData(jobData);
-//       setCompanyId(jobData.company_id)
-//       console.log(jobData,companyId);
-
-//       // If company_id exists, fetch company details
-     
-//     } catch (err) {
-//       console.error("Error fetching job details:", err);
-//       setLoading(false);
+//   const handleApplyClick = (e) => {
+//     e.preventDefault();
+//     if (!token) {
+//       navigate("/login");
+//       return;
 //     }
+//     // If token exists, show the modal
+//     const modal = document.querySelector("#applyJobModal");
+//     const bootstrapModal = new bootstrap.Modal(modal);
+//     bootstrapModal.show();
 //   };
 
-//   const fetchCompanyData = async () =>{
-//     try {
-//       // Fetch Company Details
-//       const companyResponse = await axios.get(
-//         `https://api.sentryspot.co.uk/api/jobseeker/companies/${companyId}`,
-//       );
-//       setCompany(companyResponse.data.data);
-//       setLoading(false);
-//     } catch (err) {
-//       console.error("Error fetching company details:", err);
-//       setLoading(false);
+//   const handleBookmarkClick = (e) => {
+//     e.preventDefault();
+//     if (!token) {
+//       navigate("/login");
+//       return;
 //     }
+//     // Add your bookmark logic here
+//     // You might want to call an API to save the bookmark
+//   };
 
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const headers = token ? { Authorization: token } : {};
+
+//         // Fetch Job Details
+//         const jobResponse = await axios.get(
+//           `https://api.sentryspot.co.uk/api/jobseeker/job-list/${id}`,
+//           { headers }
+//         );
+
+//         const fetchedJobData = jobResponse.data.data;
+//         setJobData(fetchedJobData);
+
+//         // Fetch Company Details if company_id exists
+//         if (fetchedJobData.company_id) {
+//           const companyResponse = await axios.get(
+//             `https://api.sentryspot.co.uk/api/jobseeker/companies/${fetchedJobData.company_id}`
+//           );
+//           setCompany(companyResponse.data.data);
+//         }
+
+//         setLoading(false);
+//       } catch (err) {
+//         console.error("Error fetching data:", err);
+//         setError(err.message);
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchData();
+//   }, [id, token]);
+
+//   const metadata = {
+//     title: "Job Single Dynamic V3 || sentryspot - Job Board ReactJs Template",
+//     description: "Job details page with comprehensive job and company information",
+//   };
+
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
+
+//   if (error) {
+//     return <div>Error: {error}</div>;
 //   }
 
 //   return (
 //     <>
-//     <MetaComponent meta={metadata} />
-//       {/* <!-- Header Span --> */}
+//       <MetaComponent meta={metadata} />
 //       <span className="header-span"></span>
 
 //       <LoginPopup />
-//       {/* End Login Popup Modal */}
+//       <DefaulHeader2 />
 
-//       <DefaulHeader />
-//       {/* <!--End Main Header --> */}
-
-//       {/* End Header */}
-//       {/* End MobileMenu */}
-
-//       {/* <!-- Job Detail Section --> */}
 //       <section className="job-detail-section">
 //         <div className="job-detail-outer">
 //           <div className="auto-container">
@@ -102,56 +114,49 @@
 //                   <div className="job-block-seven style-two">
 //                     <div className="inner-box">
 //                       <div className="content">
-//                         <h4>{jobData?.job_title}</h4>
+//                         <h4>{jobData?.job_title || "Job Title Not Available"}</h4>
 
 //                         <ul className="job-info">
 //                           <li>
 //                             <span className="icon flaticon-briefcase"></span>
-//                             {company?.company_name}
+//                             {company?.company_name || "Company Name Not Available"}
 //                           </li>
-//                           {/* compnay info */}
 //                           <li>
 //                             <span className="icon flaticon-map-locator"></span>
-//                             {jobData?.city},{jobData?.country}
+//                             {jobData?.city && jobData?.country 
+//                               ? `${jobData.city}, ${jobData.country}` 
+//                               : "Location Not Specified"}
 //                           </li>
-//                           {/* location info */}
 //                           <li>
-//                             <span className="icon flaticon-clock-3"></span>{" "}
-//                             {jobData?.created_at}
+//                             <span className="icon flaticon-clock-3"></span>
+//                             {jobData?.created_at || "Date Not Available"}
 //                           </li>
-//                           {/* time info */}
 //                           <li>
-//                             <span className="icon flaticon-money"></span>{" "}
-//                             {jobData?.offered_salary || "Salary not defined"}
+//                             <span className="icon flaticon-money"></span>
+//                             {jobData?.offered_salary || "Salary Not Defined"}
 //                           </li>
-//                           {/* salary info */}
 //                         </ul>
-//                         {/* End .job-info */}
 
-//                         <ul className="job-other-info">
-//                           {jobData?.jobType?.map((val, i) => (
-//                             <li key={i} className={`${val.styleClass}`}>
-//                               {val.type}
-//                             </li>
-//                           ))}
-//                         </ul>
-//                         {/* End .job-other-info */}
+//                         {jobData?.jobType && (
+//                           <ul className="job-other-info">
+//                             {jobData.jobType.map((val, i) => (
+//                               <li key={i} className={val.styleClass}>
+//                                 {val.type}
+//                               </li>
+//                             ))}
+//                           </ul>
+//                         )}
 //                       </div>
-//                       {/* End .content */}
 //                     </div>
 //                   </div>
-//                   {/* <!-- Job Block --> */}
 //                 </div>
-//                 {/* <!-- job block outer --> */}
 
 //                 <div className="job-overview-two">
 //                   <h4>Job Description</h4>
 //                   <JobOverView2 />
 //                 </div>
-//                 {/* <!-- job-overview-two --> */}
 
 //                 <JobDetailsDescriptions />
-//                 {/* End job-details */}
 
 //                 <div className="other-options">
 //                   <div className="social-share">
@@ -159,9 +164,7 @@
 //                     <SocialTwo />
 //                   </div>
 //                 </div>
-//                 {/* <!-- Other Options --> */}
 //               </div>
-//               {/* End .content-column */}
 
 //               <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
 //                 <aside className="sidebar">
@@ -169,78 +172,65 @@
 //                     <a
 //                       href="#"
 //                       className="theme-btn btn-style-one"
-//                       data-bs-toggle="modal"
-//                       data-bs-target="#applyJobModal"
+//                       onClick={handleApplyClick}
 //                     >
 //                       Apply For Job
 //                     </a>
-//                     <button className="bookmark-btn">
+//                     <button className="bookmark-btn" onClick={handleBookmarkClick}>
 //                       <i className="flaticon-bookmark"></i>
 //                     </button>
 //                   </div>
-//                   {/* End apply for job btn */}
 
-//                   {/* <!-- Modal --> */}
+//                   {/* Apply Job Modal */}
 //                   <div
 //                     className="modal fade"
 //                     id="applyJobModal"
 //                     tabIndex="-1"
 //                     aria-hidden="true"
 //                   >
-//                     <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-//                       <div className="apply-modal-content modal-content">
-//                         <div className="text-center">
-//                           <h3 className="title">Apply for this job</h3>
-//                           <button
-//                             type="button"
-//                             className="closed-modal"
-//                             data-bs-dismiss="modal"
-//                             aria-label="Close"
-//                           ></button>
+//                     {token && (
+//                       <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+//                         <div className="apply-modal-content modal-content">
+//                           <div className="text-center">
+//                             <h3 className="title">Apply for this job</h3>
+//                             <button
+//                               type="button"
+//                               className="closed-modal"
+//                               data-bs-dismiss="modal"
+//                               aria-label="Close"
+//                             ></button>
+//                           </div>
+//                           <ApplyJobModalContent job={jobData} />
 //                         </div>
-//                         {/* End modal-header */}
-
-//                         <ApplyJobModalContent />
-//                         {/* End PrivateMessageBox */}
 //                       </div>
-//                       {/* End .send-private-message-wrapper */}
-//                     </div>
+//                     )}
 //                   </div>
-//                   {/* End .modal */}
 
 //                   <div className="sidebar-widget company-widget">
 //                     <div className="widget-content">
 //                       <div className="company-title">
 //                         <div className="company-logo">
-//                           {/* <img
-                           
-//                             src={jobData.logo}
-//                             alt="resource"
-//                           /> */}
+//                           {/* Company logo placeholder */}
 //                         </div>
-//                         {/* <h5 className="company-name">{jobData.company}</h5> */}
 //                         <a href="#" className="profile-link">
 //                           View company profile
 //                         </a>
 //                       </div>
-//                       {/* End company title */}
 
-//                       <CompnayInfo company={company} />
+//                       <CompnayInfo />
 
 //                       <div className="btn-box">
 //                         <a
-//                           href="#"
+//                           href={jobData?.link || "#"}
 //                           target="_blank"
 //                           rel="noopener noreferrer"
 //                           className="theme-btn btn-style-three"
 //                         >
-//                           {jobData?.link}
+//                           Company Website
 //                         </a>
 //                       </div>
-//                       {/* End btn-box */}
 //                     </div>
 //                   </div>
-//                   {/* End .company-widget */}
 
 //                   <div className="sidebar-widget contact-widget">
 //                     <h4 className="widget-title">Contact Us</h4>
@@ -248,53 +238,40 @@
 //                       <div className="default-form">
 //                         <Contact />
 //                       </div>
-//                       {/* End .default-form */}
 //                     </div>
 //                   </div>
-//                   {/* End contact-widget */}
 //                 </aside>
-//                 {/* End .sidebar */}
 //               </div>
-//               {/* End .sidebar-column */}
 //             </div>
-//             {/* End .row  */}
 
 //             <div className="related-jobs">
 //               <div className="title-box">
 //                 <h3>Related Jobs</h3>
 //                 <div className="text">2020 jobs live - 293 added today.</div>
 //               </div>
-//               {/* End title box */}
 
 //               <div className="row">
 //                 <RelatedJobs2 />
 //               </div>
-//               {/* End .row */}
 //             </div>
-//             {/* <!-- Related Jobs --> */}
 //           </div>
-//           {/* End auto-container */}
 //         </div>
-//         {/* <!-- job-detail-outer--> */}
 //       </section>
-//       {/* <!-- End Job Detail Section --> */}
 
 //       <FooterDefault footerStyle="alternate5" />
-//       {/* <!-- End Main Footer --> */}
 //     </>
 //   );
 // };
 
-// export default JobSingleDynamicV3
-
+// export default JobSingleDynamicV3;
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 // Import components
 import LoginPopup from "@/components/common/form/login/LoginPopup";
 import FooterDefault from "@/components/footer/common-footer";
-import DefaulHeader from "@/components/header/DefaulHeader";
+import DefaulHeader2 from "@/components/header/DefaulHeader2";
 import CompnayInfo from "@/components/job-single-pages/shared-components/CompanyInfo";
 import SocialTwo from "@/components/job-single-pages/social/SocialTwo";
 import Contact from "@/components/job-single-pages/shared-components/Contact";
@@ -307,23 +284,72 @@ import MetaComponent from "@/components/common/MetaComponent";
 // Utility imports
 import { Constant } from "@/utils/constant/constant";
 
+const LoginModal = ({ onClose }) => {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <h3 className="text-xl font-semibold mb-4">Please Login</h3>
+        <p className="mb-6">You need to be logged in to perform this action.</p>
+        <div className="flex justify-end space-x-4">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-gray-600 hover:text-gray-800"
+          >
+            Cancel
+          </button>
+          <Link
+            to="/"
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Login
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const JobSingleDynamicV3 = () => {
   const [jobData, setJobData] = useState(null);
   const [company, setCompany] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  
   const { id } = useParams();
+  const navigate = useNavigate();
   const token = localStorage.getItem(Constant.USER_TOKEN);
+
+  const handleApplyClick = (e) => {
+    e.preventDefault();
+    if (!token) {
+      setShowLoginModal(true);
+      return;
+    }
+    // If token exists, show the modal
+    const modal = document.querySelector("#applyJobModal");
+    const bootstrapModal = new bootstrap.Modal(modal);
+    bootstrapModal.show();
+  };
+
+  const handleBookmarkClick = (e) => {
+    e.preventDefault();
+    if (!token) {
+      setShowLoginModal(true);
+      return;
+    }
+    // Add your bookmark logic here
+    // You might want to call an API to save the bookmark
+  };
+
+  const handleCloseLoginModal = () => {
+    setShowLoginModal(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (!token) {
-          throw new Error("No authentication token found");
-        }
-
-        const headers = { Authorization: token };
+        const headers = token ? { Authorization: token } : {};
 
         // Fetch Job Details
         const jobResponse = await axios.get(
@@ -372,7 +398,7 @@ const JobSingleDynamicV3 = () => {
       <span className="header-span"></span>
 
       <LoginPopup />
-      <DefaulHeader />
+      <DefaulHeader2 />
 
       <section className="job-detail-section">
         <div className="job-detail-outer">
@@ -441,12 +467,11 @@ const JobSingleDynamicV3 = () => {
                     <a
                       href="#"
                       className="theme-btn btn-style-one"
-                      data-bs-toggle="modal"
-                      data-bs-target="#applyJobModal"
+                      onClick={handleApplyClick}
                     >
                       Apply For Job
                     </a>
-                    <button className="bookmark-btn">
+                    <button className="bookmark-btn" onClick={handleBookmarkClick}>
                       <i className="flaticon-bookmark"></i>
                     </button>
                   </div>
@@ -458,20 +483,22 @@ const JobSingleDynamicV3 = () => {
                     tabIndex="-1"
                     aria-hidden="true"
                   >
-                    <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                      <div className="apply-modal-content modal-content">
-                        <div className="text-center">
-                          <h3 className="title">Apply for this job</h3>
-                          <button
-                            type="button"
-                            className="closed-modal"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
+                    {token && (
+                      <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div className="apply-modal-content modal-content">
+                          <div className="text-center">
+                            <h3 className="title">Apply for this job</h3>
+                            <button
+                              type="button"
+                              className="closed-modal"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <ApplyJobModalContent job={jobData} />
                         </div>
-                        <ApplyJobModalContent />
                       </div>
-                    </div>
+                    )}
                   </div>
 
                   <div className="sidebar-widget company-widget">
@@ -525,6 +552,8 @@ const JobSingleDynamicV3 = () => {
           </div>
         </div>
       </section>
+
+      {showLoginModal && <LoginModal onClose={handleCloseLoginModal} />}
 
       <FooterDefault footerStyle="alternate5" />
     </>

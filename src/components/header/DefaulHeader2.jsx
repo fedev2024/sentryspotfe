@@ -6,10 +6,12 @@ import HeaderNavContent from "./HeaderNavContent";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/slices/auth";
+import { Constant } from "@/utils/constant/constant";
 
 const DefaulHeader2 = () => {
   const dispatch = useDispatch();
-  const { userToken } = useSelector((state) => state.auth);
+  // const { userToken } = useSelector((state) => state.auth);
+  const userToken = localStorage.getItem(Constant.USER_TOKEN)
   const [navbar, setNavbar] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,31 +45,26 @@ const DefaulHeader2 = () => {
         <div className="TopHeader">
           <div className="container">
             <div className="TopMenu">
-              <div className="TopSocial hidden lg:flex justify-center">
-                <i className="fa-brands fa-facebook mx-2"></i>
-                <i className="fa-brands fa-linkedin-in mx-2"></i>
-                <i className="fa-brands fa-instagram mx-2"></i>
-              </div>
-              <div className="TopMenu">
-                <ul className="flex">
-                  <li>
-                    <a href="/job-list-v7">
-                      <i className="fa-solid fa-compass"></i> Jobs
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <i className="fa-solid fa-medal"></i> Careers & Training
-                    </a>
-                  </li>
-                  <li className="border-l-2"></li>
-                  <li>
-                    <a href="https://employer.sentryspot.co.uk/">
-                      <i className="fa-solid fa-user"></i> Post Job
-                    </a>
-                  </li>
-                </ul>
-              </div>
+
+              <ul className="flex">
+                <li>
+                  <a href="/job-list-v3">
+                    <i className="fa-solid fa-compass"></i> Jobs
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <i className="fa-solid fa-medal"></i> Careers & Training
+                  </a>
+                </li>
+                <li className="border-l-2"></li>
+                <li>
+                  <a href="https://employer.sentryspot.co.uk/">
+                    <i className="fa-solid fa-user"></i> Post Job
+                  </a>
+                </li>
+              </ul>
+
             </div>
           </div>
         </div>
@@ -127,92 +124,30 @@ const DefaulHeader2 = () => {
           <div className="side-menu flex items-center">
             <div className="btn-box flex items-center">
               {userToken ? (
-                <>
-                  <span className="icon la la-bell text-3xl  text-blue-900"></span>
 
-                  <i class="las la-comment text-3xl mx-4 text-blue-900"></i>
+             <>
+              
+              
+                <span className="icon la la-bell text-3xl  text-blue-900"></span>
+            
+             
+                <i class="las la-comment text-3xl mx-4 text-blue-900"></i>
+             
+            <Link to={'/candidates-dashboard/dashboard'}>
+            <i class="las la-user text-3xl text-blue-900"></i>
+              
+            </Link>            
+                <Button
+                  className="bg-gray-500 p-3 duration-500 hover:bg-[#E60278] ml-4 "
+                  title="logout"
+                  onClick={() => {
+                    dispatch(logout());
+                  }}
+                >
+                  <IoLogOutOutline size={24} />
+                </Button>
+             </>
 
-                  {/* <i class="las la-user text-3xl text-blue-900"></i>
-                   */}
-                  <div id="user-dropdown" className=" ">
-                    <i
-                      className="las la-user text-3xl text-blue-900 me-3 flex items-center focus:outline-none cursor-pointer"
-                      onClick={() => setIsOpen(!isOpen)}
-                    ></i>
-
-                    {isOpen && (
-                      <div className=" profile-dropdown absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
-                        <ul className="py-2 text-sm text-gray-700 ">
-                          <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 hover:bg-gray-100  "
-                            >
-                              Profile
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 hover:bg-gray-100  "
-                            >
-                              Saved Searches
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 hover:bg-gray-100  "
-                            >
-                              Saved Jobs
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 hover:bg-gray-100  "
-                            >
-                              Applied Jobs
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 hover:bg-gray-100  "
-                            >
-                              Recommended Jobs
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 hover:bg-gray-100  "
-                            >
-                              Settings
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2  hover:bg-gray-100  "
-                            >
-                              Sign Out
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                  <Button
-                    className="bg-gray-500 p-3 duration-500 hover:bg-[#E60278] ml-4 "
-                    title="logout"
-                    onClick={() => {
-                      dispatch(logout());
-                    }}
-                  >
-                    <IoLogOutOutline size={24} />
-                  </Button>
-                </>
               ) : (
                 <a
                   href="#"

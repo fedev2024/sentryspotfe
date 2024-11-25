@@ -160,14 +160,14 @@ const candidateMenus = [
     id: 9,
     name: "AI Skill Test",
     icon: "la-box",
-    routePath: "/candidates-dashboard/skilltest",
+    routePath: "/candidates-dashboard/skilllistpage",
     active: "",
   },
   {
     id: 4,
     name: "Skill Test History",
     icon: "la-file-invoice",
-    routePath: "/candidates-dashboard/skilllistpage",
+    routePath: "/candidates-dashboard/skill-test-history",
     active: "",
   },
   {

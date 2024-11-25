@@ -42,8 +42,7 @@ const Index = () => {
             <TopCardBlock />
           </div>
           {/* End .row top card block */}
-           <TopSection />
-          <div className="row ">
+          <div className="row">
             {/* <div className="col-xl-7 col-lg-12">
               {/* <!-- Graph widget --> 
               <div className="graph-widget ls-widget">

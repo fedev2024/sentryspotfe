@@ -133,11 +133,13 @@
 
   .dashboard {
     .dashboard-outer {
-      padding: 40px 30px 0;
+      padding: 40px 30px ;
+      // border:2px solid red;
     }
 
     .upper-title-box {
       margin-bottom: 40px;
+      margin-top: 40px;
     }
 
     .candidate-block-three {

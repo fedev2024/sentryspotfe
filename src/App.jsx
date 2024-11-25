@@ -110,11 +110,12 @@ import SentryPage from "@/pages/sentry-spot-id/index";
 import { Toaster } from "react-hot-toast";
 import Communitypage from "./pages/community";
 import Skilllistpage from "./pages/candidates-dashboard/skilllist";
-import Testpaper from "./components/dashboard-pages/candidates-dashboard/packages/components/Testpaper";
 import Skilltestpage from "./components/job-listing-pages/job-list-v1/Skilltestpage";
 import Buildresume from "./components/job-listing-pages/job-list-v1/Buildresume";
 import Talkto from "./components/job-listing-pages/job-list-v1/Talkto";
 import Earnjob from "./components/job-listing-pages/job-list-v1/Earnjob";
+import TestPaper from "./components/dashboard-pages/candidates-dashboard/packages/components/Testpaper";
+import SkillHistoryPage from "./components/dashboard-pages/candidates-dashboard/skill-test-history";
 
 function App() {
   useEffect(() => {
@@ -283,6 +284,7 @@ function App() {
                   <Route path="dashboard" element={<DashboardPage />} />
                   <Route path="applied-jobs" element={<AppliedJobsPage />} />
                   <Route path="skilllistpage" element={<Skilllistpage />} />
+                  <Route path="skill-test-history" element={<SkillHistoryPage />} />
                   <Route
                     path="change-password"
                     element={<ChangePasswordPage />}
@@ -293,7 +295,7 @@ function App() {
                   <Route path="my-profile" element={<MyProfilePage />} />
                   <Route path="my-resume" element={<MyResumePage />} />
                   <Route path="packages" element={<PackagePage />} />
-                  <Route path="testpaper/:skillId/:skillName" element={<Testpaper />} />
+                  <Route path="testpaper/:skillId/:skillName" element={<TestPaper />} />
                   <Route
                     path="short-listed-jobs"
                     element={<ShortListedJobsPage />}
@@ -331,7 +333,7 @@ function App() {
             pauseOnHover
             theme="colored"
           /> */}
-          <Toaster />
+          {/* <Toaster /> */}
           {/* <!-- Scroll To Top --> */}
           <ScrollToTop />
         </div>

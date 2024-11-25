@@ -13,7 +13,7 @@ const FilterSidebar = () => {
             <div className="filters-outer text-center">
                 
                <div className="flex-row flex justify-center">
-               <img src="https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/149197250/original/e91f8ca9de6e762865d3c20959e544f07bb760cc/create-a-simple-professional-profile-picture-for-you.png"
+               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLMI5YxZE03Vnj-s-sth2_JxlPd30Zy7yEGg&s"
                 className="rounded-full w-28 h-28"
                 alt="" />
                </div>
