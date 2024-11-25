@@ -13,7 +13,20 @@ const DefaulHeader2 = () => {
   // const { userToken } = useSelector((state) => state.auth);
   const userToken = localStorage.getItem(Constant.USER_TOKEN)
   const [navbar, setNavbar] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
+  // Close the dropdown if clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest("#user-dropdown")) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   const changeBackground = () => {
     if (window.scrollY >= 10) {
       setNavbar(true);
@@ -30,14 +43,9 @@ const DefaulHeader2 = () => {
     <>
       {!userToken && ( // Only show the top header if the user is not logged in
         <div className="TopHeader">
-        <div className="container">
-          <div className="TopMenu">
-            <div className="TopSocial hidden lg:flex justify-center">
-              <i className="fa-brands fa-facebook mx-2"></i>
-              <i className="fa-brands fa-linkedin-in mx-2"></i>
-              <i className="fa-brands fa-instagram mx-2"></i>
-            </div>
+          <div className="container">
             <div className="TopMenu">
+
               <ul className="flex">
                 <li>
                   <a href="/job-list-v3">
@@ -56,18 +64,27 @@ const DefaulHeader2 = () => {
                   </a>
                 </li>
               </ul>
+
             </div>
           </div>
         </div>
-      </div>
-      
       )}
-      <div className={`header ${navbar ? 'bg-white shadow-md' : 'bg-transparent'} transition-all duration-300`}>
+      <div
+        className={`header ${
+          navbar ? "bg-white shadow-md" : "bg-transparent"
+        } transition-all duration-300`}
+      >
         <div className="container flex justify-between items-center">
           {/* Sidebar for Mobile View */}
           <div className="md:hidden flex items-center">
             <Link to="/">
-              <img src={logo} alt="Logo" className="h-14 " />
+
+              <img
+                src="https://htmlsentryspot.vercel.app/img/company_logo.png"
+                alt="Logo"
+                className="h-14 "
+              />
+
             </Link>
           </div>
 
@@ -76,7 +93,13 @@ const DefaulHeader2 = () => {
             <div className="header-menu flex items-center">
               <div className="header-logo flex items-center">
                 <Link to="/">
-                  <img src={logo} alt="Logo" className="h-20 w-auto" />
+
+                  <img
+                    src="https://htmlsentryspot.vercel.app/img/company_logo.png"
+                    alt="Logo"
+                    className="h-14"
+                  />
+
                 </Link>
                 <div className="main-menu ms-4">
                   <ul className="flex space-x-4">
@@ -84,7 +107,9 @@ const DefaulHeader2 = () => {
                       <a href="/sentry-spot">AI Services</a>
                     </li>
                     <li>
-                      <a href="https://blog.sentryspot.co.uk/category/job-search-strategies/">Hiring Advice</a>
+                      <a href="https://blog.sentryspot.co.uk/category/job-search-strategies/">
+                        Hiring Advice
+                      </a>
                     </li>
                     <li>
                       <a href="/job-list-v7#tab2">Companies</a>
@@ -99,6 +124,7 @@ const DefaulHeader2 = () => {
           <div className="side-menu flex items-center">
             <div className="btn-box flex items-center">
               {userToken ? (
+
              <>
               
               
@@ -121,14 +147,23 @@ const DefaulHeader2 = () => {
                   <IoLogOutOutline size={24} />
                 </Button>
              </>
+
               ) : (
-                <a href="#" data-bs-toggle="modal" data-bs-target="#loginPopupModal" className="mr-2 my-4">
+                <a
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#loginPopupModal"
+                  className="mr-2 my-4"
+                >
                   Sign in
                 </a>
               )}
               {!userToken && (
                 <Link to={"/sentry-spot"}>
-                  <button type="button" className="register-btn hidden lg:flex ">
+                  <button
+                    type="button"
+                    className="register-btn hidden lg:flex "
+                  >
                     Create Your Sentry ID
                   </button>
                 </Link>
