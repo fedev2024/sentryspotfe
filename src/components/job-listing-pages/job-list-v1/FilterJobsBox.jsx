@@ -284,7 +284,7 @@ const FilterJobsBox = () => {
                   <p>Verified Job Listings</p>
                   <h2>Creating Impact Every Step of the Way</h2>
                   <div className="StatsBtn">
-                  <Link to={"/job-list-v7"}>
+                  <Link to={"/job-list-v3"}>
                     <button type="button">View All Jobs</button></Link>
                   </div>
                 </div>

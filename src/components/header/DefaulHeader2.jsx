@@ -6,10 +6,12 @@ import HeaderNavContent from "./HeaderNavContent";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/slices/auth";
+import { Constant } from "@/utils/constant/constant";
 
 const DefaulHeader2 = () => {
   const dispatch = useDispatch();
-  const { userToken } = useSelector((state) => state.auth);
+  // const { userToken } = useSelector((state) => state.auth);
+  const userToken = localStorage.getItem(Constant.USER_TOKEN)
   const [navbar, setNavbar] = useState(false);
 
   const changeBackground = () => {
@@ -38,7 +40,7 @@ const DefaulHeader2 = () => {
             <div className="TopMenu">
               <ul className="flex">
                 <li>
-                  <a href="/job-list-v7">
+                  <a href="/job-list-v3">
                     <i className="fa-solid fa-compass"></i> Jobs
                   </a>
                 </li>
@@ -105,9 +107,10 @@ const DefaulHeader2 = () => {
              
                 <i class="las la-comment text-3xl mx-4 text-blue-900"></i>
              
-            
-                <i class="las la-user text-3xl text-blue-900"></i>
-            
+            <Link to={'/candidates-dashboard/dashboard'}>
+            <i class="las la-user text-3xl text-blue-900"></i>
+              
+            </Link>            
                 <Button
                   className="bg-gray-500 p-3 duration-500 hover:bg-[#E60278] ml-4 "
                   title="logout"
