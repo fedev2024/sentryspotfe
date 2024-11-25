@@ -16,7 +16,7 @@ const Additionalinformation = () => {
     open_to_startups: null,
     willingness_to_travel: null,
     work_permit_usa: "",
-    languages: "",
+    // languages: "",
     languages: [],
   });
   const [loading, setLoading] = useState(false);

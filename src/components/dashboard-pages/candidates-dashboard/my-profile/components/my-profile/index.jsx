@@ -76,8 +76,75 @@ const Index = ({ onNext }) => {
       toast.error("Please enter a valid phone number.");
     }
   };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!selectedSector) {
+  //     toast.error("Please select a sector.");
+  //     return;
+  //   }
+  //   if (selectedRoles.length === 0) {
+  //     toast.error("Please select at least one role.");
+  //     return;
+  //   }
+
+  //   const payload = {
+  //     selectedSector,
+  //     selectedRoles,
+  //   };
+
+  //   console.log("Payload:", payload);
+  //   toast.success("Details saved successfully!");
+  //   const form = e.target;
+  //   console.log(">>>>>>", form);
+  //   const formData = {
+  //     keyword: personal_details,
+  //     photo: logImg,
+  //     first_name: form.first_name.value,
+  //     last_name: form.lastname.value,
+  //     // gender_id: form.gender.value,
+  //     // dob: form.birthdate.value,
+  //     email: form.email.value,
+
+  //     phone_number: phoneNumber, // Use the state value here
+
+  //     current_country_id: form.country.value,
+  //     current_state_id: form.state.value,
+  //     current_city_id: form.city.value,
+
+  //     preferred_country_id: form.preferredcountry.value,
+  //     preferred_state_id: form.preferredstate.value,
+  //     preferred_city_id: form.preferredcity.value,
+
+  //     // industry_id: form.industries.value,
+  //     functional_area_id: form.Functional.value,
+  //     // notice_period_id: form.notice_period.value,
+  //     experience_in_month: form.Experiencetype.value,
+  //     annual_salary_id: form.Salarytype.value,
+  //     expected_salary_id: form.expectedSalarytype.value,
+  //   };
+
+  //   try {
+  //     const response = await axios.put(
+  //       "https://api.sentryspot.co.uk/api/jobseeker/user-profile",
+  //       JSON.stringify(formData), // Send as a JSON string
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //           "Content-Type": "application/json", // Set content type to JSON
+  //         },
+  //       }
+  //     );
+  //     toast.success("Personal Details updated successfully!");
+  //     onNext();
+  //   } catch (error) {
+  //     toast.error("Failed to update profile.");
+  //     console.error("Error updating profile:", error);
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validation checks
     if (!selectedSector) {
       toast.error("Please select a sector.");
       return;
@@ -86,62 +153,21 @@ const Index = ({ onNext }) => {
       toast.error("Please select at least one role.");
       return;
     }
-
+  
+    // Creating the payload (optional, for debugging/logging purposes)
     const payload = {
       selectedSector,
       selectedRoles,
     };
-
     console.log("Payload:", payload);
+  
+    // Show success toast
     toast.success("Details saved successfully!");
-    const form = e.target;
-    console.log(">>>>>>", form);
-    const formData = {
-      keyword: personal_details,
-      photo: logImg,
-      first_name: form.first_name.value,
-      last_name: form.lastname.value,
-      // gender_id: form.gender.value,
-      // dob: form.birthdate.value,
-      email: form.email.value,
-
-      phone_number: phoneNumber, // Use the state value here
-
-      current_country_id: form.country.value,
-      current_state_id: form.state.value,
-      current_city_id: form.city.value,
-
-      preferred_country_id: form.preferredcountry.value,
-      preferred_state_id: form.preferredstate.value,
-      preferred_city_id: form.preferredcity.value,
-
-      // industry_id: form.industries.value,
-      functional_area_id: form.Functional.value,
-      // notice_period_id: form.notice_period.value,
-      experience_in_month: form.Experiencetype.value,
-      annual_salary_id: form.Salarytype.value,
-      expected_salary_id: form.expectedSalarytype.value,
-    };
-
-    try {
-      const response = await axios.put(
-        "https://api.sentryspot.co.uk/api/jobseeker/user-profile",
-        JSON.stringify(formData), // Send as a JSON string
-        {
-          headers: {
-            Authorization: token,
-            "Content-Type": "application/json", // Set content type to JSON
-          },
-        }
-      );
-      toast.success("Personal Details updated successfully!");
-      onNext();
-    } catch (error) {
-      toast.error("Failed to update profile.");
-      console.error("Error updating profile:", error);
-    }
+  
+    // Move to the next step
+    onNext();
   };
-
+  
   useEffect(() => {
     const fetchProfileData = async () => {
       try {

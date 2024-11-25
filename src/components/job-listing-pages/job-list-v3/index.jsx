@@ -2,10 +2,11 @@ import FooterDefault from "../../footer/common-footer";
 import LoginPopup from "../../common/form/login/LoginPopup";
 import DefaulHeader2 from "../../header/DefaulHeader2";
 import MobileMenu from "../../header/MobileMenu";
-import FilterJobsBox from "./FilterJobsBox";
 import FilterSidebar from "./FilterSidebar";
+import FilterJobsBox from "./FilterJobsBox";
 
 const index = () => {
+    
     return (
         <>
             {/* <!-- Header Span --> */}

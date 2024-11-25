@@ -81,11 +81,13 @@ const DefaulHeader2 = () => {
           {/* Sidebar for Mobile View */}
           <div className="md:hidden flex items-center">
             <Link to="/">
+
               <img
                 src="https://htmlsentryspot.vercel.app/img/company_logo.png"
                 alt="Logo"
                 className="h-14 "
               />
+
             </Link>
           </div>
 
@@ -94,11 +96,13 @@ const DefaulHeader2 = () => {
             <div className="header-menu flex items-center">
               <div className="header-logo flex items-center">
                 <Link to="/">
+
                   <img
                     src="https://htmlsentryspot.vercel.app/img/company_logo.png"
                     alt="Logo"
                     className="h-14"
                   />
+
                 </Link>
                 <div className="main-menu ms-4">
                   <ul className="flex space-x-4">
