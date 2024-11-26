@@ -1061,8 +1061,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
-import { FaRegCopy, FaEdit, FaTimes } from "react-icons/fa";
+import { FaRegCopy, FaEdit, FaTimes, FaEllipsisV, FaTrash } from "react-icons/fa";
 import { Constant } from "@/utils/constant/constant";
+import LikeButton from "./LikeButton";
 
 const FeedSection = ({ 
   loginModal, 
@@ -1082,13 +1083,16 @@ const FeedSection = ({
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [editedCommentContent, setEditedCommentContent] = useState("");
   const [editingCommentPostId, setEditingCommentPostId] = useState(null);
-
+  const [openDropdownId, setOpenDropdownId] = useState(null);
   // ... [keep all previous methods like handleImageUpload, toggleLike, addPost, etc.]
 
   const editComment = (commentId, content, postId) => {
     setEditingCommentId(commentId);
     setEditedCommentContent(content);
     setEditingCommentPostId(postId);
+  };
+  const toggleDropdown = (postId) => {
+    setOpenDropdownId((prevId) => (prevId === postId ? null : postId));
   };
 
   const saveEditedComment = async () => {
@@ -1236,27 +1240,25 @@ const FeedSection = ({
       }
     }
   };
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get(
-          "https://api.sentryspot.co.uk/api/feed/pro/feeds",{
-            headers:{
-                Authorization:token
-            }
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.sentryspot.co.uk/api/feed/pro/feeds",{
+          headers:{
+              Authorization:token
           }
-        );
-        if (response.data && Array.isArray(response.data.data.feed_data)) {
-          setPosts(response.data.data.feed_data);
-        } else {
-          console.error("Unexpected API response:", response.data);
         }
-      } catch (error) {
-        console.error("Error fetching posts:", error);
+      );
+      if (response.data && Array.isArray(response.data.data.feed_data)) {
+        setPosts(response.data.data.feed_data);
+      } else {
+        console.error("Unexpected API response:", response.data);
       }
-    };
-
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
+  useEffect(() => {
     fetchPosts();
   }, [posts.length]);
 
@@ -1328,7 +1330,50 @@ const FeedSection = ({
     setEditingPostId(postId);
     setEditedContent(currentContent);
   };
-
+  const deletePost = async (feed_id, comment_id) => {
+    try {
+      let endpoint;
+  
+      // Set the endpoint based on whether a comment is being deleted
+      if (comment_id) {
+        endpoint = `https://api.sentryspot.co.uk/api/feed/feed/comment/${feed_id}/${comment_id}`;
+      } else {
+        endpoint = `https://api.sentryspot.co.uk/api/feed/feed/${feed_id}`;
+      }
+  
+      // Send the DELETE request
+      const response = await axios.delete(endpoint, {
+        headers: {
+          Authorization: `${token}`, // Ensure token is defined
+        },
+      });
+  
+      // Check for a successful response (HTTP status 200)
+      if (response.status === "status" || response.code == 200) {
+        fetchPosts(); // Refresh the posts
+  
+        // Update feeds based on whether it's a feed or comment
+        setFeeds((prevFeeds) => {
+          if (!comment_id) {
+            return prevFeeds.filter((feed) => feed._id !== feed_id); // Remove feed
+          } else {
+            return prevFeeds.map((feed) =>
+              feed._id === feed_id
+                ? {
+                    ...feed,
+                    comments: feed.comments.filter((comment) => comment._id !== comment_id), // Remove comment
+                  }
+                : feed
+            );
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Error deleting:', error);
+      alert('There was an error deleting the post or comment.');
+    }
+  };
+  
   const saveEditedPost = async (postId) => {
     if (!token) {
       setLoginModal(true);
@@ -1463,9 +1508,9 @@ const FeedSection = ({
               className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow "
             >
               {/* Post Header */}
-              <div className="flex items-center mb-4">
-                {console.log(`https://api.sentryspot.co.uk${post.user_photo}`,"user photo")}
-                <img
+              <div className="flex items-center justify-between mb-4">
+              <div className="flex">
+              <img
                   src={
                     post.user_photo
                       ? `https://api.sentryspot.co.uk/${post.user_photo}`
@@ -1475,23 +1520,54 @@ const FeedSection = ({
                   className="w-10 h-10 rounded-full mr-3 object-cover "
                 />
                 <div>
-                  <h4 className="font-semibold text-gray-800">
+                 <div className="flex flex-col ">
+                 <p className="font-semibold text-gray-800">
                     { post.user_first_name}{" "}{post.user_last_name}
-                  </h4>
+                  </p>
                   <p className="text-xs text-gray-500">
                     {new Date(post.created_at).toLocaleDateString()}
                   </p>
+                 </div>
                 </div>
+              </div>
                 
                 {/* Edit Button */}
-                {post.is_edit && editingPostId !== post.id && (
-                  <button
-                    onClick={() => editPost(post.id, post.content)}
-                    className="ml-auto text-blue-600 hover:text-blue-800 transition-colors flex items-center"
-                  >
-                    <FaEdit className="mr-2" /> Edit
-                  </button>
-                )}
+               
+                 <div className="relative">
+      {/* Three Dots Icon */}
+      <button
+        onClick={() => toggleDropdown(post.id)}
+        className="p-2 text-gray-600 hover:text-gray-800 transition-colors"
+      >
+        <FaEllipsisV />
+      </button>
+
+      {/* Dropdown Menu */}
+      {openDropdownId === post.id && (
+        <div className="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
+           {post.is_edit && editingPostId !== post.id && (
+            <button
+              onClick={() => {
+                editPost(post.id, post.content);
+                setOpenDropdownId(null); // Close dropdown
+              }}
+              className="flex items-center px-4 py-2 w-full text-left text-blue-600 hover:bg-blue-100"
+            >
+              <FaEdit className="mr-2" /> Edit
+            </button>
+          )}
+          <button
+            onClick={() => {
+              deletePost(post.id);
+              setOpenDropdownId(null); // Close dropdown
+            }}
+            className="flex items-center px-4 py-2 w-full text-left text-red-600 hover:bg-red-100"
+          >
+            <FaTrash className="mr-2" /> Delete
+          </button>
+        </div>
+      )}
+    </div>
               </div>
 
               {/* Post Content */}
@@ -1531,8 +1607,8 @@ const FeedSection = ({
               )}
 
               {/* Post Actions */}
-              <div className="flex items-center space-x-4 border-t pt-4">
-                <button
+              <div className="flex items-center justify-between p-2">
+                {/* <button
                   className={`flex items-center ${
                     post.liked 
                       ? "text-pink-600 hover:text-pink-700" 
@@ -1542,7 +1618,8 @@ const FeedSection = ({
                 >
                   <i className="fas fa-heart mr-2"></i>
                   <span>{post.likes} Likes</span>
-                </button>
+                </button> */}
+                <LikeButton post={post}/>
 
                 <button
                   className="text-gray-500 hover:text-blue-600 flex items-center"
@@ -1683,14 +1760,49 @@ const FeedSection = ({
                       <p className="text-gray-700 text-sm">{comment.content}</p>
                      </div>
                       {/* Edit Button for Comments */}
-                      {comment.is_edit && (
+                      {/* {comment.is_edit && (
                         <button
                           onClick={() => editComment(comment.id, comment.content, post.id)}
                           className="text-blue-600 hover:text-blue-800 text-sm mt-1 flex items-center"
                         >
                           <FaEdit className="mr-2" />
                         </button>
-                      )}
+                      )} */}
+                     <div className="relative">
+      {/* Three Dots Icon */}
+      <button
+        onClick={() => toggleDropdown(comment.id)}
+        className="p-2 text-gray-600 hover:text-gray-800 transition-colors"
+      >
+        <FaEllipsisV />
+      </button>
+
+      {/* Dropdown Menu */}
+      {openDropdownId === comment.id && (
+        <div className="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
+          {comment.is_edit && editingCommentId !== comment.id && (
+            <button
+              onClick={() => {
+                editComment(comment.id, comment.content, post.id);
+                setOpenDropdownId(null); // Close dropdown
+              }}
+              className="flex items-center px-4 py-2 w-full text-left text-blue-600 hover:bg-blue-100"
+            >
+              <FaEdit className="mr-2" /> Edit
+            </button>
+          )}
+          <button
+            onClick={() => {
+              deletePost(post.id,comment.id);
+              setOpenDropdownId(null); // Close dropdown
+            }}
+            className="flex items-center px-4 py-2 w-full text-left text-red-600 hover:bg-red-100"
+          >
+            <FaTrash className="mr-2" /> Delete
+          </button>
+        </div>
+      )}
+    </div>
                     </div>
                   )}
                 </div>
