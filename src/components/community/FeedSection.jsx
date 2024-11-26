@@ -1524,7 +1524,7 @@ const FeedSection = ({
               {/* Post Image */}
               {post.feed_image && (
                 <img
-                  src={post.feed_image}
+                  src={`https://api.sentryspot.co.uk${post.feed_image}`}
                   alt="Post"
                   className="w-full rounded-md mb-4 object-cover max-h-96 "
                 />
