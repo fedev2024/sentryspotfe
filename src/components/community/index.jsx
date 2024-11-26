@@ -526,6 +526,7 @@ import { AiFillLinkedin } from "react-icons/ai";
 import { FaRegCopy } from "react-icons/fa";
 import { Constant } from "@/utils/constant/constant";
 import { Link } from "react-router-dom";
+import FeedSection from "./FeedSection";
 const Index = () => {
   const [posts, setPosts] = useState([]);
   const [content, setContent] = useState("");
@@ -750,7 +751,7 @@ const Index = () => {
               <FilterSidebar />
             </div>
 
-            <div className="max-w-xl mp-4">
+            {/* <div className="max-w-xl mp-4">
               <div className="mb-4 bg-white p-3 border-t-8 rounded-t-md border-blue-900">
                 <textarea
                   className="w-full p-3 font-medium text-xl bg-gray-100 text-black h-28 border-0"
@@ -884,7 +885,7 @@ const Index = () => {
                           </p>
                         </h4>
                       </div>
-{/* 
+                      
                       {editingPostId === post.id ? (
                         <div>
                           <textarea
@@ -910,54 +911,24 @@ const Index = () => {
                           <p className="text-gray-700 break-all my-2 p-2 py-4">
                             {post.content}
                           </p>
-                          <button
-                            onClick={() => editPost(post.id, post.content)}
-                            className="mr-4 text-gray-500 hover:text-blue-500 text-base"
-                          >
-                            Edit
-                          </button>
+                          {post.is_edit && (
+                            <button
+                              onClick={() => editPost(post.id, post.content)}
+                              className="mr-4 text-gray-500 hover:text-blue-500 text-base"
+                            >
+                              Edit
+                            </button>
+                          )}
                         </div>
-                      )} */}
-                      {editingPostId === post.id ? (
-  <div>
-    <textarea
-      className="w-full p-3 border-1 text-lg bg-slate-200 border-gray-400 rounded h-32"
-      value={editedContent}
-      onChange={(e) => setEditedContent(e.target.value)}
-    />
-    <button
-      onClick={() => saveEditedPost(post.id)}
-      className="my-2 bg-blue-900 text-lg text-white px-4 py-1 rounded hover:bg-blue-700"
-    >
-      Save
-    </button>
-    <button
-      onClick={() => setEditingPostId(null)}
-      className="my-2 bg-gray-300 text-lg text-black px-4 py-1 rounded hover:bg-gray-400"
-    >
-      Cancel
-    </button>
-  </div>
-) : (
-  <div>
-    <p className="text-gray-700 break-all my-2 p-2 py-4">
-      {post.content}
-    </p>
-    {post.is_edit && (
-      <button
-        onClick={() => editPost(post.id, post.content)}
-        className="mr-4 text-gray-500 hover:text-blue-500 text-base"
-      >
-        Edit
-      </button>
-    )}
-  </div>
-)}
+                      )}
                       {post.image && (
                         <div className="mt-2">
                           {
                             <img
-                              src={post.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLMI5YxZE03Vnj-s-sth2_JxlPd30Zy7yEGg&s"}
+                              src={
+                                post.image ||
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLMI5YxZE03Vnj-s-sth2_JxlPd30Zy7yEGg&s"
+                              }
                               alt="Uploaded"
                               className="max-w-full h-auto rounded"
                             />
@@ -1076,7 +1047,7 @@ const Index = () => {
                             </button>
                           </div>
 
-                          {/* Render comments */}
+                          {/* Render comments 
                         </div>
                       )}
                       {post.feed_comments && post.feed_comments.length > 0 ? (
@@ -1097,7 +1068,7 @@ const Index = () => {
                               </div>
                             ))}
 
-                          {/* Show more/less button */}
+                          {/* Show more/less button 
                           {post.feed_comments.length > 1 && (
                             <button
                               onClick={() =>
@@ -1120,7 +1091,8 @@ const Index = () => {
                   <p>No posts available.</p>
                 )}
               </div>
-            </div>
+            </div> */}
+            <FeedSection />
             <div className="filters-column hidden-1023 w-1/4 col-md-8 col-sm-8">
               <FilterleftSidebar />
             </div>
