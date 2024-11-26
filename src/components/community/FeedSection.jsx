@@ -1522,9 +1522,9 @@ const FeedSection = ({
               )}
 
               {/* Post Image */}
-              {post.user_image && (
+              {post.feed_image && (
                 <img
-                  src={post.user_image}
+                  src={post.feed_image}
                   alt="Post"
                   className="w-full rounded-md mb-4 object-cover max-h-96 "
                 />
