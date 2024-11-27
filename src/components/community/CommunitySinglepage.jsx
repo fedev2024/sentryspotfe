@@ -324,16 +324,16 @@ const CommunitySinglepage = () => {
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={metaContent.title} />
+        <meta property="og:title" content={metaContent.content} />
         <meta property="og:description" content={metaContent.description} />
         <meta property="og:image" content={metaContent.image} />
         <meta property="og:url" content={window.location.href} />
 
         {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
+        {/* <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metaContent.title} />
         <meta name="twitter:description" content={metaContent.description} />
-        <meta name="twitter:image" content={metaContent.image} />
+        <meta name="twitter:image" content={metaContent.image} /> */}
       </Helmet>
 
       <div className="max-w-xl mx-auto px-4 py-6 bg-gray-50">
