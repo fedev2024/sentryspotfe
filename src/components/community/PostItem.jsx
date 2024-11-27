@@ -8,7 +8,7 @@ import ConfirmationDialog from "./ConfirmationDialog";
 import LinkedInShareButton from "./ShareButton";
 import { Link } from "react-router-dom";
 
-const PostItem = ({ post, setPosts, setConfirmationDialog }) => {
+const PostItem = ({ post, setPosts, setConfirmationDialog ,deletePost}) => {
   const [openDropdownId, setOpenDropdownId] = useState(null);
   const [activeCommentPostId, setActiveCommentPostId] = useState(null);
   const [commentContent, setCommentContent] = useState("");
@@ -138,8 +138,11 @@ const PostItem = ({ post, setPosts, setConfirmationDialog }) => {
     }
   };
 
-  const confirmDeleteComment = (commentId) => {
-    setConfirmationDialog({ isOpen: true, type: "comment", id: post.id, commentId });
+//   const confirmDeleteComment = (postId,commentId) => {
+//     setConfirmationDialog({ isOpen: true, type: "comment", id: postId, commentId });
+//   };
+const confirmDeleteComment = (postId, commentId) => {
+    setConfirmationDialog({ isOpen: true, type: "comment", id: postId, commentId:commentId });
   };
 
   const sharePost = () => {
@@ -282,69 +285,7 @@ const PostItem = ({ post, setPosts, setConfirmationDialog }) => {
           <button onClick={addComment} className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 mt-2">
             Post Comment
           </button>
-          {/* <div className="mt-4">
-            {post.feed_comments && post.feed_comments.length > 0 && (
-              <div className="space-y-3 ">
-                {post.feed_comments.map((comment) => (
-                  <div key={comment.id} className="bg-gray-100   p-3 rounded-lg ">
-                    <div className="flex-grow">
-                      <p className="font-semibold text-sm text-gray-800">{comment.isAnonymous ? "Anonymous" : "User"}</p>
-                      {editingCommentId === comment.id ? (
-                        <div className="flex-grow">
-                          <textarea
-                            className="w-full p-3 border rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 h-24"
-                            value={editedCommentContent}
-                            onChange={(e) => setEditedCommentContent(e.target.value)}
-                          />
-                          <div className="flex justify-end space-x-2 mt-2 ">
-                            <button
-                              onClick={() => setEditingCommentId(null)}
-                              className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300"
-                            >
-                              Cancel
-                            </button>
-                            <button
-                              onClick={() => saveEditedComment(comment.id)}
-                              className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800"
-                            >
-                              Save
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <p className="text-gray-700 text-sm">{comment.content}</p>
-                          <div className="relative ">
-                            <button onClick={() => toggleDropdown(comment.id)} className="p-2 text-gray-600 hover:text-gray-800 transition-colors">
-                              <FaEllipsisV />
-                            </button>
-                            {openDropdownId === comment.id && (
-                              <div className="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
-                                {comment.is_edit && (
-                                  <button
-                                    onClick={() => editComment(comment.id, comment.content)}
-                                    className="flex items-center px-4 py-2 w-full text-left text-blue-600 hover:bg-blue-100"
-                                  >
-                                    <FaEdit className="mr-2" /> Edit
-                                  </button>
-                                )}
-                                <button
-                                  onClick={() => confirmDeleteComment(comment.id)}
-                                  className="flex items-center px-4 py-2 w-full text-left text-red-600 hover:bg-red-100"
-                                >
-                                  <FaTrash className="mr-2" /> Delete
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div> */}
+         
           <div className="mt-4">
   {post.feed_comments && post.feed_comments.length > 0 && (
     <div className="space-y-3">
@@ -400,7 +341,7 @@ const PostItem = ({ post, setPosts, setConfirmationDialog }) => {
                     </button>
                   )}
                   <button
-                    onClick={() => confirmDeleteComment(comment.id)}
+                    onClick={() => confirmDeleteComment(post.id,comment.id)}
                     className="flex items-center px-4 py-2 w-full text-left text-red-600 hover:bg-red-100"
                   >
                     <FaTrash className="mr-2" /> Delete
@@ -417,16 +358,16 @@ const PostItem = ({ post, setPosts, setConfirmationDialog }) => {
 
         </div>
       )}
-      <ConfirmationDialog
-        isOpen={setConfirmationDialog.isOpen}
-        onClose={() => setConfirmationDialog({ ...setConfirmationDialog, isOpen: false })}
-        onConfirm={() => {
-          // Handle delete confirmation logic here
-          // Check if it's a post or comment and delete accordingly
-        }}
-        title={setConfirmationDialog.type === "post" ? "Delete Post" : "Delete Comment"}
-        message={setConfirmationDialog.type === "post" ? "Are you sure you want to delete this post? This action cannot be undone." : "Are you sure you want to delete this comment? This action cannot be undone."}
-      />
+     <ConfirmationDialog
+  isOpen={setConfirmationDialog.isOpen}
+  onClose={() => setConfirmationDialog({ ...setConfirmationDialog, isOpen: false })}
+  onConfirm={() => {
+    // Call the delete function in FeedSection
+    deletePost(); // Ensure this function is passed down or accessible
+  }}
+  title={setConfirmationDialog.type === "post" ? "Delete Post" : "Delete Comment"}
+  message={setConfirmationDialog.type === "post" ? "Are you sure you want to delete this post? This action cannot be undone." : "Are you sure you want to delete this comment? This action cannot be undone."}
+/>
     </div>
 
   );
