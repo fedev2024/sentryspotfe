@@ -6,6 +6,7 @@ import { Constant } from "@/utils/constant/constant";
 import LikeButton from "./LikeButton";
 import ConfirmationDialog from "./ConfirmationDialog";
 import LinkedInShareButton from "./ShareButton";
+import { Link } from "react-router-dom";
 
 const PostItem = ({ post, setPosts, setConfirmationDialog }) => {
   const [openDropdownId, setOpenDropdownId] = useState(null);
@@ -189,8 +190,9 @@ const PostItem = ({ post, setPosts, setConfirmationDialog }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-      <div className="flex items-center justify-between mb-4">
+       <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow ">
+         <Link to={`/community/${post.id}`}>
+         <div className="flex items-center justify-between mb-4">
         <div className="flex">
           <img
             src={post.user_photo ? `https://api.sentryspot.co.uk/${post.user_photo}` : "https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg"}
@@ -225,6 +227,8 @@ const PostItem = ({ post, setPosts, setConfirmationDialog }) => {
           )}
         </div>
       </div>
+         </Link>
+
       {isEditingPost ? (
         <div className="mb-4">
           <textarea
@@ -424,6 +428,7 @@ const PostItem = ({ post, setPosts, setConfirmationDialog }) => {
         message={setConfirmationDialog.type === "post" ? "Are you sure you want to delete this post? This action cannot be undone." : "Are you sure you want to delete this comment? This action cannot be undone."}
       />
     </div>
+
   );
 };
 
