@@ -10,7 +10,9 @@ const PostList = ({ posts, setPosts, setConfirmationDialog }) => {
         </div>
       ) : (
         posts.map((post) => (
-          <PostItem key={post.id} post={post} setPosts={setPosts} setConfirmationDialog={setConfirmationDialog} />
+            <PostItem key={post.id} post={post} setPosts={setPosts} setConfirmationDialog={setConfirmationDialog} deletePost={deletePost} />
+
+            //   <PostItem key={post.id} post={post} setPosts={setPosts} setConfirmationDialog={setConfirmationDialog} />
         ))
       )}
     </div>
