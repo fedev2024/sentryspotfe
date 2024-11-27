@@ -11,6 +11,7 @@ import {
 import { Constant } from "@/utils/constant/constant";
 import LikeButton from "./LikeButton";
 import ConfirmationDialog from "./ConfirmationDialog";
+import LinkedInShareButton from "./ShareButton";
 
 const FeedSection = ({
   loginModal,
@@ -691,13 +692,14 @@ const confirmDeletePost = (postId) => {
                   Comment
                 </button>
 
-                <button
+                {/* <button
                   className="text-gray-500 hover:text-green-600 flex items-center"
                   onClick={() => sharePost(post.id)}
                 >
                   <i className="fas fa-share mr-2"></i>
                   Share
-                </button>
+                </button> */}
+                <LinkedInShareButton />
               </div>
 
               {/* Comments Section */}
