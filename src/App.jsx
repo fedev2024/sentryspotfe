@@ -117,6 +117,7 @@ import Earnjob from "./components/job-listing-pages/job-list-v1/Earnjob";
 import TestPaper from "./components/dashboard-pages/candidates-dashboard/packages/components/Testpaper";
 import SkillHistoryPage from "./components/dashboard-pages/candidates-dashboard/skill-test-history";
 import CommunitySinglepage from "./components/community/CommunitySinglepage";
+import HelmetWrapper from "./HelmetWrapper";
 
 function App() {
   useEffect(() => {
@@ -128,6 +129,8 @@ function App() {
 
   return (
     <>
+      <HelmetWrapper>
+
       <Provider store={store}>
         <div className="page-wrapper">
           <BrowserRouter>
@@ -340,6 +343,7 @@ function App() {
           <ScrollToTop />
         </div>
       </Provider>
+      </HelmetWrapper>
     </>
   );
 }
