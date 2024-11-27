@@ -116,6 +116,7 @@ import Talkto from "./components/job-listing-pages/job-list-v1/Talkto";
 import Earnjob from "./components/job-listing-pages/job-list-v1/Earnjob";
 import TestPaper from "./components/dashboard-pages/candidates-dashboard/packages/components/Testpaper";
 import SkillHistoryPage from "./components/dashboard-pages/candidates-dashboard/skill-test-history";
+import CommunitySinglepage from "./components/community/CommunitySinglepage";
 
 function App() {
   useEffect(() => {
@@ -235,6 +236,7 @@ function App() {
                 {/* <Route path="about" element={<AboutPage />} /> */}
                 <Route path="sentry-spot" element={<SentryPage />} />
                 <Route path="community" element={<Communitypage />} />
+                <Route path="community/:postId" element={<CommunitySinglepage />} />
 
                 <Route path="pricing" element={<PricingPage />} />
                 <Route path="faq" element={<FaqPage />} />
