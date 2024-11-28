@@ -190,7 +190,7 @@ const LinkedInShareButton = ({ post }) => {
   const handleClosePopup = () => {
     setShowPopup(false);
   };
-   console.log(post,"post data");
+  //  console.log(post,"post data");
   return (
     <>
       <button
