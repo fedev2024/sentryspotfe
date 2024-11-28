@@ -34,15 +34,15 @@ const index = () => {
           <MenuToggler />
           {/* Collapsible sidebar button */}
 
-          <div className="ls-widget">
-            <div className="widget-title">
+          {/* <div className="ls-widget"> */}
+            {/* <div className="widget-title">
               <h4>Change Password</h4>
-            </div>
+            </div> */}
 
             <div className="widget-content">
               <Form />
             </div>
-          </div>
+          {/* </div> */}
           {/* <!-- Ls widget --> */}
         </div>
         {/* End dashboard-outer */}

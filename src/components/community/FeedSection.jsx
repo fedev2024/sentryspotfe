@@ -699,7 +699,7 @@ const confirmDeletePost = (postId) => {
                   <i className="fas fa-share mr-2"></i>
                   Share
                 </button> */}
-                <LinkedInShareButton />
+                <LinkedInShareButton post={post} />
               </div>
 
               {/* Comments Section */}
@@ -963,51 +963,51 @@ export default FeedSection;
 //   //   const { type, id, commentId } = confirmationDialog;
 
 //   //   try {
-//   //     let endpoint;
-//   //      console.log(commentId,endpoint,"endpoint");
-//   //     // Set the endpoint based on whether a comment is being deleted
-//   //     if (commentId) {
-//   //       endpoint = `https://api.sentryspot.co.uk/api/feed/feed/comment/${id}/${commentId}`;
-//   //     } else {
-//   //       endpoint = `https://api.sentryspot.co.uk/api/feed/feed/${id}`;
-//   //     }
+  //     let endpoint;
+  //      console.log(commentId,endpoint,"endpoint");
+  //     // Set the endpoint based on whether a comment is being deleted
+  //     if (commentId) {
+  //       endpoint = `https://api.sentryspot.co.uk/api/feed/feed/comment/${id}/${commentId}`;
+  //     } else {
+  //       endpoint = `https://api.sentryspot.co.uk/api/feed/feed/${id}`;
+  //     }
 
-//   //     // Send the DELETE request
-//   //     const response = await axios.delete(endpoint, {
-//   //       headers: {
-//   //         Authorization: `${token}`,
-//   //       },
-//   //     });
+  //     // Send the DELETE request
+  //     const response = await axios.delete(endpoint, {
+  //       headers: {
+  //         Authorization: `${token}`,
+  //       },
+  //     });
 
-//   //     // Check for a successful response
-//   //     if (response.data && response.data.status === "success") {
-//   //       fetchPosts();
-//   //       if (commentId) {
-//   //         // Remove specific comment from the post
-//   //         setPosts((prevPosts) =>
-//   //           prevPosts.map((post) =>
-//   //             post.id === id
-//   //               ? {
-//   //                   ...post,
-//   //                   feed_comments: post.feed_comments.filter((comment) => comment.id !== commentId),
-//   //                 }
-//   //               : post
-//   //           )
-//   //         );
-//   //       } else {
-//   //         // Remove entire post
-//   //         setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
-//   //       }
+  //     // Check for a successful response
+  //     if (response.data && response.data.status === "success") {
+  //       fetchPosts();
+  //       if (commentId) {
+  //         // Remove specific comment from the post
+  //         setPosts((prevPosts) =>
+  //           prevPosts.map((post) =>
+  //             post.id === id
+  //               ? {
+  //                   ...post,
+  //                   feed_comments: post.feed_comments.filter((comment) => comment.id !== commentId),
+  //                 }
+  //               : post
+  //           )
+  //         );
+  //       } else {
+  //         // Remove entire post
+  //         setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
+  //       }
 
-//   //       // Close confirmation dialog
-//   //       closeConfirmationDialog();
-//   //     } else {
-//   //       console.error("Error deleting:", response.data.message);
-//   //     }
-//   //   } catch (error) {
-//   //     console.error("Error deleting:", error);
-//   //   }
-//   // };
+  //       // Close confirmation dialog
+  //       closeConfirmationDialog();
+  //     } else {
+  //       console.error("Error deleting:", response.data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error deleting:", error);
+  //   }
+  // };
 //   const deletePost = async () => {
 //     const { type, id, commentId } = confirmationDialog;
 //    console.log(commentId,"endpoint");
@@ -1060,7 +1060,7 @@ export default FeedSection;
 //     <div className="max-w-xl mx-auto px-4 py-6 bg-gray-50">
 //       <PostCreation token={token} setLoginModal={setLoginModal} setPosts={setPosts} />
 //       {/* <PostList posts={posts} setPosts={setPosts} setConfirmationDialog={setConfirmationDialog} /> */}
-//       <PostList posts={posts} setPosts={setPosts} setConfirmationDialog={setConfirmationDialog} deletePost={deletePost} />
+//       <PostList posts={posts} setPosts={setPosts} setConfirmationDialog={setConfirmationDialog} />
 //       <ConfirmationDialog
 //         isOpen={confirmationDialog.isOpen}
 //         onClose={closeConfirmationDialog}

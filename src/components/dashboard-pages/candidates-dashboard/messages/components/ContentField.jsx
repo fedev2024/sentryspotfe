@@ -64,9 +64,9 @@ const ChatBoxContentField = () => {
   };
 
   return (
-    <div className="flex h-screen bg- rounded-lg ">
+    <div className="flex h-screen bg- rounded-lg gap-2 ">
       {/* Sidebar: List of Conversations */}
-      <div className="w-1/4 bg-blue-800 text-white border-r border-blue-700 overflow-y-auto rounded-lg">
+      <div className="w-1/4 bg-gray-50 text-black border-r border-2 overflow-y-auto rounded-lg">
         <div className="p-4 border-b border-blue-700">
           <h2 className="text-lg font-semibold">Messages</h2>
         </div>
@@ -98,17 +98,17 @@ const ChatBoxContentField = () => {
       </div>
 
       {/* Main: Active Chat */}
-      <div className="flex-1 flex flex-col bg-blue-900 rounded-lg">
+      <div className="flex-1 flex flex-col bg-gary-50 text-black rounded-xl">
         {/* Chat Header */}
-        <div className="p-4 border-b border-blue-700 flex items-center">
+        <div className="p-4 border-b border-2 flex items-center">
           <img
             src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg"
             alt="User avatar"
             className="w-12 h-12 rounded-full mr-4"
           />
           <div>
-            <h2 className="text-lg font-semibold text-white">John Snow</h2>
-            <p className="text-sm text-blue-400">Online</p>
+            <h2 className="text-lg font-semibold text-black">John Snow</h2>
+            <p className="text-sm text-black">Online</p>
           </div>
         </div>
 
@@ -139,7 +139,7 @@ const ChatBoxContentField = () => {
         </div>
 
         {/* Input Area */}
-        <div className="border-t border-blue-700 bg-blue-900 p-4 flex items-center">
+        <div className="border-t border-2 bg-blue-600 p-4 flex items-center rounded-lg">
           <input
             type="text"
             placeholder="Type a message"
@@ -148,7 +148,7 @@ const ChatBoxContentField = () => {
             className="flex-1 bg-blue-800 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg ml-2 hover:bg-blue-700 transition"
+            className="bg-blue-600 text-3xl text-white px-4 py-2 rounded-lg ml-2 hover:bg-blue-700 transition"
             onClick={sendMessage}
           ><FaTelegram/>
           
