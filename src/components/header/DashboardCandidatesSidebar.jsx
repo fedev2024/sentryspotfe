@@ -147,7 +147,7 @@ const DashboardCandidatesSidebar = () => {
         </Link>
 
         {/* Navigation Menu */}
-        <ul className="navigation ">
+        {/* <ul className="navigation ">
           {candidatesuData.map((item) => (
             <li
               className={` font-bold ${
@@ -161,7 +161,36 @@ const DashboardCandidatesSidebar = () => {
               </Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
+        <ul className="navigation">
+  {candidatesuData.map((item) => (
+    <>
+      <li
+        className={`font-bold ${
+          isActiveLink(item.routePath, pathname) ? "active" : ""
+        } mb-1`}
+        key={item.id}
+        onClick={menuToggleHandler}
+      >
+        <Link to={item.routePath}>
+          <i className={`la ${item.icon}`}></i> {item.name}
+        </Link>
+      </li>
+      {item.id === 15 && (
+        // <hr key="separator" className="my-4 border-2 border-gray-900" />
+        <div
+        className="my-4 w-full h-1 bg-gray-400"
+        style={{
+          height: "2px", // Adjust thickness
+          backgroundColor: "#333", // Dark gray line
+        }}
+      ></div>
+
+      )}
+    </>
+  ))}
+</ul>
+
 
         {/* Skills Percentage */}
         <div className="skills-percentage">

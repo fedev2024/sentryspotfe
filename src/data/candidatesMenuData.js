@@ -212,13 +212,7 @@ const candidateMenus = [
     routePath: "/candidates-dashboard/change-password",
     active: "",
   },
-  {
-    id: 16,
-    name: "Logout",
-    icon: "la-sign-out",
-    routePath: "/login",
-    active: "",
-  },
+ 
   {
     id: 16,
     name: "Settings",
@@ -231,6 +225,13 @@ const candidateMenus = [
     name: "Contact Us",
     icon: "la-phone",
     routePath: "/",
+    active: "",
+  },
+  {
+    id: 18,
+    name: "Logout",
+    icon: "la-sign-out",
+    routePath: "/login",
     active: "",
   },
 ];
