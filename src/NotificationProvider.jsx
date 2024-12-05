@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const NotificationProvider = () => {
   const [messages, setMessages] = useState([]);
@@ -23,6 +24,7 @@ const NotificationProvider = () => {
       // Log messages received from the server
       eventSource.onmessage = (event) => {
         console.log('Received message:', event.data);
+        toast.success(event.data)
         setMessages((prev) => [...prev, event.data]);
       };
 

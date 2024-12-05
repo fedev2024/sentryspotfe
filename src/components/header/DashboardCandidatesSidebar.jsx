@@ -109,7 +109,7 @@ import { Constant } from "@/utils/constant/constant";
 const DashboardCandidatesSidebar = () => {
   const { pathname } = useLocation();
   const { menu } = useSelector((state) => state.toggle);
-  const { user } = useSelector((state) => state.auth); // Assuming auth state has user info
+  // const { user } = useSelector((state) => state.auth); // Assuming auth state has user info
   const percentage = 30;
 
   const dispatch = useDispatch();
@@ -118,7 +118,8 @@ const DashboardCandidatesSidebar = () => {
   const menuToggleHandler = () => {
     dispatch(menuToggle());
   };
-
+  const user = JSON.parse(localStorage.getItem(Constant.USER_INFO));
+  console.log(user);
   return (
     <div className={`user-sidebar ${menu ? "sidebar_open" : ""}`}>
       {/* Sidebar close icon */}
@@ -140,7 +141,7 @@ const DashboardCandidatesSidebar = () => {
               />
             </div>
             <div className="text-white flex-1 flex-col ">
-              <p className="text-white ">{user?.first_name || "Anonymous"}</p>
+              <p className="text-white ">{user?.first_name  || "Anonymous"}</p>
               <p className="text-white ">{user?.profile || "Profile"}</p>
             </div>
           </div>
