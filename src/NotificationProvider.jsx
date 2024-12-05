@@ -94,6 +94,7 @@ const NotificationProvider = () => {
           const parsedMessage = JSON.parse(event.data);
           
           // Show toast with just the message
+          console.log(parsedMessage.message);
           toast.success(parsedMessage.message);
 
           // Update messages state
