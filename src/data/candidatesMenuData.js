@@ -188,7 +188,7 @@ const candidateMenus = [
     id: 11,
     name: "Notifications",
     icon: "la-bell",
-    routePath: "",
+    routePath: "/candidates-dashboard/notifications",
     active: "",
   },
   {
@@ -231,7 +231,7 @@ const candidateMenus = [
     id: 18,
     name: "Logout",
     icon: "la-sign-out",
-    routePath: "/login",
+    routePath: "/",
     active: "",
   },
 ];

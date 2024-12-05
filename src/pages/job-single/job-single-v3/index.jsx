@@ -283,6 +283,7 @@ import MetaComponent from "@/components/common/MetaComponent";
 
 // Utility imports
 import { Constant } from "@/utils/constant/constant";
+import { toast } from "react-hot-toast";
 
 const LoginModal = ({ onClose }) => {
   return (
@@ -332,11 +333,30 @@ const JobSingleDynamicV3 = () => {
     bootstrapModal.show();
   };
 
-  const handleBookmarkClick = (e) => {
+  const handleBookmarkClick = async (e) => {
     e.preventDefault();
     if (!token) {
       setShowLoginModal(true);
       return;
+    }
+    try {
+      console.log("bookmark");
+      const response = await axios.get(
+        `https://api.sentryspot.co.uk/api/jobseeker/mark-job-favorite/${id}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      console.log(response,"bookmark");
+      if (response.data.status == "status" || response.data.code == 200) {
+        toast.success(response.message || "Your job was successfully saved!");
+      } else {
+        toast.error("Failed to save the job. Please try again.");
+      }
+    } catch (error) {
+      toast.error("An error occurred while saving the job. Please try again.");
     }
     // Add your bookmark logic here
     // You might want to call an API to save the bookmark
@@ -487,15 +507,15 @@ const JobSingleDynamicV3 = () => {
                       <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div className="apply-modal-content modal-content">
                           <div className="text-center">
-                            <h3 className="title">Apply for this job</h3>
+                            {/* <h3 className="title">Apply for this job</h3>
                             <button
                               type="button"
                               className="closed-modal"
                               data-bs-dismiss="modal"
                               aria-label="Close"
-                            ></button>
+                            ></button> */}
                           </div>
-                          <ApplyJobModalContent job={jobData} />
+                          <ApplyJobModalContent jobId={jobData.id} />
                         </div>
                       </div>
                     )}

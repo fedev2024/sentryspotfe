@@ -118,6 +118,7 @@ import TestPaper from "./components/dashboard-pages/candidates-dashboard/package
 import SkillHistoryPage from "./components/dashboard-pages/candidates-dashboard/skill-test-history";
 import CommunitySinglepage from "./components/community/CommunitySinglepage";
 import HelmetWrapper from "./HelmetWrapper";
+import NotificationsHistoryPage from "./components/dashboard-pages/candidates-dashboard/notifications-history";
 
 function App() {
   useEffect(() => {
@@ -300,6 +301,7 @@ function App() {
                   <Route path="my-profile" element={<MyProfilePage />} />
                   <Route path="my-resume" element={<MyResumePage />} />
                   <Route path="packages" element={<PackagePage />} />
+                  <Route path="notifications" element={<NotificationsHistoryPage />} />
                   <Route path="testpaper/:skillId/:skillName" element={<TestPaper />} />
                   <Route
                     path="short-listed-jobs"
@@ -338,7 +340,7 @@ function App() {
             pauseOnHover
             theme="colored"
           /> */}
-          {/* <Toaster /> */}
+          <Toaster />
           {/* <!-- Scroll To Top --> */}
           <ScrollToTop />
         </div>

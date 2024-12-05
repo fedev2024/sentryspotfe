@@ -35,6 +35,11 @@ import axios from "axios";
 import Header from "@/components/home-10/Header";
 import { Constant } from "@/utils/constant/constant";
 import { toast, ToastContainer } from "react-toastify";
+import JobTypeDropdown from "./JobTypeDropdown";
+import TitleDropdown from "./TitleDropdown";
+import SectorDropdown from "./SectorDropdown";
+import SalaryRangeDropdown from "./SalaryRangeDropdown";
+import WorkExperienceDropdown from "./WorkExperienceDropdown";
 
 const Index = ({ onNext }) => {
   const token = localStorage.getItem(Constant.USER_TOKEN);
@@ -143,7 +148,7 @@ const Index = ({ onNext }) => {
   // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validation checks
     if (!selectedSector) {
       toast.error("Please select a sector.");
@@ -153,21 +158,21 @@ const Index = ({ onNext }) => {
       toast.error("Please select at least one role.");
       return;
     }
-  
+
     // Creating the payload (optional, for debugging/logging purposes)
     const payload = {
       selectedSector,
       selectedRoles,
     };
     console.log("Payload:", payload);
-  
+
     // Show success toast
     toast.success("Details saved successfully!");
-  
+
     // Move to the next step
     onNext();
   };
-  
+
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
@@ -542,35 +547,105 @@ const Index = ({ onNext }) => {
     ],
   };
 
-  const [sectors, setSectors] = useState(defaultSectors);
-  const [selectedSector, setSelectedSector] = useState("");
-  const [newSector, setNewSector] = useState("");
-  const [selectedRoles, setSelectedRoles] = useState([]);
-  const [customRoles, setCustomRoles] = useState([]);
-  const [newRole, setNewRole] = useState("");
-  const [showRoleDropdown, setShowRoleDropdown] = useState(false);
+  // const [sectors, setSectors] = useState([]);
+  // const [selectedSector, setSelectedSector] = useState("");
+  // const [newSector, setNewSector] = useState("");
+  // const [selectedRoles, setSelectedRoles] = useState([]);
+  // const [customRoles, setCustomRoles] = useState([]);
+  // const [newRole, setNewRole] = useState("");
+  // const [showRoleDropdown, setShowRoleDropdown] = useState(false);
+  // const [titles, setTitle] = useState([]);
 
-  // Handle sector selection
-  const handleSectorChange = (e) => {
-    const value = e.target.value;
-    if (value === "add-new-sector") {
-      setNewSector("");
+  // // Handle sector selection
+  // const handleSectorChange = (e) => {
+  //   const value = e.target.value;
+  //   if (value === "add-new-sector") {
+  //     setNewSector("");
+  //   }
+  //   setSelectedSector(value);
+  //   setSelectedRoles([]);
+  //   setCustomRoles([]);
+  // };
+
+  // // Handle role selection
+  // const handleRoleChange = (role) => {
+  //   if (selectedRoles.includes(role)) {
+  //     setSelectedRoles((prev) => prev.filter((r) => r !== role));
+  //   } else if (selectedRoles.length < 5) {
+  //     setSelectedRoles((prev) => [...prev, role]);
+  //   } else {
+  //     toast.error("You can only select up to 5 roles.");
+  //   }
+  // };
+
+  // const fetchTilte = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://api.sentryspot.co.uk/api/employeer/job-titles"
+  //     );
+
+  //     if ((response.success = "success" || response.data == 200)) {
+  //       console.log(response.data.data, "titles");
+  //       setTitle(response.data.data);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // const fetchSector = async() =>{
+  //   try {
+  //     const response = await axios.get("https://api.sentryspot.co.uk/api/jobseeker/industries")
+
+  //     if(response.data.status == "status" || response.data.code == 200){
+  //       console.log(response.data.data);
+  //       setSectors(response.data.data)
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  // useEffect(() => {
+  //   fetchTilte();
+  //   fetchSector()
+  // }, []);
+  // const token = localStorage.getItem(Constant.USER_TOKEN);
+  // const baseurl = "https://api.sentryspot.co.uk/api/jobseeker/";
+
+  const [data, setData] = useState({
+    jobTypes: [],
+    sectors: [],
+    titles: [],
+    workExperience: [],
+    salaryRanges: [],
+  });
+
+  // Fetch all necessary data from the API
+  const fetchData = async () => {
+    try {
+      const [jobTypesResponse, sectorsResponse, titlesResponse, workExperienceResponse, salaryRangesResponse] = await Promise.all([
+        axios.get(`${baseurl}job-types`, { headers: { Authorization: token } }),
+        axios.get(`https://api.sentryspot.co.uk/api/jobseeker/industries`, { headers: { Authorization: token } }),
+        axios.get(`https://api.sentryspot.co.uk/api/employeer/job-titles`, { headers: { Authorization: token } }),
+        axios.get(`${baseurl}experience-level`, { headers: { Authorization: token } }),
+        axios.get(`${baseurl}salary-range`, { headers: { Authorization: token } }),
+      ]);
+
+      setData({
+        jobTypes: jobTypesResponse.data.data,
+        sectors: sectorsResponse.data.data,
+        titles: titlesResponse.data.data,
+        workExperience: workExperienceResponse.data.data,
+        salaryRanges: salaryRangesResponse.data.data,
+      });
+    } catch (error) {
+      toast.error("Failed to fetch data from API.");
+      console.error("Error fetching data:", error);
     }
-    setSelectedSector(value);
-    setSelectedRoles([]);
-    setCustomRoles([]);
   };
 
-  // Handle role selection
-  const handleRoleChange = (role) => {
-    if (selectedRoles.includes(role)) {
-      setSelectedRoles((prev) => prev.filter((r) => r !== role));
-    } else if (selectedRoles.length < 5) {
-      setSelectedRoles((prev) => [...prev, role]);
-    } else {
-      toast.error("You can only select up to 5 roles.");
-    }
-  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="default-form">
@@ -787,7 +862,7 @@ const Index = ({ onNext }) => {
             ))}
           </select>
         </div>
-        <div className="form-group col-lg-12 col-md-12 font-light">
+        {/* <div className="form-group col-lg-12 col-md-12 font-light">
           <label>Job-Type*</label>
           <div className="job-type-container row">
             {jobtype.map((type) => (
@@ -811,8 +886,9 @@ const Index = ({ onNext }) => {
               </div>
             ))}
           </div>
-        </div>
-        <div className="form-group col-lg-6 col-md-12 font-light">
+        </div> */}
+        <JobTypeDropdown jobTypes={data.jobTypes}/>
+        {/* <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Job Title*</label>
           <input
             type="text"
@@ -821,40 +897,42 @@ const Index = ({ onNext }) => {
             required
             className="border font-light rounded-none mb-4"
           />
-          {/* <select
-            id="Functional"
-            name="Functional"
-            value={selectFunctionaltype}
-            onChange={(e) => setselectFunctionaltype(e.target.value)}
+          <select
+            name="job_title"
+            required
+            className="border font-light rounded-none mb-4"
           >
-            <option value="">select a Functional Area</option>
-            {Functionaltype.map((type) => (
-              <option key={type.id} value={type.id}>
-                {type.name}
+            <option value="">Select a job title</option>
+            {titles.map((title) => (
+              <option key={title.id} value={title.id}>
+                {title.name}
               </option>
             ))}
-          </select> */}
-        </div>
-
+          </select>
+        </div> */}
+        <TitleDropdown titles={data.titles} />
+{/* 
         <div className="form-group  col-lg-6 col-md-12 font-light">
           <label>Select Sector*</label>
           <select
-            value={selectedSector}
-            onChange={handleSectorChange}
+            // value={selectedSector}
+            // onChange={handleSectorChange}
+            name="job_sector"
             className="form-control"
             required
           >
             <option value="">Select a sector</option>
-            {Object.keys(sectors).map((sector) => (
-              <option key={sector} value={sector}>
-                {sector}
+            {sectors.map((sector) => (
+              <option key={sector.id} value={sector.id}>
+                {sector.name}
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
+         <SectorDropdown sectors={data.sectors} />
 
         {/* Roles Section */}
-        {selectedSector && selectedSector !== "add-new-sector" && (
+        {/* {selectedSector && selectedSector !== "add-new-sector" && (
           <div className=" form-group col-lg-6 col-md-12 font-light">
             <label>Roles in {selectedSector} (select up to 5)</label>
             <div
@@ -895,7 +973,7 @@ const Index = ({ onNext }) => {
             </div>
             <small>{5 - selectedRoles.length} roles remaining</small>
           </div>
-        )}
+        )} */}
 
         {/* State Dropdown */}
         {/* <div className="form-group col-lg-4 col-md-12 font-light">
@@ -1060,7 +1138,7 @@ const Index = ({ onNext }) => {
           />
         </div> */}
 
-        <div className="form-group col-lg-12 col-md-12 font-light">
+        {/* <div className="form-group col-lg-12 col-md-12 font-light">
           <label className="font-medium">
             Work Experience *{" "}
             <span className="text-sm text-gray-500">
@@ -1078,7 +1156,7 @@ const Index = ({ onNext }) => {
               <option key={type.id} value={type.id}>
                 {type.name}
               </option>
-            ))} */}
+            ))} 
             <option value="1">0-1 year</option>
             <option value="2">1-2 years</option>
             <option value="3">2-3 years</option>
@@ -1086,7 +1164,9 @@ const Index = ({ onNext }) => {
             <option value="5">5-10 years</option>
             <option value="6">10+ years</option>
           </select>
-        </div>
+        </div> */}
+                <WorkExperienceDropdown workExperience={data.workExperience} />
+
 
         {/* <div className="form-group col-lg-12 col-md-12 font-light">
           <label>Industries*</label>
@@ -1117,3 +1197,97 @@ const Index = ({ onNext }) => {
 };
 
 export default Index;
+
+// import PhoneInput from "react-phone-input-2";
+// import "react-phone-input-2/lib/style.css";
+// import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { toast, ToastContainer } from "react-toastify";
+// import { Constant } from "@/utils/constant/constant";
+// import ProfilePictureUpload from "./ProfilePictureUpload"; // New component
+// import JobTypeDropdown from "./JobTypeDropdown"; // New component
+// import SectorDropdown from "./SectorDropdown"; // New component
+// import TitleDropdown from "./TitleDropdown"; // New component
+// import WorkExperienceDropdown from "./WorkExperienceDropdown"; // New component
+// import SalaryRangeDropdown from "./SalaryRangeDropdown"; // New component
+
+// const Index = ({ onNext }) => {
+  // const token = localStorage.getItem(Constant.USER_TOKEN);
+  // const baseurl = "https://api.sentryspot.co.uk/api/jobseeker/";
+
+  // const [data, setData] = useState({
+  //   jobTypes: [],
+  //   sectors: [],
+  //   titles: [],
+  //   workExperience: [],
+  //   salaryRanges: [],
+  // });
+
+  // // Fetch all necessary data from the API
+  // const fetchData = async () => {
+  //   try {
+  //     const [jobTypesResponse, sectorsResponse, titlesResponse, workExperienceResponse, salaryRangesResponse] = await Promise.all([
+  //       axios.get(`${baseurl}job-types`, { headers: { Authorization: token } }),
+  //       axios.get(`https://api.sentryspot.co.uk/api/jobseeker/industries`, { headers: { Authorization: token } }),
+  //       axios.get(`https://api.sentryspot.co.uk/api/employeer/job-titles`, { headers: { Authorization: token } }),
+  //       axios.get(`${baseurl}experience-level`, { headers: { Authorization: token } }),
+  //       axios.get(`${baseurl}salary-range`, { headers: { Authorization: token } }),
+  //     ]);
+
+  //     setData({
+  //       jobTypes: jobTypesResponse.data.data,
+  //       sectors: sectorsResponse.data.data,
+  //       titles: titlesResponse.data.data,
+  //       workExperience: workExperienceResponse.data.data,
+  //       salaryRanges: salaryRangesResponse.data.data,
+  //     });
+  //   } catch (error) {
+  //     toast.error("Failed to fetch data from API.");
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     // Handle form submission logic here
+//     onNext();
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit} className="default-form">
+//       <ToastContainer />
+//       <div className="row">
+//         {/* Profile Picture Upload */}
+//         <ProfilePictureUpload />
+
+//         {/* Job-Type Dropdown */}
+//         <JobTypeDropdown jobTypes={data.jobTypes} />
+
+//         {/* Sector Dropdown */}
+//         <SectorDropdown sectors={data.sectors} />
+
+//         {/* Job Title Dropdown */}
+//         <TitleDropdown titles={data.titles} />
+
+//         {/* Work Experience Dropdown */}
+//         <WorkExperienceDropdown workExperience={data.workExperience} />
+
+//         {/* Salary Range Dropdown */}
+//         <SalaryRangeDropdown salaryRanges={data.salaryRanges} />
+
+//         {/* Submit Button */}
+//         <div className="form-group col-lg-12 col-md-12">
+//           <button type="submit" className="theme-btn btn-style-one bg-blue-900">
+//             Save & Next ➤
+//           </button>
+//         </div>
+//       </div>
+//     </form>
+//   );
+// };
+
+// export default Index;

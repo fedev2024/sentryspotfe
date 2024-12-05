@@ -161,7 +161,6 @@ const JobAlertsTable = () => {
     // Implement remove from favorites functionality here
     console.log("Remove from favorites:", jobId);
   };
-
   return (
     <div className="bg-white rounded-lg shadow-lg">
       {/* Header Section */}
@@ -216,7 +215,7 @@ const JobAlertsTable = () => {
                 key={job.id} 
                 className="group relative bg-white rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all duration-300 p-6"
               >
-                <div className="flex items-start gap-6">
+                <div className="flex items-center justify-center gap-6">
                   {/* Company Logo */}
                   <div className="flex-shrink-0">
                     <img
@@ -235,7 +234,7 @@ const JobAlertsTable = () => {
                       {job.job_title}
                     </Link>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                    {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
                       {job.specialisms && (
                         <div className="flex items-center text-gray-600">
                           <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -273,7 +272,7 @@ const JobAlertsTable = () => {
                           <span>{job.email_address_of_job_poster}</span>
                         </div>
                       )}
-                    </div>
+                    </div> */}
                   </div>
 
                   {/* Actions */}
