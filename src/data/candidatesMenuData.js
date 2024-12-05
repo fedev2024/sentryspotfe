@@ -139,7 +139,8 @@ const candidateMenus = [
     id: 4,
     name: "Search Jobs",
     icon: "la-search",
-    routePath: "/candidates-dashboard/job-search",
+    // routePath: "/candidates-dashboard/job-search",
+    routePath: "/job-list-v3",
     active: "",
   },
   {
