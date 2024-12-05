@@ -189,7 +189,7 @@ const Index = () => {
 
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          {/* <BreadCrumb title="My Profile!" /> */}
+          <BreadCrumb title="My Profile!" />
           <MenuToggler />
 
           {/* Top Progress Bar */}

@@ -48,7 +48,7 @@ const Notification = () => {
       </li> */}
       {/* End li */}
     </ul>
-    <NotificationProvider />
+    {/* <NotificationProvider /> */}
     </>
   );
 };

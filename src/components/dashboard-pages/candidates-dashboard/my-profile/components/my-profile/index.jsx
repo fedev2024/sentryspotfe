@@ -47,6 +47,7 @@ const Index = ({ onNext }) => {
 
   const current = new Date().toISOString().split("T")[0];
   const [logImg, setLogImg] = useState(null);
+  const [profileData,setProfileData] =  useState("")
 
   const logImgHander = (event) => {
     const file = event.target.files[0];
@@ -150,21 +151,21 @@ const Index = ({ onNext }) => {
     e.preventDefault();
 
     // Validation checks
-    if (!selectedSector) {
-      toast.error("Please select a sector.");
-      return;
-    }
-    if (selectedRoles.length === 0) {
-      toast.error("Please select at least one role.");
-      return;
-    }
+    // if (!selectedSector) {
+    //   toast.error("Please select a sector.");
+    //   return;
+    // }
+    // if (selectedRoles.length === 0) {
+    //   toast.error("Please select at least one role.");
+    //   return;
+    // }
 
     // Creating the payload (optional, for debugging/logging purposes)
-    const payload = {
-      selectedSector,
-      selectedRoles,
-    };
-    console.log("Payload:", payload);
+    // const payload = {
+    //   selectedSector,
+    //   selectedRoles,
+    // };
+    // console.log("Payload:", payload);
 
     // Show success toast
     toast.success("Details saved successfully!");
@@ -176,12 +177,12 @@ const Index = ({ onNext }) => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await axios.get(`${baseurl}user-profile/first_name`, {
+        const response = await axios.get(`${baseurl}user-profile`, {
           headers: {
             Authorization: token,
           },
         });
-        const profileData = response.data.data;
+        setProfileData(response.data.data.personal_details);        ;
         console.log("Profile Data>>>>:", profileData);
       } catch (error) {
         console.error("Error fetching profile data:", error);
@@ -646,6 +647,13 @@ const Index = ({ onNext }) => {
   useEffect(() => {
     fetchData();
   }, []);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProfileData((prevData) => ({
+      ...prevData,
+      [name]: value, // Dynamically update the specific field
+    }));
+  };
 
   return (
     <form onSubmit={handleSubmit} className="default-form">
@@ -703,7 +711,8 @@ const Index = ({ onNext }) => {
           <input
             type="text"
             name="first_name"
-            placeholder="eg. Jerome"
+            value={profileData.first_name}
+            onChange={handleChange} 
             required
             className="border font-light rounded-none mb-4"
           />
@@ -711,7 +720,8 @@ const Index = ({ onNext }) => {
           <input
             type="text"
             name="lastname"
-            placeholder="eg. doe"
+            value={profileData.last_name}
+            onChange={handleChange} 
             required
             className="border rounded-none font-light"
           />
