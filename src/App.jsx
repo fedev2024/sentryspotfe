@@ -119,6 +119,7 @@ import SkillHistoryPage from "./components/dashboard-pages/candidates-dashboard/
 import CommunitySinglepage from "./components/community/CommunitySinglepage";
 import HelmetWrapper from "./HelmetWrapper";
 import NotificationsHistoryPage from "./components/dashboard-pages/candidates-dashboard/notifications-history";
+import NotificationProvider from "./NotificationProvider";
 
 function App() {
   useEffect(() => {
@@ -341,6 +342,7 @@ function App() {
             theme="colored"
           /> */}
           <Toaster />
+          <NotificationProvider />
           {/* <!-- Scroll To Top --> */}
           <ScrollToTop />
         </div>
