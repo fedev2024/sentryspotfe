@@ -1067,7 +1067,7 @@
 // import { Link, useSearchParams } from "react-router-dom";
 // import { useState, useEffect } from "react";
 // import axios from "axios";
-// import { toast } from "react-toastify";
+// import toast from "react-hot-toast";
 // import ApplyJobPopup from "../job-list-v7/ApplyJobPopup";
 // import ApplyJobModalContent from "@/components/job-single-pages/shared-components/ApplyJobModalContent";
 // import { Constant } from "@/utils/constant/constant";
@@ -1399,7 +1399,7 @@ const FilterJobsBox = () => {
           },
         }
       );
-      if (response.status === "status" || response.code === 200) {
+      if (response.data.status === "status" || response.data.code === 200) {
         toast.success(response.message || "Your job was successfully saved!");
       } else {
         toast.error("Failed to save the job. Please try again.");
@@ -1428,6 +1428,18 @@ const FilterJobsBox = () => {
         const salaryId = searchParams.get("salary_id");
         if (salaryId) {
           urlParams.append("offered_salary_id", salaryId);
+        }
+        const keywords = searchParams.get("keywords");
+        if (keywords) {
+          urlParams.append("title_keywords", keywords);
+        }
+        const location = searchParams.get("location");
+        if (location) {
+          urlParams.append("location", location);
+        }
+        const industry_id = searchParams.get("industry_id");
+        if (industry_id) {
+          urlParams.append("industry_id", industry_id);
         }
 
         const apiUrl = `https://api.sentryspot.co.uk/api/jobseeker/job-list${
@@ -1603,7 +1615,7 @@ const FilterJobsBox = () => {
       </div>
 
       {showPopup && selectedJobId && (
-        <ApplyJobModalContent job={jobs} onClose={handleClosePopup} />
+        <ApplyJobModalContent jobId={selectedJobId} onClose={handleClosePopup} />
       )}
 
       {showLoginModal && <LoginModal onClose={handleCloseLoginModal} />}

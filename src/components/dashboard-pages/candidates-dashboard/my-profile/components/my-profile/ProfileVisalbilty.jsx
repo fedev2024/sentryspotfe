@@ -1,7 +1,7 @@
 // import React, { useState, useEffect } from "react";
 // import axios from "axios";
 // import { Constant } from "@/utils/constant/constant";
-// import { toast } from "react-toastify";
+// import toast from "react-hot-toast";
 
 // const ProfileVisalbilty = ({ onNext }) => {
 //   const token = localStorage.getItem(Constant.USER_TOKEN);
@@ -155,7 +155,7 @@
 // export default ProfileVisalbilty;
 
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const ProfileVisibility = ({ onNext }) => {
   const [forms, setForms] = useState([
@@ -398,7 +398,7 @@ export default ProfileVisibility;
 
 
 // import React, { useState } from "react";
-// import { toast } from "react-toastify";
+// import toast from "react-hot-toast";
 
 // const ProfileVisibility = () => {
 //   const defaultSectors = {

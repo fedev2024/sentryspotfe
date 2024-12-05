@@ -140,14 +140,14 @@ const FilterSidebar = () => {
             />
           </div>
           
-          <p>Radius around selected destination</p>
+          {/* <p>Radius around selected destination</p>
           <DestinationRangeSlider 
             onRangeChange={(range) => updateSearchParams('radius', range)}
-          />
+          /> */}
         </div>
 
         <div className="filter-block">
-          <h4>Category</h4>
+          <h4>Industries</h4>
           <div className="form-group">
             <Categories 
               onCategorySelect={(category) => updateSearchParams('category', category)} 
