@@ -12,6 +12,7 @@ import { Constant } from "@/utils/constant/constant";
 import LikeButton from "./LikeButton";
 import ConfirmationDialog from "./ConfirmationDialog";
 import LinkedInShareButton from "./ShareButton";
+import { Link } from "react-router-dom";
 
 const FeedSection = ({
   loginModal,
@@ -578,9 +579,11 @@ const confirmDeletePost = (postId) => {
                   />
                   <div>
                     <div className="flex flex-col ">
-                      <p className="font-semibold text-gray-800">
+                    <Link to={`/community/${post.id}`}>
+                    <p className="font-semibold text-gray-800">
                         {post.user_first_name} {post.user_last_name}
                       </p>
+                    </Link>
                       <p className="text-xs text-gray-500">
                         {new Date(post.created_at).toLocaleDateString()}
                       </p>
@@ -620,7 +623,7 @@ const confirmDeletePost = (postId) => {
                         }}
                         className="flex items-center px-4 py-2 w-full text-left text-red-600 hover:bg-red-100"
                       >
-                        <FaTrash className="mr-2" /> Delete Post
+                        <FaTrash className="mr-2" /> Delete 
                       </button>
                     </div>
                   )}
@@ -882,7 +885,7 @@ const confirmDeletePost = (postId) => {
                                           className="flex items-center px-4 py-2 w-full text-left text-red-600 hover:bg-red-100"
                                         >
                                           <FaTrash className="mr-2" /> Delete
-                                          comment
+                                        
                                         </button>
                                       </div>
                                     )}
