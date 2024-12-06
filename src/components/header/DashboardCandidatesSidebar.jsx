@@ -135,7 +135,7 @@ const DashboardCandidatesSidebar = () => {
           <div className="flex gap-4 justify-center items-center p-4 border border-gray-200 mb-2 rounded-lg bg-blue-700 text-white">
             <div className="flex-1 h-12 w-12">
               <img
-                src={user?.photo || "https://via.placeholder.com/150"}
+                src="https://surgassociates.com/wp-content/uploads/610-6104451_image-placeholder-png-user-profile-placeholder-image-png-1.jpg"
                 alt="User Avatar"
                 className="rounded-full w-full h-full"
               />
