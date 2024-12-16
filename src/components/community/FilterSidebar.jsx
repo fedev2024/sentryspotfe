@@ -1,11 +1,3 @@
-import Categories from "../candidates-listing-pages/components/Categories";
-import DestinationRangeSlider from "../candidates-listing-pages/components/DestinationRangeSlider";
-import CandidatesGender from "../candidates-listing-pages/components/CandidatesGender";
-import LocationBox from "../candidates-listing-pages/components/LocationBox";
-import SearchBox from "../candidates-listing-pages/components/SearchBox";
-import DatePosted from "../candidates-listing-pages/components/DatePosted";
-import Experience from "../candidates-listing-pages/components/Experience";
-import Qualification from "../candidates-listing-pages/components/Qualification";
 
 const FilterSidebar = () => {
     return (

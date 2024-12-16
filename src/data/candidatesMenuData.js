@@ -228,13 +228,13 @@ const candidateMenus = [
     routePath: "/",
     active: "",
   },
-  {
-    id: 18,
-    name: "Logout",
-    icon: "la-sign-out",
-    routePath: "/",
-    active: "",
-  },
+  // {
+  //   id: 18,
+  //   name: "Logout",
+  //   icon: "la-sign-out",
+  //   // routePath: "/",
+  //   active: "",
+  // },
 ];
 
 export default candidateMenus;
