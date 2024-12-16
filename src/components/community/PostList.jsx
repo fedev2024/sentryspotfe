@@ -1,7 +1,14 @@
 import React from "react";
-import PostItem from "./PostItem"; // New component for individual post
+import Post from "./Post";
 
-const PostList = ({ posts, setPosts, setConfirmationDialog }) => {
+const PostList = ({
+  posts,
+  token,
+  setLoginModal,
+  confirmDeletePost,
+  confirmDeleteComment,
+  fetchPosts,
+}) => {
   return (
     <div className="space-y-4">
       {posts.length === 0 ? (
@@ -10,9 +17,15 @@ const PostList = ({ posts, setPosts, setConfirmationDialog }) => {
         </div>
       ) : (
         posts.map((post) => (
-            <PostItem key={post.id} post={post} setPosts={setPosts} setConfirmationDialog={setConfirmationDialog} deletePost={deletePost} />
-
-            //   <PostItem key={post.id} post={post} setPosts={setPosts} setConfirmationDialog={setConfirmationDialog} />
+          <Post
+            key={post.id}
+            post={post}
+            token={token}
+            setLoginModal={setLoginModal}
+            confirmDeletePost={confirmDeletePost}
+            confirmDeleteComment={confirmDeleteComment}
+            fetchPosts={fetchPosts}
+          />
         ))
       )}
     </div>
@@ -20,3 +33,4 @@ const PostList = ({ posts, setPosts, setConfirmationDialog }) => {
 };
 
 export default PostList;
+

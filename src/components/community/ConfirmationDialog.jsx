@@ -111,30 +111,56 @@
 
 import React from 'react';
 
-const ConfirmationDialog = ({ 
-  isOpen, 
-  onClose, 
-  onConfirm, 
-  title, 
-  message 
-}) => {
+// const ConfirmationDialog = ({ 
+//   isOpen, 
+//   onClose, 
+//   onConfirm, 
+//   title, 
+//   message 
+// }) => {
+//   if (!isOpen) return null;
+
+//   return (
+//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+//       <div className="bg-white rounded-lg shadow-xl p-6 w-96">
+//         <h2 className="text-xl font-bold mb-4">{title}</h2>
+//         <p className="mb-6">{message}</p>
+//         <div className="flex justify-end space-x-4">
+//           <button 
+//             onClick={onClose}
+//             className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300"
+//           >
+//             Cancel
+//           </button>
+//           <button 
+//             onClick={onConfirm}
+//             className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
+//           >
+//             Confirm
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+const ConfirmationDialog = ({ isOpen, onClose, onConfirm, title, message }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg shadow-xl p-6 w-96">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg shadow-xl">
         <h2 className="text-xl font-bold mb-4">{title}</h2>
         <p className="mb-6">{message}</p>
         <div className="flex justify-end space-x-4">
-          <button 
+          <button
             onClick={onClose}
-            className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300"
+            className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
           >
             Cancel
           </button>
-          <button 
+          <button
             onClick={onConfirm}
-            className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
+            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
           >
             Confirm
           </button>
@@ -143,5 +169,6 @@ const ConfirmationDialog = ({
     </div>
   );
 };
+
 
 export default ConfirmationDialog;

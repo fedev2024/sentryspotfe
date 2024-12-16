@@ -38,6 +38,10 @@ const DefaulHeader2 = () => {
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
   }, []);
+  const logoutHandler = () => {
+    dispatch(logout())
+    navigate('/')
+  };
 
   return (
     <>
@@ -114,6 +118,9 @@ const DefaulHeader2 = () => {
                     <li>
                       <a href="/job-list-v7#tab2">Companies</a>
                     </li>
+                    <li>
+                      <a href="/community">Community</a>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -140,9 +147,10 @@ const DefaulHeader2 = () => {
                 <Button
                   className="bg-gray-500 p-3 duration-500 hover:bg-[#E60278] ml-4 "
                   title="logout"
-                  onClick={() => {
-                    dispatch(logout());
-                  }}
+                  // onClick={() => {
+                  //   dispatch(logout());
+                  // }}
+                  onClick={logoutHandler()}
                 >
                   <IoLogOutOutline size={24} />
                 </Button>
