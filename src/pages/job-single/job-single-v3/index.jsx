@@ -19,6 +19,7 @@ import MetaComponent from "@/components/common/MetaComponent";
 // Utility imports
 import { Constant } from "@/utils/constant/constant";
 import { toast } from "react-hot-toast";
+import CompanyInfo from "@/components/job-single-pages/shared-components/CompanyInfo";
 
 const LoginModal = ({ onClose }) => {
   return (
@@ -49,6 +50,7 @@ const JobSingleDynamicV3 = () => {
   const [jobData, setJobData] = useState(null);
   const [company, setCompany] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isSaved, SetisSaved] = useState(false)
   const [error, setError] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
   
@@ -68,12 +70,43 @@ const JobSingleDynamicV3 = () => {
     bootstrapModal.show();
   };
 
+  // const handleBookmarkClick = async (e) => {
+  //   e.preventDefault();
+  //   if (!token) {
+  //     setShowLoginModal(true);
+  //     return;
+  //   }
+  //   try {
+  //     console.log("bookmark");
+  //     const response = await axios.get(
+  //       `https://api.sentryspot.co.uk/api/jobseeker/mark-job-favorite/${id}`,
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //         },
+  //       }
+  //     );
+  //     console.log(response,"bookmark");
+  //     if (response.data.status == "status" || response.data.code == 200) {
+  //       toast.success(response.message || "Your job was successfully saved!");
+  //       SetisSaved(true)
+  //     } else {
+  //       toast.error("Failed to save the job. Please try again.");
+  //     }
+  //   } catch (error) {
+  //     toast.error("An error occurred while saving the job. Please try again.");
+  //   }
+  //   // Add your bookmark logic here
+  //   // You might want to call an API to save the bookmark
+  // };
   const handleBookmarkClick = async (e) => {
     e.preventDefault();
+    
     if (!token) {
       setShowLoginModal(true);
       return;
     }
+    
     try {
       console.log("bookmark");
       const response = await axios.get(
@@ -84,8 +117,12 @@ const JobSingleDynamicV3 = () => {
           },
         }
       );
-      console.log(response,"bookmark");
-      if (response.data.status == "status" || response.data.code == 200) {
+      console.log(response, "bookmark");
+  
+      if (response.data.status === "status" || response.data.code === 200) {
+        // Toggle isSaved state on success
+        SetisSaved((prevState) => !prevState); // This toggles between true/false
+        
         toast.success(response.message || "Your job was successfully saved!");
       } else {
         toast.error("Failed to save the job. Please try again.");
@@ -93,20 +130,48 @@ const JobSingleDynamicV3 = () => {
     } catch (error) {
       toast.error("An error occurred while saving the job. Please try again.");
     }
-    // Add your bookmark logic here
-    // You might want to call an API to save the bookmark
   };
-
+  
   const handleCloseLoginModal = () => {
     setShowLoginModal(false);
   };
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const headers = token ? { Authorization: token } : {};
+
+  //       // Fetch Job Details
+  //       const jobResponse = await axios.get(
+  //         `https://api.sentryspot.co.uk/api/jobseeker/job-list/${id}`,
+  //         { headers }
+  //       );
+
+  //       const fetchedJobData = jobResponse.data.data;
+  //       setJobData(fetchedJobData);
+
+  //       // Fetch Company Details if company_id exists
+  //       if (fetchedJobData.company_id) {
+  //         const companyResponse = await axios.get(
+  //           `https://api.sentryspot.co.uk/api/jobseeker/companies/${fetchedJobData.company_id}`
+  //         );
+  //         setCompany(companyResponse.data.data);
+  //       }
+
+  //       setLoading(false);
+  //     } catch (err) {
+  //       console.error("Error fetching data:", err);
+  //       setError(err.message);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [id, token]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const headers = token ? { Authorization: token } : {};
-
-        // Fetch Job Details
         const jobResponse = await axios.get(
           `https://api.sentryspot.co.uk/api/jobseeker/job-list/${id}`,
           { headers }
@@ -115,7 +180,6 @@ const JobSingleDynamicV3 = () => {
         const fetchedJobData = jobResponse.data.data;
         setJobData(fetchedJobData);
 
-        // Fetch Company Details if company_id exists
         if (fetchedJobData.company_id) {
           const companyResponse = await axios.get(
             `https://api.sentryspot.co.uk/api/jobseeker/companies/${fetchedJobData.company_id}`
@@ -132,8 +196,7 @@ const JobSingleDynamicV3 = () => {
     };
 
     fetchData();
-  }, [id, token]);
-
+  }, [token]);
   const metadata = {
     title: "Job Single Dynamic V3 || sentryspot - Job Board ReactJs Template",
     description: "Job details page with comprehensive job and company information",
@@ -171,20 +234,20 @@ const JobSingleDynamicV3 = () => {
                             <span className="icon flaticon-briefcase"></span>
                             {company?.company_name || "Company Name Not Available"}
                           </li>
-                          <li>
+                          {/* <li>
                             <span className="icon flaticon-map-locator"></span>
                             {jobData?.city && jobData?.country 
                               ? `${jobData.city}, ${jobData.country}` 
                               : "Location Not Specified"}
-                          </li>
-                          <li>
+                          </li> */}
+                          {/* <li>
                             <span className="icon flaticon-clock-3"></span>
                             {jobData?.created_at || "Date Not Available"}
-                          </li>
-                          <li>
+                          </li> */}
+                          {/* <li>
                             <span className="icon flaticon-money"></span>
                             {jobData?.offered_salary || "Salary Not Defined"}
-                          </li>
+                          </li> */}
                         </ul>
 
                         {jobData?.jobType && (
@@ -203,7 +266,7 @@ const JobSingleDynamicV3 = () => {
 
                 <div className="job-overview-two">
                   <h4>Job Description</h4>
-                  <JobOverView2 />
+                  <JobOverView2 jobData={jobData}/>
                 </div>
 
                 <JobDetailsDescriptions />
@@ -218,7 +281,7 @@ const JobSingleDynamicV3 = () => {
 
               <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
                 <aside className="sidebar">
-                  <div className="btn-box">
+                  {/* <div className="btn-box">
                     <a
                       href="#"
                       className="theme-btn btn-style-one"
@@ -226,10 +289,33 @@ const JobSingleDynamicV3 = () => {
                     >
                       Apply For Job
                     </a>
-                    <button className="bookmark-btn" onClick={handleBookmarkClick}>
-                      <i className="flaticon-bookmark"></i>
-                    </button>
-                  </div>
+                    
+                    <button
+  className=" flex items-center space-x-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration-300 ease-in-out transform hover:scale-105"
+  onClick={handleBookmarkClick}
+>
+  <i className="flaticon-bookmark text-xl" />
+  <span className="font-semibold">{isSaved ? 'Save' : 'Unsave'}</span>
+</button>
+                    
+                  </div> */}
+                  <div className="space-y-4">
+      <button
+        href="#"
+        className=" w-full py-3 text-center bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration-300 ease-in-out transform hover:scale-105"
+        onClick={handleApplyClick}
+      >
+        Apply For Job
+      </button>
+      
+      <button
+        className="flex items-center justify-center space-x-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration-300 ease-in-out transform hover:scale-105 w-full"
+        onClick={handleBookmarkClick}
+      >
+        <i className="flaticon-bookmark text-xl" />
+        <span className="font-semibold">{isSaved ? 'Save' : 'Unsave'}</span>
+      </button>
+    </div>
 
                   {/* Apply Job Modal */}
                   <div
@@ -258,18 +344,15 @@ const JobSingleDynamicV3 = () => {
 
                   <div className="sidebar-widget company-widget">
                     <div className="widget-content">
-                      <div className="company-title">
+                      {/* <div className="company-title">
                         <div className="company-logo">
-                          {/* Company logo placeholder */}
                         </div>
-                        <a href="#" className="profile-link">
-                          View company profile
-                        </a>
-                      </div>
+                       
+                      </div> */}
 
-                      <CompnayInfo />
+                      <CompanyInfo company={company} />
 
-                      <div className="btn-box">
+                      {/* <div className="btn-box">
                         <a
                           href={jobData?.link || "#"}
                           target="_blank"
@@ -278,7 +361,7 @@ const JobSingleDynamicV3 = () => {
                         >
                           Company Website
                         </a>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 

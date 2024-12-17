@@ -234,7 +234,7 @@ const DashboardCandidatesHeader = () => {
                   className="las la-user text-3xl text-blue-900 me-3 flex items-center focus:outline-none cursor-pointer"
                   onClick={() => setIsOpen(!isOpen)}
                 ></i>
-
+{/* 
                 {isOpen && (
                   <div className="profile-dropdown absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
                     <ul className="py-2 text-sm text-gray-700 ">
@@ -296,7 +296,7 @@ const DashboardCandidatesHeader = () => {
                       </li>
                     </ul>
                   </div>
-                )}
+                )} */}
               </div>
               <div className="btn-box">
                 {userToken ? (

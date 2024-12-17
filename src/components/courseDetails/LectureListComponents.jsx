@@ -294,6 +294,7 @@ import { Play, ChevronDown, ChevronUp, FileText, Link as LinkIcon } from 'lucide
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Constant } from '@/utils/constant/constant';
 
 const LectureList = styled.ul`
   list-style-type: none;
@@ -542,7 +543,7 @@ const LectureListComponent = ({ section, handlePreviewClick, handlePDFClick, loa
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem(Constant.USER_TOKEN);
     setIsLoggedIn(!!token);
   }, []);
 

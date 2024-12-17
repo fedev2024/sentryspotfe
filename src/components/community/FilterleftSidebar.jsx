@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const FilterleftSidebar = () => {
   return (
       <div className=" pd-right ">
@@ -12,8 +14,10 @@ const FilterleftSidebar = () => {
              <p className="text-xs my-2">
              Find and enroll in courses to enhance your skills, grow your expertise, and advance your career.
               </p>
+               <Link to={'/courses'}>
               <button className="py-1 px-4 m-3 bg-blue-950 text-white">Get Started</button>
-              
+                 
+               </Link>
           </div>
           <div className="filters-outer text-center bg-">
               
@@ -23,10 +27,10 @@ const FilterleftSidebar = () => {
               alt="" />
              </div>
 
-              <h6 className="m-3">YOUR GROUPS</h6>
-              <p className="text-xs my-2">
+              <h6 className="m-3">AD 1</h6>
+              {/* <p className="text-xs my-2">
               Discover and join groups with like-minded women who share your interests, profession, and lifestyle.
-              </p>
+              </p> */}
               <button className="my-2 text-blue-950">Explore</button>
           </div>
           <div className="filters-outer text-center">
@@ -37,10 +41,10 @@ const FilterleftSidebar = () => {
               alt="" />
              </div>
 
-             <h6 className="m-3">COMPANIES YOU FOLLOW</h6>
-              <p className="text-xs my-2">
+             <h6 className="m-3">AD 2</h6>
+              {/* <p className="text-xs my-2">
              Get alerted when there are new employee reviews.
-              </p>
+              </p> */}
               <button className="my-2 text-blue-950">Explore</button>
               
           </div>

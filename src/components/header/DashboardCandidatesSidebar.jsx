@@ -45,7 +45,7 @@ const DashboardCandidatesSidebar = () => {
         {/* Dynamic User Profile */}
         <Link to="/candidates-dashboard/my-profile">
           <div className="flex gap-4 justify-center items-center p-4 border border-gray-200 mb-2 rounded-lg bg-blue-700 text-white">
-            <div className="flex-1 h-12 w-12">
+            <div className="flex-1 h-12 w-auto">
               <img
                 src="https://surgassociates.com/wp-content/uploads/610-6104451_image-placeholder-png-user-profile-placeholder-image-png-1.jpg"
                 alt="User Avatar"
@@ -86,6 +86,15 @@ const DashboardCandidatesSidebar = () => {
               
             </>
           ))}
+           {
+               <button
+               className="w-full bg-gray-500 text-white font-bold py-2 px-4 rounded-lg mt-4"
+               onClick={() => window.location.href = "mailto:jobseeker@sentryspot.co.uk?subject=Job%20Inquiry&body=Hello,%20I%20am%20interested%20in%20learning%20more%20about%20this%20job%20opportunity."}
+             >
+               Contact Us
+             </button>
+             
+              }
           {
                 <button
                   className="w-full bg-red-500 text-white font-bold py-2 px-4 rounded-lg mt-4"
@@ -94,6 +103,7 @@ const DashboardCandidatesSidebar = () => {
                   Logout
                 </button>
               }
+         
         </ul>
 
         {/* Skills Percentage */}

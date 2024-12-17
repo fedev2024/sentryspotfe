@@ -48,7 +48,7 @@ const DetailsContent = ({ courseFeatureData }) => {
         console.error("Error fetching course data:", error);
         setError("Error loading course data. Please try again later.");
         if(error.response && error.response.status == 401){
-          window.location.href = '/login'
+          window.location.href = '/'
         }
 
       } finally {

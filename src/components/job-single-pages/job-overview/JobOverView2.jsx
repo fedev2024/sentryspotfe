@@ -1,43 +1,122 @@
-const JobOverView2 = () => {
+import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Briefcase,
+  DollarSign,
+  PoundSterling,
+} from 'lucide-react'; // Import Lucide icons
+
+const JobOverview = ({ jobData }) => {
+  // Basic validation to check if jobData has the required fields
+  if (!jobData || !jobData.job_title || !jobData.city) {
+    return <div className="text-red-500">Invalid job data provided.</div>;
+  }
+
   return (
-    <ul>
-      <li>
-        <i className="icon icon-calendar"></i>
-        <h5>Date Posted:</h5>
-        <span>Posted 1 hours ago</span>
-      </li>
-      <li>
-        <i className="icon icon-expiry"></i>
-        <h5>Expiration date:</h5>
-        <span>April 06, 2021</span>
-      </li>
-      <li>
-        <i className="icon icon-location"></i>
-        <h5>Location:</h5>
-        <span>London, UK</span>
-      </li>
-      <li>
-        <i className="icon icon-user-2"></i>
-        <h5>Job Title:</h5>
-        <span>Designer</span>
-      </li>
-      <li>
-        <i className="icon icon-clock"></i>
-        <h5>Hours:</h5>
-        <span>50h / week</span>
-      </li>
-      <li>
-        <i className="icon icon-rate"></i>
-        <h5>Rate:</h5>
-        <span>$15 - $25 / hour</span>
-      </li>
-      <li>
-        <i className="icon icon-salary"></i>
-        <h5>Salary:</h5>
-        <span>$35k - $45k</span>
-      </li>
-    </ul>
+    <div className="bg-white rounded-lg p-6 shadow-md">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Date Posted */}
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 flex items-center justify-center bg-blue-50 rounded-lg">
+            <Calendar className="w-5 h-5 text-blue-500" />
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Date Posted:</p>
+            <p className="text-gray-900 font-medium">
+            {new Date(jobData.created_at).toLocaleDateString()}
+            </p>
+          </div>
+        </div>
+
+        {/* Expiration Date */}
+        {/* <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 flex items-center justify-center bg-blue-50 rounded-lg">
+            <Clock className="w-5 h-5 text-blue-500" />
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Expiration Date:</p>
+            <p className="text-gray-900 font-medium">
+              {jobData.application_deadline || "Not specified"}
+            </p>
+          </div>
+        </div> */}
+
+        {/* Location */}
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 flex items-center justify-center bg-blue-50 rounded-lg">
+            <MapPin className="w-5 h-5 text-blue-500" />
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Location:</p>
+            <p className="text-gray-900 font-medium">
+              {jobData.city || "Not specified"}, {jobData.country || "Not specified"}
+            </p>
+          </div>
+        </div>
+
+        {/* Job Title */}
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 flex items-center justify-center bg-blue-50 rounded-lg">
+            <Briefcase className="w-5 h-5 text-blue-500" />
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Job Title:</p>
+            <p className="text-gray-900 font-medium">{jobData.job_title}</p>
+          </div>
+        </div>
+
+        {/* Hours */}
+        {/* <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 flex items-center justify-center bg-blue-50 rounded-lg">
+            <Clock className="w-5 h-5 text-blue-500" />
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Hours:</p>
+            <p className="text-gray-900 font-medium">{jobData.experience || "Not specified"}</p>
+          </div>
+        </div> */}
+
+        {/* Rate */}
+        {/* <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 flex items-center justify-center bg-blue-50 rounded-lg">
+            <DollarSign className="w-5 h-5 text-blue-500" />
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Rate:</p>
+            <p className="text-gray-900 font-medium">{jobData.offered_salary || "Not specified"}</p>
+          </div>
+        </div> */}
+
+        {/* Salary */}
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 flex items-center justify-center bg-blue-50 rounded-lg">
+            <PoundSterling className="w-5 h-5 text-blue-500" />
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Salary:</p>
+            <p className="text-gray-900 font-medium">{jobData.salary || "Not specified"}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default JobOverView2;
+// Adding PropTypes for validation
+JobOverview.propTypes = {
+  jobData: PropTypes.shape({
+    created_at: PropTypes.string.isRequired,
+    application_deadline: PropTypes.string,
+    city: PropTypes.string.isRequired,
+    country: PropTypes.string,
+    job_title: PropTypes.string.isRequired,
+    experience: PropTypes.string,
+    offered_salary: PropTypes.string,
+    salary: PropTypes.string,
+  }).isRequired,
+};
+
+export default JobOverview;

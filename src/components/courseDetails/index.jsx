@@ -204,7 +204,7 @@ const CourseDetails = () => {
         console.error("Error fetching course data:", error);
         setError("Error loading course data. Please try again later.");
         if (error.response && error.response.status === 401) {
-          window.location.href = "/login";
+          window.location.href = "/";
         }
       } finally {
         setLoading(false);
@@ -240,7 +240,7 @@ const CourseDetails = () => {
             {/* Instructor Details */}
             <div className="flex items-center gap-4">
               <Link
-                to={`/instructor/instructor-profile/${courseData.data.trainer_id}`}
+                // to={`/instructor/instructor-profile/${courseData.data.trainer_id}`}
               >
                 <img
                   src={`https://api.sentryspot.co.uk${courseData.data.trainer_photo}`}
@@ -251,7 +251,7 @@ const CourseDetails = () => {
               <div>
                 <h5 className="text-2xl font-semibold">
                   <Link
-                    to={`/instructor/instructor-profile/${courseData.data.trainer_id}`}
+                    // to={`/instructor/instructor-profile/${courseData.data.trainer_id}`}
                   >
                     {courseData.data.trainer_first_name}{" "}
                     {courseData.data.trainer_last_name}

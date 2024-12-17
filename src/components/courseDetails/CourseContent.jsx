@@ -7,6 +7,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import LectureListComponent from './LectureListComponents';
 import { ChevronDown } from 'lucide-react';
+import { Constant } from '@/utils/constant/constant';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -115,7 +116,7 @@ const VideoModal = ({ isOpen, onClose, lecture, streamingUrl, error, courseId, s
     const completed = currentTime >= duration;
     const progress = Math.round(currentTime);
     const last_watched_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem(Constant.USER_TOKEN)
     try {
       const response = await axios.post(
         `https://api.novajobs.us/api/trainers/video-history/${courseId}/${sectionId}/${lecture.id}/${lecture.lecture_videos[0].id}`,
