@@ -120,6 +120,8 @@ import CommunitySinglepage from "./components/community/CommunitySinglepage";
 import HelmetWrapper from "./HelmetWrapper";
 import NotificationsHistoryPage from "./components/dashboard-pages/candidates-dashboard/notifications-history";
 import NotificationProvider from "./NotificationProvider";
+import CoursePage from "./components/Courses";
+import CourseDetails from "./components/courseDetails";
 
 function App() {
   useEffect(() => {
@@ -241,6 +243,8 @@ function App() {
                 {/* <Route path="about" element={<AboutPage />} /> */}
                 <Route path="sentry-spot" element={<SentryPage />} />
                 <Route path="community" element={<Communitypage />} />
+                <Route path="courses" element={<CoursePage />} />
+                <Route path="course-info/:courseid" element={<CourseDetails />} />
                 <Route path="community/:postId" element={<CommunitySinglepage />} />
 
                 <Route path="pricing" element={<PricingPage />} />
