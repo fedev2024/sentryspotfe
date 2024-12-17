@@ -39,7 +39,7 @@ const DynamicCourseGrid = () => {
     try {
       if (!token) {
         toast.error("Please log in to add courses to favorites.");
-        navigate("/login");
+        navigate("/");
         return;
       }
       await axios.post(
@@ -112,7 +112,8 @@ const DynamicCourseGrid = () => {
                 >
                   <Link to={`/course-info/${course.id}`}>
                     <img 
-                      src={`https://api.novajobs.us${course.course_banner_image}`}
+                    //   src={`https://api.novajobs.us${course.course_banner_image}`}
+                    src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
                       alt={course.course_title}
                       className="w-full h-48 object-contain hover:scale-105 transition-transform"
                     />
@@ -127,7 +128,9 @@ const DynamicCourseGrid = () => {
                         className="w-12 h-12 rounded-full mr-4 object-cover border-2 border-gray-200"
                       />
                       <div className="flex-grow">
-                        <Link to={`/instructor/instructor-profile/${course.trainer_id}`}>
+                        <Link 
+                        // to={`/instructor/instructor-profile/${course.trainer_id}`}
+                        >
                           <span className="font-bold text-gray-800">
                             {course.trainer_first_name} {course.trainer_last_name}
                           </span>
@@ -170,10 +173,12 @@ const DynamicCourseGrid = () => {
                     {/* Course Pricing */}
                     <div className="flex items-center">
                       <span className="text-2xl font-bold text-pink-600 mr-3">
-                        ${course.after_discount_price}
+                      £
+                      {course.after_discount_price}
                       </span>
                       <span className="text-gray-500 line-through">
-                        ${course.course_price}
+                      £
+                      {course.course_price}
                       </span>
                     </div>
                   </div>
@@ -182,7 +187,7 @@ const DynamicCourseGrid = () => {
             </div>
 
             {/* Pagination */}
-            <div className="flex justify-center items-center space-x-2 mt-8">
+            {/* <div className="flex justify-center items-center space-x-2 mt-8">
               <button
                 onClick={() => paginate(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -212,7 +217,7 @@ const DynamicCourseGrid = () => {
               >
                 Next
               </button>
-            </div>
+            </div> */}
           </>
         )}
       </div>

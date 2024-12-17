@@ -358,7 +358,7 @@ const SidebarSection = ({ courseId, courseData, courseFeatureData }) => {
                   Cancel
                 </button>
                 <button
-                  onClick={handleTakeTest}
+                  // onClick={handleTakeTest}
                   className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
                 >
                   {loading ? (

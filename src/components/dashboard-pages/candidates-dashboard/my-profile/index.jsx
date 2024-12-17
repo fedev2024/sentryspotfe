@@ -78,7 +78,7 @@
 //                 {currentStep === 1 && (
 //                   <div className="flex items-center space-x-2">
 //                     <label htmlFor="visibility" className="font-bold">
-//                       Profile and CV Visibility 
+//                       Profile and CV Visibility
 //                     </label>
 //                     {/* Toggle Switch */}
 //                     <div className="relative">
@@ -227,10 +227,10 @@ const Index = () => {
               <div className="flex justify-between items-center mb-4">
                 {currentStep === 1 && (
                   <div className="flex items-center space-x-2">
-                    <label htmlFor="visibility" className="font-bold">
+                    {/* <label htmlFor="visibility" className="font-bold">
                       Profile and CV Visibility
                     </label>
-                    {/* Toggle Switch */}
+                    Toggle Switch
                     <div className="relative">
                       <input
                         type="checkbox"
@@ -246,7 +246,36 @@ const Index = () => {
                           }`}
                         />
                       </div>
+                    </div> */}
+                    <div className="flex items-center space-x-4">
+                      {/* Label */}
+                      <label
+                        htmlFor="visibility"
+                        className="font-bold text-gray-700 cursor-pointer flex items-center"
+                      >
+                        Profile and CV Visibility
+                        {/* Toggle Switch */}
+                        <div className="relative ml-4">
+                          <input
+                            type="checkbox"
+                            id="visibility"
+                            checked={isToggled}
+                            onChange={() => setIsToggled(!isToggled)}
+                            className="sr-only peer" // Keeps input hidden but accessible
+                          />
+                          {/* Toggle Background */}
+                          <div className="w-12 h-6 bg-gray-300 rounded-2xl shadow-inner peer-checked:bg-blue-500 transition-colors duration-300 cursor-pointer">
+                            {/* Toggle Knob */}
+                            <div
+                              className={`absolute top-0 left-0 w-6 h-6 bg-white rounded-full shadow transform transition-transform duration-300 ${
+                                isToggled ? "translate-x-6" : "translate-x-0"
+                              }`}
+                            />
+                          </div>
+                        </div>
+                      </label>
                     </div>
+
                     {/* Tooltip Trigger */}
                     <div className="relative inline-block">
                       <p
@@ -259,7 +288,8 @@ const Index = () => {
                       {/* Tooltip Content */}
                       {isTooltipVisible && (
                         <div className="absolute left-0 bottom-full mb-1 w-48 p-2 bg-white border border-gray-300 rounded shadow-lg text-black">
-                          Activating this shows basic details to employers, including contact details.
+                          Activating this shows basic details to employers,
+                          including contact details.
                         </div>
                       )}
                     </div>

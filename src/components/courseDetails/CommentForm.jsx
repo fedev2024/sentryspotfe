@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Star } from 'lucide-react';
+import { Constant } from '@/utils/constant/constant';
 
 // Styled components
 const Card = styled.div`
@@ -154,11 +155,11 @@ const CommentForm = ({ courseId }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem(Constant.USER_TOKEN);
 
     if (!token) {
       toast.error('You need to log in first.');
-      navigate('/login');
+      navigate('/');
       return;
     }
 

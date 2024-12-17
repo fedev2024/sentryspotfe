@@ -322,7 +322,8 @@ const SkillHistory = () => {
                       className="border-t hover:bg-gray-50 transition-colors"
                     >
                       <td className="px-6 py-4 text-gray-600">
-                        {user.date_time || "N/A"}
+                        {/* {user.date_time || "N/A"} */}
+                       { new Date(user.date_time).toLocaleString()}
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center space-x-2">
@@ -339,9 +340,9 @@ const SkillHistory = () => {
                             <span>Passed</span>
                           </div>
                         ) : (
-                          <div className="inline-flex items-center px-3 py-1 bg-red-100 text-red-800 rounded-full">
+                          <div className="inline-flex items-center px-3 py-1 bg-red-100 text-red-800 rounded-full text-xm">
                             <XCircle className="w-4 h-4 mr-2" />
-                            <span>Failed</span>
+                            <span className='text-sm'>Not cleared</span>
                           </div>
                         )}
                       </td>
@@ -357,12 +358,12 @@ const SkillHistory = () => {
                       <td className="px-6 py-4 text-center">
                         <span 
                           className={`font-semibold ${
-                            parseFloat(user.results?.Percentage) >= 70 
+                            parseInt(user.results?.Percentage) >= 70 
                               ? "text-green-600" 
                               : "text-red-600"
                           }`}
                         >
-                          {user.results?.Percentage || "0"}%
+                          {parseInt(user.results?.Percentage) || "0"}%
                         </span>
                       </td>
                     </tr>
