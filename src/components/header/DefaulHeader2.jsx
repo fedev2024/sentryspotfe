@@ -1,12 +1,13 @@
 import { IoLogOutOutline } from "react-icons/io5";
-import logo from "../../Images/logo.png";
-import { Link } from "react-router-dom";
+// import logo from "../../Images/logo.png";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import HeaderNavContent from "./HeaderNavContent";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/slices/auth";
 import { Constant } from "@/utils/constant/constant";
+import logo from "../../../public/company_logo.png"
 
 const DefaulHeader2 = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ const DefaulHeader2 = () => {
   const userToken = localStorage.getItem(Constant.USER_TOKEN)
   const [navbar, setNavbar] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
 
   // Close the dropdown if clicking outside
   useEffect(() => {
@@ -46,11 +49,11 @@ const DefaulHeader2 = () => {
   return (
     <>
       {!userToken && ( // Only show the top header if the user is not logged in
-        <div className="TopHeader">
+        <div className="TopHeader ">
           <div className="container">
-            <div className="TopMenu">
+            <div className="TopMenu ">
 
-              <ul className="flex">
+              <ul className="flex ">
                 <li>
                   <a href="/job-list-v3">
                     <i className="fa-solid fa-compass"></i> Jobs
@@ -84,9 +87,10 @@ const DefaulHeader2 = () => {
             <Link to="/">
 
               <img
-                src="https://htmlsentryspot.vercel.app/img/company_logo.png"
+                // src="https://htmlsentryspot.vercel.app/img/company_logo.png"
+                src={logo}
                 alt="Logo"
-                className="h-14 "
+                className="h-14 w-auto"
               />
 
             </Link>
@@ -99,9 +103,10 @@ const DefaulHeader2 = () => {
                 <Link to="/">
 
                   <img
-                    src="https://htmlsentryspot.vercel.app/img/company_logo.png"
+                    // src="https://htmlsentryspot.vercel.app/img/company_logo.png"
+                    src={logo}
                     alt="Logo"
-                    className="h-14"
+                    className="h-14 w-auto"
                   />
 
                 </Link>
@@ -134,10 +139,7 @@ const DefaulHeader2 = () => {
 
              <>
               
-              
                 <span className="icon la la-bell text-3xl  text-blue-900"></span>
-            
-             
                 <i class="las la-comment text-3xl mx-4 text-blue-900"></i>
              
             <Link to={'/candidates-dashboard/dashboard'}>
@@ -150,7 +152,7 @@ const DefaulHeader2 = () => {
                   // onClick={() => {
                   //   dispatch(logout());
                   // }}
-                  onClick={logoutHandler()}
+                  onClick={logoutHandler}
                 >
                   <IoLogOutOutline size={24} />
                 </Button>

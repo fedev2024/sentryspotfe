@@ -2,7 +2,7 @@ const FilterleftSidebar = () => {
   return (
       <div className=" pd-right ">
           <div className="filters-outer text-center">
-          <h4 className="">Personalize your jobs          </h4>
+          <h4 className="">SPOT COURSES          </h4>
              <div className="flex-row flex justify-center">
              <img src="https://img.freepik.com/premium-vector/people-talking-discussing-together-vector-young-man-woman-people-talking-have-funny-discussion-planning-togetherness-characters-boy-girl-communication-flat-cartoon-illustration_87720-5022.jpg"
               className="rounded-full w-36 h-40 "
@@ -10,7 +10,7 @@ const FilterleftSidebar = () => {
              </div>
 
              <p className="text-xs my-2">
-             Get recommendations for recent and relevant jobs.
+             Find and enroll in courses to enhance your skills, grow your expertise, and advance your career.
               </p>
               <button className="py-1 px-4 m-3 bg-blue-950 text-white">Get Started</button>
               

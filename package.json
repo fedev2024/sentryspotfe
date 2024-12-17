@@ -30,6 +30,7 @@
     "lucide-react": "^0.428.0",
     "photoswipe": "^5.4.2",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.7",
     "react-chartjs-2": "^5.2.0",
     "react-circular-progressbar": "^2.1.0",
     "react-cookie-consent": "^9.0.0",
@@ -56,6 +57,7 @@
     "sass": "^1.69.4",
     "sharp": "^0.32.6",
     "slick-carousel": "^1.8.1",
+    "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7"
   },

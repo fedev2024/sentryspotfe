@@ -59,7 +59,7 @@ const PostCreation = ({ addPost, token, setLoginModal }) => {
               onChange={(e) => setIsAnonymous(e.target.checked)}
               className="hidden"
             />
-            <label
+            {/* <label
               htmlFor="anonymous"
               className="flex items-center cursor-pointer text-gray-700 hover:text-blue-900"
             >
@@ -75,7 +75,7 @@ const PostCreation = ({ addPost, token, setLoginModal }) => {
                 )}
               </span>
               Anonymous Post
-            </label>
+            </label> */}
           </div>
         </div>
 
