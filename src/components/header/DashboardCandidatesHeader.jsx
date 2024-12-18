@@ -2,10 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import logo from "../../../public/company_logo.png";
-// import candidatesMenuData from "../../data/candidatesMenuData";
-// import HeaderNavContent from "./HeaderNavContent";
-// import { isActiveLink } from "../../utils/linkActiveChecker";
-// import { useLocation } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../ui/button";
 import { IoLogOutOutline, IoNotificationsOutline } from "react-icons/io5";
@@ -134,7 +131,7 @@ const DashboardCandidatesHeader = () => {
             <div className="side-menu flex items-center">
               <div id="notification-dropdown" className="relative">
                 <div
-                  className="icon la la-bell text-3xl text-blue-900 cursor-pointer"
+                  className="icon la la-bell hidden md:block text-3xl text-blue-900 cursor-pointer "
                   onClick={handleNotificationClick}
                 >
                   {notificationCount > 0 && (
@@ -143,44 +140,6 @@ const DashboardCandidatesHeader = () => {
                     </span>
                   )}
                 </div>
-
-                {/* {isNotificationModalOpen && (
-                  <div className="absolute right-0 mt-2 w-96 bg-white border border-gray-300 rounded-lg shadow-lg z-50 px-2">
-                    <h3 className="text-lg font-semibold mb-4">Recent Notifications</h3>
-                    {notifications.length > 0 ? (
-                      <ul className="space-y-2">
-                        {notifications.slice(0, 5).map((notification, index) => (
-                          <li 
-                            key={index} 
-                            className="border-b pb-2 last:border-b-0 hover:bg-gray-50 cursor-pointer"
-                          >
-                            {/* <div className="text-sm font-medium">{notification.title}</div> 
-                           <div className="flex gap-2 justify-center items-center ">
-                           <Bell />
-                           <div className="flex flex-col gap-2">
-                           <div className="text-md font-semibold text-black/50">{notification.message}</div>
-                           <div className="text-xs text-gray-500">{notification.created_at}</div>
-                           </div>
-
-                           </div>
-                            {/* <div className="text-xs text-gray-400 mt-1">{notification.time}</div> 
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-sm text-gray-500">No recent notifications</p>
-                    )}
-                    <div className="mt-4 text-center">
-                      <Link 
-                        to="/candidates-dashboard/notifications" 
-                        className="text-blue-600 hover:underline text-sm"
-                        onClick={() => setIsNotificationModalOpen(false)}
-                      >
-                        View More
-                      </Link>
-                    </div>
-                  </div>
-                )} */}
                 {isNotificationModalOpen && (
                   <div className="absolute right-0 mt-2 w-96 bg-white border border-gray-200 rounded-xl shadow-lg z-50 px-4 py-4">
                     <h3 className="text-lg font-bold text-gray-800 mb-4">
@@ -227,85 +186,70 @@ const DashboardCandidatesHeader = () => {
                 )}
               </div>
 
-              <i className="las la-comment text-3xl mx-4 text-blue-900"></i>
+              <i className="las la-comment hidden md:block text-3xl mx-4 text-blue-900"></i>
 
               <div id="user-dropdown" className="">
                 <i
-                  className="las la-user text-3xl text-blue-900 me-3 flex items-center focus:outline-none cursor-pointer"
+                  className="las la-user md:hidden text-3xl text-blue-900 me-3 flex items-center focus:outline-none cursor-pointer"
                   onClick={() => setIsOpen(!isOpen)}
                 ></i>
-{/* 
+
                 {isOpen && (
-                  <div className="profile-dropdown absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+                  <div className="profile-dropdown absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50 text-left">
                     <ul className="py-2 text-sm text-gray-700 ">
                       <li>
-                        <a
-                          href="#"
+                        <Link
+                          to={`/candidates-dashboard/my-profile`}
                           className="block px-4 py-2 hover:bg-gray-100  "
                         >
                           Profile
-                        </a>
+                        </Link>
                       </li>
+                     
                       <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100  "
-                        >
-                          Saved Searches
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
+                        <Link
+                          to={'/candidates-dashboard/job-alerts'}
                           className="block px-4 py-2 hover:bg-gray-100  "
                         >
                           Saved Jobs
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href="#"
+                        <Link
+                          to={'/candidates-dashboard/applied-jobs'}
                           className="block px-4 py-2 hover:bg-gray-100  "
                         >
                           Applied Jobs
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href="#"
+                        <Link
+                          to={'/job-list-v7#tab2'}
                           className="block px-4 py-2 hover:bg-gray-100  "
                         >
-                          Recommended Jobs
-                        </a>
+                          Companies
+                        </Link>
                       </li>
+                     
                       <li>
-                        <a
-                          href="#"
+                        <Link
+                          to={"/candidates-dashboard/my-profile"}
                           className="block px-4 py-2 hover:bg-gray-100  "
                         >
                           Settings
-                        </a>
+                        </Link>
                       </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2  hover:bg-gray-100  "
-                        >
-                          Sign Out
-                        </a>
-                      </li>
+                    
                     </ul>
                   </div>
-                )} */}
+                )} 
               </div>
               <div className="btn-box">
                 {userToken ? (
                   <Button
                     className="bg-gray-500 p-2 duration-500 hover:bg-[#E60278] flex items-center"
                     title="logout"
-                    // onClick={() => {
-                    //   dispatch(logout());
-                    // }}
+                   
                     onClick={logoutHandler}
                   >
                     <IoLogOutOutline size={24} />

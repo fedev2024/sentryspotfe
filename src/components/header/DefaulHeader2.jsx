@@ -79,9 +79,9 @@ const DefaulHeader2 = () => {
       <div
         className={`header ${
           navbar ? "bg-white shadow-md" : "bg-transparent"
-        } transition-all duration-300`}
+        } transition-all duration-300 `}
       >
-        <div className="container flex justify-between items-center">
+        <div className="flex justify-between items-center p-2 ">
           {/* Sidebar for Mobile View */}
           <div className="md:hidden flex items-center">
             <Link to="/">
@@ -99,7 +99,7 @@ const DefaulHeader2 = () => {
           {/* Main Menu for Desktop View */}
           <div className="hidden md:flex items-center">
             <div className="header-menu flex items-center">
-              <div className="header-logo flex items-center">
+              <div className="header-logo flex items-center ">
                 <Link to="/">
 
                   <img
@@ -133,17 +133,17 @@ const DefaulHeader2 = () => {
           </div>
 
           {/* Side Menu */}
-          <div className="side-menu flex items-center">
-            <div className="btn-box flex items-center">
+          <div className=" flex items-center">
+            <div className=" flex items-center">
               {userToken ? (
 
              <>
               
-                <span className="icon la la-bell text-3xl  text-blue-900"></span>
-                <i class="las la-comment text-3xl mx-4 text-blue-900"></i>
+                <span className="icon la la-bell hidden md:block text-3xl  text-blue-900"></span>
+                <i class="las la-comment hidden md:block text-3xl mx-4 text-blue-900"></i>
              
             <Link to={'/candidates-dashboard/dashboard'}>
-            <i class="las la-user text-3xl text-blue-900"></i>
+            <i class="las la-user  text-3xl text-blue-900"></i>
               
             </Link>            
                 <Button

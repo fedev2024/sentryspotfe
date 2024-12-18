@@ -122,6 +122,7 @@ import NotificationsHistoryPage from "./components/dashboard-pages/candidates-da
 import NotificationProvider from "./NotificationProvider";
 import CoursePage from "./components/Courses";
 import CourseDetails from "./components/courseDetails";
+import ApplyForm from "./components/ApplyForm/index";
 
 function App() {
   useEffect(() => {
@@ -162,6 +163,7 @@ function App() {
                 {/* <Route path="job-list-v1" element={<JobListPage1 />} />
                 <Route path="job-list-v2" element={<JobListPage2 />} /> */}
                 <Route path="job-list-v3" element={<JobListPage3 />} />
+                <Route path="apply/:id" element={<ApplyForm/>} />
                   {/* <Route path="job-list-v4" element={<JobListPage4 />} />
                   <Route path="job-list-v5" element={<JobListPage5 />} />
                   <Route path="job-list-v6" element={<JobListPage6 />} /> */}
