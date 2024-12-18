@@ -300,13 +300,14 @@ const JobSingleDynamicV3 = () => {
                     
                   </div> */}
                   <div className="space-y-4">
-      <button
-        href="#"
+    <Link to={`/apply/${jobData.id}`}>
+    <button
         className=" w-full py-3 text-center bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration-300 ease-in-out transform hover:scale-105"
-        onClick={handleApplyClick}
+        // onClick={handleApplyClick}
       >
         Apply For Job
       </button>
+    </Link>
       
       <button
         className="flex items-center justify-center space-x-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration-300 ease-in-out transform hover:scale-105 w-full"

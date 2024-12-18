@@ -177,7 +177,7 @@ const Post = ({
           }
         >
           <i className="fas fa-comment mr-2"></i>
-          Comment
+          <span className="hidden md:block"> Comment </span>
         </button>
 
         <LinkedInShareButton post={post} />

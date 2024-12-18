@@ -115,7 +115,7 @@ const CommentSection = ({
               onChange={(e) => setIsCommentAnonymous(e.target.checked)}
               className="hidden"
             />
-            <label
+            {/* <label
               htmlFor={`comment-anonymous-${post.id}`}
               className="flex items-center cursor-pointer text-gray-700"
             >
@@ -131,7 +131,7 @@ const CommentSection = ({
                 )}
               </span>
               Comment Anonymously
-            </label>
+            </label> */}
           </div>
           <button
             onClick={addComment}
