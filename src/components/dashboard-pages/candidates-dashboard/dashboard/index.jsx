@@ -10,8 +10,10 @@ import JobApplied from "./components/JobApplied";
 import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
 import MenuToggler from "../../MenuToggler";
 import TopSection from "./components/Topsection.jsx";
+import { Constant } from "@/utils/constant/constant";
 
 const Index = () => {
+  const user = JSON.parse(localStorage.getItem(Constant.USER_INFO));
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -31,8 +33,8 @@ const Index = () => {
 
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
-        <div className="dashboard-outer">
-          {/* <BreadCrumb title="Howdy, Jerome!!" /> */}
+        <div className="dashboard-outer ">
+          <BreadCrumb title={`Howdy, ${user.first_name}`} />
           {/* breadCrumb */}
 
           <MenuToggler />
