@@ -37,9 +37,9 @@
   button{
       padding:6px 25px;
   }
-  button:hover{
+  /* button:hover{
       background: #433487;
-  }
+  } */
   .container{
       width: 1280px;
   }

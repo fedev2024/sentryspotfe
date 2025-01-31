@@ -154,8 +154,10 @@
 
 // export default ProfileVisalbilty;
 
+import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import TitleDropdown from "./TitleDropdown";
 
 const ProfileVisibility = ({ onNext }) => {
   const [forms, setForms] = useState([
@@ -172,6 +174,7 @@ const ProfileVisibility = ({ onNext }) => {
     },
   ]);
   const [charLimit] = useState(2000);
+  const [jobTitle, setJobTitle] = useState();
 
   // Handle input changes for a specific form
   const handleChange = (id, field, value) => {
@@ -214,6 +217,17 @@ const ProfileVisibility = ({ onNext }) => {
     onNext();
   };
 
+  const fetchJobTitle = async () => {
+    const jobTypeResponse = await axios.get(
+      `https://api.sentryspot.co.uk/api/employeer/job-titles`
+    );
+    console.log(jobTypeResponse, ">>>>>>");
+    if (jobTypeResponse && jobTypeResponse.data.data) {
+      setJobTitle(jobTypeResponse.data.data);
+    }
+  };
+  fetchJobTitle();
+
   return (
     <div>
       {/* <h3>Profile Visibility</h3> */}
@@ -221,7 +235,7 @@ const ProfileVisibility = ({ onNext }) => {
         <form key={form.id} className="default-form mb-4">
           <div className="row">
             {/* Job Title */}
-            <div className="form-group col-lg-6 col-md-12">
+            {/* <div className="form-group col-lg-6 col-md-12">
               <label>Job title*</label>
               <input
                 type="text"
@@ -234,7 +248,9 @@ const ProfileVisibility = ({ onNext }) => {
                 required
                 className="form-control"
               />
-            </div>
+            </div> */}
+            {/* <JobTypeDropdown jobTypes={jobTitle} /> */}
+            <TitleDropdown titles={jobTitle} />
 
             {/* Company */}
             <div className="form-group col-lg-6 col-md-12">
@@ -315,7 +331,7 @@ const ProfileVisibility = ({ onNext }) => {
             </div>
 
             {/* Currently Working Here */}
-            <div className="form-group col-lg-12 col-md-12">
+            {/* <div className="form-group col-lg-12 col-md-12 p-2">
               <label>
                 <input
                   type="checkbox"
@@ -324,6 +340,23 @@ const ProfileVisibility = ({ onNext }) => {
                     handleChange(form.id, "isPresent", e.target.checked)
                   }
                 />
+                I currently work here
+              </label>
+            </div> */}
+            <div className="flex items-center space-x-2 col-lg-12 col-md-12 mb-4">
+              <input
+                type="checkbox"
+                id={`present-${form.id}`}
+                className="w-5 h-5 accent-blue-600 cursor-pointer"
+                checked={form.isPresent}
+                onChange={(e) =>
+                  handleChange(form.id, "isPresent", e.target.checked)
+                }
+              />
+              <label
+                htmlFor={`present-${form.id}`}
+                className="text-gray-700 text-sm md:text-base cursor-pointer"
+              >
                 I currently work here
               </label>
             </div>
@@ -388,14 +421,6 @@ const ProfileVisibility = ({ onNext }) => {
 };
 
 export default ProfileVisibility;
-
-
-
-
-
-
-
-
 
 // import React, { useState } from "react";
 // import toast from "react-hot-toast";

@@ -131,7 +131,7 @@ const candidateMenus = [
     id: 3,
     name: "AI Resume Builder",
     icon: "la la-robot",
-    routePath: `https://sentryspot-new-rb-fe.vercel.app?${token}`,
+    routePath: `https://sentryspot-ai-resume-dev.vercel.app?${token}`,
     // routePath: `http://localhost:3000/?${token}`,
     active: "",
   },

@@ -40,6 +40,7 @@ import TitleDropdown from "./TitleDropdown";
 import SectorDropdown from "./SectorDropdown";
 import SalaryRangeDropdown from "./SalaryRangeDropdown";
 import WorkExperienceDropdown from "./WorkExperienceDropdown";
+import ImageUpload from "./ImageUpload";
 
 const Index = ({ onNext }) => {
   const token = localStorage.getItem(Constant.USER_TOKEN);
@@ -47,7 +48,7 @@ const Index = ({ onNext }) => {
 
   const current = new Date().toISOString().split("T")[0];
   const [logImg, setLogImg] = useState(null);
-  const [profileData,setProfileData] =  useState("")
+  const [profileData, setProfileData] = useState("");
 
   const logImgHander = (event) => {
     const file = event.target.files[0];
@@ -182,8 +183,8 @@ const Index = ({ onNext }) => {
             Authorization: token,
           },
         });
-        setProfileData(response.data.data.personal_details);        ;
-        console.log("Profile Data>>>>:", profileData);
+        setProfileData(response.data.data.personal_details);
+        // console.log("Profile Data>>>>:", profileData);
       } catch (error) {
         console.error("Error fetching profile data:", error);
       }
@@ -477,141 +478,7 @@ const Index = ({ onNext }) => {
     }
   }, []);
 
-  const defaultSectors = {
-    "Cyber Security": [
-      "Cybersecurity Analyst",
-      "Network Security Engineer",
-      "Security Consultant",
-      "Penetration Tester (Ethical Hacker)",
-      "Cybersecurity Architect",
-      "Incident Response Manager",
-      "Chief Information Security Officer (CISO)",
-      "Malware Analyst",
-      "Security Software Developer",
-      "Forensic Analyst",
-      "Compliance Analyst (Cybersecurity)",
-      "Cloud Security Engineer",
-      "Security Operations Center (SOC) Analyst",
-      "Identity and Access Management (IAM) Specialist",
-      "Vulnerability Assessment Analyst",
-      "Application Security Engineer",
-      "Security Researcher",
-      "Data Protection Officer (DPO)",
-      "Security Awareness Trainer",
-      "Risk Manager (Cybersecurity)",
-      "Cryptographer",
-      "DevSecOps Engineer",
-      "Security Tester (Ethical Hacker)",
-      "Red Team Operator",
-      "Blue Team Operator",
-      "Threat Intelligence Analyst",
-      "Security Infrastructure Engineer",
-      "Penetration Testing Manager",
-      "Chief Security Officer (CSO)",
-    ],
-    "Security & Safety": [
-      "CCTV Operator",
-      "Counter Terrorist Cleared",
-      "Environmental Safety Specialist",
-      "Event Safety Steward",
-      "Fire Safety Officer",
-      "Health and Safety Officer",
-      "Health and Safety Specialist",
-      "Law Enforcement Officer",
-      "Security & Safety Professional",
-      "Parking Attendant",
-      "Probation/Prison Service Officer",
-      "Security Consultant",
-      "Security Contracts Manager",
-      "Security Guard",
-      "Traffic Warden",
-      "Security Supervisor",
-      "Security Operations Manager",
-      "Security Manager",
-      "Access Control Officer",
-      "Alarm Technician",
-      "Asset Protection Specialist",
-      "Loss Prevention Manager",
-      "Safety Manager",
-      "Fire Marshal",
-      "Emergency Response Specialist",
-      "Surveillance Technician",
-      "Risk Assessment Consultant",
-      "Occupational Health and Safety Specialist",
-      "Building Security Coordinator",
-      "Safety Trainer",
-      "Forensic Safety Investigator",
-      "Disaster Recovery Specialist",
-      "Workplace Safety Coordinator",
-      "Security Investigator",
-      "Anti-Terrorism Analyst",
-    ],
-  };
-
-  // const [sectors, setSectors] = useState([]);
-  // const [selectedSector, setSelectedSector] = useState("");
-  // const [newSector, setNewSector] = useState("");
-  // const [selectedRoles, setSelectedRoles] = useState([]);
-  // const [customRoles, setCustomRoles] = useState([]);
-  // const [newRole, setNewRole] = useState("");
-  // const [showRoleDropdown, setShowRoleDropdown] = useState(false);
-  // const [titles, setTitle] = useState([]);
-
-  // // Handle sector selection
-  // const handleSectorChange = (e) => {
-  //   const value = e.target.value;
-  //   if (value === "add-new-sector") {
-  //     setNewSector("");
-  //   }
-  //   setSelectedSector(value);
-  //   setSelectedRoles([]);
-  //   setCustomRoles([]);
-  // };
-
-  // // Handle role selection
-  // const handleRoleChange = (role) => {
-  //   if (selectedRoles.includes(role)) {
-  //     setSelectedRoles((prev) => prev.filter((r) => r !== role));
-  //   } else if (selectedRoles.length < 5) {
-  //     setSelectedRoles((prev) => [...prev, role]);
-  //   } else {
-  //     toast.error("You can only select up to 5 roles.");
-  //   }
-  // };
-
-  // const fetchTilte = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       "https://api.sentryspot.co.uk/api/employeer/job-titles"
-  //     );
-
-  //     if ((response.success = "success" || response.data == 200)) {
-  //       console.log(response.data.data, "titles");
-  //       setTitle(response.data.data);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // const fetchSector = async() =>{
-  //   try {
-  //     const response = await axios.get("https://api.sentryspot.co.uk/api/jobseeker/industries")
-
-  //     if(response.data.status == "status" || response.data.code == 200){
-  //       console.log(response.data.data);
-  //       setSectors(response.data.data)
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  // useEffect(() => {
-  //   fetchTilte();
-  //   fetchSector()
-  // }, []);
-  // const token = localStorage.getItem(Constant.USER_TOKEN);
-  // const baseurl = "https://api.sentryspot.co.uk/api/jobseeker/";
-
+ 
   const [data, setData] = useState({
     jobTypes: [],
     sectors: [],
@@ -623,12 +490,26 @@ const Index = ({ onNext }) => {
   // Fetch all necessary data from the API
   const fetchData = async () => {
     try {
-      const [jobTypesResponse, sectorsResponse, titlesResponse, workExperienceResponse, salaryRangesResponse] = await Promise.all([
+      const [
+        jobTypesResponse,
+        sectorsResponse,
+        titlesResponse,
+        workExperienceResponse,
+        salaryRangesResponse,
+      ] = await Promise.all([
         axios.get(`${baseurl}job-types`, { headers: { Authorization: token } }),
-        axios.get(`https://api.sentryspot.co.uk/api/jobseeker/industries`, { headers: { Authorization: token } }),
-        axios.get(`https://api.sentryspot.co.uk/api/employeer/job-titles`, { headers: { Authorization: token } }),
-        axios.get(`${baseurl}experience-level`, { headers: { Authorization: token } }),
-        axios.get(`${baseurl}salary-range`, { headers: { Authorization: token } }),
+        axios.get(`https://api.sentryspot.co.uk/api/jobseeker/industries`, {
+          headers: { Authorization: token },
+        }),
+        axios.get(`https://api.sentryspot.co.uk/api/employeer/job-titles`, {
+          headers: { Authorization: token },
+        }),
+        axios.get(`${baseurl}experience-level`, {
+          headers: { Authorization: token },
+        }),
+        axios.get(`${baseurl}salary-range`, {
+          headers: { Authorization: token },
+        }),
       ]);
 
       setData({
@@ -660,8 +541,9 @@ const Index = ({ onNext }) => {
       <ToastContainer />
       <div className="row">
         {/* Profile Picture Upload */}
+        
 
-        <div className="form-group col-lg-6 col-md-12 flex justify-center">
+        {/* <div className="form-group col-lg-6 col-md-12 flex justify-center">
           <div>
             <div className="rounded-full border w-32 h-32 flex items-center justify-center">
               <input
@@ -704,7 +586,8 @@ const Index = ({ onNext }) => {
               </button>
             )}
           </div>
-        </div>
+        </div> */}
+        <ImageUpload/>
         {/* Form Fields */}
         <div className="form-group col-lg-6 col-md-12">
           <label style={{ fontWeight: "800" }}>First Name*</label>
@@ -712,7 +595,7 @@ const Index = ({ onNext }) => {
             type="text"
             name="first_name"
             value={profileData.first_name}
-            onChange={handleChange} 
+            onChange={handleChange}
             required
             className="border font-light rounded-none mb-4"
           />
@@ -721,7 +604,7 @@ const Index = ({ onNext }) => {
             type="text"
             name="lastname"
             value={profileData.last_name}
-            onChange={handleChange} 
+            onChange={handleChange}
             required
             className="border rounded-none font-light"
           />
@@ -897,7 +780,7 @@ const Index = ({ onNext }) => {
             ))}
           </div>
         </div> */}
-        <JobTypeDropdown jobTypes={data.jobTypes}/>
+        <JobTypeDropdown jobTypes={data.jobTypes} />
         {/* <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Job Title*</label>
           <input
@@ -921,7 +804,7 @@ const Index = ({ onNext }) => {
           </select>
         </div> */}
         <TitleDropdown titles={data.titles} />
-{/* 
+        {/* 
         <div className="form-group  col-lg-6 col-md-12 font-light">
           <label>Select Sector*</label>
           <select
@@ -939,7 +822,7 @@ const Index = ({ onNext }) => {
             ))}
           </select>
         </div> */}
-         <SectorDropdown sectors={data.sectors} />
+        <SectorDropdown sectors={data.sectors} />
 
         {/* Roles Section */}
         {/* {selectedSector && selectedSector !== "add-new-sector" && (
@@ -1121,13 +1004,14 @@ const Index = ({ onNext }) => {
             </div>
 
             {/* Dropdown */}
-            <div className=" col-lg-6 col-md-12 ">
+            <div className="w-full lg:w-1/2 md:w-full">
               <select
                 name="salaryType"
-                className="  border border-gray-300 rounded-r-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 px-4 py-2"
+                className="w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 px-4 py-2 bg-white text-gray-700"
               >
-                <option value="per hour">per hour</option>
-                <option value="per annum">per annum</option>
+                <option value="per hour">Per Hour</option>
+                <option value="per month">Per Month</option>
+                <option value="per annum">Per Annum</option>
               </select>
             </div>
           </div>
@@ -1175,8 +1059,7 @@ const Index = ({ onNext }) => {
             <option value="6">10+ years</option>
           </select>
         </div> */}
-                <WorkExperienceDropdown workExperience={data.workExperience} />
-
+        <WorkExperienceDropdown workExperience={data.workExperience} />
 
         {/* <div className="form-group col-lg-12 col-md-12 font-light">
           <label>Industries*</label>
@@ -1207,97 +1090,3 @@ const Index = ({ onNext }) => {
 };
 
 export default Index;
-
-// import PhoneInput from "react-phone-input-2";
-// import "react-phone-input-2/lib/style.css";
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-// import { toast, ToastContainer } from "react-toastify";
-// import { Constant } from "@/utils/constant/constant";
-// import ProfilePictureUpload from "./ProfilePictureUpload"; // New component
-// import JobTypeDropdown from "./JobTypeDropdown"; // New component
-// import SectorDropdown from "./SectorDropdown"; // New component
-// import TitleDropdown from "./TitleDropdown"; // New component
-// import WorkExperienceDropdown from "./WorkExperienceDropdown"; // New component
-// import SalaryRangeDropdown from "./SalaryRangeDropdown"; // New component
-
-// const Index = ({ onNext }) => {
-  // const token = localStorage.getItem(Constant.USER_TOKEN);
-  // const baseurl = "https://api.sentryspot.co.uk/api/jobseeker/";
-
-  // const [data, setData] = useState({
-  //   jobTypes: [],
-  //   sectors: [],
-  //   titles: [],
-  //   workExperience: [],
-  //   salaryRanges: [],
-  // });
-
-  // // Fetch all necessary data from the API
-  // const fetchData = async () => {
-  //   try {
-  //     const [jobTypesResponse, sectorsResponse, titlesResponse, workExperienceResponse, salaryRangesResponse] = await Promise.all([
-  //       axios.get(`${baseurl}job-types`, { headers: { Authorization: token } }),
-  //       axios.get(`https://api.sentryspot.co.uk/api/jobseeker/industries`, { headers: { Authorization: token } }),
-  //       axios.get(`https://api.sentryspot.co.uk/api/employeer/job-titles`, { headers: { Authorization: token } }),
-  //       axios.get(`${baseurl}experience-level`, { headers: { Authorization: token } }),
-  //       axios.get(`${baseurl}salary-range`, { headers: { Authorization: token } }),
-  //     ]);
-
-  //     setData({
-  //       jobTypes: jobTypesResponse.data.data,
-  //       sectors: sectorsResponse.data.data,
-  //       titles: titlesResponse.data.data,
-  //       workExperience: workExperienceResponse.data.data,
-  //       salaryRanges: salaryRangesResponse.data.data,
-  //     });
-  //   } catch (error) {
-  //     toast.error("Failed to fetch data from API.");
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     // Handle form submission logic here
-//     onNext();
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit} className="default-form">
-//       <ToastContainer />
-//       <div className="row">
-//         {/* Profile Picture Upload */}
-//         <ProfilePictureUpload />
-
-//         {/* Job-Type Dropdown */}
-//         <JobTypeDropdown jobTypes={data.jobTypes} />
-
-//         {/* Sector Dropdown */}
-//         <SectorDropdown sectors={data.sectors} />
-
-//         {/* Job Title Dropdown */}
-//         <TitleDropdown titles={data.titles} />
-
-//         {/* Work Experience Dropdown */}
-//         <WorkExperienceDropdown workExperience={data.workExperience} />
-
-//         {/* Salary Range Dropdown */}
-//         <SalaryRangeDropdown salaryRanges={data.salaryRanges} />
-
-//         {/* Submit Button */}
-//         <div className="form-group col-lg-12 col-md-12">
-//           <button type="submit" className="theme-btn btn-style-one bg-blue-900">
-//             Save & Next ➤
-//           </button>
-//         </div>
-//       </div>
-//     </form>
-//   );
-// };
-
-// export default Index;
