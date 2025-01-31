@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Constant } from "@/utils/constant/constant";
+// import LanguageSelector from "../LanguageSelector";
 
 const Additionalinformation = () => {
   const [formData, setFormData] = useState({
@@ -404,6 +405,7 @@ const Additionalinformation = () => {
             </button>
           </div>
         </div>
+        {/* <LanguageSelector/> */}
         <div className="form-group col-lg-12 col-md-12">
           <button
             type="submit"
