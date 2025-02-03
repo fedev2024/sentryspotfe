@@ -20,7 +20,7 @@ const ReviewForm = ({ formData = {} }) => {
         ))}
       </div>
 
-      <div>
+      {/* <div>
         <h3 className="text-lg font-medium text-gray-900">Work Experience</h3>
         {formData?.workExperience?.map((exp, index) => (
           <div key={index}>
@@ -29,9 +29,9 @@ const ReviewForm = ({ formData = {} }) => {
             <p>Duration: {exp.duration || 'N/A'}</p>
           </div>
         )) || <p>No work experience provided</p>}
-      </div>
+      </div> */}
 
-      <div>
+      {/* <div>
         <h3 className="text-lg font-medium text-gray-900">Education</h3>
         {formData?.education?.map((edu, index) => (
           <div key={index}>
@@ -40,9 +40,9 @@ const ReviewForm = ({ formData = {} }) => {
             <p>Year: {edu.year || 'N/A'}</p>
           </div>
         )) || <p>No education information provided</p>}
-      </div>
+      </div> */}
 
-      <div>
+      {/* <div>
         <h3 className="text-lg font-medium text-gray-900">Certifications</h3>
         {formData?.certifications?.map((cert, index) => (
           <div key={index}>
@@ -51,12 +51,12 @@ const ReviewForm = ({ formData = {} }) => {
             <p>Year: {cert.year || 'N/A'}</p>
           </div>
         )) || <p>No certifications provided</p>}
-      </div>
+      </div> */}
 
-      <div>
+      {/* <div>
         <h3 className="text-lg font-medium text-gray-900">Skills</h3>
         <p>{formData?.skills || 'No skills provided'}</p>
-      </div>
+      </div> */}
     </div>
   );
 };

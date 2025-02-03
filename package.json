@@ -27,6 +27,7 @@
     "date-fns": "^4.1.0",
     "flag-icon-css": "^4.1.7",
     "google-map-react": "^2.2.1",
+    "lodash": "^4.17.21",
     "lucide-react": "^0.428.0",
     "photoswipe": "^5.4.2",
     "react": "^18.2.0",

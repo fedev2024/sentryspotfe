@@ -403,7 +403,7 @@ const PersonalInfoForm = ({ formData, setFormData, errors }) => {
             Resumé
           </h3>
           <div className="space-y-3">
-            {['upload', 'select', 'none'].map((option) => (
+            {['upload', 'select'].map((option) => (
               <label key={option} className="flex items-center space-x-3 cursor-pointer">
                 <input
                   type="radio"

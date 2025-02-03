@@ -91,12 +91,12 @@ const FilterSidebar = () => {
           />
         </div>
 
-        <div className="filter-block">
+        {/* <div className="filter-block">
           <h4>Salary</h4>
           <SalaryRangeSlider 
             onSalaryRangeChange={(range) => updateSearchParams('salaryRange', JSON.stringify(range))}
           />
-        </div>
+        </div> */}
 
         {/* <div className="filter-block">
           <h4>Tags</h4>
