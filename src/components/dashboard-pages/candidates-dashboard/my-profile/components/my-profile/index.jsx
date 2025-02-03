@@ -41,6 +41,7 @@ import SectorDropdown from "./SectorDropdown";
 import SalaryRangeDropdown from "./SalaryRangeDropdown";
 import WorkExperienceDropdown from "./WorkExperienceDropdown";
 import ImageUpload from "./ImageUpload";
+import LocationSelector from "./LocationSelector";
 
 const Index = ({ onNext }) => {
   const token = localStorage.getItem(Constant.USER_TOKEN);
@@ -720,9 +721,9 @@ const Index = ({ onNext }) => {
   />
 </div> */}
 
-        <div className="form-group col-lg-4 col-md-12 font-light">
+        {/* <div className="form-group col-lg-4 col-md-12 font-light">
           <label className="my-2 mt-4 text-lg">(Current - Location)</label>
-          {/* <label>Country*</label> */}
+          {/* <label>Country*</label> 
           <select
             name="country"
             value={selectedCountry}
@@ -736,11 +737,13 @@ const Index = ({ onNext }) => {
               </option>
             ))}
           </select>
-        </div>
-
-        <div className="form-group col-lg-8 col-md-12 font-light">
+        </div> */}
+        <LocationSelector />
+        <LocationSelector />
+        
+        {/* <div className="form-group col-lg-8 col-md-12 font-light">
           <label className="my-2 mt-4 text-lg">(Preferred - Location)</label>
-          {/* <label>Country*</label> */}
+          {/* <label>Country*</label> *
           <select
             name="preferredcountry"
             value={preferredselectedCountry}
@@ -754,7 +757,7 @@ const Index = ({ onNext }) => {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
         {/* <div className="form-group col-lg-12 col-md-12 font-light">
           <label>Job-Type*</label>
           <div className="job-type-container row">

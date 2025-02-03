@@ -5,6 +5,7 @@ import WorkExperienceForm from './AddtionalInfo';
 import ReviewForm from './ReviewFrom';
 import ProgressBar from './ProgressBar';
 import { validatePersonalInfo, validateEmployeeQuestions, validateWorkExperience } from './Validation';
+import { toast } from 'react-toastify';
 
 const ApplyForm = () => {
     const [step, setStep] = useState(1);
@@ -60,6 +61,7 @@ const ApplyForm = () => {
     const handleSubmit = () => {
       // Here you would typically send the form data to your backend
       console.log('Form submitted:', formData);
+      toast.success("Applied Successfully")
       // Reset form or redirect user
     };
   
@@ -69,9 +71,9 @@ const ApplyForm = () => {
           return <PersonalInfoForm formData={formData} setFormData={setFormData} errors={errors} />;
         case 2:
           return <EmployeeQuestionsForm formData={formData} setFormData={setFormData} errors={errors} />;
+        // case 3:
+        //   return <WorkExperienceForm formData={formData} setFormData={setFormData} errors={errors} />;
         case 3:
-          return <WorkExperienceForm formData={formData} setFormData={setFormData} errors={errors} />;
-        case 4:
           return <ReviewForm formData={formData} />;
         default:
           return null;
@@ -79,12 +81,12 @@ const ApplyForm = () => {
     };
   
     return (
-      <div className="max-w-2xl mx-auto p-4">
-        <ProgressBar currentStep={step} totalSteps={4} />
+      <div className="max-w-5xl  mx-auto p-4">
+        <ProgressBar currentStep={step} totalSteps={3} />
         <h2 className="text-2xl font-bold mb-4">
           {step === 1 && 'Personal Information'}
           {step === 2 && 'Employee Questions'}
-          {step === 3 && 'Work Experience & Education'}
+          {/* {step === 3 && 'Work Experience & Education'} */}
           {step === 4 && 'Review & Submit'}
         </h2>
         {renderForm()}
@@ -97,7 +99,7 @@ const ApplyForm = () => {
               Previous
             </button>
           )}
-          {step < 4 ? (
+          {step < 3 ? (
             <button
               onClick={nextStep}
               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"

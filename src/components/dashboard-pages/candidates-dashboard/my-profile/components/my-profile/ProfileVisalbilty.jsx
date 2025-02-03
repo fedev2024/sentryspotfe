@@ -221,7 +221,7 @@ const ProfileVisibility = ({ onNext }) => {
     const jobTypeResponse = await axios.get(
       `https://api.sentryspot.co.uk/api/employeer/job-titles`
     );
-    console.log(jobTypeResponse, ">>>>>>");
+    // console.log(jobTypeResponse, ">>>>>>");
     if (jobTypeResponse && jobTypeResponse.data.data) {
       setJobTitle(jobTypeResponse.data.data);
     }

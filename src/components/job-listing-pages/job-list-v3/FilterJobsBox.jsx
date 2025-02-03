@@ -1,9 +1,10 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Constant } from "@/utils/constant/constant";
 import toast from "react-hot-toast";
 import ApplyJobModalContent from "@/components/job-single-pages/shared-components/ApplyJobModalContent";
+import ApplyForm from "@/components/ApplyForm/ApplyForm";
 
 const LoginModal = ({ onClose }) => {
   return (
@@ -42,11 +43,13 @@ const FilterJobsBox = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const token = localStorage.getItem(Constant.USER_TOKEN);
+  const navigate = useNavigate()
 
   const handleApplyNowClick = (jobId) => {
     if (!token) {
       setShowLoginModal(true);
     } else {
+      navigate(`/apply/${jobId}`)
       setSelectedJobId(jobId);
       setShowPopup(true);
     }
@@ -208,9 +211,9 @@ const FilterJobsBox = () => {
       perPage.end !== 0 ? perPage.end : filteredJobs.length
     )
     ?.map((item) => (
-      <div className="job-block col-lg-6 col-md-12 col-sm-12" key={item.id}>
-        <div className="inner-box">
-          <div className="content">
+      <div className="job-block col-lg-6 col-md-12 col-sm-12 hover:border-2 border-blue-400 hover:rounded-lg" key={item.id} >
+        <div className="inner-box ">
+          <div className="content ">
             <span className="company-logo">
               <img
                 src={
@@ -287,7 +290,7 @@ const FilterJobsBox = () => {
               <option value="des">Oldest</option>
             </select>
 
-            <select
+            {/* <select
               onChange={perPageHandler}
               className="chosen-single form-select"
               value={JSON.stringify(perPage)}
@@ -302,7 +305,7 @@ const FilterJobsBox = () => {
               <option value={JSON.stringify({ start: 0, end: 30 })}>
                 30 per page
               </option>
-            </select>
+            </select> */}
 
             {hasFilters() && (
               <button
@@ -372,6 +375,7 @@ const FilterJobsBox = () => {
           jobId={selectedJobId}
           onClose={handleClosePopup}
         />
+        // <ApplyForm />
       )}
 
       {showLoginModal && <LoginModal onClose={handleCloseLoginModal} />}
