@@ -42,6 +42,7 @@ import SalaryRangeDropdown from "./SalaryRangeDropdown";
 import WorkExperienceDropdown from "./WorkExperienceDropdown";
 import ImageUpload from "./ImageUpload";
 import LocationSelector from "./LocationSelector";
+import PreferredLocations from "./PreferdLocations";
 
 const Index = ({ onNext }) => {
   const token = localStorage.getItem(Constant.USER_TOKEN);
@@ -738,8 +739,9 @@ const Index = ({ onNext }) => {
             ))}
           </select>
         </div> */}
-        <LocationSelector />
-        <LocationSelector />
+        <LocationSelector className="form-group col-lg-4 col-md-12 font-light" />
+        {/* <LocationSelector /> */}
+        <PreferredLocations/>
         
         {/* <div className="form-group col-lg-8 col-md-12 font-light">
           <label className="my-2 mt-4 text-lg">(Preferred - Location)</label>

@@ -234,6 +234,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Constant } from '@/utils/constant/constant';
+import LocationAutocomplete from '../dashboard-pages/candidates-dashboard/my-profile/components/my-profile/LocationSelector';
 
 const PersonalInfoForm = ({ formData, setFormData, errors }) => {
   const [loading, setLoading] = useState(true);
@@ -371,7 +372,7 @@ const PersonalInfoForm = ({ formData, setFormData, errors }) => {
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
           Location
         </label>
@@ -391,7 +392,14 @@ const PersonalInfoForm = ({ formData, setFormData, errors }) => {
             {errors.location}
           </p>
         )}
-      </div>
+      </div> */}
+      <LocationAutocomplete
+    className="w-full" // Dynamic styling
+    selectedLocation={formData.location} // Pass selected location
+    onChange={(selectedOption) =>
+      setFormData({ ...formData, location: selectedOption ? selectedOption.value : "" })
+    } 
+  />
 
       <div className="space-y-6">
         {/* Resume Section */}

@@ -16,7 +16,10 @@ const JobOverview = ({ jobData }) => {
   }
 
   return (
-    <div className="bg-white rounded-lg p-6 shadow-md">
+    <div className="bg-white rounded-lg p-6 shadow-md ">
+      <div className='pb-4 '>
+        <h4 >Job Overview</h4>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Date Posted */}
         <div className="flex items-center space-x-3">

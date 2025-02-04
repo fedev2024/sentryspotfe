@@ -265,7 +265,7 @@ const JobSingleDynamicV3 = () => {
                 </div>
 
                 <div className="job-overview-two">
-                  <h4>Job Description</h4>
+                  {/* <h4>Job Description</h4> */}
                   <JobOverView2 jobData={jobData}/>
                 </div>
 
