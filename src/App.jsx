@@ -124,6 +124,8 @@ import CoursePage from "./components/Courses";
 import CourseDetails from "./components/courseDetails";
 import ApplyForm from "./components/ApplyForm/index";
 import LoginCode from "./components/common/form/login/LoginOTPScreen";
+import AdminLogin from "./components/Admin/AdminLogin";
+import AddCourse from "./components/Admin/Add-Course";
 
 function App() {
   useEffect(() => {
@@ -136,14 +138,13 @@ function App() {
   return (
     <>
       <HelmetWrapper>
-
-      <Provider store={store}>
-        <div className="page-wrapper">
-          <BrowserRouter>
-            <Routes>
-              <Route path="/">
-                <Route index element={<JobListPage1 />} />
-                {/* <Route path="home-1" element={<HomePage1 />} />
+        <Provider store={store}>
+          <div className="page-wrapper">
+            <BrowserRouter>
+              <Routes>
+                <Route path="/">
+                  <Route index element={<JobListPage1 />} />
+                  {/* <Route path="home-1" element={<HomePage1 />} />
                   <Route path="home-2" element={<HomePage2 />} />
                   <Route path="home-3" element={<HomePage3 />} />
                   <Route path="home-4" element={<HomePage4 />} />
@@ -161,183 +162,215 @@ function App() {
                   <Route path="home-16" element={<HomePage16 />} />
                   <Route path="home-17" element={<HomePage17 />} /> */}
 
-                {/* <Route path="job-list-v1" element={<JobListPage1 />} />
+                  {/* <Route path="job-list-v1" element={<JobListPage1 />} />
                 <Route path="job-list-v2" element={<JobListPage2 />} /> */}
-                <Route path="job-list-v3" element={<JobListPage3 />} />
-                <Route path="apply/:id" element={<ApplyForm/>} />
+                  <Route path="job-list-v3" element={<JobListPage3 />} />
+                  <Route path="apply/:id" element={<ApplyForm />} />
                   {/* <Route path="job-list-v4" element={<JobListPage4 />} />
                   <Route path="job-list-v5" element={<JobListPage5 />} />
                   <Route path="job-list-v6" element={<JobListPage6 />} /> */}
-                <Route path="job-list-v7" element={<JobListPage7 />} />
-                <Route path="login-code" element={<LoginCode />} />
-                {/* <Route path="job-list-v8" element={<JobListPage8 />} />
+                  <Route path="job-list-v7" element={<JobListPage7 />} />
+                  <Route path="login-code" element={<LoginCode />} />
+                  {/* <Route path="job-list-v8" element={<JobListPage8 />} />
                 <Route path="job-list-v9" element={<JobListPage9 />} />
                 <Route path="job-list-v10" element={<JobListPage10 />} />
                 <Route path="job-list-v11" element={<JobListPage11 />} />
                 <Route path="job-list-v12" element={<JobListPage12 />} />
                 <Route path="job-list-v13" element={<JobListPage13 />} />
                 <Route path="job-list-v14" element={<JobListPage14 />} /> */}
-                <Route
-                  path="job-single-v1/:id"
-                  element={<JobSingleDynamicV1 />}
-                />
-                {/* <Route path="job-single-v2/:id" element={<JobSingleDynamicV2 />} /> */}
-                  <Route path="job-single-v3/:id" element={<JobSingleDynamicV3 />} />
+                  <Route
+                    path="job-single-v1/:id"
+                    element={<JobSingleDynamicV1 />}
+                  />
+                  {/* <Route path="job-single-v2/:id" element={<JobSingleDynamicV2 />} /> */}
+                  <Route
+                    path="job-single-v3/:id"
+                    element={<JobSingleDynamicV3 />}
+                  />
                   {/* <Route path="job-single-v4/:id" element={<JobSingleDynamicV4 />} />
                   <Route path="job-single-v5/:id" element={<JobSingleDynamicV5 />} /> */}
 
-                {/* <Route
+                  {/* <Route
                   path="employers-list-v1"
                   element={<EmployerListPage1 />}
                 /> */}
-                <Route
-                  path="employers-list-v2"
-                  element={<EmployerListPage2 />}
-                />
-                {/*   <Route path="employers-list-v3" element={<EmployerListPage3 />} />
+                  <Route
+                    path="employers-list-v2"
+                    element={<EmployerListPage2 />}
+                  />
+                  {/*   <Route path="employers-list-v3" element={<EmployerListPage3 />} />
                   <Route path="employers-list-v4" element={<EmployerListPage4 />} /> */}
 
-                <Route
-                  path="employers-single-v1/:id"
-                  element={<EmployersSingleV1 />}
-                />
-                {/* <Route path="employers-single-v2/:id" element={<EmployersSingleV2 />} />
+                  <Route
+                    path="employers-single-v1/:id"
+                    element={<EmployersSingleV1 />}
+                  />
+                  {/* <Route path="employers-single-v2/:id" element={<EmployersSingleV2 />} />
                   <Route path="employers-single-v3/:id" element={<EmployersSingleV3 />} /> */}
 
-                <Route
-                  path="candidates-list-v1"
-                  element={<CandidateListPage1 />}
-                />
-                <Route
-                  path="candidates-list-v2"
-                  element={<CandidateListPage2 />}
-                />
-                <Route
-                  path="candidates-list-v3"
-                  element={<CandidateListPage3 />}
-                />
-                <Route
-                  path="candidates-list-v4"
-                  element={<CandidateListPage4 />}
-                />
-                <Route
-                  path="candidates-list-v5"
-                  element={<CandidateListPage5 />}
-                />
+                  <Route
+                    path="candidates-list-v1"
+                    element={<CandidateListPage1 />}
+                  />
+                  <Route
+                    path="candidates-list-v2"
+                    element={<CandidateListPage2 />}
+                  />
+                  <Route
+                    path="candidates-list-v3"
+                    element={<CandidateListPage3 />}
+                  />
+                  <Route
+                    path="candidates-list-v4"
+                    element={<CandidateListPage4 />}
+                  />
+                  <Route
+                    path="candidates-list-v5"
+                    element={<CandidateListPage5 />}
+                  />
 
-                <Route
-                  path="candidates-single-v1/:id"
-                  element={<CandidateSingleDynamicV1 />}
-                />
-                {/* <Route path="candidates-single-v2/:id" element={<CandidateSingleDynamicV2 />} />
+                  <Route
+                    path="candidates-single-v1/:id"
+                    element={<CandidateSingleDynamicV1 />}
+                  />
+                  {/* <Route path="candidates-single-v2/:id" element={<CandidateSingleDynamicV2 />} />
                   <Route path="candidates-single-v3/:id" element={<CandidateSingleDynamicV3 />} /> */}
 
-                <Route path="blog-list-v1" element={<BlogListpage1 />} />
-                <Route path="skilltest" element={<Skilltestpage />} />
-                <Route path="buildresume" element={<Buildresume />} />
-                <Route path="talkto" element={<Talkto />} />
-                <Route path="earnjob" element={<Earnjob />} />
-                {/* <Route path="blog-list-v2" element={<BlogListpage2 />} />
+                  <Route path="blog-list-v1" element={<BlogListpage1 />} />
+                  <Route path="skilltest" element={<Skilltestpage />} />
+                  <Route path="buildresume" element={<Buildresume />} />
+                  <Route path="talkto" element={<Talkto />} />
+                  <Route path="earnjob" element={<Earnjob />} />
+                  {/* <Route path="blog-list-v2" element={<BlogListpage2 />} />
                   <Route path="blog-list-v3" element={<BlogListpage3 />} /> */}
-                <Route
-                  path="blog-details/:id"
-                  element={<BlogDetailsDynamic />}
-                />
+                  <Route
+                    path="blog-details/:id"
+                    element={<BlogDetailsDynamic />}
+                  />
 
-                {/* <Route path="about" element={<AboutPage />} /> */}
-                <Route path="sentry-spot" element={<SentryPage />} />
-                <Route path="community" element={<Communitypage />} />
-                <Route path="courses" element={<CoursePage />} />
-                <Route path="course-info/:courseid" element={<CourseDetails />} />
-                <Route path="community/:postId" element={<CommunitySinglepage />} />
+                  {/* <Route path="about" element={<AboutPage />} /> */}
+                  <Route path="sentry-spot" element={<SentryPage />} />
+                  <Route path="community" element={<Communitypage />} />
+                  <Route path="courses" element={<CoursePage />} />
+                  <Route
+                    path="course-info/:courseid"
+                    element={<CourseDetails />}
+                  />
+                  <Route
+                    path="community/:postId"
+                    element={<CommunitySinglepage />}
+                  />
 
-                <Route path="pricing" element={<PricingPage />} />
-                <Route path="faq" element={<FaqPage />} />
-                <Route path="terms" element={<TermsPage />} />
-                <Route path="invoice" element={<InvoicePage />} />
-                <Route path="contact" element={<ContactPage />} />
-                <Route path="login" element={<LoginPage />} />
-                <Route path="register" element={<RegisterPage />} />
-                <Route path="404" element={<NotFoundPage />} />
-                <Route path="*" element={<NotFoundPage />} />
+                  <Route path="pricing" element={<PricingPage />} />
+                  <Route path="faq" element={<FaqPage />} />
+                  <Route path="terms" element={<TermsPage />} />
+                  <Route path="invoice" element={<InvoicePage />} />
+                  <Route path="contact" element={<ContactPage />} />
+                  <Route path="login" element={<LoginPage />} />
+                  <Route path="register" element={<RegisterPage />} />
+                  <Route path="404" element={<NotFoundPage />} />
+                  <Route path="*" element={<NotFoundPage />} />
 
-                <Route path="employers-dashboard">
-                  <Route
-                    path="dashboard"
-                    element={<DashboardEmploeeDBPage />}
-                  />
-                  <Route
-                    path="company-profile"
-                    element={<CompanyProfileEmploeeDBPage />}
-                  />
-                  <Route path="post-jobs" element={<PostJobsEmploeeDBPage />} />
-                  <Route
-                    path="manage-jobs"
-                    element={<ManageJobsEmploeeDBPage />}
-                  />
-                  <Route
-                    path="all-applicants"
-                    element={<AllApplicantsEmploeesPage />}
-                  />
-                  <Route
-                    path="shortlisted-resumes"
-                    element={<ShortListedResumeEmploeeDBPage />}
-                  />
-                  <Route path="packages" element={<PackageEmploeeDBPage />} />
-                  <Route path="messages" element={<MessageEmploeeDBPage />} />
-                  <Route
-                    path="resume-alerts"
-                    element={<ResumeAlertsEmploeeDBPage />}
-                  />
-                  <Route
-                    path="change-password"
-                    element={<ChangePasswordEmploeeDBPage />}
-                  />
+                  <Route path="admin-dashboard">
+                    <Route
+                      path="dashboard"
+                      element={<DashboardEmploeeDBPage />}
+                    />
+                    <Route
+                      path="company-profile"
+                      element={<CompanyProfileEmploeeDBPage />}
+                    />
+                    <Route
+                      path="add-course"
+                      element={<PostJobsEmploeeDBPage />}
+                    />
+                    <Route
+                      path="manage-jobs"
+                      element={<ManageJobsEmploeeDBPage />}
+                    />
+                    <Route
+                      path="all-applicants"
+                      element={<AllApplicantsEmploeesPage />}
+                    />
+                    <Route
+                      path="shortlisted-resumes"
+                      element={<ShortListedResumeEmploeeDBPage />}
+                    />
+                    <Route path="packages" element={<PackageEmploeeDBPage />} />
+                    <Route path="messages" element={<MessageEmploeeDBPage />} />
+                    <Route
+                      path="resume-alerts"
+                      element={<ResumeAlertsEmploeeDBPage />}
+                    />
+                    <Route
+                      path="change-password"
+                      element={<ChangePasswordEmploeeDBPage />}
+                    />
+                  </Route>
+
+                  <Route path="candidates-dashboard">
+                    <Route path="dashboard" element={<DashboardPage />} />
+                    <Route path="applied-jobs" element={<AppliedJobsPage />} />
+                    <Route path="skilllistpage" element={<Skilllistpage />} />
+                    <Route
+                      path="skill-test-history"
+                      element={<SkillHistoryPage />}
+                    />
+                    <Route
+                      path="change-password"
+                      element={<ChangePasswordPage />}
+                    />
+                    <Route path="cv-manager" element={<CVMannagerPage />} />
+                    <Route path="job-alerts" element={<JobAlertPage />} />
+                    <Route path="messages" element={<MessageesPage />} />
+                    <Route path="my-profile" element={<MyProfilePage />} />
+                    <Route path="my-resume" element={<MyResumePage />} />
+                    <Route path="packages" element={<PackagePage />} />
+                    <Route
+                      path="notifications"
+                      element={<NotificationsHistoryPage />}
+                    />
+                    <Route
+                      path="testpaper/:skillId/:skillName"
+                      element={<TestPaper />}
+                    />
+                    <Route
+                      path="short-listed-jobs"
+                      element={<ShortListedJobsPage />}
+                    />
+                  </Route>
+
+                  <Route path="shop">
+                    <Route path="shop-list" element={<ShopListPage />} />
+                    <Route
+                      path="shop-single/:id"
+                      element={<ShopSingleDyanmic />}
+                    />
+                    <Route path="cart" element={<CartPage />} />
+                    <Route path="checkout" element={<CheckoutPage />} />
+                    <Route
+                      path="order-completed"
+                      element={<OrderCompletedPage />}
+                    />
+
+                   
+                  </Route>
+
+                  <Route path="admin">
+                  <Route path="login" element={<AdminLogin />} />
+                  <Route path="add-course" element={<AddCourse />} />
+                    
+
+                  </Route>
                 </Route>
+                  
+              </Routes>
+             
+              <ScrollTopBehaviour />
+            </BrowserRouter>
 
-                <Route path="candidates-dashboard">
-                  <Route path="dashboard" element={<DashboardPage />} />
-                  <Route path="applied-jobs" element={<AppliedJobsPage />} />
-                  <Route path="skilllistpage" element={<Skilllistpage />} />
-                  <Route path="skill-test-history" element={<SkillHistoryPage />} />
-                  <Route
-                    path="change-password"
-                    element={<ChangePasswordPage />}
-                  />
-                  <Route path="cv-manager" element={<CVMannagerPage />} />
-                  <Route path="job-alerts" element={<JobAlertPage />} />
-                  <Route path="messages" element={<MessageesPage />} />
-                  <Route path="my-profile" element={<MyProfilePage />} />
-                  <Route path="my-resume" element={<MyResumePage />} />
-                  <Route path="packages" element={<PackagePage />} />
-                  <Route path="notifications" element={<NotificationsHistoryPage />} />
-                  <Route path="testpaper/:skillId/:skillName" element={<TestPaper />} />
-                  <Route
-                    path="short-listed-jobs"
-                    element={<ShortListedJobsPage />}
-                  />
-                </Route>
-
-                <Route path="shop">
-                  <Route path="shop-list" element={<ShopListPage />} />
-                  <Route
-                    path="shop-single/:id"
-                    element={<ShopSingleDyanmic />}
-                  />
-                  <Route path="cart" element={<CartPage />} />
-                  <Route path="checkout" element={<CheckoutPage />} />
-                  <Route
-                    path="order-completed"
-                    element={<OrderCompletedPage />}
-                  />
-                </Route>
-              </Route>
-            </Routes>
-            <ScrollTopBehaviour />
-          </BrowserRouter>
-
-          {/* Toastify */}
-          {/* <ToastContainer
+            {/* Toastify */}
+            {/* <ToastContainer
             position="bottom-right"
             autoClose={500}
             hideProgressBar={false}
@@ -349,12 +382,12 @@ function App() {
             pauseOnHover
             theme="colored"
           /> */}
-          <Toaster />
-          <NotificationProvider />
-          {/* <!-- Scroll To Top --> */}
-          <ScrollToTop />
-        </div>
-      </Provider>
+            <Toaster />
+            <NotificationProvider />
+            {/* <!-- Scroll To Top --> */}
+            <ScrollToTop />
+          </div>
+        </Provider>
       </HelmetWrapper>
     </>
   );
