@@ -7,6 +7,7 @@ import CopyrightFooter from "../../CopyrightFooter";
 import PostJobSteps from "./components/PostJobSteps";
 import PostBoxForm from "./components/PostBoxForm";
 import MenuToggler from "../../MenuToggler";
+import AddCourse from "@/components/Admin/Add-Course";
 
 const index = () => {
   return (
@@ -45,9 +46,10 @@ const index = () => {
                   </div>
 
                   <div className="widget-content">
-                    <PostJobSteps />
+                    {/* <PostJobSteps /> */}
                     {/* End job steps form */}
-                    <PostBoxForm />
+                    {/* <PostBoxForm /> */}
+                      <AddCourse />
                     {/* End post box form */}
                   </div>
                 </div>
