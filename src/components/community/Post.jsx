@@ -88,18 +88,18 @@ const Post = ({
         </div>
 
         <div className="relative">
-          <button
+          {post.is_edit && editingPostId !== post.id && <button
             onClick={() => toggleDropdown(post.id)}
             className="p-2 text-gray-600 hover:text-gray-800 transition-colors"
           >
             <FaEllipsisV />
-          </button>
+          </button>}
 
           {openDropdownId === post.id && (
             <div className="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
               {post.is_edit && editingPostId !== post.id && (
                 <>
-                <button
+                {/* <button
                   onClick={() => {
                     editPost(post.id, post.content);
                     setOpenDropdownId(null);
@@ -107,7 +107,7 @@ const Post = ({
                   className="flex items-center px-4 py-2 w-full text-left text-blue-600 hover:bg-blue-100"
                 >
                   <FaEdit className="mr-2" /> Edit
-                </button>
+                </button> */}
                 <button
                 onClick={() => {
                   confirmDeletePost(post.id);

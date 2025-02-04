@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 
-const LocationAutocomplete = ({ className }) => {
+const PreferredLocations = () => {
   const [locationOptions, setLocationOptions] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [selectedLocations, setSelectedLocations] = useState([]);
 
   // Fetch locations on component mount
   useEffect(() => {
@@ -14,7 +13,7 @@ const LocationAutocomplete = ({ className }) => {
         const response = await axios.get('https://api.sentryspot.co.uk/api/jobseeker/locations');
         
         // Transform location names into react-select compatible format
-        const options = response.data.data.location_names.map((location, index) => ({
+        const options = response.data.data.location_names.map((location) => ({
           value: location,
           label: location.split(',').slice(1).join(', ') // Display City, Area
         }));
@@ -28,32 +27,30 @@ const LocationAutocomplete = ({ className }) => {
     fetchLocations();
   }, []);
 
-  // Handle location selection
-  const handleLocationChange = (selectedOption) => {
-    setSelectedLocation(selectedOption);
+  // Handle location selection (restrict to 3 locations max)
+  const handleLocationChange = (selectedOptions) => {
+    if (selectedOptions.length <= 3) {
+      setSelectedLocations(selectedOptions);
+    }
   };
 
   return (
-    <div className={className}>
-      <label className="my mt-4 text-lg">Select Location</label>
+    <div className="form-group col-lg-8 col-md-12 font-light">
+      <label className="my mt-4 text-lg">Select Preferred Locations (Max 3)</label>
       <Select
-        value={selectedLocation}
+        value={selectedLocations}
         onChange={handleLocationChange}
         options={locationOptions}
-        isSearchable={true}
+        isMulti
+        isSearchable
         placeholder="Type to search locations..."
         noOptionsMessage={() => "No locations found"}
-       
       />
       
-      {/* Optional: Display selected location details */}
-      {/* {selectedLocation && (
-        <div className="mt-3">
-          <strong>Selected Location:</strong> {selectedLocation.value}
-        </div>
-      )} */}
+      {/* Optional: Display selected locations */}
+      
     </div>
   );
 };
 
-export default LocationAutocomplete;
+export default PreferredLocations;
