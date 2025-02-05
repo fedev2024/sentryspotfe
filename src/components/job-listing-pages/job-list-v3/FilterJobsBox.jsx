@@ -429,7 +429,7 @@ const FilterJobsBox = () => {
   const clearFilters = () => {
     setSearchParams(new URLSearchParams());
     setSort("");
-    setPerPage({ start: 0, end: 0 });
+    setPerPage({ start: 0, end: 0 });4
     fetchJobs(new URLSearchParams());
   };
 
@@ -566,6 +566,7 @@ const FilterJobsBox = () => {
     </>
   );
 };
+
 
 export default FilterJobsBox;
 

@@ -22,6 +22,7 @@
 import React, { useState } from "react";
 
 const TitleAutocomplete = ({ titles }) => {
+  // console.log(titles,"jobtitle");
   const [query, setQuery] = useState(""); // Stores user input
   const [filteredTitles, setFilteredTitles] = useState([]); // Stores filtered titles
   const [showDropdown, setShowDropdown] = useState(false); // Toggles dropdown visibility
