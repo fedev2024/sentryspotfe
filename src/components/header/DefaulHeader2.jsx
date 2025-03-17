@@ -7,16 +7,15 @@ import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/slices/auth";
 import { Constant } from "@/utils/constant/constant";
-import logo from "../../../public/company_logo.png"
+import logo from "../../../public/company_logo.png";
 
 const DefaulHeader2 = () => {
   const dispatch = useDispatch();
   // const { userToken } = useSelector((state) => state.auth);
-  const userToken = localStorage.getItem(Constant.USER_TOKEN)
+  const userToken = localStorage.getItem(Constant.USER_TOKEN);
   const [navbar, setNavbar] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-
 
   // Close the dropdown if clicking outside
   useEffect(() => {
@@ -42,8 +41,8 @@ const DefaulHeader2 = () => {
     window.addEventListener("scroll", changeBackground);
   }, []);
   const logoutHandler = () => {
-    dispatch(logout())
-    navigate('/')
+    dispatch(logout());
+    navigate("/");
   };
 
   return (
@@ -52,7 +51,6 @@ const DefaulHeader2 = () => {
         <div className="TopHeader ">
           <div className="container">
             <div className="TopMenu ">
-
               <ul className="flex ">
                 <li>
                   <a href="/job-list-v3">
@@ -71,7 +69,6 @@ const DefaulHeader2 = () => {
                   </a>
                 </li>
               </ul>
-
             </div>
           </div>
         </div>
@@ -85,14 +82,12 @@ const DefaulHeader2 = () => {
           {/* Sidebar for Mobile View */}
           <div className="md:hidden flex items-center">
             <Link to="/">
-
               <img
                 // src="https://htmlsentryspot.vercel.app/img/company_logo.png"
                 src={logo}
                 alt="Logo"
                 className="h-14 w-auto"
               />
-
             </Link>
           </div>
 
@@ -101,14 +96,12 @@ const DefaulHeader2 = () => {
             <div className="header-menu flex items-center">
               <div className="header-logo flex items-center ">
                 <Link to="/">
-
                   <img
                     // src="https://htmlsentryspot.vercel.app/img/company_logo.png"
                     src={logo}
                     alt="Logo"
                     className="h-14 w-auto"
                   />
-
                 </Link>
                 <div className="main-menu ms-4">
                   <ul className="flex space-x-4">
@@ -136,39 +129,36 @@ const DefaulHeader2 = () => {
           <div className=" flex items-center">
             <div className=" flex items-center">
               {userToken ? (
+                <>
+                  <span className="icon la la-bell hidden md:block text-3xl  text-blue-900"></span>
+                  <i class="las la-comment hidden md:block text-3xl mx-4 text-blue-900"></i>
 
-             <>
-              
-                <span className="icon la la-bell hidden md:block text-3xl  text-blue-900"></span>
-                <i class="las la-comment hidden md:block text-3xl mx-4 text-blue-900"></i>
-             
-            <Link to={'/candidates-dashboard/dashboard'}>
-            <i class="las la-user  text-3xl text-blue-900"></i>
-              
-            </Link>            
-                <Button
-                  className="bg-gray-500 p-3 duration-500 hover:bg-[#E60278] ml-4 "
-                  title="logout"
-                  // onClick={() => {
-                  //   dispatch(logout());
-                  // }}
-                  onClick={logoutHandler}
-                >
-                  <IoLogOutOutline size={24} />
-                </Button>
-             </>
-
+                  <Link to={"/candidates-dashboard/dashboard"}>
+                    <i class="las la-user  text-3xl text-blue-900"></i>
+                  </Link>
+                  <Button
+                    className="bg-gray-500 p-3 duration-500 hover:bg-[#E60278] ml-4 "
+                    title="logout"
+                    // onClick={() => {
+                    //   dispatch(logout());
+                    // }}
+                    onClick={logoutHandler}
+                  >
+                    <IoLogOutOutline size={24} />
+                  </Button>
+                </>
               ) : (
-                <a
-                  href="#"
-                  data-bs-toggle="modal"
-                  data-bs-target="#loginPopupModal"
-                  className="mr-2 my-4"
-                >
-                  Sign in
-                </a>
+                // <a
+                //   href="#"
+                //   data-bs-toggle="modal"
+                //   data-bs-target="#loginPopupModal"
+                //   className="mr-2 my-4"
+                // >
+                <Link to="/login">Sign in</Link>
+
+                // </a>
               )}
-              {!userToken && (
+              {/* {!userToken && (
                 <Link to={"/sentry-spot"}>
                   <button
                     type="button"
@@ -177,7 +167,7 @@ const DefaulHeader2 = () => {
                     Create Your Sentry ID
                   </button>
                 </Link>
-              )}
+              )} */}
             </div>
           </div>
         </div>

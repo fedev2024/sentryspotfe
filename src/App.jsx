@@ -123,9 +123,11 @@ import NotificationProvider from "./NotificationProvider";
 import CoursePage from "./components/Courses";
 import CourseDetails from "./components/courseDetails";
 import ApplyForm from "./components/ApplyForm/index";
-import LoginCode from "./components/common/form/login/LoginOTPScreen";
+
 import AdminLogin from "./components/Admin/AdminLogin";
 import AddCourse from "./components/Admin/Add-Course";
+import Gauth from "./components/auth/GAuth";
+import LoginCode from "./components/pages-menu/login/LoginCode";
 
 function App() {
   useEffect(() => {
@@ -170,7 +172,9 @@ function App() {
                   <Route path="job-list-v5" element={<JobListPage5 />} />
                   <Route path="job-list-v6" element={<JobListPage6 />} /> */}
                   <Route path="job-list-v7" element={<JobListPage7 />} />
-                  <Route path="login-code" element={<LoginCode />} />
+
+                  <Route path="gauth" element={<Gauth />} />
+                  <Route path="/login/login-code" element={<LoginCode />} />
                   {/* <Route path="job-list-v8" element={<JobListPage8 />} />
                 <Route path="job-list-v9" element={<JobListPage9 />} />
                 <Route path="job-list-v10" element={<JobListPage10 />} />
@@ -352,20 +356,15 @@ function App() {
                       path="order-completed"
                       element={<OrderCompletedPage />}
                     />
-
-                   
                   </Route>
 
                   <Route path="admin">
-                  <Route path="login" element={<AdminLogin />} />
-                  <Route path="add-course" element={<AddCourse />} />
-                    
-
+                    <Route path="login" element={<AdminLogin />} />
+                    <Route path="add-course" element={<AddCourse />} />
                   </Route>
                 </Route>
-                  
               </Routes>
-             
+
               <ScrollTopBehaviour />
             </BrowserRouter>
 

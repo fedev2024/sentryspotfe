@@ -11,7 +11,7 @@ export const VERS = "v1";
 // Object containing endpoint slugs
 export const EndpointSlug = {
   // AUTHENTICATION
-  SIGNIN: "/api/jobseeker/auth/login",
+  SIGNIN: "/api/jobseeker/auth/send-loginotp",
   SIGNUP: "/api/jobseeker/auth/signup",
 
   //   Dummy
