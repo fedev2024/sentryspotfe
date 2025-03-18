@@ -4,13 +4,14 @@ import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardEmployerSidebar from "../../../header/DashboardEmployerSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
-import PostJobSteps from "./components/PostJobSteps";
-import PostBoxForm from "./components/PostBoxForm";
+// import PostJobSteps from "./components/PostJobSteps";
+// import PostBoxForm from "./components/PostBoxForm";
 import MenuToggler from "../../MenuToggler";
 import AddCourse from "@/components/Admin/addCourse";
+import EmployersAll from "@/components/Admin/Employers";
 // import AddCourse from "@/components/Admin/Add-Course";
 
-const index = () => {
+const AllEmployerData = () => {
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -31,7 +32,7 @@ const index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Post a New Job!" />
+          <BreadCrumb title="Employers" />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -43,7 +44,7 @@ const index = () => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-content">
-                    <AddCourse />
+                    <EmployersAll />
                     {/* End post box form */}
                   </div>
                 </div>
@@ -63,4 +64,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default AllEmployerData;

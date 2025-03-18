@@ -38,7 +38,7 @@ const employerMenu = [
     id: 6,
     name: "Employers",
     icon: "la-bookmark-o",
-    routePath: "/admin-dashboard/dashboard",
+    routePath: "/admin-dashboard/employers",
     active: "",
   },
   // {
@@ -84,4 +84,4 @@ const employerMenu = [
   //   active: "",
   // },
 ];
-export default  employerMenu
+export default employerMenu;

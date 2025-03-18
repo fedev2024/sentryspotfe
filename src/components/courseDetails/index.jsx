@@ -1,4 +1,3 @@
-
 // import React, { useState, useEffect } from "react";
 // import axios from "axios";
 // import { useParams, Link } from "react-router-dom";
@@ -178,7 +177,7 @@ const CourseDetails = () => {
   useEffect(() => {
     const fetchCourseData = async () => {
       try {
-        const url = `https://api.novajobs.us/api/trainers/courses/${courseid}`;
+        const url = `https://api.sentryspot.co.uk/api/admin/courses/${courseid}`;
         const response = await axios.get(url);
         if (response.data) {
           setCourseData(response.data);
@@ -243,7 +242,7 @@ const CourseDetails = () => {
           <div className="flex flex-col lg:flex-row items-center gap-6">
             {/* Instructor Details - Centered on Mobile */}
             <div className="flex flex-col md:flex-row items-center gap-4 w-full text-center md:text-left">
-              <Link 
+              <Link
                 // to={`/instructor/instructor-profile/${courseData.data.trainer_id}`}
                 className="flex justify-center md:block"
               >
@@ -254,19 +253,21 @@ const CourseDetails = () => {
                 />
               </Link>
               <div>
-              <h1 className="text-2xl md:text-4xl font-bold">
-                {courseData.data.course_title}
-              </h1>
+                <h1 className="text-2xl md:text-4xl font-bold">
+                  {courseData.data.course_title}
+                </h1>
                 <h5 className="text-xl md:text-2xl font-semibold">
-                  <Link 
-                    // to={`/instructor/instructor-profile/${courseData.data.trainer_id}`}
+                  <Link
+                  // to={`/instructor/instructor-profile/${courseData.data.trainer_id}`}
                   >
                     {courseData.data.trainer_first_name}{" "}
                     {courseData.data.trainer_last_name}
                   </Link>
                 </h5>
-                <p className="text-xs md:text-sm">{courseData.data.trainer_job_title}</p>
-                
+                <p className="text-xs md:text-sm">
+                  {courseData.data.trainer_job_title}
+                </p>
+
                 <div className="flex justify-center md:justify-start gap-1 mt-2">
                   {Array.from({ length: 5 }).map((_, index) => (
                     <i
@@ -282,8 +283,8 @@ const CourseDetails = () => {
                     ({courseData.data.rating})
                   </span>
                   <span className="inline-block mt-2 px-3 py-1 bg-white text-blue-600 rounded-full text-xs md:text-sm shadow">
-                {courseData.course_category_name || "Graduates"}
-              </span>
+                    {courseData.course_category_name || "Graduates"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -307,31 +308,24 @@ const CourseDetails = () => {
           {[
             {
               value: courseData.data.total_lectures || "No Lessons",
-              label: "Total Lessons"
+              label: "Total Lessons",
             },
             {
               value: courseData.data.time_spent_on_course || "9hr 30min",
-              label: "Duration"
+              label: "Duration",
             },
             {
               value: `${courseData.data.enrolled_student_count || 32} Students`,
-              label: "Enrolled"
+              label: "Enrolled",
             },
             {
               value: courseData.data.target_audience || "General",
-              label: "Target Audience"
-            }
+              label: "Target Audience",
+            },
           ].map((item, index) => (
-            <div 
-              key={index} 
-              className="p-3 md:p-4 bg-white shadow rounded-lg"
-            >
-              <p className="text-base md:text-xl font-semibold">
-                {item.value}
-              </p>
-              <p className="text-gray-500 text-xs md:text-sm">
-                {item.label}
-              </p>
+            <div key={index} className="p-3 md:p-4 bg-white shadow rounded-lg">
+              <p className="text-base md:text-xl font-semibold">{item.value}</p>
+              <p className="text-gray-500 text-xs md:text-sm">{item.label}</p>
             </div>
           ))}
         </div>

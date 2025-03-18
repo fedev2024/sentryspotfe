@@ -128,6 +128,10 @@ import AdminLogin from "./components/Admin/AdminLogin";
 import AddCourse from "./components/Admin/Add-Course";
 import Gauth from "./components/auth/GAuth";
 import LoginCode from "./components/pages-menu/login/LoginCode";
+import EmployersAll from "./components/Admin/Employers";
+import AllEmployerData from "./components/dashboard-pages/employers-dashboard/employer";
+import EmployersAllPages from "./pages/employers-dashboard/employer-pages";
+import EmployersListPage from "./pages/employers-dashboard/employer-pages/employerlistpage";
 
 function App() {
   useEffect(() => {
@@ -288,6 +292,11 @@ function App() {
                       path="add-course"
                       element={<PostJobsEmploeeDBPage />}
                     />
+                    <Route path="employers" element={<EmployersAllPages />} />
+                    <Route
+                      path="employerslist"
+                      element={<EmployersListPage />}
+                    />
                     <Route
                       path="manage-jobs"
                       element={<ManageJobsEmploeeDBPage />}
@@ -361,6 +370,11 @@ function App() {
                   <Route path="admin">
                     <Route path="login" element={<AdminLogin />} />
                     <Route path="add-course" element={<AddCourse />} />
+                    <Route path="employers" element={<EmployersAll />} />
+                    <Route
+                      path="employerslist"
+                      element={<EmployersListPage />}
+                    />
                   </Route>
                 </Route>
               </Routes>
