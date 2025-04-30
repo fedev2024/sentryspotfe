@@ -19,7 +19,11 @@ const DynamicCourseGrid = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const coursesResponse = await axios.get("https://api.novajobs.us/api/trainers/all-courses");
+        const coursesResponse = await axios.get("https://api.sentryspot.co.uk/api/admin/courses-info",{
+          headers:{
+            Authorization:token
+          }
+        });
         setCourses(coursesResponse.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -62,13 +66,13 @@ const DynamicCourseGrid = () => {
   // Pagination logic
   const indexOfLastCourse = currentPage * coursesPerPage;
   const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
-  const currentCourses = courses.slice(indexOfFirstCourse, indexOfLastCourse);
+  const currentCourses = courses?.slice(indexOfFirstCourse, indexOfLastCourse)|| [];
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // Calculate total pages
-  const totalPages = Math.ceil(courses.length / coursesPerPage);
+  const totalPages = Math.ceil(courses?.length / coursesPerPage);
 
   const handleAllCoursesClick = () => {
     window.location.href = "/course-list";
@@ -96,24 +100,24 @@ const DynamicCourseGrid = () => {
             All Courses
           </Link> */}
         </div>
-
+       {/* { console.log(currentCourses,"courses")} */}
         {/* Courses Grid or No Courses Message */}
-        {courses.length === 0 ? (
+        {courses?.length === 0 || currentCourses.length===0 ? (
           <div className="text-center text-2xl text-pink-500 mt-8">
             No courses available.
           </div>
         ) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              {currentCourses.map((course, index) => (
+              {currentCourses?.map((course, index) => (
                 <div 
                   key={course.id} 
                   className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all border-2 border-gray-100 hover:border-pink-500"
                 >
                   <Link to={`/course-info/${course.id}`}>
                     <img 
-                    //   src={`https://api.novajobs.us${course.course_banner_image}`}
-                    src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
+                      src={`https://api.novajobs.us${course.course_banner_image}`}
+                    // src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
                       alt={course.course_title}
                       className="w-full h-48 object-contain hover:scale-105 transition-transform"
                     />

@@ -1,4 +1,3 @@
-
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -13,7 +12,7 @@ const DashboardCandidatesSidebar = () => {
   const { pathname } = useLocation();
   const { menu } = useSelector((state) => state.toggle);
   const percentage = 30;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -25,12 +24,13 @@ const DashboardCandidatesSidebar = () => {
   // Logout handler
   const logoutHandler = () => {
     // localStorage.removeItem(Constant.USER_INFO);
-    dispatch(logout())
-    navigate('/')
+    dispatch(logout());
+    navigate("/");
     // window.location.href = "/login";
   };
 
   const user = JSON.parse(localStorage.getItem(Constant.USER_INFO));
+  console.log(user,"kkkkk");
 
   return (
     <div className={`user-sidebar ${menu ? "sidebar_open" : ""}`}>
@@ -45,9 +45,13 @@ const DashboardCandidatesSidebar = () => {
         {/* Dynamic User Profile */}
         <Link to="/candidates-dashboard/my-profile">
           <div className="flex gap-4 justify-center items-center p-4 border border-gray-200 mb-2 rounded-lg bg-blue-700 text-white">
-            <div className="flex-1 h-12 w-auto">
+            <div className="flex-1 h-14 w-auto">
               <img
-                src="https://surgassociates.com/wp-content/uploads/610-6104451_image-placeholder-png-user-profile-placeholder-image-png-1.jpg"
+                src={
+                  user?.photo
+                    ? `https://api.sentryspot.co.uk${user.photo}`
+                    : "https://statinfer.com/wp-content/uploads/dummy-user.png"
+                }
                 alt="User Avatar"
                 className="rounded-full w-full h-full"
               />
@@ -83,27 +87,27 @@ const DashboardCandidatesSidebar = () => {
                   }}
                 ></div>
               )}
-              
             </>
           ))}
-           {
-               <button
-               className="w-full bg-gray-500 text-white font-bold py-2 px-4 rounded-lg mt-4"
-               onClick={() => window.location.href = "mailto:jobseeker@sentryspot.co.uk?subject=Job%20Inquiry&body=Hello,%20I%20am%20interested%20in%20learning%20more%20about%20this%20job%20opportunity."}
-             >
-               Contact Us
-             </button>
-             
-              }
           {
-                <button
-                  className="w-full bg-red-500 text-white font-bold py-2 px-4 rounded-lg mt-4"
-                  onClick={logoutHandler}
-                >
-                  Logout
-                </button>
+            <button
+              className="w-full bg-gray-500 text-white font-bold py-2 px-4 rounded-lg mt-4"
+              onClick={() =>
+                (window.location.href =
+                  "mailto:jobseeker@sentryspot.co.uk?subject=Job%20Inquiry&body=Hello,%20I%20am%20interested%20in%20learning%20more%20about%20this%20job%20opportunity.")
               }
-         
+            >
+              Contact Us
+            </button>
+          }
+          {
+            <button
+              className="w-full bg-red-500 text-white font-bold py-2 px-4 rounded-lg mt-4"
+              onClick={logoutHandler}
+            >
+              Logout
+            </button>
+          }
         </ul>
 
         {/* Skills Percentage */}

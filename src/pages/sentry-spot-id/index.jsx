@@ -29,9 +29,11 @@ const SentryPage = () => {
           <p className="text-2xl text-gray-800">
             Hiring? Your job ad seen by all the right people
           </p>
-          <button className="border-2 border-gray-800 rounded-lg p-2 px-4 text-lg duration-300 hover:bg-gray-300">
+         <Link to={'https://employer.sentryspot.co.uk/'}>
+         <button className="border-2 border-gray-800 rounded-lg p-2 px-4 text-lg duration-300 hover:bg-gray-300">
             Employer site
           </button>
+         </Link>
         </div>
       </section>
       <FooterDefault />

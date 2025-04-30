@@ -167,18 +167,23 @@ import CourseDescription from "./CourseDescription";
 import DefaulHeader2 from "../header/DefaulHeader2";
 import LoginPopup from "../common/form/login/LoginPopup";
 import FooterDefault from "../footer/common-footer";
+import { Constant } from "@/utils/constant/constant";
 
 const CourseDetails = () => {
   const [courseData, setCourseData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { courseid } = useParams();
-
+  const token = localStorage.getItem(Constant.USER_TOKEN)
   useEffect(() => {
     const fetchCourseData = async () => {
       try {
-        const url = `https://api.sentryspot.co.uk/api/admin/courses/${courseid}`;
-        const response = await axios.get(url);
+        const url = `https://api.sentryspot.co.uk/api/admin/course-detail/${courseid}`;
+        const response = await axios.get(url,{
+          headers:{
+            Authorization:token
+          }
+        });
         if (response.data) {
           setCourseData(response.data);
         } else {
@@ -187,9 +192,9 @@ const CourseDetails = () => {
       } catch (error) {
         console.error("Error fetching course data:", error);
         setError("Error loading course data. Please try again later.");
-        if (error.response && error.response.status === 401) {
-          window.location.href = "/";
-        }
+        // if (error.response && error.response.status === 401) {
+        //   window.location.href = "/";
+        // }
       } finally {
         setLoading(false);
       }

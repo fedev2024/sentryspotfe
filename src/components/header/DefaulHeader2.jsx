@@ -114,7 +114,7 @@ const DefaulHeader2 = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="/job-list-v7#tab2">Companies</a>
+                      <a href="/companies-list">Companies</a>
                     </li>
                     <li>
                       <a href="/community">Community</a>

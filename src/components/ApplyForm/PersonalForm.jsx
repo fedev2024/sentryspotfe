@@ -393,13 +393,13 @@ const PersonalInfoForm = ({ formData, setFormData, errors }) => {
           </p>
         )}
       </div> */}
-      <LocationAutocomplete
+      {/* <LocationAutocomplete
     className="w-full" // Dynamic styling
     selectedLocation={formData.location} // Pass selected location
     onChange={(selectedOption) =>
       setFormData({ ...formData, location: selectedOption ? selectedOption.value : "" })
     } 
-  />
+  /> */}
 
       <div className="space-y-6">
         {/* Resume Section */}

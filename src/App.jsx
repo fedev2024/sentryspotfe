@@ -132,6 +132,7 @@ import EmployersAll from "./components/Admin/Employers";
 import AllEmployerData from "./components/dashboard-pages/employers-dashboard/employer";
 import EmployersAllPages from "./pages/employers-dashboard/employer-pages";
 import EmployersListPage from "./pages/employers-dashboard/employer-pages/employerlistpage";
+import Companieslist from "./components/job-listing-pages/job-list-v7/Companieslist";
 
 function App() {
   useEffect(() => {
@@ -176,7 +177,8 @@ function App() {
                   <Route path="job-list-v5" element={<JobListPage5 />} />
                   <Route path="job-list-v6" element={<JobListPage6 />} /> */}
                   <Route path="job-list-v7" element={<JobListPage7 />} />
-
+                  <Route path="companies-list" element={<Companieslist />} />
+                  
                   <Route path="gauth" element={<Gauth />} />
                   <Route path="/login/login-code" element={<LoginCode />} />
                   {/* <Route path="job-list-v8" element={<JobListPage8 />} />
