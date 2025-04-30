@@ -292,12 +292,12 @@ const SocialNetworkBox = ({ onNext }) => {
     ];
 
     try {
-      await axios.put(`${baseurl}user-profile-education`, payload, {
-        headers: {
-          Authorization: token,
-          "Content-Type": "application/json",
-        },
-      });
+      // await axios.put(`${baseurl}user-profile-education`, payload, {
+      //   headers: {
+      //     Authorization: token,
+      //     "Content-Type": "application/json",
+      //   },
+      // });
       toast.success("Education details saved successfully!");
       onNext();
     } catch (error) {

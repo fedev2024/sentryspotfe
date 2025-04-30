@@ -132,9 +132,9 @@ const ContactInfoBox = ({ onNext }) => {
         <div className="form-group flex gap-10 col-lg-12 col-md-12 mt-5">
           <label className="w-1/4">Cover Letter</label>
           <div className="flex-col col-lg-10">
-            <button className="float-end border p-2 mb-1 rounded-lg border-black">
+            {/* <button className="float-end border p-2 mb-1 rounded-lg border-black">
               + AI Assist
-            </button>
+            </button> */}
             <textarea
               name="coverLetter"
               className="border h-60 w-full rounded-lg"

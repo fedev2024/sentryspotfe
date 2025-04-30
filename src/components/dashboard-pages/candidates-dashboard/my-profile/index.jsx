@@ -143,6 +143,7 @@ import MenuToggler from "../../MenuToggler";
 import Certificate from "./components/Certificate";
 import Skills from "./components/Skills";
 import Additionalinformation from "./components/Additionalinformation";
+import LanguageSection from "./components/my-profile/LanguageSection";
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -176,6 +177,7 @@ const Index = () => {
       component: <Skills onNext={() => setCurrentStep(6)} />,
     },
     { id: 6, title: "Additional", component: <Additionalinformation /> },
+    // { id: 7, title: "Languages", component: <LanguageSection /> },
   ];
   const token = localStorage.getItem("token");
 

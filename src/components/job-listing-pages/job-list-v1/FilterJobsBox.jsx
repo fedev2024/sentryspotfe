@@ -502,7 +502,7 @@ const FilterJobsBox = () => {
                   <div className="Blogs-Text">
                     <img src="https://blog.sentryspot.co.uk/wp-content/uploads/2024/08/Untitled-design-5.jpg" />
                     <div className="BlogInfoContainer">
-                      <div className="Category">Career Discovery</div>
+                      <div className="Category w-full text-center ">Career Discovery</div>
                       <div className="CardInfo">
                         <div className="Heading">
                           Key Features to Look for in an AI Resume Builder
@@ -517,7 +517,7 @@ const FilterJobsBox = () => {
                   <div className="Blogs-Text">
                     <img src="https://blog.sentryspot.co.uk/wp-content/uploads/2024/08/Untitled-design-4.jpg" />
                     <div className="BlogInfoContainer">
-                      <div className="Category">Career Discovery</div>
+                      <div className="Category w-full text-center ">Career Discovery</div>
                       <div className="CardInfo">
                         <div className="Heading">
                           Exploring How AI Can Perpetuate or Reduce Bias in the
@@ -528,12 +528,12 @@ const FilterJobsBox = () => {
                   </div>
                 </div>
               </a>
-              <a href="https://blog.sentryspot.co.uk/2024/08/29/most-common-resume-mistakes-and-how-to-avoid-them-insights-from-sentry-spot/">
+              <a href="https://blog.sentryspot.co.uk">
                 <div className="BlogBoxs">
                   <div className="Blogs-Text">
                     <img src="https://blog.sentryspot.co.uk/wp-content/uploads/2024/08/Untitled-design.jpg" />
                     <div className="BlogInfoContainer">
-                      <div className="Category">Career Discovery</div>
+                      <div className="w-full text-center Category">Career Discovery</div>
                       <div className="CardInfo">
                         <div className="Heading">
                           Most Common Resume Mistakes and How to Avoid Them

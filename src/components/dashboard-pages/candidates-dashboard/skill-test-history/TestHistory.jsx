@@ -262,8 +262,6 @@ const SkillHistory = () => {
         // Check if the response has the expected structure
         if (response.data?.status === 'success' && Array.isArray(response.data?.data)) {
           setUsers(response.data.data);
-        } else {
-          throw new Error('Invalid response format');
         }
       } catch (error) {
         console.error('Error fetching skill history:', error);

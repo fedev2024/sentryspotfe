@@ -26,9 +26,12 @@ const Gauth = () => {
             `https://api.sentryspot.co.uk/api/jobseeker/auth/callback?code=${code}`
           );
           const token = response.data.data.token;
+          // const userInfo = response.data.data;
+          // console.log(userInfo,response.data.data,"response.data.data");
 
           // Save the token in localStorage
           localStorage.setItem(Constant.USER_TOKEN, token);
+          // localStorage.setItem(Constant.USER_INFO,userInfo)
           console.log(response);
           // navigate('/dashboard')
 

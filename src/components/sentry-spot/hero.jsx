@@ -28,7 +28,7 @@ const HeroSection = () => {
                  href="#"
                  data-bs-toggle="modal"
                       data-bs-target="#registerModal"
-                className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-white hover:text-blue-900"
+                className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-700 hover:text-blue-900"
               >
                 Create Profile
               </a>

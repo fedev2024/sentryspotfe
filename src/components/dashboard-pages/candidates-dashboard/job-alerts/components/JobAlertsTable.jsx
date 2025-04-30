@@ -452,13 +452,10 @@ const JobAlertsTable = () => {
       
       if (response.data.status === "success") {
         // Filter jobs based on selected time period
+        // console.log(response.data.data,"filteredJobsData");
         const now = new Date();
-        const filteredJobs = response.data.data.filter(job => {
-          const jobDate = new Date(job.created_at);
-          const monthsDiff = (now - jobDate) / (1000 * 60 * 60 * 24 * 30);
-          return monthsDiff <= parseInt(timeFilter);
-        });
-        
+        const filteredJobs = response.data.data
+        // console.log(filteredJobs,"filteredJobs");
         setSavedJobs(filteredJobs);
         setError(null);
       } else {
@@ -579,7 +576,7 @@ const JobAlertsTable = () => {
       </div>
     </div>
   );
-
+// console.log(savedJobs,"savedJobs");
   return (
     <div className="bg-gray-50 min-h-screen py-4 sm:py-8 px-3 sm:px-4">
       <Toaster />

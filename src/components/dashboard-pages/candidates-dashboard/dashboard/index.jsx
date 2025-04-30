@@ -34,7 +34,7 @@ const Index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer ">
-          <BreadCrumb title={`Howdy, ${user.first_name}`} />
+          <BreadCrumb title={`Howdy `} />
           {/* breadCrumb */}
 
           <MenuToggler />

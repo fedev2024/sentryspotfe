@@ -7,7 +7,8 @@ import { useState, useEffect } from "react";
 import { Constant } from "@/utils/constant/constant";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-
+import DefaulHeader2 from "@/components/header/DefaulHeader2";
+import FooterDefault from "@/components/footer/common-footer"
 const Companieslist = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -95,9 +96,9 @@ const Companieslist = () => {
   return (
     <div className="">
     {/* Sidebar */}
-    
+    <DefaulHeader2 />
     {/* Job List */}
-    <main className="flex-1 pl-4 lg:pl-6">
+    <main className="max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between px-4 md:px-5 my-3">
         <p className="text-base md:text-lg text-gray-800 mb-4">
           Show {jobCount} {jobCount === 1 ? 'Job' : 'Jobs'}
@@ -153,6 +154,7 @@ const Companieslist = () => {
         ))}
       </ul>
     </main>
+    <FooterDefault />
   </div>
   
   );

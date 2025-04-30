@@ -30,30 +30,33 @@ const ApplyForm = () => {
     });
     const [errors, setErrors] = useState({});
   
+    // const nextStep = () => {
+    //   let validationErrors = {};
+    //   switch (step) {
+    //     case 1:
+    //       validationErrors = validatePersonalInfo(formData);
+    //       break;
+    //     case 2:
+    //       validationErrors = validateEmployeeQuestions(formData);
+    //       break;
+    //     case 3:
+    //       validationErrors = validateWorkExperience(formData);
+    //       break;
+    //     default:
+    //       break;
+    //   }
+  
+    //   if (Object.keys(validationErrors).length === 0) {
+    //     setStep(step + 1);
+    //     setErrors({});
+    //   } else {
+    //     setErrors(validationErrors);
+    //   }
+    // };
     const nextStep = () => {
-      let validationErrors = {};
-      switch (step) {
-        case 1:
-          validationErrors = validatePersonalInfo(formData);
-          break;
-        case 2:
-          validationErrors = validateEmployeeQuestions(formData);
-          break;
-        case 3:
-          validationErrors = validateWorkExperience(formData);
-          break;
-        default:
-          break;
-      }
-  
-      if (Object.keys(validationErrors).length === 0) {
-        setStep(step + 1);
-        setErrors({});
-      } else {
-        setErrors(validationErrors);
-      }
+      setStep(step + 1);
+      // setErrors({});
     };
-  
     const prevStep = () => {
       setStep(step - 1);
     };

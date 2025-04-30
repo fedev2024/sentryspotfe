@@ -185,6 +185,7 @@ const Index = ({ onNext }) => {
             Authorization: token,
           },
         });
+        localStorage.setItem(Constant.USER_INFO,JSON.stringify(response.data.data.personal_details))
         setProfileData(response.data.data.personal_details);
         // console.log("Profile Data>>>>:", profileData);
       } catch (error) {
@@ -480,7 +481,6 @@ const Index = ({ onNext }) => {
     }
   }, []);
 
- 
   const [data, setData] = useState({
     jobTypes: [],
     sectors: [],
@@ -540,10 +540,9 @@ const Index = ({ onNext }) => {
 
   return (
     <form onSubmit={handleSubmit} className="default-form">
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <div className="row">
         {/* Profile Picture Upload */}
-        
 
         {/* <div className="form-group col-lg-6 col-md-12 flex justify-center">
           <div>
@@ -589,7 +588,7 @@ const Index = ({ onNext }) => {
             )}
           </div>
         </div> */}
-        <ImageUpload/>
+        <ImageUpload />
         {/* Form Fields */}
         <div className="form-group col-lg-6 col-md-12">
           <label style={{ fontWeight: "800" }}>First Name*</label>
@@ -644,7 +643,7 @@ const Index = ({ onNext }) => {
           </select>
         </div> */}
 
-        <div className="form-group col-lg-6 col-md-12 font-light">
+        {/* <div className="form-group col-lg-6 col-md-12 font-light">
           <label>Phone Number*</label>
           <PhoneInput
             country={"gb"} // Set default country here
@@ -667,23 +666,74 @@ const Index = ({ onNext }) => {
               backgroundColor: "#f8f9fa",
             }}
           />
+          
           <button
             type="button"
+            disabled={isPhoneVerified}
             onClick={handlePhoneVerification}
-            className="bg-blue-600 text-white py-1 px-4 mt-2 rounded-lg"
+            className={`${
+              isPhoneVerified ? "cursor-not-allowed" : "cursor-pointer"
+            } bg-blue-600 text-white py-1 px-4 mt-2 rounded-lg`}
           >
             Verify
           </button>
+
           {isPhoneVerified && (
             <p className="text-green-500 mt-2">Phone Verified</p>
           )}
+        </div> */}
+        <div className="form-group col-lg-6 col-md-12 font-light">
+          <label className="block mb-1 text-gray-700">Phone Number*</label>
+
+          {/* Wrapper to position icon over the input */}
+          <div className="relative">
+            <PhoneInput
+              country={"gb"}
+              value={phoneNumber}
+              onChange={(value) => setPhoneNumber(value)}
+              inputStyle={{
+                width: "100%",
+                borderRadius: "10px",
+                border: "none",
+                height: "calc(2.5em + 1rem + 3px)",
+                fontSize: "1rem",
+                lineHeight: "1.5",
+                backgroundColor: "#F0F5F7",
+                backgroundClip: "padding-box",
+                paddingRight: isPhoneVerified ? "3rem" : "1rem", // space for icon if verified
+              }}
+              containerStyle={{ width: "100%" }}
+              buttonStyle={{
+                borderRadius: "none",
+                border: "none",
+                backgroundColor: "#f8f9fa",
+              }}
+            />
+
+            {/* Show verified icon only if phone is verified */}
+            {isPhoneVerified && (
+              <i className="fas fa-check absolute right-3 top-1/2 -translate-y-1/2 bg-green-500 text-white p-1.5 rounded-full text-sm shadow-md"></i>
+            )}
+          </div>
+
+          {/* Show verify button only if not verified */}
+          {!isPhoneVerified && (
+            <button
+              type="button"
+              onClick={handlePhoneVerification}
+              className="bg-blue-600 text-white py-1 px-4 mt-2 rounded-lg cursor-pointer"
+            >
+              Verify
+            </button>
+          )}
         </div>
-        <div className="form-group col-lg-6 col-md-12 font-light relative">
+
+        {/* <div className="form-group col-lg-6 col-md-12 font-light relative">
           <label>Email</label>
           <input
             type="email"
             name="email"
-            value={email}
+            value={profileData.email}
             className="email pr-10" // Adding padding to the right so the icon doesn't overlap with text
             placeholder="Your Email*"
             required
@@ -691,6 +741,25 @@ const Index = ({ onNext }) => {
             disabled
           />
           <i className="fas fa-check absolute right-2 top-1/2 transform -translate-y-1/2 p-2 mr-2 bg-green-500 text-white rounded-full"></i>
+        </div> */}
+        <div className="form-group col-lg-6 col-md-12 font-light relative">
+          <label className="block mb-1 text-gray-700">Email</label>
+
+          {/* Wrapper for input and icon */}
+          <div className="relative">
+            <input
+              type="email"
+              name="email"
+              value={profileData.email}
+              className="email w-full pr-12 py-2 pl-3 border rounded text-gray-700 bg-gray-100"
+              placeholder="Your Email*"
+              required
+              readOnly
+              disabled
+            />
+            {/* Verified Icon */}
+            <i className="fas fa-check absolute right-3 top-1/2 -translate-y-1/2 bg-green-500 text-white p-1.5 rounded-full text-sm shadow-md"></i>
+          </div>
         </div>
 
         {/* <div className="form-group col-lg-6 col-md-12 font-light">
@@ -741,8 +810,8 @@ const Index = ({ onNext }) => {
         </div> */}
         <LocationSelector className="form-group col-lg-4 col-md-12 font-light" />
         {/* <LocationSelector /> */}
-        <PreferredLocations/>
-        
+        <PreferredLocations />
+
         {/* <div className="form-group col-lg-8 col-md-12 font-light">
           <label className="my-2 mt-4 text-lg">(Preferred - Location)</label>
           {/* <label>Country*</label> *
