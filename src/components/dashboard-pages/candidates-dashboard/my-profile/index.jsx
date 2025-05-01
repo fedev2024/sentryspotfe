@@ -179,7 +179,6 @@ const Index = () => {
     { id: 6, title: "Additional", component: <Additionalinformation /> },
     // { id: 7, title: "Languages", component: <LanguageSection /> },
   ];
-  const token = localStorage.getItem("token");
 
   return (
     <div className="page-wrapper dashboard">

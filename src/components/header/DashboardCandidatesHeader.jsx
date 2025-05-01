@@ -34,10 +34,13 @@ const DashboardCandidatesHeader = () => {
   }, []);
 
   const dispatch = useDispatch();
-  const { loading, userInfo, userToken, error, success, message } = useSelector(
-    (state) => state.auth
-  );
+  // const { loading, userInfo, userToken, error, success, message } = useSelector(
+  //   (state) => state.auth
+  // );
+  const {userInfo,userToken} = useSelector((state)=>state.auth)
   const [navbar, setNavbar] = useState(false);
+
+  // console.log(userToken,"userToken");
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {

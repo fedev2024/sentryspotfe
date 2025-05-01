@@ -155,7 +155,7 @@
 // export default ProfileVisalbilty;
 
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import TitleDropdown from "./TitleDropdown";
 
@@ -226,7 +226,9 @@ const ProfileVisibility = ({ onNext }) => {
       setJobTitle(jobTypeResponse.data.data);
     }
   };
-  fetchJobTitle();
+  useEffect(()=>{
+    fetchJobTitle();
+  },[])
 
   return (
     <div>
