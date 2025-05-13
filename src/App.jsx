@@ -133,6 +133,10 @@ import AllEmployerData from "./components/dashboard-pages/employers-dashboard/em
 import EmployersAllPages from "./pages/employers-dashboard/employer-pages";
 import EmployersListPage from "./pages/employers-dashboard/employer-pages/employerlistpage";
 import Companieslist from "./components/job-listing-pages/job-list-v7/Companieslist";
+
+import UserProfilePage from "./components/PublicProfile/userPublicProfile";
+import PublicProfile from "./components/PublicProfile";
+
 import AboutUs from "./pages/footer/aboutus";
 import OurServices from "./pages/footer/ourservices";
 import OurValues from "./pages/footer/ourvalues";
@@ -286,6 +290,7 @@ function App() {
                   <Route path="sentry-spot" element={<SentryPage />} />
                   <Route path="community" element={<Communitypage />} />
                   <Route path="courses" element={<CoursePage />} />
+                  <Route path="public-view" element={<PublicProfile />} />
                   <Route
                     path="course-info/:courseid"
                     element={<CourseDetails />}

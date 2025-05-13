@@ -15,11 +15,12 @@ import RelatedJobs2 from "@/components/job-single-pages/related-jobs/RelatedJobs
 import JobOverView2 from "@/components/job-single-pages/job-overview/JobOverView2";
 import ApplyJobModalContent from "@/components/job-single-pages/shared-components/ApplyJobModalContent";
 import MetaComponent from "@/components/common/MetaComponent";
-
+import FullPageLoader from "@/components/loader/FullPageLoader"
 // Utility imports
 import { Constant } from "@/utils/constant/constant";
 import { toast } from "react-hot-toast";
 import CompanyInfo from "@/components/job-single-pages/shared-components/CompanyInfo";
+import JobStepsComponent from "./JobSteps";
 
 const LoginModal = ({ onClose }) => {
   return (
@@ -203,7 +204,7 @@ const JobSingleDynamicV3 = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <FullPageLoader loadingText="Job details page" />
   }
 
   if (error) {
@@ -262,6 +263,10 @@ const JobSingleDynamicV3 = () => {
                       </div>
                     </div>
                   </div>
+                </div>
+                <div className="job-overview-two">
+                  {/* <h4>Job Description</h4> */}
+                  <JobStepsComponent />
                 </div>
 
                 <div className="job-overview-two">
