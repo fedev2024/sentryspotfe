@@ -133,6 +133,15 @@ import AllEmployerData from "./components/dashboard-pages/employers-dashboard/em
 import EmployersAllPages from "./pages/employers-dashboard/employer-pages";
 import EmployersListPage from "./pages/employers-dashboard/employer-pages/employerlistpage";
 import Companieslist from "./components/job-listing-pages/job-list-v7/Companieslist";
+import AboutUs from "./pages/footer/aboutus";
+import OurServices from "./pages/footer/ourservices";
+import OurValues from "./pages/footer/ourvalues";
+import JobSearch from "./pages/footer/jobsearch";
+import SentrySpotID from "./pages/footer/sentryspotid";
+import CareerAdvice from "./pages/footer/careeradvice";
+import SalaryTools from "./pages/footer/salarytools";
+import GrievanceRedressal from "./pages/footer/grievace";
+import SearchJobsApply from "./pages/footer/searchjobapply";
 
 function App() {
   useEffect(() => {
@@ -178,7 +187,7 @@ function App() {
                   <Route path="job-list-v6" element={<JobListPage6 />} /> */}
                   <Route path="job-list-v7" element={<JobListPage7 />} />
                   <Route path="companies-list" element={<Companieslist />} />
-                  
+
                   <Route path="gauth" element={<Gauth />} />
                   <Route path="/login/login-code" element={<LoginCode />} />
                   {/* <Route path="job-list-v8" element={<JobListPage8 />} />
@@ -258,7 +267,22 @@ function App() {
                     element={<BlogDetailsDynamic />}
                   />
 
-                  {/* <Route path="about" element={<AboutPage />} /> */}
+                  <Route path="about-us" element={<AboutUs />} />
+                  <Route path="our-services" element={<OurServices />} />
+                  <Route path="our-values" element={<OurValues />} />
+                  <Route path="jobsearch" element={<JobSearch />} />
+                  <Route path="sentryspot-id" element={<SentrySpotID />} />
+                  <Route path="career-advice" element={<CareerAdvice />} />
+                  <Route path="salary-tools" element={<SalaryTools />} />
+                  <Route
+                    path="grievance-redressal"
+                    element={<GrievanceRedressal />}
+                  />
+                  <Route
+                    path="searchjob-and-apply"
+                    element={<SearchJobsApply />}
+                  />
+
                   <Route path="sentry-spot" element={<SentryPage />} />
                   <Route path="community" element={<Communitypage />} />
                   <Route path="courses" element={<CoursePage />} />
