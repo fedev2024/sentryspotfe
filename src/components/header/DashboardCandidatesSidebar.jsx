@@ -60,6 +60,7 @@ const DashboardCandidatesSidebar = () => {
             <div className="text-white flex-1 flex-col">
               <p className="text-white">{userInfo?.first_name || "Anonymous"}</p>
               <p className="text-white">{userInfo?.profile || "Profile"}</p>
+              <Link to={'/public-view'} className="text-white underline">view </Link>
             </div>
           </div>
         </Link>

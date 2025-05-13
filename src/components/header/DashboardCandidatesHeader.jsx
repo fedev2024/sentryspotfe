@@ -114,7 +114,7 @@ const DashboardCandidatesHeader = () => {
                   </li>
                   <li>
                     <a
-                      href="/job-list-v7#tab2"
+                      href="/companies-list"
                       className="text-gray-700 hover:text-blue-600"
                     >
                       Companies

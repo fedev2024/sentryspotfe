@@ -69,11 +69,13 @@ export const updateUserProfile = createAsyncThunk(
       }
    }
 );
+const tokenFromStorage = localStorage.getItem(Constant.USER_TOKEN);
+const userInfoFromStorage = JSON.parse(localStorage.getItem("userInfo"));
 
 const initialState = {
    userInfo: JSON.parse(localStorage.getItem("userInfo")) || null,
    userToken: localStorage.getItem(Constant.USER_TOKEN) || null,
-   status: false,
+    status: !!(userInfoFromStorage && tokenFromStorage),
    loading: false,
    error: null,
 };
