@@ -230,27 +230,47 @@ const JobSingleDynamicV3 = () => {
                       <div className="content">
                         <h4>{jobData?.job_title || "Job Title Not Available"}</h4>
 
-                        <ul className="job-info">
-                          <li>
-                            <span className="icon flaticon-briefcase"></span>
-                            {company?.company_name || "Company Name Not Available"}
-                          </li>
-                          {/* <li>
-                            <span className="icon flaticon-map-locator"></span>
-                            {jobData?.city && jobData?.country 
-                              ? `${jobData.city}, ${jobData.country}` 
-                              : "Location Not Specified"}
-                          </li> */}
-                          {/* <li>
-                            <span className="icon flaticon-clock-3"></span>
-                            {jobData?.created_at || "Date Not Available"}
-                          </li> */}
-                          {/* <li>
-                            <span className="icon flaticon-money"></span>
-                            {jobData?.offered_salary || "Salary Not Defined"}
-                          </li> */}
-                        </ul>
+                      <ul className="job-info space-between">
+  <li>
+    <span className="icon flaticon-briefcase"></span>
+    <strong>Industry:</strong> {jobData?.industry || "Industry Not Available"}
+  </li>
+  <li>
+    <span className="icon flaticon-map-locator"></span>
+    <strong>Location:</strong> {jobData?.city && jobData?.country 
+      ? `${jobData.city}, ${jobData.country}` 
+      : "Location Not Specified"}
+  </li>
+  <li>
+    <span className="icon flaticon-clock-3"></span>
+    <strong>Posted On:</strong> {jobData?.created_at || "Date Not Available"}
+  </li>
+  <li>
+    <span className="icon flaticon-money"></span>
+    <strong>Salary:</strong> {jobData?.offered_salary || "Salary Not Defined"}
+  </li>
+  <li>
+    <span className="icon flaticon-money"></span>
+    <strong>Job Type:</strong> {jobData?.job_type_name || "Job Type Not Defined"}
+  </li>
+    <li>
+    <span className="icon flaticon-user"></span>
+    <strong>Experience Level:</strong> {jobData?.experience_level_min_name || "Not Specified"}
+  </li>
+  <li>
+    <span className="icon flaticon-category"></span>
+    <strong>Job Category:</strong> {jobData?.job_category_name || "Not Specified"}
+  </li>
+  <li>
+    <span className="icon flaticon-briefcase"></span>
+    <strong>Functional Area:</strong> {jobData?.functional_area_name || "Not Specified"}
+  </li>
+</ul>
 
+
+
+
+                  
                         {jobData?.jobType && (
                           <ul className="job-other-info">
                             {jobData.jobType.map((val, i) => (
@@ -265,16 +285,18 @@ const JobSingleDynamicV3 = () => {
                   </div>
                 </div>
                 <div className="job-overview-two">
-                  {/* <h4>Job Description</h4> */}
+                  
                   <JobStepsComponent />
                 </div>
 
-                <div className="job-overview-two">
-                  {/* <h4>Job Description</h4> */}
+                {/* <div className="job-overview-two">
+                
                   <JobOverView2 jobData={jobData}/>
-                </div>
+                </div> */}
 
-                <JobDetailsDescriptions />
+              <h4>Job Description</h4>
+     <p dangerouslySetInnerHTML={{ __html: jobData?.job_description }} />
+
 
                 <div className="other-options">
                   <div className="social-share">
