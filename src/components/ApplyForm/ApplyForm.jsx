@@ -7,7 +7,7 @@ import ProgressBar from './ProgressBar';
 import { validatePersonalInfo, validateEmployeeQuestions, validateWorkExperience } from './Validation';
 import { toast } from 'react-toastify';
 
-const ApplyForm = () => {
+const ApplyForm = (companyId) => {
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
       firstName: '',
@@ -73,7 +73,7 @@ const ApplyForm = () => {
         case 1:
           return <PersonalInfoForm formData={formData} setFormData={setFormData} errors={errors} />;
         case 2:
-          return <EmployeeQuestionsForm formData={formData} setFormData={setFormData} errors={errors} />;
+          return <EmployeeQuestionsForm formData={formData} companyId={companyId} setFormData={setFormData} errors={errors} />;
         // case 3:
         //   return <WorkExperienceForm formData={formData} setFormData={setFormData} errors={errors} />;
         case 3:
@@ -88,7 +88,7 @@ const ApplyForm = () => {
         <ProgressBar currentStep={step} totalSteps={3} />
         <h2 className="text-2xl font-bold mb-4">
           {step === 1 && 'Personal Information'}
-          {step === 2 && 'Employee Questions'}
+          {step === 2 && ' Questions'}
           {/* {step === 3 && 'Work Experience & Education'} */}
           {step === 4 && 'Review & Submit'}
         </h2>

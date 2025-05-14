@@ -170,7 +170,7 @@ const FilterJobsBox = () => {
               <img
                 src={
                   item.logo ||
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLXn84m0ldNEy4b-doui_GKkeziMRUfEl71g&s"
+                  "/images/resource/company-logo/1-1.png"
                 }
                 alt="company logo"
               />
