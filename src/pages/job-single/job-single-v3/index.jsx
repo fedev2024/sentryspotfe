@@ -226,6 +226,7 @@ const JobSingleDynamicV3 = () => {
                           </li>
                         </ul>
 
+
                         {jobData?.jobType && (
                           <ul className="job-other-info">
                             {jobData.jobType.map((val, i) => (
