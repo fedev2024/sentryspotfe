@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
+import axiosInstance from "@/store/slices/service/axiosInstance";
 
 // Import components
 import LoginPopup from "@/components/common/form/login/LoginPopup";
@@ -74,34 +75,27 @@ const JobSingleDynamicV3 = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchJobDetails = async () => {
       try {
-        const headers = token ? { Authorization: token } : {};
-        const jobResponse = await axios.get(
-          `https://api.sentryspot.co.uk/api/jobseeker/job-list/${id}`,
-          { headers }
-        );
+        const response = await axiosInstance.get(`/jobseeker/job-list/${id}`);
+        setJobData(response.data.data);
 
-        const fetchedJobData = jobResponse.data.data;
-        setJobData(fetchedJobData);
-
-        if (fetchedJobData.company_id) {
-          const companyResponse = await axios.get(
-            `https://api.sentryspot.co.uk/api/jobseeker/companies/${fetchedJobData.company_id}`
-          );
+        if (response.data.data.company_id) {
+          const companyResponse = await axiosInstance.get(`/jobseeker/companies/${response.data.data.company_id}`);
           setCompany(companyResponse.data.data);
         }
 
         setLoading(false);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-        setError(err.message);
+      } catch (error) {
+        console.error("Error fetching job details:", error);
+        toast.error(error.response?.data?.message || "Failed to fetch job details");
+        setError(error.response?.data?.message || "Failed to fetch job details");
         setLoading(false);
       }
     };
 
-    fetchData();
-  }, [token]);
+    fetchJobDetails();
+  }, [id]);
 
   const handleApplyClick = (e) => {
     e.preventDefault();
@@ -196,9 +190,7 @@ const JobSingleDynamicV3 = () => {
                           </li>
                           <li>
                             <span className="icon flaticon-map-locator"></span>
-                            <strong>Location:</strong> {jobData?.city && jobData?.country 
-                              ? `${jobData.city}, ${jobData.country}` 
-                              : "Location Not Specified"}
+                            <strong>Location:</strong> {jobData?.location || "Location Not Specified"}
                           </li>
                           <li>
                             <span className="icon flaticon-clock-3"></span>
