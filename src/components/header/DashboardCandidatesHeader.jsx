@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import logo from "../../../public/company_logo.png";
@@ -8,7 +7,7 @@ import { Button } from "../ui/button";
 import { IoLogOutOutline, IoNotificationsOutline } from "react-icons/io5";
 import axios from "axios";
 import { Bell } from "lucide-react";
-import { logout } from "@/store/slices/auth";
+import { logout } from "@/store/slices/authSlice";
 
 const DashboardCandidatesHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
