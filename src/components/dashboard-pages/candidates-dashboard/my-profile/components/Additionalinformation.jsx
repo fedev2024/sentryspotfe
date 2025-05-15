@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import axios from "axios";
 import { Constant } from "@/utils/constant/constant";
@@ -7,20 +6,14 @@ import { Trash, X } from "lucide-react";
 
 const Additionalinformation = () => {
   const [formData, setFormData] = useState({
-    iit_jee_rank: "",
-    cat_percentile: "",
-    gmat_score: "",
-    marital_status: "",
-    is_veteran_or_ex_military: null,
-    is_differently_abled: null,
-    handled_team: null,
-    willing_to_work_6_days: null,
-    willing_to_relocate: null,
-    open_to_startups: null,
-    willingness_to_travel: null,
-    work_permit_usa: null,
-    // languages: "",
-    languages: [],
+    is_veteran_or_ex_military: false,
+    is_reasonable_adjustments: false,
+    handled_team: false,
+    extended_work_schedules: false,
+    willing_to_relocate: false,
+    willingness_to_travel: false,
+    work_permit_usa: false,
+    languages: []
   });
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -67,20 +60,26 @@ const Additionalinformation = () => {
     setLoading(true);
 
     try {
-      // Replace with your actual token if required
       const token = localStorage.getItem(Constant.USER_TOKEN);
+      
+      // Transform languages array to match required format
+      const languageNames = languages.map(lang => lang.name);
+
+      const payload = {
+        ...formData,
+        languages: languageNames
+      };
 
       const response = await axios.post(
         "https://api.sentryspot.co.uk/api/jobseeker/additional-details",
-        formData,
+        payload,
         {
           headers: {
-            Authorization: token, // Add token if needed
+            Authorization: token,
           },
         }
       );
       console.log("Additional details submitted successfully:", response.data);
-      // Handle the response as needed
     } catch (error) {
       console.error("Error submitting additional details:", error);
     } finally {
@@ -181,20 +180,20 @@ const Additionalinformation = () => {
           <div className="flex">
             <input
               type="radio"
-              name="is_differently_abled"
+              name="is_reasonable_adjustments"
               value="true"
               onChange={handleInputChange}
-              checked={formData.is_differently_abled === true}
+              checked={formData.is_reasonable_adjustments === true}
             />
             <label htmlFor="yes" className="pt-1 me-4 ms-1">
               Yes
             </label>
             <input
               type="radio"
-              name="is_differently_abled"
+              name="is_reasonable_adjustments"
               value="false"
               onChange={handleInputChange}
-              checked={formData.is_differently_abled === false}
+              checked={formData.is_reasonable_adjustments === false}
             />
             <label htmlFor="No" className="pt-1 me-4 ms-1">
               No
@@ -236,20 +235,20 @@ const Additionalinformation = () => {
           <div className="flex">
             <input
               type="radio"
-              name="willing_to_work_6_days"
+              name="extended_work_schedules"
               value="true"
               onChange={handleInputChange}
-              checked={formData.willing_to_work_6_days === true}
+              checked={formData.extended_work_schedules === true}
             />
             <label htmlFor="yes" className="pt-1 me-4 ms-1">
               Yes
             </label>
             <input
               type="radio"
-              name="willing_to_work_6_days"
+              name="extended_work_schedules"
               value="false"
               onChange={handleInputChange}
-              checked={formData.willing_to_work_6_days === false}
+              checked={formData.extended_work_schedules === false}
             />
             <label htmlFor="No" className="pt-1 me-4 ms-1">
               No
