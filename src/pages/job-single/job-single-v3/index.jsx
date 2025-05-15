@@ -196,9 +196,7 @@ const JobSingleDynamicV3 = () => {
                           </li>
                           <li>
                             <span className="icon flaticon-map-locator"></span>
-                            <strong>Location:</strong> {jobData?.city && jobData?.country 
-                              ? `${jobData.city}, ${jobData.country}` 
-                              : "Location Not Specified"}
+                            <strong>Location:</strong> {jobData?.location || "Location Not Specified"}
                           </li>
                           <li>
                             <span className="icon flaticon-clock-3"></span>

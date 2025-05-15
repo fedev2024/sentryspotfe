@@ -199,9 +199,7 @@ const FilterJobsBox = () => {
               </li>
               <li>
                 <i className="fas fa-map-marker-alt"></i>{" "}
-                {item.city
-                  ? `${item.city}, ${item.country}`
-                  : "Location not specified"}
+                {item?.location || "Location Not Specified"}
               </li>
               <li>
                 <i className="fas fa-calendar-alt"></i> {item.created_at || "N/A"}
