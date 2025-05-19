@@ -7,6 +7,7 @@ import candidatesuData from "../../data/candidatesMenuData";
 import { isActiveLink } from "../../utils/linkActiveChecker";
 import { Constant } from "@/utils/constant/constant";
 import { logout } from "@/store/slices/authSlice";
+import { logout } from "@/store/slices/authSlice";
 
 const DashboardCandidatesSidebar = () => {
   const { pathname } = useLocation();
@@ -31,10 +32,12 @@ const DashboardCandidatesSidebar = () => {
   };
 
   // const user = JSON.parse(localStorage.getItem(Constant.USER_INFO));
-  console.log(userInfo,"userInfo");
-    const userId = userInfo.id;
-    console.log(userId,"userId");
-    localStorage.setItem('USER_ID', userId); 
+  console.log(userInfo, "userInfo");
+  const userId = userInfo?.id;
+  console.log(userId, "userId");
+  if (userId) {
+    localStorage.setItem('USER_ID', userId);
+  }
 
   const k = localStorage.getItem('USER_ID');
   console.log(k,"usekrId");

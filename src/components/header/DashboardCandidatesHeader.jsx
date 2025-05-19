@@ -8,6 +8,7 @@ import { IoLogOutOutline, IoNotificationsOutline } from "react-icons/io5";
 import axios from "axios";
 import { Bell } from "lucide-react";
 import { logout } from "@/store/slices/authSlice";
+import { logout } from "@/store/slices/authSlice";
 
 const DashboardCandidatesHeader = () => {
   const [isOpen, setIsOpen] = useState(false);

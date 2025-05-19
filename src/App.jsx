@@ -1,3 +1,4 @@
+
 import Aos from "aos";
 import "aos/dist/aos.css";
 import "./styles/index.scss";
@@ -120,8 +121,8 @@ import CommunitySinglepage from "./components/community/CommunitySinglepage";
 import HelmetWrapper from "./HelmetWrapper";
 import NotificationsHistoryPage from "./components/dashboard-pages/candidates-dashboard/notifications-history";
 import NotificationProvider from "./NotificationProvider";
-import CoursePage from "./components/Courses";
-import CourseDetails from "./components/courseDetails";
+import CoursePage from "./components/candidates-dashboard/CoursePage";
+import CourseDetail from "./components/candidates-dashboard/CourseDetail";
 import ApplyForm from "./components/ApplyForm/index";
 
 import AdminLogin from "./components/Admin/AdminLogin";
@@ -146,6 +147,15 @@ import CareerAdvice from "./pages/footer/careeradvice";
 import SalaryTools from "./pages/footer/salarytools";
 import GrievanceRedressal from "./pages/footer/grievace";
 import SearchJobsApply from "./pages/footer/searchjobapply";
+
+import AIJobMatchApply from "./pages/footer/aijobapply";
+import AIResumeEnhancer from "./pages/footer/aiResumeEnhancer";
+import AICvParsing from "./pages/footer/aiCvParsing";
+import AIResumeBuilder from "./pages/footer/aiResumeBuilder";
+import PrivacyPolicy from "./pages/footer/privacypolicy";
+import TermsAndConditions from "./pages/footer/termsandconditions";
+
+import Showcase from "./pages/showcase";
 
 function App() {
   useEffect(() => {
@@ -191,6 +201,7 @@ function App() {
                   <Route path="job-list-v6" element={<JobListPage6 />} /> */}
                   <Route path="job-list-v7" element={<JobListPage7 />} />
                   <Route path="companies-list" element={<Companieslist />} />
+                  <Route path="showcase/:id" element={<Showcase />} />
 
                   <Route path="gauth" element={<Gauth />} />
                   <Route path="/login/login-code" element={<LoginCode />} />
@@ -286,6 +297,24 @@ function App() {
                     path="searchjob-and-apply"
                     element={<SearchJobsApply />}
                   />
+                  <Route
+                    path="ai-job-match-&-apply"
+                    element={<AIJobMatchApply />}
+                  />
+                  <Route
+                    path="ai-resume-enhancer"
+                    element={<AIResumeEnhancer />}
+                  />
+                  <Route path="ai-cv-parsing" element={<AICvParsing />} />
+                  <Route
+                    path="ai-resume-builder"
+                    element={<AIResumeBuilder />}
+                  />
+                  <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                  <Route
+                    path="terms-and-conditions"
+                    element={<TermsAndConditions />}
+                  />
 
                   <Route path="sentry-spot" element={<SentryPage />} />
                   <Route path="community" element={<Communitypage />} />
@@ -293,7 +322,7 @@ function App() {
                   <Route path="public-view" element={<PublicProfile />} />
                   <Route
                     path="course-info/:courseid"
-                    element={<CourseDetails />}
+                    element={<CourseDetail />}
                   />
                   <Route
                     path="community/:postId"
@@ -382,6 +411,7 @@ function App() {
                       path="short-listed-jobs"
                       element={<ShortListedJobsPage />}
                     />
+                    <Route path="courses" element={<CoursePage />} />
                   </Route>
 
                   <Route path="shop">
@@ -407,6 +437,8 @@ function App() {
                       element={<EmployersListPage />}
                     />
                   </Route>
+
+                  <Route path="courses/:id" element={<CourseDetail />} />
                 </Route>
               </Routes>
 

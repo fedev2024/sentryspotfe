@@ -92,8 +92,21 @@ const authSlice = createSlice({
          state.message = null;
          
          // Clear all auth-related data from localStorage
+         state.loading = false;
+         state.error = null;
+         state.success = false;
+         state.message = null;
+         
+         // Clear all auth-related data from localStorage
          localStorage.removeItem("userInfo");
          localStorage.removeItem(Constant.USER_TOKEN);
+         localStorage.removeItem(Constant.USER_INFO);
+         localStorage.removeItem("userEmail");
+         
+         // Reload the page after a short delay
+         setTimeout(() => {
+           window.location.href = "/";
+         }, 300);
          localStorage.removeItem(Constant.USER_INFO);
          localStorage.removeItem("userEmail");
          

@@ -7,11 +7,15 @@ import { Constant } from "@/utils/constant/constant";
 import { useDispatch } from "react-redux";
 import { loginWithOtp } from "@/store/slices/authSlice";
 import axiosInstance from "@/store/slices/service/axiosInstance";
+import { useDispatch } from "react-redux";
+import { loginWithOtp } from "@/store/slices/authSlice";
+import axiosInstance from "@/store/slices/service/axiosInstance";
 
 const LoginCode = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const dispatch = useDispatch();
 
   const {
@@ -33,6 +37,7 @@ const LoginCode = () => {
     } else {
       // Redirect to login if no email found
       toast.error("Email not found. Please login again.");
+      navigate("/login");
       navigate("/login");
     }
   }, [navigate]);
@@ -60,6 +65,15 @@ const LoginCode = () => {
         // Store user info in localStorage
         localStorage.setItem("userInfo", JSON.stringify(result.data));
         
+      // Use the Redux action instead of direct API call
+      const result = await dispatch(loginWithOtp({ email, otp })).unwrap();
+      
+      if (result?.data?.token) {
+        // Store token in localStorage
+        localStorage.setItem(Constant.USER_TOKEN, result.data.token);
+        // Store user info in localStorage
+        localStorage.setItem("userInfo", JSON.stringify(result.data));
+        
         toast.success("Login successful!");
         navigate("/candidates-dashboard/my-profile");
       } else {
@@ -67,6 +81,7 @@ const LoginCode = () => {
       }
     } catch (error) {
       console.error(error);
+      toast.error(error.message || "Invalid OTP. Please try again.");
       toast.error(error.message || "Invalid OTP. Please try again.");
     } finally {
       setLoading(false);
@@ -77,11 +92,13 @@ const LoginCode = () => {
     if (!email) {
       toast.error("Email not found. Please login again.");
       navigate("/login");
+      navigate("/login");
       return;
     }
 
     try {
       setLoading(true);
+      const response = await axiosInstance.post("/jobseeker/auth/send-loginotp", {
       const response = await axiosInstance.post("/jobseeker/auth/send-loginotp", {
         email,
       });
@@ -105,11 +122,13 @@ const LoginCode = () => {
         {/* Back Button */}
         <Link
           to="/login"
+          to="/login"
           className="text-blue-600 flex items-center mb-6 hover:text-blue-700"
         >
           <span className="mr-2">←</span> Back
         </Link>
 
+        {/* Logo */}
         {/* Logo */}
         <div className="flex justify-center mb-6">
           <img

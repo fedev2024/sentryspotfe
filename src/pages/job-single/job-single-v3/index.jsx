@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import axiosInstance from "@/store/slices/service/axiosInstance";
+import axiosInstance from "@/store/slices/service/axiosInstance";
 
 // Import components
 import LoginPopup from "@/components/common/form/login/LoginPopup";
@@ -76,10 +77,15 @@ const JobSingleDynamicV3 = () => {
 
   useEffect(() => {
     const fetchJobDetails = async () => {
+    const fetchJobDetails = async () => {
       try {
         const response = await axiosInstance.get(`/jobseeker/job-list/${id}`);
         setJobData(response.data.data);
+        const response = await axiosInstance.get(`/jobseeker/job-list/${id}`);
+        setJobData(response.data.data);
 
+        if (response.data.data.company_id) {
+          const companyResponse = await axiosInstance.get(`/jobseeker/companies/${response.data.data.company_id}`);
         if (response.data.data.company_id) {
           const companyResponse = await axiosInstance.get(`/jobseeker/companies/${response.data.data.company_id}`);
           setCompany(companyResponse.data.data);
@@ -90,10 +96,16 @@ const JobSingleDynamicV3 = () => {
         console.error("Error fetching job details:", error);
         toast.error(error.response?.data?.message || "Failed to fetch job details");
         setError(error.response?.data?.message || "Failed to fetch job details");
+      } catch (error) {
+        console.error("Error fetching job details:", error);
+        toast.error(error.response?.data?.message || "Failed to fetch job details");
+        setError(error.response?.data?.message || "Failed to fetch job details");
         setLoading(false);
       }
     };
 
+    fetchJobDetails();
+  }, [id]);
     fetchJobDetails();
   }, [id]);
 
@@ -295,7 +307,7 @@ const JobSingleDynamicV3 = () => {
 
                   <div className="sidebar-widget company-widget">
                     <div className="widget-content">
-                      <CompanyInfo company={company} />
+                      <CompanyInfo company={jobData.id} />
                     </div>
                   </div>
 
