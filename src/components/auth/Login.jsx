@@ -9,7 +9,6 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { LoginSchema } from "@/schema/LoginSchema";
 import { toggleSignupDialog } from "@/store/slices/authSlice";
-import { toggleSignupDialog } from "@/store/slices/authSlice";
 import ActionLoader from "../loader/ActionLoader";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";

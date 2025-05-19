@@ -14,14 +14,6 @@ const Additionalinformation = () => {
     willingness_to_travel: false,
     work_permit_usa: false,
     languages: []
-    is_veteran_or_ex_military: false,
-    is_reasonable_adjustments: false,
-    handled_team: false,
-    extended_work_schedules: false,
-    willing_to_relocate: false,
-    willingness_to_travel: false,
-    work_permit_usa: false,
-    languages: []
   });
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -77,22 +69,12 @@ const Additionalinformation = () => {
         ...formData,
         languages: languageNames
       };
-      
-      // Transform languages array to match required format
-      const languageNames = languages.map(lang => lang.name);
-
-      const payload = {
-        ...formData,
-        languages: languageNames
-      };
 
       const response = await axios.post(
         "https://api.sentryspot.co.uk/api/jobseeker/additional-details",
         payload,
-        payload,
         {
           headers: {
-            Authorization: token,
             Authorization: token,
           },
         }
@@ -199,10 +181,8 @@ const Additionalinformation = () => {
             <input
               type="radio"
               name="is_reasonable_adjustments"
-              name="is_reasonable_adjustments"
               value="true"
               onChange={handleInputChange}
-              checked={formData.is_reasonable_adjustments === true}
               checked={formData.is_reasonable_adjustments === true}
             />
             <label htmlFor="yes" className="pt-1 me-4 ms-1">
@@ -211,10 +191,8 @@ const Additionalinformation = () => {
             <input
               type="radio"
               name="is_reasonable_adjustments"
-              name="is_reasonable_adjustments"
               value="false"
               onChange={handleInputChange}
-              checked={formData.is_reasonable_adjustments === false}
               checked={formData.is_reasonable_adjustments === false}
             />
             <label htmlFor="No" className="pt-1 me-4 ms-1">
@@ -258,10 +236,8 @@ const Additionalinformation = () => {
             <input
               type="radio"
               name="extended_work_schedules"
-              name="extended_work_schedules"
               value="true"
               onChange={handleInputChange}
-              checked={formData.extended_work_schedules === true}
               checked={formData.extended_work_schedules === true}
             />
             <label htmlFor="yes" className="pt-1 me-4 ms-1">
@@ -270,10 +246,8 @@ const Additionalinformation = () => {
             <input
               type="radio"
               name="extended_work_schedules"
-              name="extended_work_schedules"
               value="false"
               onChange={handleInputChange}
-              checked={formData.extended_work_schedules === false}
               checked={formData.extended_work_schedules === false}
             />
             <label htmlFor="No" className="pt-1 me-4 ms-1">

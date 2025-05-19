@@ -7,7 +7,6 @@ import candidatesuData from "../../data/candidatesMenuData";
 import { isActiveLink } from "../../utils/linkActiveChecker";
 import { Constant } from "@/utils/constant/constant";
 import { logout } from "@/store/slices/authSlice";
-import { logout } from "@/store/slices/authSlice";
 
 const DashboardCandidatesSidebar = () => {
   const { pathname } = useLocation();

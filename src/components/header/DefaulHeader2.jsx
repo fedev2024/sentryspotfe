@@ -6,7 +6,6 @@ import HeaderNavContent from "./HeaderNavContent";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/slices/authSlice";
-import { logout } from "@/store/slices/authSlice";
 import { Constant } from "@/utils/constant/constant";
 import logo from "../../../public/company_logo.png";
 import { toast } from "react-hot-toast";

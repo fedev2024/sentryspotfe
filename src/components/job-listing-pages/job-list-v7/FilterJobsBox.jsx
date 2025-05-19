@@ -7,7 +7,6 @@ import { Constant } from "@/utils/constant/constant";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { fetchJobList } from "@/store/slices/service/jobService";
-import { fetchJobList } from "@/store/slices/service/jobService";
 
 const FilterJobsBox = () => {
   const [jobs, setJobs] = useState([]);
@@ -99,7 +98,6 @@ const FilterJobsBox = () => {
     const fetchCountries = async () => {
       try {
         const response = await fetchJobList();
-        const response = await fetchJobList();
         setCountries(response.data.data);
       } catch (error) {
         console.error('Failed to fetch countries', error);
@@ -114,7 +112,6 @@ const FilterJobsBox = () => {
     if (filters.country_id) {
       const fetchStates = async () => {
         try {
-          const response = await fetchJobList();
           const response = await fetchJobList();
           setStates(response.data.data);
         } catch (error) {
@@ -136,15 +133,7 @@ const FilterJobsBox = () => {
         setJobCount(response.data.length);
         setJobs(response.data);
         setError(null);
-        setLoading(true);
-        const response = await fetchJobList(filters);
-        setJobCount(response.data.length);
-        setJobs(response.data);
-        setError(null);
       } catch (error) {
-        setError(error.message || 'Failed to fetch jobs');
-        toast.error(error.message || 'Failed to fetch jobs');
-      } finally {
         setError(error.message || 'Failed to fetch jobs');
         toast.error(error.message || 'Failed to fetch jobs');
       } finally {
@@ -172,23 +161,18 @@ const FilterJobsBox = () => {
   };
 
   const savejob = async(jobId) => {
-  const savejob = async(jobId) => {
     try {
-      const response = await fetchJobList();
       const response = await fetchJobList();
       if (response.status === 200) {
         toast.success('Your job successfully Saved!');
       } else {
         toast.error('Failed to save the job. Please try again.');
-        toast.error('Failed to save the job. Please try again.');
       }
     } catch (error) {
-      toast.error('Error Saving job:', error);
       toast.error('Error Saving job:', error);
       toast.error('An error occurred while saving for the job. Please try again.');
     }
   };
-  
   
   const handleApplyNowClick = () => {
     setShowPopup(true);
